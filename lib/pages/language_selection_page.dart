@@ -66,6 +66,9 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/home');
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.yellow, // Set the background color to yellow
+              ),
               child: const Text(
                 'Next',
                 style: TextStyle(

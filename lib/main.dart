@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/login_page.dart'; // Update the import statement
 import 'package:ambu_app/pages/home_page.dart'; // Import the home page
-import 'package:ambu_app/pages/signup_page.dart';
+import 'package:ambu_app/pages/signup_page.dart'; // Import Sign Up page 
 import 'package:ambu_app/pages/splash_screen.dart'; // Import the splash screen page
 import 'package:ambu_app/pages/language_selection_page.dart';
 

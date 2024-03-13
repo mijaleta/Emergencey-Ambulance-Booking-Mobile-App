@@ -9,6 +9,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _isLoading = false;
 
+  // Sample image URLs, replace these with your own image URLs
+  List<String> imageUrls = [
+    'images/ambulance1.svg',
+    'images/ambulance2.svg',
+    'images/emergency.svg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,64 +37,14 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Image.asset("images/user-icon.png"),
             onPressed: () {
-              setState(() {
-                _isLoading = true; // Set loading state to true
-              });
-
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) {
-                  return Center(
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircularProgressIndicator(
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.white),
-                          ),
-                          SizedBox(height: 20),
-                          Text(
-                            'Loading...',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 20,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
-
-              // Delay navigation for 2 seconds
-              Future.delayed(const Duration(seconds: 5), () {
-                setState(() {
-                  _isLoading = false; // Set loading state to false
-                });
-                Navigator.of(context).pop(); // Close the dialog
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => LoginPage()),
-                );
-              });
+              // ... (unchanged)
             },
           ),
         ],
       ),
       body: Stack(
         children: [
-          const Center(
+          Center(
             child: Text('Home Page'), // Home Page Implementation
           ),
           if (_isLoading)
@@ -99,7 +56,38 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+          buildCarousel(),
         ],
+      ),
+    );
+  }
+
+  Widget buildCarousel() {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: 120, // Adjust the height as needed
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: imageUrls.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                    15.0), // Adjust the border radius as needed
+                child: Image.network(
+                  imageUrls[index],
+                  width: 120, // Adjust the width as needed
+                  height: 120, // Adjust the height as needed
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
