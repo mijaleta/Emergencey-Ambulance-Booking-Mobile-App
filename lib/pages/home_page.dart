@@ -37,57 +37,50 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Image.asset("images/user-icon.png"),
             onPressed: () {
-              // ... (unchanged)
+              // Navigate to login page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
             },
           ),
         ],
       ),
-      body: Stack(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          SizedBox(height: 20), // Increased margin between app bar and images
           buildCarousel(),
+          SizedBox(height: 20), // Increased margin between images and text
           const Center(
             child: Text('Home Page'), // Home Page Implementation
           ),
-          if (_isLoading)
-            Positioned.fill(
-              child: Container(
-                color: Colors.transparent,
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            ),
+          SizedBox(height: 16), // Increased margin below the text
         ],
       ),
     );
   }
 
   Widget buildCarousel() {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        height: 120, // Adjust the height as needed
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: imageUrls.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Adjust the border radius as needed
-                child: Image.network(
-                  imageUrls[index],
-                  width: 120, // Adjust the width as needed
-                  height: 120, // Adjust the height as needed
-                  fit: BoxFit.cover,
-                ),
+    return Container(
+      height: 120, // Adjust the height as needed
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: imageUrls.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Image.asset(
+                imageUrls[index],
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
