@@ -11,9 +11,9 @@ class _HomePageState extends State<HomePage> {
 
   // Sample image URLs, replace these with your own image URLs
   List<String> imageUrls = [
-    'images/ambulance1.svg',
-    'images/ambulance2.svg',
-    'images/emergency.svg',
+    'assets/ambulancea.png',
+    'assets/ambulanceb.png',
+    'assets/emergencyc.jpg',
   ];
 
   @override
@@ -44,7 +44,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Stack(
         children: [
-          Center(
+          buildCarousel(),
+          const Center(
             child: Text('Home Page'), // Home Page Implementation
           ),
           if (_isLoading)
@@ -56,7 +57,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          buildCarousel(),
         ],
       ),
     );
