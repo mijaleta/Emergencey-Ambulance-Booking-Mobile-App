@@ -19,8 +19,7 @@ class LoginPage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                'images/login-background.jpg'), // Adjust the image path
+            image: AssetImage('images/ambu.jpg'), // Adjust the image path
             fit: BoxFit.cover,
           ),
         ),
@@ -94,7 +93,7 @@ class LoginPage extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: Image.asset(
-                      'images/google.png',
+                      'icons/google.png',
                       width: 40,
                       height: 40,
                     ),
@@ -104,7 +103,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   IconButton(
                     icon: Image.asset(
-                      'images/facebook.png',
+                      'icons/facebook.png',
                       width: 40,
                       height: 40,
                     ),

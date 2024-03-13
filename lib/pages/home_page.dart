@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue,
         leading: IconButton(
           icon: Image.asset(
-            "images/menu.png",
+            "icons/menu.png",
             color: Colors.black,
           ),
           onPressed: () {},
@@ -31,11 +31,11 @@ class _HomePageState extends State<HomePage> {
         title: null, // Remove the title
         actions: [
           IconButton(
-            icon: Image.asset("images/notification-bell.png"),
+            icon: Image.asset("icons/notification-bell.png"),
             onPressed: () {},
           ),
           IconButton(
-            icon: Image.asset("images/user-icon.png"),
+            icon: Image.asset("icons/user-icon.png"),
             onPressed: () {
               // Navigate to login page
               Navigator.push(
