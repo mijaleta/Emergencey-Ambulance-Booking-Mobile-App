@@ -1,4 +1,7 @@
+import 'package:ambu_app/pages/dispatcher_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ambu_app/provider/request_provider.dart';
 
 class PatientRequestPage extends StatelessWidget {
   @override
@@ -16,7 +19,11 @@ class PatientRequestPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.notifications),
             onPressed: () {
-              // Implement notification icon functionality
+              // Navigate to the dispatcher page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DispatcherPage()),
+              );
             },
           ),
           IconButton(
@@ -48,8 +55,7 @@ class PatientRequestPage extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors
-                            .green, // Green background color for dropdown button
+                        color: Colors.green,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -59,8 +65,7 @@ class PatientRequestPage extends StatelessWidget {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Container(
-                              color: Colors
-                                  .black, // Set black background color for dropdown items
+                              color: Colors.black,
                               padding: EdgeInsets.all(8),
                               child: Align(
                                 alignment: Alignment.centerRight,
@@ -85,22 +90,7 @@ class PatientRequestPage extends StatelessWidget {
                     ),
                     SizedBox(height: 16),
                     TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        labelText: "Location",
-                        labelStyle: TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16),
-                    TextField(
+                      keyboardType: TextInputType.number,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Contact Number",
@@ -116,57 +106,65 @@ class PatientRequestPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16),
-                    for (String question in ["Question 1", "Question 2"])
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(question, style: TextStyle(color: Colors.white)),
-                          SizedBox(height: 8),
-                          TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+                    // Rounded dropdown fields with default items
+                    RoundedDropdownField(
+                        "What is the nature of the medical emergency?"),
+                    SizedBox(height: 16),
+                    RoundedDropdownField(
+                        "Are you currently pregnant or have you recently given birth?"),
+                    SizedBox(height: 16),
+                    RoundedDropdownField(
+                        "Have you recently experienced any trauma or injury?"),
+                    SizedBox(height: 16),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Submit request
+                          Provider.of<RequestProvider>(context, listen: false)
+                              .addRequest();
+                          // Show confirmation dialog
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("Request Submitted"),
+                                content: Text(
+                                    "Your request has been submitted successfully."),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text("OK"),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          side: BorderSide(color: Colors.white, width: 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: EdgeInsets.all(12),
+                          child: const Text(
+                            "Submit Request",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 16),
-                        ],
+                        ),
                       ),
+                    ),
                   ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Implement submit button functionality
-                  },
-                  style: ElevatedButton.styleFrom(
-                    side: BorderSide(color: Colors.white, width: 2),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: EdgeInsets.all(12),
-                    child: const Text(
-                      "Submit Request",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -177,8 +175,45 @@ class PatientRequestPage extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: PatientRequestPage(),
-  ));
+class RoundedDropdownField extends StatelessWidget {
+  final String defaultItem;
+
+  RoundedDropdownField(this.defaultItem);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: DropdownButton<String>(
+        items: ["Answer 1", "Answer 2", "Answer 3"].map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Container(
+              color: Colors.black,
+              padding: EdgeInsets.all(8),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  value,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+        onChanged: (String? value) {
+          // Handle dropdown value change
+        },
+        hint: Text(defaultItem, style: TextStyle(color: Colors.white)),
+        isExpanded: true,
+        underline: Container(),
+        icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+        elevation: 16,
+      ),
+    );
+  }
 }

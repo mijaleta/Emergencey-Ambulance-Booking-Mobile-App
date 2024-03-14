@@ -1,4 +1,7 @@
+import 'package:ambu_app/pages/change_password.dart';
+import 'package:ambu_app/pages/dispatcher_page.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
+import 'package:ambu_app/pages/reusable_code.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/login_page.dart'; // Update the import statement
 import 'package:ambu_app/pages/home_page.dart'; // Import the home page
@@ -30,6 +33,12 @@ class MyApp extends StatelessWidget {
             LanguageSelectionPage(), // Language selection route
         '/ambulanceRequest': (context) =>
             PatientRequestPage(), //Patient Request route
+        '/reusableCode': (context) =>
+            ReuasableCodePage(), //Reusable Request route
+        '/dipatchrPage': (context) =>
+            DispatcherPage(), //Dispatcher Request route
+        '/changePasswordPage': (context) =>
+            ChangePasswordPage(), //Change Password Request route
       },
     );
   }

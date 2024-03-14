@@ -1,4 +1,5 @@
 import 'package:ambu_app/pages/patient_request_page.dart';
+import 'package:ambu_app/pages/reusable_code.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/login_page.dart';
 
@@ -123,6 +124,11 @@ class _HomePageState extends State<HomePage> {
               child: ElevatedButton(
                 onPressed: () {
                   // Implement emergency contact button functionality
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ReuasableCodePage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   side: const BorderSide(color: Colors.black, width: 2),

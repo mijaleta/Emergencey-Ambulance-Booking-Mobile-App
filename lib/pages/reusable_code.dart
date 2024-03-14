@@ -1,11 +1,13 @@
+import 'package:ambu_app/pages/dispatcher_page.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
+class ReuasableCodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blue,
           title: Text('Reuse'),
           leading: IconButton(
             icon: Icon(
@@ -46,6 +48,10 @@ class MyApp extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   // Handle "Reuse" button press
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DispatcherPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
