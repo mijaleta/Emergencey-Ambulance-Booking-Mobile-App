@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +18,6 @@ class ChangePasswordPage extends StatelessWidget {
             ),
             onPressed: () {},
           ),
-          title: const Text(
-            'Change Password',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
           actions: [
             IconButton(
               icon: Image.asset("icons/notification-bell.png"),
@@ -29,7 +28,7 @@ class ChangePasswordPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => Login()),
                 );
               },
             ),
@@ -39,6 +38,18 @@ class ChangePasswordPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Change Password',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
             Container(
               margin: EdgeInsets.all(20),
               child: TextField(

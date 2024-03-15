@@ -56,7 +56,7 @@ class ResetPasswordPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(
-                    'Reuse',
+                    'Reset',
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),

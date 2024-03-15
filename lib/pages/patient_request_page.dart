@@ -1,14 +1,25 @@
-import 'package:ambu_app/pages/dispatcher_page.dart';
+import 'package:ambu_app/models/request.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ambu_app/provider/request_provider.dart';
+import 'package:ambu_app/pages/dispatcher_page.dart';
 
-class PatientRequestPage extends StatelessWidget {
+class PatientRequestPage extends StatefulWidget {
+  @override
+  _PatientRequestPageState createState() => _PatientRequestPageState();
+}
+
+class _PatientRequestPageState extends State<PatientRequestPage> {
+  String? emergencyType;
+  String? pregnancyStatus;
+  String? traumaStatus;
+  TextEditingController contactNumberController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blue,
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
@@ -60,25 +71,28 @@ class PatientRequestPage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: DropdownButton<String>(
+                        value: emergencyType,
                         items: ["Disease", "Accident", "Labour"]
                             .map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Container(
-                              color: Colors.black,
+                              // color: Colors.black,
                               padding: EdgeInsets.all(8),
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
                                   value,
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(color: Colors.black),
                                 ),
                               ),
                             ),
                           );
                         }).toList(),
                         onChanged: (String? value) {
-                          // Handle dropdown value change
+                          setState(() {
+                            emergencyType = value;
+                          });
                         },
                         hint: Text("Select Type",
                             style: TextStyle(color: Colors.white)),
@@ -90,6 +104,7 @@ class PatientRequestPage extends StatelessWidget {
                     ),
                     SizedBox(height: 16),
                     TextField(
+                      controller: contactNumberController,
                       keyboardType: TextInputType.number,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
@@ -106,65 +121,97 @@ class PatientRequestPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16),
-                    // Rounded dropdown fields with default items
                     RoundedDropdownField(
-                        "What is the nature of the medical emergency?"),
+                      "What is the nature of the medical emergency?",
+                      (value) {
+                        setState(() {
+                          pregnancyStatus = value;
+                        });
+                      },
+                    ),
                     SizedBox(height: 16),
                     RoundedDropdownField(
-                        "Are you currently pregnant or have you recently given birth?"),
+                      "Are you currently pregnant or have you recently given birth?",
+                      (value) {
+                        setState(() {
+                          pregnancyStatus = value;
+                        });
+                      },
+                    ),
                     SizedBox(height: 16),
                     RoundedDropdownField(
-                        "Have you recently experienced any trauma or injury?"),
-                    SizedBox(height: 16),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Submit request
-                          Provider.of<RequestProvider>(context, listen: false)
-                              .addRequest();
-                          // Show confirmation dialog
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text("Request Submitted"),
-                                content: Text(
-                                    "Your request has been submitted successfully."),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text("OK"),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          side: BorderSide(color: Colors.white, width: 2),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.all(12),
-                          child: const Text(
-                            "Submit Request",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
+                      "Have you recently experienced any trauma or injury?",
+                      (value) {
+                        setState(() {
+                          traumaStatus = value;
+                        });
+                      },
                     ),
                   ],
+                ),
+              ),
+              SizedBox(height: 16),
+              // Moved the Submit Request button out of the container
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Submit request
+                    Provider.of<RequestProvider>(context, listen: false)
+                        .addRequest(Request(
+                      id: DateTime.now()
+                          .toString(), // Generating unique ID based on timestamp
+                      details: 'Emergency Type: $emergencyType\n'
+                          'Contact Number: ${contactNumberController.text}\n'
+                          'Pregnancy Status: $pregnancyStatus\n'
+                          'Trauma Status: $traumaStatus',
+                    ));
+                    // Show confirmation dialog
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Request Submitted"),
+                          content: Text(
+                              "Your request has been submitted successfully."),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            DispatcherPage()));
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    side: BorderSide(color: Colors.black, width: 2),
+                    elevation: 0, // No shadow
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: EdgeInsets.all(12),
+                    child: const Text(
+                      "Submit Request",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black, // Text color
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -177,8 +224,9 @@ class PatientRequestPage extends StatelessWidget {
 
 class RoundedDropdownField extends StatelessWidget {
   final String defaultItem;
+  final Function(String?) onChanged;
 
-  RoundedDropdownField(this.defaultItem);
+  RoundedDropdownField(this.defaultItem, this.onChanged);
 
   @override
   Widget build(BuildContext context) {
@@ -205,9 +253,7 @@ class RoundedDropdownField extends StatelessWidget {
             ),
           );
         }).toList(),
-        onChanged: (String? value) {
-          // Handle dropdown value change
-        },
+        onChanged: onChanged,
         hint: Text(defaultItem, style: TextStyle(color: Colors.white)),
         isExpanded: true,
         underline: Container(),
