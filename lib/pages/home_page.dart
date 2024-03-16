@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
+import 'package:flutter/material.dart';
+import 'package:ambu_app/pages/account_page.dart';
+import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
-import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,6 +18,16 @@ class _HomePageState extends State<HomePage> {
     'assets/ambu-blue.jpg',
     'assets/ambu-keyboard.jpg',
   ];
+
+  // Dropdown menu items
+  final List<String> dropdownItems = [
+    'Account',
+    'Search',
+    'Settings',
+    'Logout',
+  ];
+
+  String? selectedMenuItem;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +46,40 @@ class _HomePageState extends State<HomePage> {
             icon: Image.asset("icons/notification-bell.png"),
             onPressed: () {},
           ),
-          IconButton(
+          PopupMenuButton(
             icon: Image.asset("icons/user-icon.png"),
-            onPressed: () {},
+            onSelected: (String value) {
+              // Update the selectedMenuItem variable
+              setState(() {
+                selectedMenuItem = value;
+              });
+
+              // Handle menu item selection here
+              if (selectedMenuItem == 'Account') {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => AccountPage()),
+                // );
+              } else if (selectedMenuItem == 'Search') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AmbulanceSearchPage()),
+                );
+              } else if (selectedMenuItem == 'Settings') {
+                // Handle settings navigation
+              } else if (selectedMenuItem == 'Logout') {
+                // Handle logout navigation
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return dropdownItems.map((String item) {
+                return PopupMenuItem<String>(
+                  value: item,
+                  child: Text(item),
+                );
+              }).toList();
+            },
           ),
         ],
       ),

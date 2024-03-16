@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/reset_password.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           '/forgotPasswordPage': (context) => ForgotPasswordPage(),
           '/login': (context) => Login(),
           '/reset': (context) => ResetPasswordPage(),
+          '/searchAmbulancePage': (context) => AmbulanceSearchPage(),
         },
       ),
     );

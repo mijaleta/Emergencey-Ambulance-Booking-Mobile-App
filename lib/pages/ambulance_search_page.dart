@@ -1,68 +1,134 @@
 import 'package:flutter/material.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
+  const AmbulanceSearchPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Reuse'),
-          leading: IconButton(
-            icon: Icon(
-              Icons.menu,
-              color: Colors.white,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Image.asset('icons/menu.png'), // Custom menu icon
+          onPressed: () {
+            // Implement menu icon functionality
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Image.asset('icons/user-icon.png'), // Custom user icon
             onPressed: () {
-              // Handle menu button press
+              // Implement user icon functionality
             },
           ),
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.notifications,
-                color: Colors.white,
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon:
+                      Image.asset('icons/search1.png'), // Custom search icon
+                  hintText: 'Search Ambulances',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
               ),
-              onPressed: () {
-                // Handle notification button press
-              },
             ),
-            IconButton(
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Quick Ambulance Service',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              onPressed: () {
-                // Handle user button press
-              },
+            ),
+            // Containers with customizable images and details
+            // Auto sliding can be implemented using ListView or PageView
+            // Ambulance Ranking
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Ambulance Ranking',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Image containers with respective texts
+                  // Customize image containers as required
+                  Column(
+                    children: [
+                      Image.asset(
+                        'images/ambublue.jpg', // Customize icon path
+                        width: 100,
+                        height: 100,
+                      ),
+                      Text(
+                        'Advanced Life Support',
+                        style: TextStyle(fontSize: 1),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text('Critical Care Ambulance')
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Image.asset(
+                        'images/ambusky.jpg', // Customize icon path
+                        width: 100,
+                        height: 100,
+                      ),
+                      Text('Basic Life Support'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text('Essential Care Transport')
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Image.asset(
+                        'images/ambuwhite.jpg', // Customize icon path
+                        width: 100,
+                        height: 100,
+                      ),
+                      Text('Medium Life Support'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text('Medium Care Ambulance')
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              margin: EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: () {
-                  // Handle "Reuse" button press
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    'Reuse',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ],
+      ),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.black,
+        ),
+        padding: EdgeInsets.all(16),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
         ),
       ),
     );

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
-
 import 'package:ambu_app/pages/change_password.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/signup_page.dart';
@@ -9,20 +7,31 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            body: Container(
-      margin: EdgeInsets.all(24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-                      crossAxisAlignment: CrossAxisAlignment.,
-
-          _inputField(context),
-          _forgotPassword(context),
-          _signup(context),
-        ],
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        body: Container(
+          margin: EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _header(context),
+              _inputField(context),
+              _forgotPassword(context),
+              _signup(context),
+            ],
+          ),
+        ),
       ),
-    )));
+    );
   }
 
   _header(context) {
@@ -33,10 +42,7 @@ class Login extends StatelessWidget {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Text(
-          "Enter your cridential to login",
-          // style: TextStyle(
-          //   fontSize: 20,
-          // ),
+          "Enter your credentials to login",
         ),
       ],
     );
@@ -85,7 +91,6 @@ class Login extends StatelessWidget {
           child: Text(
             'Login',
             style: TextStyle(
-              // fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -105,7 +110,6 @@ class Login extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
-          // MaterialPageRoute(builder: (context) => ChangePasswordPage()),
         );
       },
       child: Text(
@@ -119,8 +123,7 @@ class Login extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Dont have an account? ',
-          // style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          'Don\'t have an account? ',
         ),
         TextButton(
           onPressed: () {
