@@ -49,7 +49,7 @@ class _PatientRequestPageState extends State<PatientRequestPage> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const Text(
                 "Ambulance Request",
@@ -232,7 +232,7 @@ class RoundedDropdownField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.green,
+        // color: Colors.green,
         borderRadius: BorderRadius.circular(12),
       ),
       padding: EdgeInsets.symmetric(horizontal: 16),

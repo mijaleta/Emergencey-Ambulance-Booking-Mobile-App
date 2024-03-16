@@ -15,7 +15,8 @@ class Login extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _header(context),
+                      crossAxisAlignment: CrossAxisAlignment.,
+
           _inputField(context),
           _forgotPassword(context),
           _signup(context),
