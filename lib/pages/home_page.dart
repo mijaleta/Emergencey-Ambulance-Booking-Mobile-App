@@ -1,8 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ambu_app/pages/login.dart';
-import 'package:ambu_app/pages/patient_request_page.dart';
-import 'package:ambu_app/pages/reusable_code.dart';
 import 'package:flutter/material.dart';
-// import 'package:ambu_app/pages/login_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,11 +9,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //bool _isLoading = false;
-
-  List<String> imageUrls = [
+  // List of image URLs
+  final List<String> imageUrls = [
     'assets/ambulancea.png',
-    'assets/ambulanceb.png',
+    // 'assets/ambulanceb.png',
     'assets/emergencyc.jpg',
     'assets/ambu-blue.jpg',
     'assets/ambu-keyboard.jpg',
@@ -32,10 +30,6 @@ class _HomePageState extends State<HomePage> {
           ),
           onPressed: () {},
         ),
-        title: const Text(
-          'Booking Status',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
         actions: [
           IconButton(
             icon: Image.asset("icons/notification-bell.png"),
@@ -43,56 +37,53 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             icon: Image.asset("icons/user-icon.png"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-              );
-            },
+            onPressed: () {},
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 20),
-            buildCarousel(),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
-                    // Implement backward arrow functionality
-                  },
+      body: Container(
+        padding: EdgeInsets.all(20.0), // Add padding around the content
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                'Ambulance Booking', // Add the text here
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
-                Container(
-                  height: 10,
-                  width: 200,
-                  color: Colors.blue,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              // Display images in two columns and three rows
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
                 ),
-                IconButton(
-                  icon: const Icon(Icons.arrow_forward),
-                  onPressed: () {
-                    // Implement forward arrow functionality
-                  },
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  // Implement Book Ambulance button functionality
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PatientRequestPage()),
+                itemCount: imageUrls.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Image.asset(
+                        imageUrls[index],
+                        height: 150, // Set a fixed height for the images
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   );
                 },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   shape: RoundedRectangleBorder(
@@ -110,26 +101,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                "It's your lifeline in critical situations, connecting you promptly to the support needed during emergencies.",
-                style: TextStyle(fontSize: 16, color: Colors.blue),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  "It's your lifeline in critical situations, connecting you promptly to the support needed during emergencies.",
+                  style: TextStyle(fontSize: 16, color: Colors.blue),
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: ElevatedButton(
+              const SizedBox(height: 20),
+              ElevatedButton(
                 onPressed: () {
-                  // Implement emergency contact button functionality
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ReuasableCodePage()),
-                  );
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login()));
                 },
                 style: ElevatedButton.styleFrom(
                   side: const BorderSide(color: Colors.black, width: 2),
@@ -143,38 +127,15 @@ class _HomePageState extends State<HomePage> {
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
-                    "Emergency Contact",
+                    "Login",
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20), // Add extra spacing at the bottom
+            ],
+          ),
         ),
-      ),
-    );
-  }
-
-  Widget buildCarousel() {
-    return SizedBox(
-      height: 120,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: imageUrls.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Image.asset(
-                imageUrls[index],
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        },
       ),
     );
   }

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
 
 import 'package:ambu_app/pages/change_password.dart';
+import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
@@ -28,13 +29,13 @@ class Login extends StatelessWidget {
       children: [
         Text(
           "Welcome Back",
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Text(
           "Enter your cridential to login",
-          style: TextStyle(
-            fontSize: 20,
-          ),
+          // style: TextStyle(
+          //   fontSize: 20,
+          // ),
         ),
       ],
     );
@@ -71,7 +72,7 @@ class Login extends StatelessWidget {
             ),
             fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
             filled: true,
-            prefixIcon: Icon(Icons.person),
+            prefixIcon: Icon(Icons.password_rounded),
           ),
           obscureText: true,
         ),
@@ -83,7 +84,7 @@ class Login extends StatelessWidget {
           child: Text(
             'Login',
             style: TextStyle(
-              fontSize: 20,
+              // fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -102,12 +103,12 @@ class Login extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ChangePasswordPage()),
+          MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+          // MaterialPageRoute(builder: (context) => ChangePasswordPage()),
         );
       },
       child: Text(
         'Forgot Password',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -118,7 +119,7 @@ class Login extends StatelessWidget {
       children: [
         Text(
           'Dont have an account? ',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          // style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         TextButton(
           onPressed: () {

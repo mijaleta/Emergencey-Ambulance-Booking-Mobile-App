@@ -62,11 +62,12 @@ flutter:
   uses-material-design: true
   assets:
     - images/
-    - assets/ambulancea.png
-    - assets/ambulanceb.png
-    - assets/emergencyc.jpg
-    - 'assets/ambu-blue.jpg'
-    - 'assets/ambu-keyboard.jpg'
+    - assets/
+    # - assets/ambulancea.png
+    # - assets/ambulanceb.png
+    # - assets/emergencyc.jpg
+    # - 'assets/ambu-blue.jpg'
+    # - 'assets/ambu-keyboard.jpg'
     - icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

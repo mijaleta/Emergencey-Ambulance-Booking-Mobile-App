@@ -1,3 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:ambu_app/pages/forgot_password_page.dart';
+import 'package:ambu_app/pages/login.dart';
+import 'package:ambu_app/pages/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ambu_app/provider/request_provider.dart';
@@ -20,20 +25,23 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => RequestProvider(),
       child: MaterialApp(
-        title: 'Your App Name',
+        title: 'Emergency Ambulance Booking',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         initialRoute: '/splash',
         routes: {
           '/home': (context) => HomePage(),
-          '/login': (context) => LoginPage(),
+          '/loginPage': (context) => LoginPage(),
           '/signup': (context) => SignupPage(),
           '/splash': (context) => SplashScreen(),
           '/languageSelection': (context) => LanguageSelectionPage(),
           '/ambulanceRequest': (context) => PatientRequestPage(),
           '/dispatcherPage': (context) => DispatcherPage(), // Fixed typo here
           '/changePasswordPage': (context) => ChangePasswordPage(),
+          '/forgotPasswordPage': (context) => ForgotPasswordPage(),
+          '/login': (context) => Login(),
+          '/reset': (context) => ResetPasswordPage(),
         },
       ),
     );
