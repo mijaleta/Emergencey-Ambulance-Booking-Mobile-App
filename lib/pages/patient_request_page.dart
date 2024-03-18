@@ -233,6 +233,7 @@ class RoundedDropdownField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         // color: Colors.green,
+        border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(12),
       ),
       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -241,13 +242,13 @@ class RoundedDropdownField extends StatelessWidget {
           return DropdownMenuItem<String>(
             value: value,
             child: Container(
-              color: Colors.black,
+              // color: Colors.black,
               padding: EdgeInsets.all(8),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   value,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
             ),

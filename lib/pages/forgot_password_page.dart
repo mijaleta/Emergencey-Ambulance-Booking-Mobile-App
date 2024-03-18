@@ -57,6 +57,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   'Send Reset Link',
                   style: TextStyle(
                     fontSize: 18.0,
+                    color: Colors.white,
                   ),
                 ),
               ),

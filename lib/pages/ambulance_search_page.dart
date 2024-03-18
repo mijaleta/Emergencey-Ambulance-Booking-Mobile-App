@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
@@ -30,11 +32,17 @@ class AmbulanceSearchPage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 decoration: InputDecoration(
-                  prefixIcon:
-                      Image.asset('icons/search1.png'), // Custom search icon
-                  hintText: 'Search Ambulances',
+                  prefixIcon: Image.asset(
+                    'icons/search-interface-symbol.png',
+                    width: 30,
+                    height: 30,
+                  ), // Custom search icon
+                  fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+                  filled: true,
+                  hintText: 'Search',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(18.0),
+                    // borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -111,7 +119,14 @@ class AmbulanceSearchPage extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text('Medium Care Ambulance')
+                      Text(
+                        'Medium Care Ambulance',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w500,
+                          // overflow: non
+                        ),
+                      ),
                     ],
                   ),
                 ],

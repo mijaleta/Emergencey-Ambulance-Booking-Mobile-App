@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ambu_app/provider/request_provider.dart';
@@ -91,7 +92,10 @@ class DispatcherPage extends StatelessWidget {
             IconButton(
               icon: Image.asset("icons/user-icon.png"),
               onPressed: () {
-                
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PatientRequestPage()));
               },
             ),
           ],
