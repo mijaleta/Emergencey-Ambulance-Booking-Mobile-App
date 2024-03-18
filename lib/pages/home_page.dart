@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
+import 'package:ambu_app/pages/feedback_page.dart' as app;
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
     'Search',
     'Settings',
     'Logout',
+    'Feedback',
   ];
 
   String? selectedMenuItem;
@@ -72,6 +75,10 @@ class _HomePageState extends State<HomePage> {
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Logout') {
                 // Handle logout navigation
+              } else if (selectedMenuItem == 'Feedback') {
+                // Handle Feedback navigation
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FeedbackPage()));
               }
             },
             itemBuilder: (BuildContext context) {

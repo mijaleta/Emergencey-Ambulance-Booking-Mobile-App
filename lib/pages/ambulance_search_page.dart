@@ -61,7 +61,7 @@ class AmbulanceSearchPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Container(
-              height: 150,
+              height: 230,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
