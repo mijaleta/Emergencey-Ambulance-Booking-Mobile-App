@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
-  const AmbulanceSearchPage({super.key});
+  const AmbulanceSearchPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +37,13 @@ class AmbulanceSearchPage extends StatelessWidget {
                     width: 30,
                     height: 30,
                   ), // Custom search icon
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
                   fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
                   filled: true,
                   hintText: 'Search',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18.0),
-                    // borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -55,79 +56,29 @@ class AmbulanceSearchPage extends StatelessWidget {
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-            // Containers with customizable images and details
-            // Auto sliding can be implemented using ListView or PageView
-            // Ambulance Ranking
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Ambulance Ranking',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            SizedBox(height: 10),
             Container(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              height: 150,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
                 children: [
-                  // Image containers with respective texts
-                  // Customize image containers as required
-                  Column(
-                    children: [
-                      Image.asset(
-                        'images/ambublue.jpg', // Customize icon path
-                        width: 100,
-                        height: 100,
-                      ),
-                      Text(
-                        'Advanced Life Support',
-                        style: TextStyle(fontSize: 1),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text('Critical Care Ambulance')
-                    ],
+                  CustomCard(
+                    imagePath: 'images/ambublue.jpg',
+                    title: 'Advanced Life Support',
+                    subtitle: 'Critical Care Ambulance',
                   ),
-                  Column(
-                    children: [
-                      Image.asset(
-                        'images/ambusky.jpg', // Customize icon path
-                        width: 100,
-                        height: 100,
-                      ),
-                      Text('Basic Life Support'),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text('Essential Care Transport')
-                    ],
+                  CustomCard(
+                    imagePath: 'images/ambusky.jpg',
+                    title: 'Basic Life Support',
+                    subtitle: 'Essential Care Transport',
                   ),
-                  Column(
-                    children: [
-                      Image.asset(
-                        'images/ambuwhite.jpg', // Customize icon path
-                        width: 100,
-                        height: 100,
-                      ),
-                      Text('Medium Life Support'),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Medium Care Ambulance',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w500,
-                          // overflow: non
-                        ),
-                      ),
-                    ],
+                  CustomCard(
+                    imagePath: 'images/ambuwhite.jpg',
+                    title: 'Medium Life Support',
+                    subtitle: 'Medium Care Ambulance',
                   ),
                 ],
               ),
@@ -135,16 +86,85 @@ class AmbulanceSearchPage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.black,
-        ),
-        padding: EdgeInsets.all(16),
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add functionality for floating action button
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class CustomCard extends StatelessWidget {
+  final String imagePath;
+  final String title;
+  final String subtitle;
+
+  const CustomCard({
+    required this.imagePath,
+    required this.title,
+    required this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        color: Colors.grey[200],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12.0),
+              topRight: Radius.circular(12.0),
+            ),
+            child: Image.asset(
+              imagePath,
+              width: 200,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+            child: Text(
+              subtitle,
+              style: TextStyle(fontSize: 12),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              margin: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.black,
+              ),
+              child: IconButton(
+                icon: Icon(Icons.add),
+                color: Colors.white,
+                onPressed: () {
+                  // Add functionality for icon button
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
