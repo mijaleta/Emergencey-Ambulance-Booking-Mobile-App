@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ambu_app/models/request.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -95,10 +97,15 @@ class _PatientRequestPageState extends State<PatientRequestPage> {
                           });
                         },
                         hint: Text("Select Type",
-                            style: TextStyle(color: Colors.white)),
+                            style: TextStyle(
+                              color: Colors.white,
+                            )),
                         isExpanded: true,
                         underline: Container(),
-                        icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+                        icon: Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.white,
+                        ),
                         elevation: 16,
                       ),
                     ),
@@ -238,7 +245,7 @@ class RoundedDropdownField extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: DropdownButton<String>(
-        items: ["Answer 1", "Answer 2", "Answer 3"].map((String value) {
+        items: ["Yes", "No", "Another"].map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Container(

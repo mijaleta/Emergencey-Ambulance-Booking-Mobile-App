@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({super.key});
+  const FeedbackPage({Key? key}) : super(key: key);
 
   @override
   FeedbackPageState createState() => FeedbackPageState();
@@ -11,6 +10,7 @@ class FeedbackPage extends StatefulWidget {
 
 class FeedbackPageState extends State<FeedbackPage> {
   List<bool> isTypeSelected = [false, false, false, true, true];
+  TextEditingController contactNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,95 +29,104 @@ class FeedbackPageState extends State<FeedbackPage> {
           onPressed: () {},
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 10.0,
-            ),
-            const Text(
-              "Please select the type of the feedback",
-              style: TextStyle(
-                color: Color(0xFFC5C5C5),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 10.0,
               ),
-            ),
-            const SizedBox(height: 25.0),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Login trouble", isSelected: isTypeSelected[0]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[0] = !isTypeSelected[0];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Phone number related", isSelected: isTypeSelected[1]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[1] = !isTypeSelected[1];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Personal profile", isSelected: isTypeSelected[2]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[2] = !isTypeSelected[2];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Other issues", isSelected: isTypeSelected[3]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[3] = !isTypeSelected[3];
-                });
-              },
-            ),
-            GestureDetector(
-              child: buildCheckItem(
-                  title: "Suggestions", isSelected: isTypeSelected[4]),
-              onTap: () {
-                setState(() {
-                  isTypeSelected[4] = !isTypeSelected[4];
-                });
-              },
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            buildFeedbackForm(),
-            const SizedBox(height: 20.0),
-            buildNumberField(),
-            // Spacer(),
-            const SizedBox(height: 40.0),
-            ElevatedButton(
-              onPressed: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => HomePage()));
-                // Navigate to the next page based on selectedLanguage
-                // _navigateToNextPage();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(
-                    255, 192, 129, 203), // Set the background color to yellow
-              ),
-              child: const Text(
-                'Submit',
+              const Text(
+                "Please select the type of the feedback",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  color: Color(0xFFC5C5C5),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 25.0),
+              GestureDetector(
+                child: buildCheckItem(
+                    title: "Login trouble", isSelected: isTypeSelected[0]),
+                onTap: () {
+                  setState(() {
+                    isTypeSelected[0] = !isTypeSelected[0];
+                  });
+                },
+              ),
+              GestureDetector(
+                child: buildCheckItem(
+                    title: "Phone number related",
+                    isSelected: isTypeSelected[1]),
+                onTap: () {
+                  setState(() {
+                    isTypeSelected[1] = !isTypeSelected[1];
+                  });
+                },
+              ),
+              GestureDetector(
+                child: buildCheckItem(
+                    title: "Personal profile", isSelected: isTypeSelected[2]),
+                onTap: () {
+                  setState(() {
+                    isTypeSelected[2] = !isTypeSelected[2];
+                  });
+                },
+              ),
+              GestureDetector(
+                child: buildCheckItem(
+                    title: "Other issues", isSelected: isTypeSelected[3]),
+                onTap: () {
+                  setState(() {
+                    isTypeSelected[3] = !isTypeSelected[3];
+                  });
+                },
+              ),
+              GestureDetector(
+                child: buildCheckItem(
+                    title: "Suggestions", isSelected: isTypeSelected[4]),
+                onTap: () {
+                  setState(() {
+                    isTypeSelected[4] = !isTypeSelected[4];
+                  });
+                },
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              buildFeedbackForm(),
+              const SizedBox(height: 20.0),
+              buildNumberField(),
+              const SizedBox(height: 20.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 6.0, horizontal: 16.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40.0),
+                        color: Colors.black,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          // Perform submission action
+                        },
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -125,6 +134,8 @@ class FeedbackPageState extends State<FeedbackPage> {
 
   buildNumberField() {
     return TextField(
+      controller: contactNumberController,
+      keyboardType: TextInputType.number,
       style: TextStyle(color: Colors.black),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(0.0),
@@ -173,7 +184,7 @@ class FeedbackPageState extends State<FeedbackPage> {
           color: Color(0xFFC5C5C5),
         ),
         hintText: "Phone Number",
-        border: OutlineInputBorder(),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(40.0)),
       ),
     );
   }
@@ -192,9 +203,7 @@ class FeedbackPageState extends State<FeedbackPage> {
                 color: Color(0xFFC5C5C5),
               ),
               border: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Color(0xFFE5E5E5),
-                ),
+                borderRadius: BorderRadius.circular(20.0),
               ),
             ),
           ),
