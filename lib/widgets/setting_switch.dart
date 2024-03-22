@@ -1,25 +1,22 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:ambu_app/widgets/forward_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
-class SettingItem extends StatelessWidget {
+class SettingSwitch extends StatelessWidget {
   final String title;
   final Color bgColor;
   final Color iconColor;
   final IconData icon;
-  final Function() onTap;
-  final String? value;
-  const SettingItem({
-    super.key,
-    required this.title,
-    required this.bgColor,
-    required this.iconColor,
-    required this.icon,
-    required this.onTap,
-    this.value,
-  });
+  final Function(bool value) onTap;
+  final bool value;
+  const SettingSwitch(
+      {super.key,
+      required this.title,
+      required this.bgColor,
+      required this.iconColor,
+      required this.icon,
+      required this.onTap,
+      required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -52,21 +49,23 @@ class SettingItem extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          value != null
-              ? Text(
-                  value!,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
-                )
-              : const SizedBox(),
+          Text(
+            value ? "On" : "Off",
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.grey,
+            ),
+          ),
           const SizedBox(
             width: 20,
           ),
-          ForwardButton(
-            onTap: onTap,
-          )
+          const SizedBox(
+            width: 20,
+          ),
+          // ForwardButton(
+          //   onTap: () {},
+          // )
+          CupertinoSwitch(value: value, onChanged: onTap)
         ],
       ),
     );

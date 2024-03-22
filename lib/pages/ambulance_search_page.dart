@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
@@ -30,20 +28,34 @@ class AmbulanceSearchPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Image.asset(
-                    'icons/search-interface-symbol.png',
-                    width: 30,
-                    height: 30,
-                  ), // Custom search icon
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-                  fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-                  filled: true,
-                  hintText: 'Search',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(18.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                          width: 8), // Add padding to the left side of the icon
+                      Image.asset(
+                        'icons/search-interface-symbol.png',
+                        width: 24, // Reduce the size of the icon
+                        height: 24,
+                      ),
+                      SizedBox(
+                          width:
+                              8), // Add padding between the icon and the text field
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Search',
+                            border: InputBorder.none, // Remove default border
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -65,21 +77,48 @@ class AmbulanceSearchPage extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  CustomCard(
+                  RoundedCustomCard(
                     imagePath: 'images/ambublue.jpg',
                     title: 'Advanced Life Support',
                     subtitle: 'Critical Care Ambulance',
                   ),
-                  CustomCard(
+                  RoundedCustomCard(
                     imagePath: 'images/ambusky.jpg',
                     title: 'Basic Life Support',
                     subtitle: 'Essential Care Transport',
                   ),
-                  CustomCard(
+                  RoundedCustomCard(
                     imagePath: 'images/ambuwhite.jpg',
                     title: 'Medium Life Support',
                     subtitle: 'Medium Care Ambulance',
                   ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Ambulance Ranking',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 120,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  RankingItem(
+                      imagePath: 'images/login-background.jpg',
+                      label: 'Advanced'),
+                  RankingItem(
+                      imagePath: 'images/sky-back.jpg', label: 'Medium'),
+                  RankingItem(
+                      imagePath: 'images/v-shape-back.jpg', label: 'Basic'),
                 ],
               ),
             ),
@@ -96,12 +135,12 @@ class AmbulanceSearchPage extends StatelessWidget {
   }
 }
 
-class CustomCard extends StatelessWidget {
+class RoundedCustomCard extends StatelessWidget {
   final String imagePath;
   final String title;
   final String subtitle;
 
-  const CustomCard({
+  const RoundedCustomCard({
     required this.imagePath,
     required this.title,
     required this.subtitle,
@@ -135,7 +174,9 @@ class CustomCard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16), // Increase font size
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -143,7 +184,7 @@ class CustomCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
             child: Text(
               subtitle,
-              style: TextStyle(fontSize: 12),
+              style: TextStyle(fontSize: 14), // Increase font size
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -163,6 +204,49 @@ class CustomCard extends StatelessWidget {
                 },
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RankingItem extends StatelessWidget {
+  final String imagePath;
+  final String label;
+
+  const RankingItem({
+    required this.imagePath,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        color: Colors.grey[200],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12.0),
+            child: Image.asset(
+              imagePath,
+              width: 60,
+              height: 60,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            label,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16), // Increase font size
           ),
         ],
       ),
