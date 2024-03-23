@@ -1,6 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
+import 'package:ambu_app/pages/helpPage.dart';
+import 'package:ambu_app/pages/history.dart';
+import 'package:ambu_app/pages/logout.dart';
+import 'package:ambu_app/pages/policies.dart';
+import 'package:ambu_app/pages/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
@@ -82,6 +88,10 @@ class _HomePageState extends State<HomePage> {
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Logout') {
                 // Handle logout navigation
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Logout()),
+                );
               } else if (selectedMenuItem == 'Feedback') {
                 // Handle Feedback navigation
                 Navigator.push(context,
@@ -113,7 +123,12 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold), // Set text color
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DriverPage()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(
                     left: 20.0), // Remove ListTile default padding
                 horizontalTitleGap: 5, // Remove space between icon and text
@@ -130,7 +145,12 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => History()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(
                     left: 20.0), // Remove ListTile default padding
                 horizontalTitleGap: 5,
@@ -147,7 +167,13 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AmbulanceSearchPage()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
                 leading: Icon(
@@ -163,7 +189,12 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AccountScreen()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
                 leading: Icon(
@@ -179,7 +210,12 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsScreen()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
                 leading: Icon(
@@ -195,7 +231,13 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PatientRequestPage()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
                 leading: Icon(
@@ -211,7 +253,12 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Policies()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
                 leading: Icon(
@@ -227,7 +274,12 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HelpPage()),
+                  )
+                },
                 contentPadding: EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
                 leading: Icon(
@@ -243,7 +295,12 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
-                onTap: () => {},
+                onTap: () => {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => History()),
+                  // )
+                },
                 contentPadding: EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
                 leading: Icon(

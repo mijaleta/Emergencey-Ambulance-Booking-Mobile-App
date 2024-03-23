@@ -12,22 +12,24 @@ class Login extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
-            icon:const Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
         ),
-        body: Container(
-          margin: EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _header(context),
-              _inputField(context),
-              _forgotPassword(context),
-              _signup(context),
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.all(24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _header(context),
+                _inputField(context),
+                _forgotPassword(context),
+                _signup(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -89,7 +91,7 @@ class Login extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            padding:const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             backgroundColor: Colors.blue,
           ),
           child: const Text(

@@ -68,7 +68,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
         ),
         TextField(
           decoration: InputDecoration(
-            hintText: "AmbulanceID",
+            hintText: "Ambulance ID",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
@@ -154,13 +154,11 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
               ),
             ),
             Switch(
-              value:
-                  _isGPSEnabled, // Provide a boolean variable here to control the state of the switch
+              value: _isGPSEnabled,
               onChanged: (bool newValue) {
                 setState(() {
-                  _isGPSEnabled = newValue; // Update the state of the switch
+                  _isGPSEnabled = newValue;
                 });
-                // Add any additional functionality here when the switch state changes
               },
             ),
           ],

@@ -2,6 +2,7 @@
 
 import 'package:ambu_app/models/request.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:ambu_app/provider/request_provider.dart';
 import 'package:ambu_app/pages/dispatcher_page.dart';
@@ -23,29 +24,30 @@ class _PatientRequestPageState extends State<PatientRequestPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: Icon(Ionicons.chevron_back_circle),
           onPressed: () {
             // Implement menu icon functionality
+            Navigator.pop(context);
           },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {
-              // Navigate to the dispatcher page
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => DispatcherPage()),
-              );
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {
-              // Implement user icon functionality
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(Icons.notifications),
+        //     onPressed: () {
+        //       // Navigate to the dispatcher page
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(builder: (context) => DispatcherPage()),
+        //       );
+        //     },
+        //   ),
+        //   IconButton(
+        //     icon: Icon(Icons.person),
+        //     onPressed: () {
+        //       // Implement user icon functionality
+        //     },
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -1,7 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_registration.dart';
+import 'package:ambu_app/pages/driver_page.dart';
+import 'package:ambu_app/pages/helpPage.dart';
+import 'package:ambu_app/pages/history.dart';
 import 'package:ambu_app/pages/home_page.dart';
+import 'package:ambu_app/pages/nurse_page.dart';
+import 'package:ambu_app/pages/patient_request_page.dart';
+import 'package:ambu_app/pages/policies.dart';
+import 'package:ambu_app/pages/setting.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
@@ -13,11 +21,17 @@ class AmbulanceSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Image.asset('icons/menu.png'), // Custom menu icon
-          onPressed: () {
-            // Implement menu icon functionality
-          },
+        backgroundColor: Colors.blue,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Image.asset('icons/menu.png'), // Custom menu icon
+            onPressed: () {
+              // Implement menu icon functionality
+              Scaffold.of(context).openDrawer();
+            },
+            style: IconButton.styleFrom(
+                hoverColor: Colors.white, focusColor: Colors.white),
+          ),
         ),
         actions: [
           IconButton(
@@ -29,6 +43,208 @@ class AmbulanceSearchPage extends StatelessWidget {
             },
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Color.fromARGB(255, 83, 82, 82), // Set drawer background color
+          padding: EdgeInsets.only(top: 100.0),
+          child: ListView(
+            children: [
+              ListTile(
+                title: Text(
+                  "Book",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold), // Set text color
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DriverPage()),
+                  ),
+                },
+                contentPadding: EdgeInsets.only(
+                    left: 20.0), // Remove ListTile default padding
+                horizontalTitleGap: 5, // Remove space between icon and text
+                leading: Icon(
+                  Icons.book,
+                  color: Colors.white, // Set icon color
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "History",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => History()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(
+                    left: 20.0), // Remove ListTile default padding
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.history,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Ambulance Types",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NursePage()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.directions_car,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Account",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AccountScreen()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.account_circle,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Settings",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsScreen()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Request",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PatientRequestPage()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.request_page,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Policies",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Policies()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.policy,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Help",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HelpPage()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.help,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Exit",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  )
+                },
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

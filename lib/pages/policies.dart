@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class Policies extends StatefulWidget {
+  const Policies({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<Policies> createState() => _PoliciesState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _PoliciesState extends State<Policies> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +22,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: const Center(
         child: Text(
-          'Settings Screen Here',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          'Read this Policies Here',
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
         ),
       ),
     );

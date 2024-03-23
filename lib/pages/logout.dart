@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class Logout extends StatefulWidget {
+  const Logout({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<Logout> createState() => _LogoutState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _LogoutState extends State<Logout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,11 +19,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Navigator.pop(context);
             },
             icon: const Icon(Ionicons.chevron_back_outline)),
+        title: const Text(
+          'Logout',
+          style: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
       body: const Center(
         child: Text(
-          'Settings Screen Here',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          "You logged out successfully",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
         ),
       ),
     );

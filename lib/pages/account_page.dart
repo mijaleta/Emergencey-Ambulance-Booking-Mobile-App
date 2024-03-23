@@ -27,8 +27,10 @@ class _AccountScreenState extends State<AccountScreen> {
           //   "icons/beauty-back.jpg",
           //   color: Colors.black,
           // ),
-          onPressed: () {},
           icon: const Icon(Ionicons.chevron_back_outline),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         leadingWidth: 80,
         // title: const Text(
