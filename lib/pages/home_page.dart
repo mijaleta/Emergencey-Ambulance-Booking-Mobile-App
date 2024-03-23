@@ -6,7 +6,6 @@ import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
-import 'package:ambu_app/pages/feedback_page.dart' as app;
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,12 +38,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leading: IconButton(
-          icon: Image.asset(
-            "icons/menu.png",
-            color: Colors.black,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Image.asset(
+              "icons/menu.png",
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
           ),
-          onPressed: () {},
         ),
         actions: [
           IconButton(
@@ -58,13 +61,12 @@ class _HomePageState extends State<HomePage> {
               setState(() {
                 selectedMenuItem = value;
               });
-
               // Handle menu item selection here
               if (selectedMenuItem == 'Account') {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => AccountPage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AccountScreen()),
+                );
               } else if (selectedMenuItem == 'Search') {
                 Navigator.push(
                   context,
@@ -72,6 +74,11 @@ class _HomePageState extends State<HomePage> {
                       builder: (context) => AmbulanceSearchPage()),
                 );
               } else if (selectedMenuItem == 'Settings') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AccountScreen()),
+                );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Logout') {
                 // Handle logout navigation
@@ -91,6 +98,162 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Color.fromARGB(255, 83, 82, 82), // Set drawer background color
+          padding: EdgeInsets.only(top: 100.0),
+          child: ListView(
+            children: [
+              ListTile(
+                title: Text(
+                  "Book",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold), // Set text color
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(
+                    left: 20.0), // Remove ListTile default padding
+                horizontalTitleGap: 5, // Remove space between icon and text
+                leading: Icon(
+                  Icons.book,
+                  color: Colors.white, // Set icon color
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "History",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(
+                    left: 20.0), // Remove ListTile default padding
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.history,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Ambulance Types",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.directions_car,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Account",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.account_circle,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Settings",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Request",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.request_page,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Policies",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.policy,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Help",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.help,
+                  color: Colors.white,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  "Exit",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () => {},
+                contentPadding: EdgeInsets.only(left: 20.0),
+                horizontalTitleGap: 5,
+                leading: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(20.0), // Add padding around the content

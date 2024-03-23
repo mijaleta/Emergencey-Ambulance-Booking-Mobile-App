@@ -7,14 +7,14 @@ import 'package:ambu_app/widgets/setting_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart'; // Import Ionicons package
 
-class AccounScreen extends StatefulWidget {
-  const AccounScreen({super.key});
+class AccountScreen extends StatefulWidget {
+  const AccountScreen({super.key});
 
   @override
-  State<AccounScreen> createState() => _AccounScreenState();
+  State<AccountScreen> createState() => _AccountScreenState();
 }
 
-class _AccounScreenState extends State<AccounScreen> {
+class _AccountScreenState extends State<AccountScreen> {
   bool isDarkMode = false;
 
   @override
@@ -59,7 +59,7 @@ class _AccounScreenState extends State<AccounScreen> {
                 child: Row(
                   children: [
                     Image.asset(
-                      '/icons/user-profile.png',
+                      'icons/user-profile.png',
                       width: 70,
                       height: 70,
                     ),
@@ -85,7 +85,7 @@ class _AccounScreenState extends State<AccounScreen> {
                     ),
                     // const Spacer(),
                     SizedBox(
-                      height: 20,
+                      width: 114,
                     ),
                     ForwardButton(
                       onTap: () {
@@ -138,7 +138,7 @@ class _AccounScreenState extends State<AccounScreen> {
               ),
               SettingSwitch(
                 title: 'Dark Mode',
-                icon: Ionicons.earth,
+                icon: Ionicons.moon,
                 bgColor: Colors.purple.shade100,
                 iconColor: Colors.purple,
                 onTap: (value) {

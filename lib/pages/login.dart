@@ -12,7 +12,7 @@ class Login extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon:const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -35,7 +35,7 @@ class Login extends StatelessWidget {
   }
 
   _header(context) {
-    return Column(
+    return const Column(
       children: [
         Text(
           "Welcome Back",
@@ -52,7 +52,7 @@ class Login extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         TextField(
@@ -64,10 +64,10 @@ class Login extends StatelessWidget {
             ),
             fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
             filled: true,
-            prefixIcon: Icon(Icons.person),
+            prefixIcon: const Icon(Icons.person),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         TextField(
@@ -83,21 +83,21 @@ class Login extends StatelessWidget {
           ),
           obscureText: true,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         ElevatedButton(
           onPressed: () {},
-          child: Text(
+          style: ElevatedButton.styleFrom(
+            padding:const EdgeInsets.symmetric(vertical: 16),
+            backgroundColor: Colors.blue,
+          ),
+          child: const Text(
             'Login',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
-          ),
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.blue,
           ),
         ),
       ],

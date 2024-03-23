@@ -1,4 +1,10 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:ambu_app/pages/ambulance_registration.dart';
+import 'package:ambu_app/pages/home_page.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
   const AmbulanceSearchPage({Key? key});
@@ -18,6 +24,8 @@ class AmbulanceSearchPage extends StatelessWidget {
             icon: Image.asset('icons/user-icon.png'), // Custom user icon
             onPressed: () {
               // Implement user icon functionality
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
         ],
@@ -26,6 +34,15 @@ class AmbulanceSearchPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(height: 20),
+            const Text(
+              "Explore our services",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
@@ -72,7 +89,7 @@ class AmbulanceSearchPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Container(
+            SizedBox(
               height: 230,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -107,10 +124,11 @@ class AmbulanceSearchPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Container(
+            SizedBox(
               height: 120,
               child: ListView(
                 scrollDirection: Axis.horizontal,
+                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   RankingItem(
                       imagePath: 'images/login-background.jpg',
@@ -119,18 +137,25 @@ class AmbulanceSearchPage extends StatelessWidget {
                       imagePath: 'images/sky-back.jpg', label: 'Medium'),
                   RankingItem(
                       imagePath: 'images/v-shape-back.jpg', label: 'Basic'),
+                  RankingItem(
+                      imagePath: 'assets/ambu-phone.png', label: 'Advanced'),
+                  RankingItem(
+                      imagePath: 'images/magaal-back.jpg', label: 'Basic'),
+                  RankingItem(
+                      imagePath: 'images/magaala-back.jpg', label: 'Medium'),
+                  RankingItem(imagePath: 'images/red-back.jpg', label: 'Basic'),
                 ],
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add functionality for floating action button
-        },
-        child: Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Add functionality for floating action button
+      //   },
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }
@@ -170,21 +195,21 @@ class RoundedCustomCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Expanded(
+            // padding: const EdgeInsets.all(8.0),
             child: Text(
               title,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16), // Increase font size
+                  fontSize: 24), // Increase font size
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+          Expanded(
+            // padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
             child: Text(
               subtitle,
-              style: TextStyle(fontSize: 14), // Increase font size
+              style: TextStyle(fontSize: 20), // Increase font size
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -201,6 +226,11 @@ class RoundedCustomCard extends StatelessWidget {
                 color: Colors.white,
                 onPressed: () {
                   // Add functionality for icon button
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RegisterAmbulance()),
+                  );
                 },
               ),
             ),
@@ -216,6 +246,7 @@ class RankingItem extends StatelessWidget {
   final String label;
 
   const RankingItem({
+    super.key,
     required this.imagePath,
     required this.label,
   });

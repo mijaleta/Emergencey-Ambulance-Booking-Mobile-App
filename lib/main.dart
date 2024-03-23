@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ambu_app/pages/account_page.dart';
+import 'package:ambu_app/pages/ambulance_registration.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/edit_screen.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
@@ -13,7 +14,7 @@ import 'package:ambu_app/provider/request_provider.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:ambu_app/pages/dispatcher_page.dart';
 import 'package:ambu_app/pages/change_password.dart';
-import 'package:ambu_app/pages/login_page.dart';
+// import 'package:ambu_app/pages/login_page.dart';
 import 'package:ambu_app/pages/home_page.dart';
 import 'package:ambu_app/pages/signup_page.dart';
 import 'package:ambu_app/pages/splash_screen.dart';
@@ -48,8 +49,9 @@ class MyApp extends StatelessWidget {
           '/reset': (context) => ResetPasswordPage(),
           '/searchAmbulancePage': (context) => AmbulanceSearchPage(),
           'feedbackPage': (context) => FeedbackPage(),
-          'accountPage': (context) => AccounScreen(),
+          'accountPage': (context) => AccountScreen(),
           'editAccountScreen': (context) => EditAccount(),
+          'registerAmbulance': (context) => RegisterAmbulance(),
         },
       ),
     );

@@ -63,7 +63,7 @@ class _EditAccountState extends State<EditAccount> {
                 widget: Column(
                   children: [
                     Image.asset(
-                      '/assets/great-beki.jpg',
+                      'assets/great-beki.jpg',
                       height: 100,
                       width: 100,
                     ),
@@ -138,6 +138,52 @@ class _EditAccountState extends State<EditAccount> {
                 widget: TextField(),
                 title: "Email",
               ),
+              const SizedBox(
+                height: 35,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OutlinedButton(
+                    // padding: EdgeInsets.symmetric(horizontal: 50),
+                    // shape:
+                    style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        )),
+                    onPressed: () {},
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 2.2,
+                          color: Colors.black),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      backgroundColor: Colors.green,
+                      shape: BeveledRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 2,
+                      // borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Text(
+                      'Save',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 14,
+                        letterSpacing: 2.2,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
