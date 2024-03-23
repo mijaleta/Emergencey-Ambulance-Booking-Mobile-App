@@ -18,19 +18,19 @@ class Login extends StatelessWidget {
             },
           ),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.all(24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _header(context),
-                _inputField(context),
-                _forgotPassword(context),
-                _signup(context),
-              ],
-            ),
+        // body: SingleChildScrollView(
+        body: Container(
+          margin: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _header(context),
+              _inputField(context),
+              _forgotPassword(context),
+              _signup(context),
+            ],
           ),
+          // ),
         ),
       ),
     );

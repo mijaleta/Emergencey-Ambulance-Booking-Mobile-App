@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ambu_app/models/request.dart';
+// import 'package:ambu_app/models/request.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:provider/provider.dart';
-import 'package:ambu_app/provider/request_provider.dart';
+// import 'package:provider/provider.dart';
+// import 'package:ambu_app/provider/request_provider.dart';
 import 'package:ambu_app/pages/dispatcher_page.dart';
 
 class PatientRequestPage extends StatefulWidget {
@@ -165,15 +165,15 @@ class _PatientRequestPageState extends State<PatientRequestPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     // Submit request
-                    Provider.of<RequestProvider>(context, listen: false)
-                        .addRequest(Request(
-                      id: DateTime.now()
-                          .toString(), // Generating unique ID based on timestamp
-                      details: 'Emergency Type: $emergencyType\n'
-                          'Contact Number: ${contactNumberController.text}\n'
-                          'Pregnancy Status: $pregnancyStatus\n'
-                          'Trauma Status: $traumaStatus',
-                    ));
+                    // Provider.of<RequestProvider>(context, listen: false)
+                    //     .addRequest(Request(
+                    //   id: DateTime.now()
+                    //       .toString(), // Generating unique ID based on timestamp
+                    //   details: 'Emergency Type: $emergencyType\n'
+                    //       'Contact Number: ${contactNumberController.text}\n'
+                    //       'Pregnancy Status: $pregnancyStatus\n'
+                    //       'Trauma Status: $traumaStatus',
+                    // ));
                     // Show confirmation dialog
                     showDialog(
                       context: context,
