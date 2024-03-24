@@ -58,7 +58,12 @@ class _DriverPageState extends State<DriverPage> {
                       onPressed: () {
                         // Handle accepting booking
                       },
-                      child: Text('Accept'),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green),
+                      child: const Text(
+                        'Accept',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   );
                 },
