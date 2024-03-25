@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:ionicons/ionicons.dart';
 
 class RegisterAmbulance extends StatefulWidget {
-  const RegisterAmbulance({super.key});
+  const RegisterAmbulance({Key? key}) : super(key: key);
 
   @override
   State<RegisterAmbulance> createState() => _RegisterAmbulanceState();
@@ -10,6 +9,9 @@ class RegisterAmbulance extends StatefulWidget {
 
 class _RegisterAmbulanceState extends State<RegisterAmbulance> {
   bool _isGPSEnabled = false;
+  String? _selectedAmbulanceType;
+  String? _selectedSeatingCapacity;
+  String? _selectedAmbulanceStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
         backgroundColor: Colors.blue,
         elevation: 0,
         leading: IconButton(
-          style: IconButton.styleFrom(),
-          icon: const Icon(
-            Icons.arrow_back,
-          ),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -60,180 +59,232 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
   }
 
   _inputField(context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const SizedBox(
-          height: 15,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Ambulance ID",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide.none,
-            ),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            // prefixIcon: const Icon(Icons.person),
+    return Container(
+      // Wrap Column with Container
+      height: MediaQuery.of(context).size.height, // Set a finite height
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(
+            height: 15,
           ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Registration Number",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: BorderSide.none,
-            ),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            // prefixIcon: Icon(Icons.password_rounded),
-          ),
-          obscureText: true,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Ambulance Type",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: BorderSide.none,
-            ),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            // prefixIcon: Icon(Icons.password_rounded),
-          ),
-          obscureText: true,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Seating Capacity",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: BorderSide.none,
-            ),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            // prefixIcon: Icon(Icons.password_rounded),
-          ),
-          obscureText: true,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Ambulance Status",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: BorderSide.none,
-            ),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            // prefixIcon: Icon(Icons.password_rounded),
-          ),
-          obscureText: true,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Row(
-          children: [
-            const Expanded(
-              child: Text(
-                'GPS Integration',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Ambulance ID",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
               ),
+              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+              filled: true,
             ),
-            Switch(
-              value: _isGPSEnabled,
-              onChanged: (bool newValue) {
-                setState(() {
-                  _isGPSEnabled = newValue;
-                });
-              },
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Registration Number",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none,
+              ),
+              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+              filled: true,
             ),
-          ],
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Row(
-          children: [
-            const Text(
-              "Attach Document",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Navigator.push(
-                //     context, MaterialPageRoute(builder: (context) => Login()));
-              },
-              style: ElevatedButton.styleFrom(
-                side: const BorderSide(color: Colors.black, width: 2),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+            obscureText: true,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    hintText: "Ambulance Type",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide.none,
+                    ),
+                    fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+                    filled: true,
+                  ),
+                  value: _selectedAmbulanceType,
+                  items: <String>[
+                    'Basic Life Support (BLS)',
+                    'Advanced Life Support (ALS)',
+                    'Critical Care Transport (CCT)',
+                    'Neonatal Intensive Care Unit (NICU) Ambulance',
+                    'Air Ambulance',
+                    'Emergency Medical Responder (EMR) Vehicle',
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedAmbulanceType = newValue;
+                    });
+                  },
                 ),
-              ).copyWith(
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                foregroundColor: MaterialStateProperty.all(Colors.black),
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(12.0),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    hintText: "Seating Capacity",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide.none,
+                    ),
+                    fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+                    filled: true,
+                  ),
+                  value: _selectedSeatingCapacity,
+                  items: <String>[
+                    '1 (Driver only)',
+                    '2 (Driver and 1 passenger)',
+                    '3 (Driver and 2 passengers)',
+                    '4 (Driver and 3 passengers)',
+                    '5 (Driver and 4 passengers)',
+                    '6 (Driver and 5 passengers)',
+                    '7 (Driver and 6 passengers)',
+                    'Custom (for ambulances with specialized seating configurations)',
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedSeatingCapacity = newValue;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          DropdownButtonFormField<String>(
+            decoration: InputDecoration(
+              hintText: "Ambulance Status",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none,
+              ),
+              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+              filled: true,
+            ),
+            value: _selectedAmbulanceStatus,
+            items: <String>[
+              'In Service',
+              'Out of Service',
+              'On Standby',
+              'Under Maintenance',
+              'Under Repair',
+              'Dispatched',
+              'Returning to Base',
+              'Available',
+            ].map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedAmbulanceStatus = newValue;
+              });
+            },
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              const Expanded(
                 child: Text(
-                  "Browse",
-                  style: TextStyle(fontSize: 18),
+                  'GPS Integration',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            // const Text(
-            //   "Attach Document",
-            //   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            // ),
-            // ElevatedButton(
-            //     onPressed: () {},
-            //     style: ElevatedButton.styleFrom(
-            //       padding: const EdgeInsets.symmetric(vertical: 12),
-            //       backgroundColor: Colors.transparent,
-            //     ),
-            //     child: const Text(
-            //       "Browse",
-            //       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            //     ))
-          ],
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.blue,
+              Switch(
+                value: _isGPSEnabled,
+                onChanged: (bool newValue) {
+                  setState(() {
+                    _isGPSEnabled = newValue;
+                  });
+                },
+              ),
+            ],
           ),
-          child: const Text(
-            'Register',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              const Text(
+                "Attach Document",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (context) => Login()));
+                },
+                style: ElevatedButton.styleFrom(
+                  side: const BorderSide(color: Colors.black, width: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ).copyWith(
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  foregroundColor: MaterialStateProperty.all(Colors.black),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text(
+                    "Browse",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              backgroundColor: Colors.blue,
+            ),
+            child: const Text(
+              'Register',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
