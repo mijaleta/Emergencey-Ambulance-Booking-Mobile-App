@@ -27,6 +27,7 @@ class SignupPage extends StatelessWidget {
         constraints: BoxConstraints
             .expand(), // Ensure the page occupies full available space
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [

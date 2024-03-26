@@ -247,6 +247,7 @@ class AmbulanceSearchPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

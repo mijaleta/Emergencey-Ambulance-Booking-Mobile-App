@@ -32,6 +32,7 @@ class FeedbackPageState extends State<FeedbackPage> {
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(

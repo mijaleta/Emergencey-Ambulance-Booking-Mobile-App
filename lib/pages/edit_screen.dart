@@ -46,6 +46,7 @@ class _EditAccountState extends State<EditAccount> {
         ],
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(

@@ -1,38 +1,8 @@
-// import 'package:flutter/material.dart';
-// import 'package:ionicons/ionicons.dart';
-
-// class NursePage extends StatefulWidget {
-//   const NursePage({super.key});
-
-//   @override
-//   State<NursePage> createState() => _NursePageState();
-// }
-
-// class _NursePageState extends State<NursePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.blue,
-//         leading: IconButton(
-//             onPressed: () {
-//               Navigator.pop(context);
-//             },
-//             icon: const Icon(Ionicons.chevron_back_outline)),
-//         title: const Text('Nurse Screen'),
-//       ),
-//       body: const Center(
-//         child: Text(
-//           'Nurse Page',
-//           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-//         ),
-//       ),
-//     );
-//   }
-// }
-import 'package:ambu_app/models/patient.dart'; // Import the Patient model
-import 'package:ambu_app/services/ambulance_booking_service.dart'; // Import the AmbulanceBookingService
+// import 'package:ambu_app/pages/logout.dart';
+import 'package:ambu_app/pages/new_nurse_page.dart';
 import 'package:flutter/material.dart';
+import 'new_driver_page.dart';
+import 'package:ambu_app/services/drivers.dart';
 
 class NursePage extends StatefulWidget {
   @override
@@ -40,116 +10,107 @@ class NursePage extends StatefulWidget {
 }
 
 class _NursePageState extends State<NursePage> {
-  TextEditingController _patientNameController = TextEditingController();
-  TextEditingController _patientAgeController = TextEditingController();
-  TextEditingController _patientGenderController = TextEditingController();
-  TextEditingController _patientContactController = TextEditingController();
-  TextEditingController _chiefComplaintController = TextEditingController();
-  TextEditingController _locationController = TextEditingController();
-  TextEditingController _destinationController = TextEditingController();
-  TextEditingController _emergencyContactController = TextEditingController();
-  TextEditingController _notesController = TextEditingController();
+  String? _selectedAvailability;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Nurse Page'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextFormField(
-                controller: _patientNameController,
-                decoration: InputDecoration(labelText: 'Patient Name'),
-              ),
-              TextFormField(
-                controller: _patientAgeController,
-                decoration: InputDecoration(labelText: 'Patient Age'),
-                keyboardType: TextInputType.number,
-              ),
-              TextFormField(
-                controller: _patientGenderController,
-                decoration: InputDecoration(labelText: 'Patient Gender'),
-              ),
-              TextFormField(
-                controller: _patientContactController,
-                decoration: InputDecoration(labelText: 'Patient Contact'),
-                keyboardType: TextInputType.phone,
-              ),
-              TextFormField(
-                controller: _chiefComplaintController,
-                decoration: InputDecoration(labelText: 'Chief Complaint'),
-              ),
-              TextFormField(
-                controller: _locationController,
-                decoration: InputDecoration(labelText: 'Location'),
-              ),
-              TextFormField(
-                controller: _destinationController,
-                decoration: InputDecoration(labelText: 'Destination'),
-              ),
-              TextFormField(
-                controller: _emergencyContactController,
-                decoration: InputDecoration(labelText: 'Emergency Contact'),
-                keyboardType: TextInputType.phone,
-              ),
-              TextFormField(
-                controller: _notesController,
-                decoration: InputDecoration(labelText: 'Notes'),
-                maxLines: null,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  _bookAmbulance();
-                },
-                child: Text('Book Ambulance'),
-              ),
-            ],
-          ),
+    List<List<Widget>> tab_cats = sortDrivers();
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("All Nurses"),
+          backgroundColor: Color.fromRGBO(143, 148, 251, 1),
+          bottom: TabBar(tabs: [
+            Tab(
+              icon: Icon(Icons.location_on),
+            ),
+            Tab(
+              text: "Available",
+            ),
+            Tab(text: "Working"),
+            Tab(text: "Offline"),
+          ]),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(
+                  Icons.person_add_alt_1,
+                  color: Colors.white,
+                ),
+                onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NewNursesCode()),
+                    )),
+          ],
         ),
+        body: TabBarView(children: [
+          Column(),
+          SingleChildScrollView(
+            child: Column(
+              children: tab_cats[0],
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: tab_cats[2],
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: tab_cats[1],
+            ),
+          ),
+        ]),
       ),
     );
   }
 
-  void _bookAmbulance() {
-    // Create a Patient object with the entered details
-    Patient patient = Patient(
-      name: _patientNameController.text,
-      age: int.tryParse(_patientAgeController.text) ?? 0,
-      gender: _patientGenderController.text,
-      contact: _patientContactController.text,
-      chiefComplaint: _chiefComplaintController.text,
-      location: _locationController.text,
-      destination: _destinationController.text,
-      emergencyContact: _emergencyContactController.text,
-      notes: _notesController.text,
+  Widget driverCard(String name, Color col, String status, String regId) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Container(
+          width: MediaQuery.of(context).size.width - 50,
+          height: MediaQuery.of(context).size.height / 6,
+          child: Card(
+            child: Column(children: [
+              Row(
+                children: [
+                  // Image.network(
+                  //   "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png")
+                ],
+              ),
+              Text(name),
+              Text(regId),
+              Text(status)
+            ]),
+            color: col,
+          )),
     );
+  }
 
-    // Call the ambulance booking service to book the ambulance
-    AmbulanceBookingService().bookAmbulance(patient);
+  List<List<Widget>> sortDrivers() {
+    List<List<Widget>> lst = [];
 
-    // Show confirmation dialog or navigate to another screen
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Ambulance Booked'),
-          content: Text('Ambulance has been booked successfully!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
+    List<Widget> available = [];
+    List<Widget> offline = [];
+    List<Widget> working = [];
+
+    for (var e in drivers) {
+      if (e['isFree'] && !e['isAvailable']) {
+        offline.add(driverCard(e['name'], Color.fromRGBO(235, 233, 228, 1),
+            "Offline", e["reg_id"]));
+      } else if (e['isFree']) {
+        available.add(driverCard(e['name'], Color.fromRGBO(217, 250, 195, 1),
+            "Available", e["reg_id"]));
+      } else if (!e['isFree'] || !e['isAvailable']) {
+        working.add(driverCard(
+            e['name'], Color.fromRGBO(250, 152, 152, 1), "Busy", e["reg_id"]));
+      }
+      lst.add(available);
+      lst.add(offline);
+      lst.add(working);
+    }
+
+    return lst;
   }
 }

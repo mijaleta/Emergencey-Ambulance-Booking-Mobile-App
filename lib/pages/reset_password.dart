@@ -10,7 +10,7 @@ class ResetPasswordPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Reuse'),
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.menu,
               color: Colors.white,
             ),
@@ -20,7 +20,7 @@ class ResetPasswordPage extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.notifications,
                 color: Colors.white,
               ),
@@ -29,7 +29,7 @@ class ResetPasswordPage extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.person,
                 color: Colors.white,
               ),
@@ -39,32 +39,35 @@ class ResetPasswordPage extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              margin: EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: () {
-                  // Handle "Reuse" button press
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle "Reuse" button press
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    'Reset',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      'Reset',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

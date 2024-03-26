@@ -2,9 +2,9 @@
 
 import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:ambu_app/provider/request_provider.dart';
-import 'package:ambu_app/models/request.dart'; // Import the request model if available
+// import 'package:provider/provider.dart';
+// import 'package:ambu_app/provider/request_provider.dart';
+// import 'package:ambu_app/models/request.dart'; // Import the request model if available
 
 class DispatcherPage extends StatelessWidget {
   const DispatcherPage({super.key});
@@ -12,9 +12,9 @@ class DispatcherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // int requestCount = Provider.of<RequestProvider>(context).getRequestCount();
-    int requestCount = Provider.of<RequestProvider>(context).requestCount;
-    List<Request> requests = Provider.of<RequestProvider>(context)
-        .getRequests(); // Assuming you have a method to get requests
+    // int requestCount = Provider.of<RequestProvider>(context).requestCount;
+    // List<Request> requests = Provider.of<RequestProvider>(context)
+    //     .getRequests(); // Assuming you have a method to get requests
 
     return MaterialApp(
       home: Scaffold(
@@ -36,57 +36,26 @@ class DispatcherPage extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Image.asset("icons/notification-bell.png"),
-                  onPressed: () {
-                    // Show notification panel or list of requests
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text(
-                              "Notification"), // Customize the title as needed
-                          content: requests.isEmpty
-                              ? Text("No new requests")
-                              : Column(
-                                  children: requests.map((request) {
-                                    return ListTile(
-                                      title: Text(
-                                          "Request ID: ${request.id ?? 'N/A'}"), // Use 'N/A' as default if id is null
-                                      subtitle: Text(request.details ??
-                                          'No details'), // Use 'No details' as default if details is null
-                                    );
-                                  }).toList(),
-                                ),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text("Close"),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
+                  onPressed: () {},
                 ),
-                requestCount > 0
-                    ? Positioned(
-                        right: 8,
-                        top: 8,
-                        child: CircleAvatar(
-                          backgroundColor:
-                              const Color.fromARGB(255, 251, 251, 251),
-                          radius: 10,
-                          child: Text(
-                            requestCount.toString(),
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      )
-                    : SizedBox(),
+                // requestCount > 0
+                //     ? Positioned(
+                //         right: 8,
+                //         top: 8,
+                //         child: CircleAvatar(
+                //           backgroundColor:
+                //               const Color.fromARGB(255, 251, 251, 251),
+                //           radius: 10,
+                //           child: Text(
+                //             requestCount.toString(),
+                //             style: TextStyle(
+                //               color: Colors.black,
+                //               fontSize: 12,
+                //             ),
+                //           ),
+                //         ),
+                //       )
+                //     : SizedBox(),
               ],
             ),
             IconButton(

@@ -1,40 +1,41 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ambu_app/pages/login.dart';
-import 'package:ambu_app/pages/login_page.dart';
+// import 'package:ambu_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class ChangePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          leading: IconButton(
-            icon: Image.asset(
-              "icons/menu.png",
-              color: Colors.black,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        leading: IconButton(
+          icon: Image.asset(
+            "icons/menu.png",
+            color: Colors.black,
+          ),
+          onPressed: () {},
+        ),
+        actions: [
+          IconButton(
+            icon: Image.asset("icons/notification-bell.png"),
             onPressed: () {},
           ),
-          actions: [
-            IconButton(
-              icon: Image.asset("icons/notification-bell.png"),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Image.asset("icons/user-icon.png"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Login()),
-                );
-              },
-            ),
-          ],
-        ),
-        body: Column(
+          IconButton(
+            icon: Image.asset("icons/user-icon.png"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+              );
+            },
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

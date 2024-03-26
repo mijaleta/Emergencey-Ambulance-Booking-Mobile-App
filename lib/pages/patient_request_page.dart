@@ -50,6 +50,7 @@ class _PatientRequestPageState extends State<PatientRequestPage> {
         // ],
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -187,10 +188,10 @@ class _PatientRequestPageState extends State<PatientRequestPage> {
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DispatcherPage()));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DispatcherPage()),
+                                );
                               },
                               child: Text("OK"),
                             ),
