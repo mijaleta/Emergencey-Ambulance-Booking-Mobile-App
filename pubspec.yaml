@@ -37,7 +37,12 @@ dependencies:
   ionicons: ^0.2.2
   carousel_slider: ^4.2.1
   font_awesome_flutter: ^10.7.0
-  fluttertoast: ^8.2.4
+  fluttertoast:
+  url_launcher: ^6.2.5
+  location: ^5.0.3
+  google_maps_flutter: ^2.6.0
+  intl: ^0.19.0
+  google_maps: ^7.1.0
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -4,6 +4,7 @@ import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/history.dart';
+import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/policies.dart';
 import 'package:ambu_app/pages/setting.dart';
@@ -148,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => History()),
+                    MaterialPageRoute(builder: (context) => HospitalPage()),
                   )
                 },
                 contentPadding: EdgeInsets.only(

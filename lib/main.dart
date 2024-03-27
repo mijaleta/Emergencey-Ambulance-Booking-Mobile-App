@@ -8,6 +8,7 @@ import 'package:ambu_app/pages/edit_screen.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/history.dart';
+import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/nurse_page.dart';
@@ -30,6 +31,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -62,6 +65,7 @@ class MyApp extends StatelessWidget {
           'settings': (context) => SettingsScreen(),
           'nursePage': (context) => NursePage(),
           'driverPage': (context) => DriverPage(),
+          'hospitalPage':(context) => HospitalPage(),
         },
       ),
     );

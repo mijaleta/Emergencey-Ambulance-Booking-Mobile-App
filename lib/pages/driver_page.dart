@@ -9,7 +9,7 @@ class DriverPage extends StatefulWidget {
 }
 
 class _DriverPageState extends State<DriverPage> {
-  String? _selectedAvailability;
+  // String? _selectedAvailability;
 
   // @override
   // Widget build(BuildContext context) {
@@ -116,7 +116,10 @@ class _DriverPageState extends State<DriverPage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("All drivers"),
+          title: Text(
+            "All drivers",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
           backgroundColor: Color.fromRGBO(143, 148, 251, 1),
           bottom: TabBar(tabs: [
             Tab(
@@ -125,7 +128,9 @@ class _DriverPageState extends State<DriverPage> {
             Tab(
               text: "Available",
             ),
-            Tab(text: "Working"),
+            Tab(
+              text: "Working",
+            ),
             Tab(text: "Offline"),
           ]),
           actions: <Widget>[

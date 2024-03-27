@@ -10,7 +10,7 @@ class NursePage extends StatefulWidget {
 }
 
 class _NursePageState extends State<NursePage> {
-  String? _selectedAvailability;
+  // String? _selectedAvailability;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class _NursePageState extends State<NursePage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("All Nurses"),
-          backgroundColor: Color.fromRGBO(143, 148, 251, 1),
-          bottom: TabBar(tabs: [
+          title: const Text("All Nurses"),
+          backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
+          bottom: const TabBar(tabs: [
             Tab(
               icon: Icon(Icons.location_on),
             ),
@@ -33,7 +33,7 @@ class _NursePageState extends State<NursePage> {
           ]),
           actions: <Widget>[
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.person_add_alt_1,
                   color: Colors.white,
                 ),
