@@ -31,43 +31,40 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => RequestProvider(),
-      child: MaterialApp(
-        title: 'Emergency Ambulance Booking',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        initialRoute: '/splash',
-        routes: {
-          '/home': (context) => HomePage(),
-          // '/loginPage': (context) => LoginPage(),
-          '/signup': (context) => SignupPage(),
-          '/splash': (context) => SplashScreen(),
-          '/languageSelection': (context) => LanguageSelectionPage(),
-          '/ambulanceRequest': (context) => PatientRequestPage(),
-          '/dispatcherPage': (context) => DispatcherPage(), // Fixed typo here
-          '/changePasswordPage': (context) => ChangePasswordPage(),
-          '/forgotPasswordPage': (context) => ForgotPasswordPage(),
-          '/login': (context) => Login(),
-          '/reset': (context) => ResetPasswordPage(),
-          '/searchAmbulancePage': (context) => AmbulanceSearchPage(),
-          'feedbackPage': (context) => FeedbackPage(),
-          'accountPage': (context) => AccountScreen(),
-          'editAccountScreen': (context) => EditAccount(),
-          'registerAmbulance': (context) => RegisterAmbulance(),
-          'logout': (context) => Logout(),
-          'history': (context) => History(),
-          'settings': (context) => SettingsScreen(),
-          'nursePage': (context) => NursePage(),
-          'driverPage': (context) => DriverPage(),
-          'hospitalPage':(context) => HospitalPage(),
-        },
+    return MaterialApp(
+      title: 'Emergency Ambulance Booking',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      initialRoute: '/splash',
+      routes: {
+        '/home': (context) => HomePage(),
+        // '/loginPage': (context) => LoginPage(),
+        '/signup': (context) => SignupPage(),
+        '/splash': (context) => SplashScreen(),
+        '/languageSelection': (context) => LanguageSelectionPage(),
+        '/ambulanceRequest': (context) => PatientRequestPage(),
+        '/dispatcherPage': (context) => DispatcherPage(), // Fixed typo here
+        '/changePasswordPage': (context) => ChangePasswordPage(),
+        '/forgotPasswordPage': (context) => ForgotPasswordPage(),
+        '/login': (context) => Login(),
+        '/reset': (context) => ResetPasswordPage(),
+        '/searchAmbulancePage': (context) => AmbulanceSearchPage(),
+        'feedbackPage': (context) => FeedbackPage(),
+        'accountPage': (context) => AccountScreen(),
+        'editAccountScreen': (context) => EditAccount(),
+        'registerAmbulance': (context) => RegisterAmbulance(),
+        'logout': (context) => Logout(),
+        'history': (context) => History(),
+        'settings': (context) => SettingsScreen(),
+        'nursePage': (context) => NursePage(),
+        'driverPage': (context) => DriverPage(),
+        'hospitalPage':(context) => HospitalPage(),
+      },
     );
   }
 }
