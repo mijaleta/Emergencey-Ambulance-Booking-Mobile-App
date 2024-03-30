@@ -14,8 +14,24 @@ class _SettingsPageState extends State<SettingsPage> {
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.all(24),
-        // children: [SettingsGroup()],
+        children: [
+          SettingsGroup(title: 'GENERAL', children: <Widget>[
+            buildLogout(),
+            buildDeleteAccount(),
+          ])
+        ],
       ),
     );
   }
 }
+
+Widget buildLogout() => SimpleSettingsTile(
+      title: 'Logout',
+      subtitle: '',
+      leading: IconWidget(icon: Icons.logout, color: Colors.black),
+      onTap: () => Utils.showSnackBar(context, 'Clicked Logout'),
+    );
+
+Widget buildDeleteAccount() => SinpleSettingsTile(
+  
+)
