@@ -340,19 +340,75 @@ class _HomePageState extends State<HomePage> {
                 ),
                 itemCount: imageUrls.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image.asset(
-                        imageUrls[index],
-                        height: 150, // Set a fixed height for the images
-                        fit: BoxFit.cover,
+                  String text;
+                  switch (index) {
+                    case 0:
+                      text =
+                          "Your action today could be someone's lifeline tomorrow";
+                      break;
+                    case 1:
+                      text = "Emergency preparedness starts with you";
+                      break;
+                    case 2:
+                      text = "Your compassion fuels our mission";
+                      break;
+                    case 3:
+                      text = "Act Now, Save";
+                      break;
+                    default:
+                      text =
+                          "Urgent Help Now"; // Add default text or handle error cases
+                  }
+
+                  return Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Opacity(
+                            opacity: 0.8,
+                            child: Image.asset(
+                              imageUrls[index],
+                              height: 150, // Set a fixed height for the images
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15.0),
+                                bottomRight: Radius.circular(15.0),
+                              ),
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [Colors.black54, Colors.transparent],
+                              ),
+                            ),
+                            child: Text(
+                              text,
+                              style: TextStyle(
+                                color: Color.fromRGBO(54, 228, 244, 1),
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
+
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {

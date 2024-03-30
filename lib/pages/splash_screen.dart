@@ -7,19 +7,19 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Navigation logic here to navigate to the language selection page first
-    Future.delayed(const Duration(seconds: 20), () {
+    Future.delayed(const Duration(seconds: 13), () {
       Navigator.pushReplacementNamed(context, '/languageSelection');
     });
 
     return Scaffold(
-      // backgroundColor: Colors.blue,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.blue,
-      //   title: const Text(
-      //     'Welcome Back,',
-      //     style: TextStyle(color: Colors.white),
-      //   ),
-      // ),
+      backgroundColor: Colors.blue,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        // title: const Text(
+        //   'Welcome Back,',
+        //   style: TextStyle(color: Colors.white),
+        // ),
+      ),
       body: Stack(
         fit: StackFit.expand,
         children: [
