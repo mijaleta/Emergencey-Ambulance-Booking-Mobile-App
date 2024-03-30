@@ -1,3 +1,4 @@
+import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 
@@ -97,8 +98,11 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      // Handle special requests button press
-                      // You can navigate to another page or show a dialog
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SpecialRequestPage()),
+                      );
                     },
                     child: Text("Special Requests"),
                   ),

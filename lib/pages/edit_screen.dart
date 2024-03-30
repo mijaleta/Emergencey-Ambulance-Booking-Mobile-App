@@ -1,5 +1,6 @@
 import 'package:ambu_app/widgets/edit_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -52,22 +53,40 @@ class _EditAccountState extends State<EditAccount> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Account',
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+              const Center(
+                child: Text(
+                  'Account',
+                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(
                 height: 40,
               ),
               EditItem(
-                title: 'Photo',
+                title: '',
                 widget: Column(
                   children: [
-                    Image.asset(
-                      'assets/great-beki.jpg',
-                      height: 100,
-                      width: 100,
+                    const CircleAvatar(
+                      radius: 50, // Adjust the radius as needed
+                      backgroundColor: Colors.transparent, // Optional
+                      backgroundImage: AssetImage(
+                        'assets/great-beki.jpg',
+                      ),
                     ),
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(50),
+                    //     border: Border.all(
+                    //       color: Colors.lightBlueAccent,
+                    //       width: 2,
+                    //     ),
+                    //   ),
+                    //   child: Image.asset(
+                    //     'assets/great-beki.jpg',
+                    //     height: 100,
+                    //     width: 100,
+                    //   ),
+                    // ),
                     TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(

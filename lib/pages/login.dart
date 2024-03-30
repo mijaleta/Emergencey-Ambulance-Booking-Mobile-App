@@ -9,7 +9,7 @@ class Login extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.blue,
           elevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
