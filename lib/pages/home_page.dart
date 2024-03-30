@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
     'assets/ambu-blue.jpg',
     'assets/ambu-keyboard.jpg',
   ];
-
   // Dropdown menu items
   final List<String> dropdownItems = [
     'Account',
@@ -37,9 +36,7 @@ class _HomePageState extends State<HomePage> {
     'Logout',
     'Feedback',
   ];
-
   String? selectedMenuItem;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -353,13 +350,12 @@ class _HomePageState extends State<HomePage> {
                       text = "Your compassion fuels our mission";
                       break;
                     case 3:
-                      text = "Act Now, Save";
+                      text = "Act Now, Save Lives Immediately";
                       break;
                     default:
                       text =
                           "Urgent Help Now"; // Add default text or handle error cases
                   }
-
                   return Stack(
                     children: [
                       Padding(
@@ -367,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15.0),
                           child: Opacity(
-                            opacity: 0.8,
+                            opacity: 0.6,
                             child: Image.asset(
                               imageUrls[index],
                               height: 150, // Set a fixed height for the images
@@ -396,8 +392,8 @@ class _HomePageState extends State<HomePage> {
                             child: Text(
                               text,
                               style: TextStyle(
-                                color: Color.fromRGBO(54, 228, 244, 1),
-                                fontSize: 20.0,
+                                color: Colors.white,
+                                fontSize: 22.0,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -408,7 +404,6 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
-
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
