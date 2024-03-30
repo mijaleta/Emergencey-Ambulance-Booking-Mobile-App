@@ -372,7 +372,7 @@ class AmbulanceSearchPage extends StatelessWidget {
       //     // Add functionality for floating action button
       //   },
       //   child: Icon(Icons.add),
-      // ),
+      // ),\
     );
   }
 }

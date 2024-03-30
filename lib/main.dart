@@ -5,6 +5,7 @@ import 'package:ambu_app/pages/ambulance_registration.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/edit_screen.dart';
+import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/history.dart';
@@ -63,7 +64,8 @@ class MyApp extends StatelessWidget {
         'settings': (context) => SettingsScreen(),
         'nursePage': (context) => NursePage(),
         'driverPage': (context) => DriverPage(),
-        'hospitalPage':(context) => HospitalPage(),
+        'hospitalPage': (context) => HospitalPage(),
+        'emergencyTypes': (context) => EmergencyTypeSelectionPage(),
       },
     );
   }

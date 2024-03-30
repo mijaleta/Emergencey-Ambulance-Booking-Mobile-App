@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ambu_app/pages/driver_page.dart';
+import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/history.dart';
@@ -410,7 +411,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PatientRequestPage()));
+                          builder: (context) => EmergencyTypeSelectionPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,

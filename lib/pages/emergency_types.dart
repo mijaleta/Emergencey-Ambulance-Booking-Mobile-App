@@ -1,57 +1,113 @@
-// import 'dart:js';
-
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-
-// class SettingsPage extends StatefulWidget {
-//   const SettingsPage({super.key});
-
-//   @override
-//   State<SettingsPage> createState() => _SettingsPageState();
-// }
-
-// class _SettingsPageState extends State<SettingsPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: ListView(
-//         padding: EdgeInsets.all(24),
-//         children: [
-//           SettingsGroup(title: 'GENERAL', children: <Widget>[
-//             buildLogout(),
-//             buildDeleteAccount(),
-//           ])
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// Widget buildLogout() => SimpleSettingsTile(
-//       title: 'Logout',
-//       subtitle: '',
-//       leading: IconWidget(icon: Icons.logout, color: Colors.black),
-//       onTap: () => Utils.showSnackBar(context, 'Clicked Logout'),
-//     );
-
-// Widget buildDeleteAccount() => SinpleSettingsTile(
-//   title:'Delete Account',
-//   subtitle: '',
-//   leading: IconWidget(icon:Icons.Delete, color: Colors.pink),
-//   onTap: () => Utils.showSnackBar(context, 'Clicked Delete'),
-// )
 import 'package:flutter/material.dart';
+import 'package:ambu_app/pages/patient_request_page.dart';
 
-class EmergencyTypes extends StatefulWidget {
-  const EmergencyTypes({super.key});
+class EmergencyTypeSelectionPage extends StatelessWidget {
+  final List<String> diseaseTypes = [
+    "Animal Bite",
+    "Labor",
+    "Car Accident",
+    "Heart Attack",
+    "Stroke",
+    "Severe Bleeding",
+    "Choking",
+    "Seizure",
+    "Allergic Reaction",
+    "Poisoning",
+    "Burns",
+    "Broken Bones",
+    "Difficulty Breathing",
+    "Fainting or Loss of Consciousness",
+    "Overdose",
+    "Head Injury",
+    "Electrical Shock",
+    "Hypothermia or Frostbite",
+    "Heatstroke",
+    "Sudden Severe Pain",
+  ];
 
-  @override
-  State<EmergencyTypes> createState() => _EmergencyTypesState();
-}
-
-class _EmergencyTypesState extends State<EmergencyTypes> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text(
+          "Select Emergency Type",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: Stack(
+        children: [
+          // Background image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/back5.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Main content
+          Positioned.fill(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(16.0),
+                    color: Colors.transparent,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
+                      ),
+                      itemCount: diseaseTypes.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            // Handle the selected emergency type here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PatientRequestPage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              diseaseTypes[index],
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Handle special requests button press
+                      // You can navigate to another page or show a dialog
+                    },
+                    child: Text("Special Requests"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
