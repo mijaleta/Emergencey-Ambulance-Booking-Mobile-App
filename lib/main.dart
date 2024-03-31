@@ -15,6 +15,7 @@ import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/nurse_page.dart';
 import 'package:ambu_app/pages/reset_password.dart';
 import 'package:ambu_app/pages/setting.dart';
+import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 // import 'package:ambu_app/provider/request_provider.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         'driverPage': (context) => DriverPage(),
         'hospitalPage': (context) => HospitalPage(),
         'emergencyTypes': (context) => EmergencyTypeSelectionPage(),
+        'specialRequest': (context) => SpecialRequestPage(),
       },
     );
   }

@@ -22,6 +22,7 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
+        title: Text('Settings', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
         leading: IconButton(
           // icon: Image.asset(
           //   "icons/beauty-back.jpg",
@@ -31,6 +32,7 @@ class _AccountScreenState extends State<AccountScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
+          
         ),
         leadingWidth: 80,
         // title: const Text(
