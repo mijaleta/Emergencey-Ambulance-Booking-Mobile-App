@@ -3,6 +3,8 @@
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_registration.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
+import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
+import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/edit_screen.dart';
 import 'package:ambu_app/pages/emergency_types.dart';
@@ -68,6 +70,8 @@ class MyApp extends StatelessWidget {
         'hospitalPage': (context) => HospitalPage(),
         'emergencyTypes': (context) => EmergencyTypeSelectionPage(),
         'specialRequest': (context) => SpecialRequestPage(),
+        'privacyPolicy': (context) => PrivacyPolicyPage(),
+        'termsOfService': (context) => TermsOfServicePage(),
       },
     );
   }

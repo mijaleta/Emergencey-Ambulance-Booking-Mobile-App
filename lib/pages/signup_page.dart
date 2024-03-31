@@ -31,6 +31,16 @@ class SignupPage extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
+              const SizedBox(height: 20),
+              const Text(
+                "Are you new? Register",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Full Name',

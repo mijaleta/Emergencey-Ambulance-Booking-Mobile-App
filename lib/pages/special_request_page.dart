@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SpecialRequestPage extends StatefulWidget {
   SpecialRequestPage({super.key});
@@ -11,6 +9,26 @@ class SpecialRequestPage extends StatefulWidget {
 
 class _SpecialRequestPageState extends State<SpecialRequestPage> {
   String _specialRequest = '';
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Success"),
+          content: Text("Your request submitted successfully."),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +90,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                             Expanded(
                               child: ElevatedButton(
                                 onPressed: () {
-                                  // Handle saving the special request
-                                  Navigator.pop(context, _specialRequest);
+                                  _showSuccessDialog();
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.green),

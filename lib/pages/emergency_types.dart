@@ -1,29 +1,32 @@
-import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:flutter/material.dart';
+import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 
 class EmergencyTypeSelectionPage extends StatelessWidget {
-  final List<String> diseaseTypes = [
-    "Animal Bite",
-    "Labor",
-    "Car Accident",
-    "Heart Attack",
-    "Stroke",
-    "Severe Bleeding",
-    "Choking",
-    "Seizure",
-    "Allergic Reaction",
-    "Poisoning",
-    "Burns",
-    "Broken Bones",
-    "Difficulty Breathing",
-    "Fainting or Loss of Consciousness",
-    "Overdose",
-    "Head Injury",
-    "Electrical Shock",
-    "Hypothermia or Frostbite",
-    "Heatstroke",
-    "Sudden Severe Pain",
+  final List<Map<String, dynamic>> diseaseTypes = [
+    {"name": "Animal Bite", "icon": Icons.pets},
+    {"name": "Labor", "icon": Icons.accessibility_new},
+    {"name": "Car Accident", "icon": Icons.directions_car},
+    {"name": "Heart Attack", "icon": Icons.favorite},
+    {"name": "Stroke", "icon": Icons.healing},
+    {"name": "Severe Bleeding", "icon": Icons.healing},
+    {"name": "Choking", "icon": Icons.priority_high},
+    {"name": "Seizure", "icon": Icons.warning},
+    {"name": "Allergic Reaction", "icon": Icons.healing},
+    {"name": "Poisoning", "icon": Icons.dangerous},
+    {"name": "Burns", "icon": Icons.local_fire_department},
+    {"name": "Broken Bones", "icon": Icons.masks},
+    {"name": "Difficulty Breathing", "icon": Icons.airline_seat_flat},
+    {
+      "name": "Fainting or Loss of Consciousness",
+      "icon": Icons.airline_seat_individual_suite
+    },
+    {"name": "Overdose", "icon": Icons.warning_amber_outlined},
+    {"name": "Head Injury", "icon": Icons.fact_check_outlined},
+    {"name": "Electrical Shock", "icon": Icons.flash_on_outlined},
+    {"name": "Hypothermia or Frostbite", "icon": Icons.ac_unit_outlined},
+    {"name": "Heatstroke", "icon": Icons.whatshot_outlined},
+    {"name": "Sudden Severe Pain", "icon": Icons.warning_amber_outlined},
   ];
 
   @override
@@ -80,13 +83,25 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              diseaseTypes[index],
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                              ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  diseaseTypes[index]['icon'],
+                                  size: 40,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  diseaseTypes[index]['name'],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             ),
                           ),
                         );
