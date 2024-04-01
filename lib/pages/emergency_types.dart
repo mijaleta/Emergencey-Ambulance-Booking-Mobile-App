@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
+import 'package:ambu_app/pages/patient_req_example.dart';
 
 class EmergencyTypeSelectionPage extends StatelessWidget {
   final List<Map<String, dynamic>> diseaseTypes = [
@@ -116,7 +117,7 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SpecialRequestPage()),
+                            builder: (context) => PatientRequestPage(),
                       );
                     },
                     child: Text("Special Requests"),
