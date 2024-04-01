@@ -116,12 +116,12 @@ class _DriverPageState extends State<DriverPage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title:const Text(
             "All drivers",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Color.fromRGBO(143, 148, 251, 1),
-          bottom: TabBar(tabs: [
+          bottom:const TabBar(tabs: [
             Tab(
               icon: Icon(Icons.location_on),
             ),
@@ -135,7 +135,7 @@ class _DriverPageState extends State<DriverPage> {
           ]),
           actions: <Widget>[
             IconButton(
-                icon: Icon(
+                icon:const Icon(
                   Icons.person_add_alt_1,
                   color: Colors.white,
                 ),
@@ -146,7 +146,7 @@ class _DriverPageState extends State<DriverPage> {
           ],
         ),
         body: TabBarView(children: [
-          Column(),
+          const Column(),
           SingleChildScrollView(
             child: Column(
               children: tab_cats[0],

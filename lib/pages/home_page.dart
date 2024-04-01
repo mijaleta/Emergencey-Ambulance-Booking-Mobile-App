@@ -59,12 +59,12 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          IconButton(
-            icon: Image.asset("icons/notification-bell.png"),
-            onPressed: () {},
-          ),
+          // IconButton( 
+          //   icon: Image.asset("icons/notification-bell.png"),
+          //   onPressed: () {},
+          // ),
           PopupMenuButton(
-            icon: Image.asset("icons/user-icon.png"),
+            icon: Image.asset("icons/three-dots.png"),
             onSelected: (String value) {
               // Update the selectedMenuItem variable
               setState(() {
@@ -444,29 +444,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()));
-                },
-                style: ElevatedButton.styleFrom(
-                  side: const BorderSide(color: Colors.black, width: 2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ).copyWith(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  foregroundColor: MaterialStateProperty.all(Colors.black),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
               // New containers as requested
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20.0),
@@ -642,11 +619,36 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login()));
+                },
+                style: ElevatedButton.styleFrom(
+                  side: const BorderSide(color: Colors.black, width: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ).copyWith(
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  foregroundColor: MaterialStateProperty.all(Colors.black),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+
               Column(
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    'By signing up, you agree to our Terms of Service and Privacy Policy.',
+                    'By signing up or sending request, you agree to our Terms of Service and Privacy Policy.',
                     style: TextStyle(fontSize: 14),
                     textAlign: TextAlign.center,
                   ),
