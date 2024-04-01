@@ -1,9 +1,46 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({super.key});
+   ForgotPasswordPage({super.key});
+
+
+  
+  final TextEditingController emailController = TextEditingController();
+
+  Future<void> _sendPasswordResetEmail(BuildContext context) async {
+    final String email = emailController.text;
+    final url = Uri.parse('http://192.168.0.22:3000/forgot-password');
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: json.encode({
+          'email': email,
+        }),
+      );
+      final responseBody = json.decode(response.body);
+      if (response.statusCode == 200 && responseBody['success']) {
+        // Navigate to the success page
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => SuccessScreen()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to send password reset email: ${responseBody['message']}')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +74,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 height: 20,
               ),
               TextFormField(
+                 controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   hintText: 'Enter your email',
@@ -51,9 +89,7 @@ class ForgotPasswordPage extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
-                  // Implement logic for sending reset password link
-                },
+                onPressed: () => _sendPasswordResetEmail(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
@@ -73,6 +109,43 @@ class ForgotPasswordPage extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+// SuccessScreen
+class SuccessScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Success'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.check_circle_outline,
+              color: Colors.green,
+              size: 100,
+            ),
+            Text(
+              'Password reset email sent!',
+              style: TextStyle(fontSize: 24),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Replace the current screen with the login screen
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+              child: Text('Back to Login'),
+            ),
+          ],
         ),
       ),
     );
