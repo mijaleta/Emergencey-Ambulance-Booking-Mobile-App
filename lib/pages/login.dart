@@ -1,11 +1,7 @@
 import 'package:ambu_app/pages/change_password.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/signup_page.dart';
-import 'package:ambu_app/pages/admin_page.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -55,63 +51,6 @@ class Login extends StatelessWidget {
   }
 
   _inputField(context) {
-// chnaged here 
-    final TextEditingController usernameController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
-    Future<void> _submitLogin() async {
-      final String username = usernameController.text;
-      final String password = passwordController.text;
-
-      final url = Uri.parse('http://192.168.0.22:3000/login');
-
-      try {
-        final response = await http.post(
-          url,
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: json.encode({
-            'username': username,
-            'password': password,
-          }),
-        );
-
-        if (response.statusCode == 200) {
-          final responseBody = json.decode(response.body);
-          if (responseBody['success']) {
-            // Handle successful login (e.g., store session cookie)
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('sessionCookie', response.headers['set-cookie'] ?? '');
-            // Navigate to appropriate dashboard based on user role
-            // Example:
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-              switch (responseBody['user']['role']) {
-                case 'admin':
-                  return AdminPage();
-                case 'nurse':
-                  return AdminPage();
-                // Add other roles here
-                default:
-                  return Scaffold(
-                    body: Center(child: Text('Unauthorized')),
-                  );
-              }
-            }));
-          } else {
-            print('Login failed: ${responseBody['message']}');
-          }
-        } else {
-          print('Login failed with status code: ${response.statusCode}');
-        }
-      } catch (e) {
-        print('Error: $e');
-      }
-    }
-
-
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -119,7 +58,6 @@ class Login extends StatelessWidget {
           height: 15,
         ),
         TextField(
-          controller: usernameController,
           decoration: InputDecoration(
             hintText: "Username",
             border: OutlineInputBorder(
@@ -135,7 +73,6 @@ class Login extends StatelessWidget {
           height: 15,
         ),
         TextField(
-          controller: passwordController,
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -152,7 +89,7 @@ class Login extends StatelessWidget {
           height: 15,
         ),
         ElevatedButton(
-          onPressed: _submitLogin,
+          onPressed: () {},
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16),
             backgroundColor: Colors.blue,
