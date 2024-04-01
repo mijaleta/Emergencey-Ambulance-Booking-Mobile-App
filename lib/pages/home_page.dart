@@ -16,7 +16,6 @@ import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
-import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,8 +38,8 @@ class _HomePageState extends State<HomePage> {
     'Account',
     'Search',
     'Settings',
-    'Feedback',
     'Logout',
+    'Feedback',
   ];
   String? selectedMenuItem;
   @override
@@ -154,8 +153,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const HospitalPage()),
+                    MaterialPageRoute(builder: (context) =>const HospitalPage()),
                   )
                 },
                 contentPadding: const EdgeInsets.only(
@@ -309,7 +307,6 @@ class _HomePageState extends State<HomePage> {
                   //   context,
                   //   MaterialPageRoute(builder: (context) => History()),
                   // )
-                  SystemNavigator.pop(),
                 },
                 contentPadding: const EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
@@ -323,14 +320,14 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0), // Add padding around the content
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 20),
               const Text(
-                'Ambulance Booking',
+                'Ambulance Booking', // Add the text here
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
