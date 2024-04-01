@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
           //   onPressed: () {},
           // ),
           PopupMenuButton(
-            icon: Image.asset("icons/three-dots.png"),
+            icon: Image.asset("icons/more.png"),
             onSelected: (String value) {
               // Update the selectedMenuItem variable
               setState(() {
@@ -90,16 +90,16 @@ class _HomePageState extends State<HomePage> {
                       builder: (context) => const AccountScreen()),
                 );
                 // Handle settings navigation
+              } else if (selectedMenuItem == 'Feedback') {
+                // Handle Feedback navigation
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FeedbackPage()));
               } else if (selectedMenuItem == 'Logout') {
                 // Handle logout navigation
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Logout()),
                 );
-              } else if (selectedMenuItem == 'Feedback') {
-                // Handle Feedback navigation
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FeedbackPage()));
               }
             },
             itemBuilder: (BuildContext context) {
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HospitalPage()),
+                    MaterialPageRoute(builder: (context) =>const HospitalPage()),
                   )
                 },
                 contentPadding: const EdgeInsets.only(
@@ -262,7 +262,8 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Policies()),
+                    MaterialPageRoute(
+                        builder: (context) => const PrivacyPolicyPage()),
                   )
                 },
                 contentPadding: const EdgeInsets.only(left: 20.0),
