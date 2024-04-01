@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 class ForgotPasswordPage extends StatelessWidget {
-   ForgotPasswordPage({super.key});
+  ForgotPasswordPage({super.key});
 
-
-  
   final TextEditingController emailController = TextEditingController();
 
   Future<void> _sendPasswordResetEmail(BuildContext context) async {
@@ -30,17 +29,24 @@ class ForgotPasswordPage extends StatelessWidget {
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to send password reset email: ${responseBody['message']}')),
+          SnackBar(
+              content: Text(
+                  'Failed to send password reset email: ${responseBody['message']}')),
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('Error: $e')),
+      // );
+      try {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      } catch (e) {
+        print('Failed to show SnackBar: $e');
+      }
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +80,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 height: 20,
               ),
               TextFormField(
-                 controller: emailController,
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   hintText: 'Enter your email',
@@ -114,8 +120,6 @@ class ForgotPasswordPage extends StatelessWidget {
     );
   }
 }
-
-
 
 // SuccessScreen
 class SuccessScreen extends StatelessWidget {
