@@ -116,12 +116,12 @@ class _DriverPageState extends State<DriverPage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title:const Text(
+          title: const Text(
             "All drivers",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Color.fromRGBO(143, 148, 251, 1),
-          bottom:const TabBar(tabs: [
+          bottom: const TabBar(tabs: [
             Tab(
               icon: Icon(Icons.location_on),
             ),
@@ -135,7 +135,7 @@ class _DriverPageState extends State<DriverPage> {
           ]),
           actions: <Widget>[
             IconButton(
-                icon:const Icon(
+                icon: const Icon(
                   Icons.person_add_alt_1,
                   color: Colors.white,
                 ),
@@ -170,12 +170,13 @@ class _DriverPageState extends State<DriverPage> {
   Widget driverCard(String name, Color col, String status, String regId) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Container(
+      child: SizedBox(
           width: MediaQuery.of(context).size.width - 50,
           height: MediaQuery.of(context).size.height / 6,
           child: Card(
+            color: col,
             child: Column(children: [
-              Row(
+              const Row(
                 children: [
                   // Image.network(
                   //   "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png")
@@ -185,7 +186,6 @@ class _DriverPageState extends State<DriverPage> {
               Text(regId),
               Text(status)
             ]),
-            color: col,
           )),
     );
   }
@@ -199,14 +199,14 @@ class _DriverPageState extends State<DriverPage> {
 
     for (var e in drivers) {
       if (e['isFree'] && !e['isAvailable']) {
-        offline.add(driverCard(e['name'], Color.fromRGBO(235, 233, 228, 1),
-            "Offline", e["reg_id"]));
+        offline.add(driverCard(e['name'],
+            const Color.fromRGBO(235, 233, 228, 1), "Offline", e["reg_id"]));
       } else if (e['isFree']) {
-        available.add(driverCard(e['name'], Color.fromRGBO(217, 250, 195, 1),
-            "Available", e["reg_id"]));
+        available.add(driverCard(e['name'],
+            const Color.fromRGBO(217, 250, 195, 1), "Available", e["reg_id"]));
       } else if (!e['isFree'] || !e['isAvailable']) {
-        working.add(driverCard(
-            e['name'], Color.fromRGBO(250, 152, 152, 1), "Busy", e["reg_id"]));
+        working.add(driverCard(e['name'],
+            const Color.fromRGBO(250, 152, 152, 1), "Busy", e["reg_id"]));
       }
       lst.add(available);
       lst.add(offline);

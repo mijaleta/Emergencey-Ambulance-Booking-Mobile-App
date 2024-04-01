@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          // IconButton( 
+          // IconButton(
           //   icon: Image.asset("icons/notification-bell.png"),
           //   onPressed: () {},
           // ),
@@ -74,7 +74,8 @@ class _HomePageState extends State<HomePage> {
               if (selectedMenuItem == 'Account') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AccountScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const AccountScreen()),
                 );
               } else if (selectedMenuItem == 'Search') {
                 Navigator.push(
