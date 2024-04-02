@@ -1,7 +1,12 @@
 // import 'package:ambu_app/pages/logout.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'new_driver_page.dart';
 import 'package:ambu_app/services/drivers.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class DriverPage extends StatefulWidget {
   @override
@@ -9,6 +14,27 @@ class DriverPage extends StatefulWidget {
 }
 
 class _DriverPageState extends State<DriverPage> {
+  final locationController = Location();
+  StreamSubscription<LocationData>? locationSubscription;
+
+  static const googlePlex = LatLng(8.952153448511483, 36.98002342434236);
+  static const gibrRiver = LatLng(8.823928508371052, 36.92091930301226);
+
+  LatLng? currentPosition;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) async => await fetchLocationUpdates());
+  }
+
+  @override
+  void dispose() {
+    locationSubscription?.cancel(); // Cancel the subscription here
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<List<Widget>> tab_cats = sortDrivers();
@@ -45,24 +71,53 @@ class _DriverPageState extends State<DriverPage> {
                     )),
           ],
         ),
-        body: TabBarView(children: [
-          const Column(),
-          SingleChildScrollView(
-            child: Column(
-              children: tab_cats[0],
+        body: TabBarView(
+          children: [
+            currentPosition == null
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: googlePlex,
+                      zoom: 12,
+                    ),
+                    markers: {
+                      // Marker(
+                      //   markerId: MarkerId('currentLocation'),
+                      //   icon: BitmapDescriptor.defaultMarker,
+                      //   position: currentPosition,
+                      // ),
+                      const Marker(
+                        markerId: MarkerId('sourceLocation'),
+                        icon: BitmapDescriptor.defaultMarker,
+                        position: googlePlex,
+                      ),
+                      const Marker(
+                        markerId: MarkerId('destinationLocation'),
+                        icon: BitmapDescriptor.defaultMarker,
+                        position: gibrRiver,
+                      ),
+                    },
+                    // onLongPress: _addMarker,
+                  ),
+            SingleChildScrollView(
+              child: Column(
+                children: tab_cats[0],
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: tab_cats[2],
+            SingleChildScrollView(
+              child: Column(
+                children: tab_cats[2],
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: tab_cats[1],
+            SingleChildScrollView(
+              child: Column(
+                children: tab_cats[1],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
@@ -114,5 +169,43 @@ class _DriverPageState extends State<DriverPage> {
     }
 
     return lst;
+  }
+
+  Future<void> fetchLocationUpdates() async {
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+
+    serviceEnabled = await locationController.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await locationController.requestService();
+      if (!serviceEnabled) {
+        // Handle case where location services are not enabled
+        return;
+      }
+    }
+
+    permissionGranted = await locationController.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await locationController.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        // Handle case where location permission is not granted
+        return;
+      }
+    }
+
+    // Start listening to location updates
+    locationSubscription =
+        locationController.onLocationChanged.listen((currentLocation) {
+      if (currentLocation.latitude != null &&
+          currentLocation.longitude != null) {
+        setState(() {
+          currentPosition =
+              LatLng(currentLocation.latitude!, currentLocation.longitude!);
+        });
+      }
+    });
+    if (currentPosition != null) {
+      print(currentPosition!);
+    }
   }
 }
