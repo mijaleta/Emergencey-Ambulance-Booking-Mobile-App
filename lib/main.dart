@@ -18,6 +18,9 @@ import 'package:ambu_app/pages/nurse_page.dart';
 import 'package:ambu_app/pages/reset_password.dart';
 import 'package:ambu_app/pages/setting.dart';
 import 'package:ambu_app/pages/special_request_page.dart';
+import 'package:ambu_app/users/dispatcher.dart';
+import 'package:ambu_app/users/driver.dart';
+import 'package:ambu_app/users/nurse.dart';
 import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 // import 'package:ambu_app/provider/request_provider.dart';
@@ -72,6 +75,9 @@ class MyApp extends StatelessWidget {
         'specialRequest': (context) => SpecialRequestPage(),
         'privacyPolicy': (context) => PrivacyPolicyPage(),
         'termsOfService': (context) => TermsOfServicePage(),
+        'driver':(context) => Driver(),
+        'nurse': (context) => Nurse(),
+        'dispatcher': (context) => Dispatcher(),
       },
     );
   }

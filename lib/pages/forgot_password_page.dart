@@ -1,3 +1,4 @@
+import 'package:ambu_app/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -9,7 +10,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   Future<void> _sendPasswordResetEmail(BuildContext context) async {
     final String email = emailController.text;
-    final url = Uri.parse('http://192.168.0.22:3000/forgot-password');
+    final url = Uri.parse('http://192.168.137.210:3000/forgot-password');
     try {
       final response = await http.post(
         url,
@@ -145,9 +146,20 @@ class SuccessScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Replace the current screen with the login screen
-                Navigator.of(context).popUntil((route) => route.isFirst);
+                // Navigator.of(context).popUntil((route) => route.isFirst);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Login()),
+                );
               },
-              child: Text('Back to Login'),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              child:const Text(
+                'Back to Login',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              ),
             ),
           ],
         ),

@@ -11,6 +11,9 @@ import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/policies.dart';
 import 'package:ambu_app/pages/setting.dart';
+import 'package:ambu_app/users/dispatcher.dart';
+import 'package:ambu_app/users/driver.dart';
+import 'package:ambu_app/users/nurse.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
@@ -38,6 +41,9 @@ class _HomePageState extends State<HomePage> {
     'Account',
     'Search',
     'Settings',
+    'Driver',
+    'Nurse',
+    'Dispatcher',
     'Logout',
     'Feedback',
   ];
@@ -88,6 +94,24 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
+                );
+                // Handle settings navigation
+              } else if (selectedMenuItem == 'Driver') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Driver()),
+                );
+                // Handle settings navigation
+              } else if (selectedMenuItem == 'Nurse') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Nurse()),
+                );
+                // Handle settings navigation
+              } else if (selectedMenuItem == 'Dispatcher') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Dispatcher()),
                 );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Feedback') {
@@ -153,7 +177,8 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>const HospitalPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const HospitalPage()),
                   )
                 },
                 contentPadding: const EdgeInsets.only(

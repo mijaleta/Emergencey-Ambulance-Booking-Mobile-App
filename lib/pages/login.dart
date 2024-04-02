@@ -55,7 +55,7 @@ class Login extends StatelessWidget {
   }
 
   _inputField(context) {
-// chnaged here 
+// chnaged here
     final TextEditingController usernameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
@@ -63,7 +63,7 @@ class Login extends StatelessWidget {
       final String username = usernameController.text;
       final String password = passwordController.text;
 
-      final url = Uri.parse('http://192.168.0.22:3000/login');
+      final url = Uri.parse('http://192.168.137.210:3000/login');
 
       try {
         final response = await http.post(
@@ -82,11 +82,13 @@ class Login extends StatelessWidget {
           final responseBody = json.decode(response.body);
           if (responseBody['success']) {
             // Handle successful login (e.g., store session cookie)
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('sessionCookie', response.headers['set-cookie'] ?? '');
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString(
+                'sessionCookie', response.headers['set-cookie'] ?? '');
             // Navigate to appropriate dashboard based on user role
             // Example:
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+            Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: (context) {
               switch (responseBody['user']['role']) {
                 case 'admin':
                   return AdminPage();
@@ -109,8 +111,6 @@ class Login extends StatelessWidget {
         print('Error: $e');
       }
     }
-
-
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
