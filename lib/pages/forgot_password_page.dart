@@ -10,7 +10,7 @@ class ForgotPasswordPage extends StatelessWidget {
 
   Future<void> _sendPasswordResetEmail(BuildContext context) async {
     final String email = emailController.text;
-    final url = Uri.parse('http://192.168.137.210:3000/forgot-password');
+    final url = Uri.parse('http://192.168.0.24:3000/forgot-password');
     try {
       final response = await http.post(
         url,
