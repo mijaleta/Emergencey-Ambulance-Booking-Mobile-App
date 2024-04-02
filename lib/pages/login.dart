@@ -3,6 +3,7 @@ import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/signup_page.dart';
 import 'package:ambu_app/pages/admin_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,7 +64,7 @@ class Login extends StatelessWidget {
       final String username = usernameController.text;
       final String password = passwordController.text;
 
-      final url = Uri.parse('http://192.168.137.210:3000/login');
+final url = Uri.parse(dotenv.env['LOGIN_URL']!);
 
       try {
         final response = await http.post(
