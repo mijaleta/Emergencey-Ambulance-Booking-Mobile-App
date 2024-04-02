@@ -64,7 +64,8 @@ class Login extends StatelessWidget {
       final String username = usernameController.text;
       final String password = passwordController.text;
 
-final url = Uri.parse(dotenv.env['LOGIN_URL']!);
+final url = Uri.parse('http://192.168.0.22:3000/login');
+
 
       try {
         final response = await http.post(
