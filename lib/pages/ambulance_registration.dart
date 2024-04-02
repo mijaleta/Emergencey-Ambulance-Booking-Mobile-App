@@ -9,10 +9,39 @@ class RegisterAmbulance extends StatefulWidget {
 }
 
 class _RegisterAmbulanceState extends State<RegisterAmbulance> {
-  bool _isGPSEnabled = false;
-  String? _selectedAmbulanceType;
-  String? _selectedSeatingCapacity;
-  String? _selectedAmbulanceStatus;
+  // bool _isGPSEnabled = false;
+  // String? _selectedAmbulanceType;
+  // String? _selectedSeatingCapacity;
+  // String? _selectedAmbulanceStatus;
+
+  final ambulanceTypesList = [
+    'Basic Life Support (BLS)',
+    'Advanced Life Support (ALS)',
+    'Critical Care Transport (CCT)',
+    'Neonatal Intensive Care Unit (NICU) Ambulance',
+    'Air Ambulance',
+    'Emergency Medical Responder (EMR) Vehicle',
+  ];
+  final seatingCapacityList = [
+    '1 (Driver only)',
+    '2 (Driver and 1 passenger)',
+    '3 (Driver and 2 passengers)',
+    '4 (Driver and 3 passengers)',
+    '5 (Driver and 4 passengers)',
+    '6 (Driver and 5 passengers)',
+    '7 (Driver and 6 passengers)',
+    'Custom (for ambulances with specialized seating configurations)',
+  ];
+  final ambulanceStatusLists = [
+    'In Service',
+    'Out of Service',
+    'On Standby',
+    'Under Maintenance',
+    'Under Repair',
+    'Dispatched',
+    'Returning to Base',
+    'Available',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +63,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.all(24),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               _header(context),
               const SizedBox(
@@ -57,6 +86,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
               //         SelectAmbulance = value;
               //       });
               //     }),
+              DropdownButton(items: [], onChanged: (val) {})
             ],
           ),
         ),

@@ -35,16 +35,16 @@ class ForgotPasswordPage extends StatelessWidget {
         );
       }
     } catch (e) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(content: Text('Error: $e')),
-      // );
-      try {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
-        );
-      } catch (e) {
-        print('Failed to show SnackBar: $e');
-      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+      // try {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(content: Text('Error: $e')),
+      //   );
+      // } catch (e) {
+      //   print('Failed to show SnackBar: $e');
+      // }
     }
   }
 
