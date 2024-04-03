@@ -182,6 +182,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  flutter_search_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_search_bar
+      sha256: "6bc1d82c4caf04f40a9386833d5e2a8d947c89fee5c4c1e735957851677d1012"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -360,30 +368,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  location:
-    dependency: "direct main"
-    description:
-      name: location
-      sha256: "2d88e4ffb464d0ca5510e7edd29723ab762c43479de39d2d19ed6194f5b6d624"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.1"
-  location_platform_interface:
-    dependency: transitive
-    description:
-      name: location_platform_interface
-      sha256: "2ecde6bb0f88032b0bbbde37e18975b4468711dd92619c2235cc0c0ee93b4b8e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.0"
-  location_web:
-    dependency: transitive
-    description:
-      name: location_web
-      sha256: "15ad7b4c8a9f55abee513373755e093a40c04d7e24fc1b4f89676fe99523d034"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.1"
   matcher:
     dependency: transitive
     description:
