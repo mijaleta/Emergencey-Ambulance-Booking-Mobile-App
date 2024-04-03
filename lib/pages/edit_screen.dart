@@ -1,11 +1,11 @@
-import 'package:ambu_app/widgets/edit_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ambu_app/widgets/edit_item.dart';
 import 'package:flutter/widgets.dart';
-// import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
 
 class EditAccount extends StatefulWidget {
-  const EditAccount({super.key});
+  const EditAccount({Key? key}) : super(key: key);
 
   @override
   State<EditAccount> createState() => _EditAccountState();
@@ -23,31 +23,36 @@ class _EditAccountState extends State<EditAccount> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Ionicons.chevron_back_outline),
+          icon: const Icon(Ionicons.arrow_back_outline),
         ),
         leadingWidth: 80,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-                onPressed: () {},
-                style: IconButton.styleFrom(
-                  backgroundColor: Colors.lightBlueAccent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  fixedSize: const Size(60, 50),
-                  elevation: 10,
-                ),
-                icon: const Icon(
-                  Ionicons.checkmark,
-                  color: Colors.white,
-                )),
-          ),
-        ],
+        title: const Text(
+          'Account',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 10),
+        //     child: IconButton(
+        //       onPressed: () {},
+        //       style: IconButton.styleFrom(
+        //         backgroundColor: Colors.lightBlueAccent,
+        //         shape: RoundedRectangleBorder(
+        //           borderRadius: BorderRadius.circular(15),
+        //         ),
+        //         fixedSize: const Size(60, 50),
+        //         elevation: 10,
+        //       ),
+        //       icon: const Icon(
+        //         Ionicons.checkmark,
+        //         color: Colors.white,
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
@@ -55,8 +60,8 @@ class _EditAccountState extends State<EditAccount> {
             children: [
               const Center(
                 child: Text(
-                  'Account',
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                  'Edit your account',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(
@@ -73,31 +78,30 @@ class _EditAccountState extends State<EditAccount> {
                         'assets/great-beki.jpg',
                       ),
                     ),
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(50),
-                    //     border: Border.all(
-                    //       color: Colors.lightBlueAccent,
-                    //       width: 2,
-                    //     ),
-                    //   ),
-                    //   child: Image.asset(
-                    //     'assets/great-beki.jpg',
-                    //     height: 100,
-                    //     width: 100,
-                    //   ),
-                    // ),
                     TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
-                        foregroundColor: Colors.lightBlueAccent,
+                          foregroundColor: Colors.lightBlueAccent,
+                          backgroundColor: Colors.black),
+                      child: const Text(
+                        'Upload Image',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      child: const Text('Upload Image'),
                     )
                   ],
                 ),
               ),
-              const EditItem(title: 'Name', widget: TextField()),
+              const SizedBox(height: 20),
+              EditItem(
+                title: 'Name',
+                widget: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 40,
               ),
@@ -150,13 +154,15 @@ class _EditAccountState extends State<EditAccount> {
               const SizedBox(
                 height: 40,
               ),
-              const EditItem(widget: TextField(), title: "Age"),
-              const SizedBox(
-                height: 40,
-              ),
-              const EditItem(
-                widget: TextField(),
+              EditItem(
                 title: "Email",
+                widget: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 35,
@@ -165,40 +171,45 @@ class _EditAccountState extends State<EditAccount> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton(
-                    // padding: EdgeInsets.symmetric(horizontal: 50),
-                    // shape:
                     style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
-                        shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        )),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
                     onPressed: () {},
                     child: const Text(
                       'Cancel',
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 20,
                           letterSpacing: 2.2,
-                          color: Colors.black),
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      backgroundColor: Colors.green,
-                      shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    // flex: 2,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 2,
                       ),
-                      elevation: 2,
-                      // borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 14,
-                        letterSpacing: 2.2,
+                      child: const Text(
+                        'Save',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 20,
+                          letterSpacing: 3,
+                        ),
                       ),
                     ),
                   ),

@@ -13,11 +13,11 @@ class NavBar extends StatelessWidget {
         children: [
           Center(
             child: UserAccountsDrawerHeader(
-              accountName: Text(
+              accountName:const Text(
                 'Great Bekele',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              accountEmail: Text(
+              accountEmail:const Text(
                 'Driver',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
@@ -123,7 +123,7 @@ class NavBar extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Divider(),
+              const Divider(),
               const SizedBox(
                 height: 20,
               ),
@@ -142,7 +142,7 @@ class NavBar extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Divider(),
+              const Divider(),
               ListTile(
                 leading: const Image(
                   image: AssetImage('icons/setting.png'),

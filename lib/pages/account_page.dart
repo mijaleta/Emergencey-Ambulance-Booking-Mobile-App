@@ -22,17 +22,15 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Settings', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: Text(
+          'Settings',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         leading: IconButton(
-          // icon: Image.asset(
-          //   "icons/beauty-back.jpg",
-          //   color: Colors.black,
-          // ),
-          icon: const Icon(Ionicons.chevron_back_outline),
           onPressed: () {
             Navigator.pop(context);
           },
-          
+          icon: const Icon(Ionicons.arrow_back_outline),
         ),
         leadingWidth: 80,
         // title: const Text(

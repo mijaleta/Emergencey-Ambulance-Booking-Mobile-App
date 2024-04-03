@@ -50,63 +50,61 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
               ),
             ),
             Positioned.fill(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Add any special requests or additional information:',
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Add any special requests or additional information:',
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          color: Colors.white,
                         ),
-                        const SizedBox(height: 16.0),
-                        TextFormField(
-                          maxLines: 3,
-                          decoration: const InputDecoration(
-                            hintText: 'Type here...',
-                            filled: true, // Fill the background color
-                            fillColor: Colors.white, // Background color
-                            hintStyle: TextStyle(
-                                color: Colors.grey), // Hint text color
-                            // border: OutlineInputBorder(),
-                            border: OutlineInputBorder(),
-                          ),
-                          style: TextStyle(color: Colors.black),
-                          onChanged: (value) {
-                            setState(() {
-                              _specialRequest = value;
-                            });
-                          },
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16.0),
+                      TextFormField(
+                        maxLines: 10,
+                        decoration: const InputDecoration(
+                          hintText: 'Type here...',
+                          filled: true, // Fill the background color
+                          fillColor: Colors.white, // Background color
+                          hintStyle:
+                              TextStyle(color: Colors.grey), // Hint text color
+                          // border: OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                         ),
-                        const SizedBox(height: 16.0),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  _showSuccessDialog();
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green),
-                                child: const Text(
-                                  'Save',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                ),
+                        style: TextStyle(color: Colors.black),
+                        onChanged: (value) {
+                          setState(() {
+                            _specialRequest = value;
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                _showSuccessDialog();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.green),
+                              child: const Text(
+                                'Save',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

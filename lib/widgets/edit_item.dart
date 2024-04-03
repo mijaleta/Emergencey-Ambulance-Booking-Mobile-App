@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 
 class EditItem extends StatelessWidget {
   final Widget widget;
@@ -22,11 +22,12 @@ class EditItem extends StatelessWidget {
             style: const TextStyle(
               fontSize: 18,
               color: Colors.grey,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
         const SizedBox(
-          width: 40,
+          width: 10,
         ),
         Expanded(
           flex: 4,

@@ -12,6 +12,7 @@ import 'package:ambu_app/pages/policies.dart';
 import 'package:ambu_app/pages/setting.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 // import 'package:flutter/widgets.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class AmbulanceSearchPage extends StatelessWidget {
         backgroundColor: Colors.blue,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: Image.asset('icons/menu.png'), // Custom menu icon
+            icon: const Icon(Ionicons.menu_outline), // Custom menu icon
             onPressed: () {
               // Implement menu icon functionality
               Scaffold.of(context).openDrawer();
@@ -350,8 +351,7 @@ class AmbulanceSearchPage extends StatelessWidget {
                   RankingItem(
                       imagePath: 'images/login-background.jpg',
                       label: 'Advanced'),
-                  RankingItem(
-                      imagePath: 'images/sky-back.jpg', label: 'Medium'),
+                  RankingItem(imagePath: 'assets/reg.jpg', label: 'Medium'),
                   RankingItem(
                       imagePath: 'images/v-shape-back.jpg', label: 'Basic'),
                   RankingItem(

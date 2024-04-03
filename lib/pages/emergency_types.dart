@@ -13,21 +13,21 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
     {"name": "Severe Bleeding", "icon": Icons.healing},
     {"name": "Choking", "icon": Icons.priority_high},
     {"name": "Seizure", "icon": Icons.warning},
-    {"name": "Allergic Reaction", "icon": Icons.healing},
-    {"name": "Poisoning", "icon": Icons.dangerous},
-    {"name": "Burns", "icon": Icons.local_fire_department},
-    {"name": "Broken Bones", "icon": Icons.masks},
-    {"name": "Difficulty Breathing", "icon": Icons.airline_seat_flat},
-    {
-      "name": "Fainting or Loss of Consciousness",
-      "icon": Icons.airline_seat_individual_suite
-    },
-    {"name": "Overdose", "icon": Icons.warning_amber_outlined},
-    {"name": "Head Injury", "icon": Icons.fact_check_outlined},
-    {"name": "Electrical Shock", "icon": Icons.flash_on_outlined},
-    {"name": "Hypothermia or Frostbite", "icon": Icons.ac_unit_outlined},
-    {"name": "Heatstroke", "icon": Icons.whatshot_outlined},
-    {"name": "Sudden Severe Pain", "icon": Icons.warning_amber_outlined},
+    // {"name": "Allergic Reaction", "icon": Icons.healing},
+    // {"name": "Poisoning", "icon": Icons.dangerous},
+    // {"name": "Burns", "icon": Icons.local_fire_department},
+    // {"name": "Broken Bones", "icon": Icons.masks},
+    // {"name": "Difficulty Breathing", "icon": Icons.airline_seat_flat},
+    // {
+    //   "name": "Fainting or Loss of Consciousness",
+    //   "icon": Icons.airline_seat_individual_suite
+    // },
+    // {"name": "Overdose", "icon": Icons.warning_amber_outlined},
+    // {"name": "Head Injury", "icon": Icons.fact_check_outlined},
+    // {"name": "Electrical Shock", "icon": Icons.flash_on_outlined},
+    // {"name": "Hypothermia or Frostbite", "icon": Icons.ac_unit_outlined},
+    // {"name": "Heatstroke", "icon": Icons.whatshot_outlined},
+    // {"name": "Sudden Severe Pain", "icon": Icons.warning_amber_outlined},
   ];
 
   @override
@@ -115,10 +115,10 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PatientRequestPage(),)
-                      );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SpecialRequestPage(),
+                          ));
                     },
                     child: Text("Special Requests"),
                   ),

@@ -19,6 +19,7 @@ import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
+import 'package:ionicons/ionicons.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -55,10 +56,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: Image.asset(
-              "icons/menu.png",
-              color: Colors.black,
-            ),
+            icon: const Icon(Ionicons.menu_outline),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
