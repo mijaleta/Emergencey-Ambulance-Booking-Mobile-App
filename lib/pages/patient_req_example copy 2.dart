@@ -13,28 +13,33 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   String _location = ''; // Initialize location variable
   String _contactInfo = '';
   String _urgencyLevel = 'low';
-  late Position _currentPosition; // Variable to store current position
 
   @override
   void initState() {
     super.initState();
-    _getCurrentLocation(); // Call the function to get the user's location when the page is initialized
+    _getLocation(); // Call the function to get the user's location when the page is initialized
   }
 
   // Function to get the user's current location
-  void _getCurrentLocation() async {
-    try {
-      Position newPosition = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best,
-      );
-      setState(() {
-        _currentPosition = newPosition;
-        _location = '${_currentPosition.latitude},${_currentPosition.longitude}';
-      });
-    } catch (e) {
-      print('Error getting location: $e');
-    }
+  // void _getLocation() async {
+  //   Position position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high);
+  //   setState(() {
+  //     _location = '${position.latitude},${position.longitude}'; // Combine latitude and longitude
+  //   });
+  // }
+  void _getLocation() async {
+  try {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    setState(() {
+      _location = '${position.latitude},${position.longitude}';
+    });
+  } catch (e) {
+    print('Error getting location: $e');
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +81,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                 ),
                 items: ['low', 'medium', 'high']
                     .map((level) => DropdownMenuItem(
-                  value: level,
-                  child: Text(level),
-                ))
+                          value: level,
+                          child: Text(level),
+                        ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
