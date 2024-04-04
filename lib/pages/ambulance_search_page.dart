@@ -2,6 +2,7 @@
 
 import 'package:ambu_app/pages/ambulance_registration.dart';
 import 'package:ambu_app/pages/home_page.dart';
+import 'package:ambu_app/sidebar/admin_sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -124,64 +125,70 @@ class RoundedCustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      margin: EdgeInsets.symmetric(horizontal: 8.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.grey[200],
+    return Scaffold(
+      drawer: AdminNavBar(),
+      appBar: AppBar(
+        title: Text('Admin', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12.0),
-              topRight: Radius.circular(12.0),
-            ),
-            child: Image.asset(
-              imagePath,
-              width: 200,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          Expanded(
-            child: Text(
-              subtitle,
-              style: TextStyle(fontSize: 20),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              margin: EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black,
+      body: Container(
+        width: 200,
+        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: Colors.grey[200],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12.0),
+                topRight: Radius.circular(12.0),
               ),
-              child: IconButton(
-                icon: Icon(Icons.add),
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RegisterAmbulance()),
-                  );
-                },
+              child: Image.asset(
+                imagePath,
+                width: 200,
+                height: 100,
+                fit: BoxFit.cover,
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Expanded(
+              child: Text(
+                subtitle,
+                style: TextStyle(fontSize: 20),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                margin: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black,
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.add),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RegisterAmbulance()),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

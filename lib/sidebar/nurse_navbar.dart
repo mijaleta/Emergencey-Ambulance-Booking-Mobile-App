@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+class NurseNavBar extends StatelessWidget {
+  const NurseNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +13,12 @@ class NavBar extends StatelessWidget {
         children: [
           Center(
             child: UserAccountsDrawerHeader(
-              accountName:const Text(
+              accountName: const Text(
                 'Great Bekele',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              accountEmail:const Text(
-                'Dispatcher',
+              accountEmail: const Text(
+                'Nurse',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               currentAccountPicture: CircleAvatar(
@@ -58,7 +58,7 @@ class NavBar extends StatelessWidget {
                   width: 40,
                 ),
                 title: const Text(
-                  'Dispatcher Dashboard',
+                  'Nurse Dashboard',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {},

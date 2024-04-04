@@ -1,4 +1,6 @@
 import 'package:ambu_app/sidebar/NavBar.dart';
+import 'package:ambu_app/sidebar/driver_sidebar.dart';
+import 'package:ambu_app/sidebar/nurse_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -106,7 +108,7 @@ class _DriverState extends State<Driver> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        drawer: const NavBar(),
+        drawer: const DriverNavBar(),
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: const Text(
