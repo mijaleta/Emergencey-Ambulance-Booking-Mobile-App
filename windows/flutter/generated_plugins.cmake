@@ -4,10 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   geolocator_windows
-<<<<<<< HEAD
   permission_handler_windows
-=======
->>>>>>> c2c783442a787ca86e5c28a5753a45df08a796fa
   url_launcher_windows
 )
 
