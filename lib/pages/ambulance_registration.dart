@@ -58,7 +58,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "assets/pexelsform.jpg"), // Change the path to your image
+                  "assets/meshreg.png"), // Change the path to your image
               fit: BoxFit.cover,
             ),
           ),
@@ -75,7 +75,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 113, 102, 13),
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -83,18 +83,34 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Ambulance ID',
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      filled: true, // Fill the background color
+                      fillColor: Colors
+                          .grey, // Set the fill color // Set the fill color
+                      // border: InputBorder.none,
                     ),
                   ),
                   const SizedBox(height: 10),
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Registration Number',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      labelStyle: TextStyle(
+                        color: Colors.white,
                       ),
+                      filled: true, // Fill the background color
+                      fillColor: Colors
+                          .grey, // Set the fill color // Set the fill color
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                            // width: 5,
+                          )),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -147,24 +163,38 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: Text(
-                          'GPS Integration',
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold),
-                        ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      color: Color.fromARGB(255, 139, 18, 113),
+                      padding: EdgeInsets.all(20),
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            child: Text(
+                              'GPS Integration',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Switch(
+                            value: _isGPSEnabled,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                _isGPSEnabled = newValue;
+                              });
+                            },
+                            activeColor: const Color.fromARGB(255, 85, 218,
+                                236), // Color when the switch is in "on" state
+                            inactiveThumbColor: const Color.fromARGB(255, 0, 0,
+                                0), // Color when the switch is in "off" state
+                          ),
+                        ],
                       ),
-                      Switch(
-                        value: _isGPSEnabled,
-                        onChanged: (bool newValue) {
-                          setState(() {
-                            _isGPSEnabled = newValue;
-                          });
-                        },
-                      ),
-                    ],
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
@@ -200,7 +230,10 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                       const Text(
                         "Attach Document",
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 212, 74, 236),
+                        ),
                       ),
                       const SizedBox(
                         width: 20,
@@ -241,7 +274,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         backgroundColor: Colors.blue,
-                        minimumSize: Size(
+                        minimumSize: const Size(
                           double.infinity,
                           50,
                         ),
@@ -270,8 +303,19 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: const TextStyle(
+          color: Colors.white, // Set label text color
+          // fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+        filled: true, // Fill the background color
+        fillColor: Colors.grey,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(
+            color: Color.fromARGB(255, 252, 11, 216),
+            width: 5.0,
+          ),
         ),
       ),
       value: value,

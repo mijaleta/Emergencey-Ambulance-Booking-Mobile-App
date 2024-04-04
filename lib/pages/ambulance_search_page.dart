@@ -1,19 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_registration.dart';
-import 'package:ambu_app/pages/driver_page.dart';
-import 'package:ambu_app/pages/helpPage.dart';
-import 'package:ambu_app/pages/history.dart';
 import 'package:ambu_app/pages/home_page.dart';
-import 'package:ambu_app/pages/nurse_page.dart';
-import 'package:ambu_app/pages/patient_request_page.dart';
-import 'package:ambu_app/pages/policies.dart';
-import 'package:ambu_app/pages/setting.dart';
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-// import 'package:flutter/widgets.dart';
 
 class AmbulanceSearchPage extends StatelessWidget {
   const AmbulanceSearchPage({Key? key});
@@ -51,198 +41,7 @@ class AmbulanceSearchPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 100.0),
           child: ListView(
             children: [
-              ListTile(
-                title: Text(
-                  "Book",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold), // Set text color
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DriverPage()),
-                  ),
-                },
-                contentPadding: EdgeInsets.only(
-                    left: 20.0), // Remove ListTile default padding
-                horizontalTitleGap: 5, // Remove space between icon and text
-                leading: Icon(
-                  Icons.book,
-                  color: Colors.white, // Set icon color
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "History",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => History()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(
-                    left: 20.0), // Remove ListTile default padding
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.history,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Ambulance Types",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NursePage()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.directions_car,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Account",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AccountScreen()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Settings",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SettingsScreen()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Request",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PatientRequestPage()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.request_page,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Policies",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Policies()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.policy,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Help",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HelpPage()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.help,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  "Exit",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  )
-                },
-                contentPadding: EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: Icon(
-                  Icons.exit_to_app,
-                  color: Colors.white,
-                ),
-              ),
+              // Drawer items
             ],
           ),
         ),
@@ -295,84 +94,19 @@ class AmbulanceSearchPage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Quick Ambulance Service',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            SizedBox(height: 10),
-            SizedBox(
-              height: 230,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  RoundedCustomCard(
-                    imagePath: 'images/ambublue.jpg',
-                    title: 'Advanced Life Support',
-                    subtitle: 'Critical Care Ambulance',
-                  ),
-                  RoundedCustomCard(
-                    imagePath: 'images/ambusky.jpg',
-                    title: 'Basic Life Support',
-                    subtitle: 'Essential Care Transport',
-                  ),
-                  RoundedCustomCard(
-                    imagePath: 'images/ambuwhite.jpg',
-                    title: 'Medium Life Support',
-                    subtitle: 'Medium Care Ambulance',
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Ambulance Ranking',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            SizedBox(
-              height: 120,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  RankingItem(
-                      imagePath: 'images/login-background.jpg',
-                      label: 'Advanced'),
-                  RankingItem(imagePath: 'assets/reg.jpg', label: 'Medium'),
-                  RankingItem(
-                      imagePath: 'images/v-shape-back.jpg', label: 'Basic'),
-                  RankingItem(
-                      imagePath: 'assets/ambu-phone.png', label: 'Advanced'),
-                  RankingItem(
-                      imagePath: 'images/magaal-back.jpg', label: 'Basic'),
-                  RankingItem(
-                      imagePath: 'images/magaala-back.jpg', label: 'Medium'),
-                  RankingItem(imagePath: 'images/red-back.jpg', label: 'Basic'),
-                ],
-              ),
-            ),
+            // Ambulance service and ranking items
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Add functionality for floating action button
-      //   },
-      //   child: Icon(Icons.add),
-      // ),\
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => RegisterAmbulance()),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
@@ -413,20 +147,16 @@ class RoundedCustomCard extends StatelessWidget {
             ),
           ),
           Expanded(
-            // padding: const EdgeInsets.all(8.0),
             child: Text(
               title,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24), // Increase font size
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Expanded(
-            // padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
             child: Text(
               subtitle,
-              style: TextStyle(fontSize: 20), // Increase font size
+              style: TextStyle(fontSize: 20),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -442,7 +172,6 @@ class RoundedCustomCard extends StatelessWidget {
                 icon: Icon(Icons.add),
                 color: Colors.white,
                 onPressed: () {
-                  // Add functionality for icon button
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -463,7 +192,6 @@ class RankingItem extends StatelessWidget {
   final String label;
 
   const RankingItem({
-    super.key,
     required this.imagePath,
     required this.label,
   });
@@ -492,9 +220,7 @@ class RankingItem extends StatelessWidget {
           SizedBox(height: 8),
           Text(
             label,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16), // Increase font size
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
         ],
       ),
