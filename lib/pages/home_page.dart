@@ -376,13 +376,14 @@ class _HomePageState extends State<HomePage> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              Container(
+              SizedBox(
                 height: 300.0,
                 width: double.infinity,
                 child: CarouselSlider(
                   items: imageUrls.map((imageUrl) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
                       margin: EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                         // color: Colors.amber,
