@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
@@ -14,11 +12,13 @@ import 'package:ambu_app/pages/setting.dart';
 import 'package:ambu_app/users/dispatcher.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
+import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,11 +31,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // List of image URLs
   final List<String> imageUrls = [
-    'assets/ambulancea.png',
-    // 'assets/ambulanceb.png',
-    'assets/emergencyc.jpg',
     'assets/ambu-blue.jpg',
     'assets/ambu-keyboard.jpg',
+    'assets/stockambulance.jpg',
+    'assets/stockphoto1.jpg',
+    'assets/stockphoto2.jpg',
+    'assets/specialist-female-doctor-copy-space.jpg',
+    'assets/stockphoto1.jpg',
+    'assets/ambulance-8496603_1280.png',
+    'assets/blue-light-73088_1280.jpg',
+    'assets/doctor-1010903_1280.jpg',
+    'assets/pexels-artem-saranin-1853537.jpg',
+    'assets/pexels-pavel-danilyuk-6754173.jpg',
+    'assets/pexels-pixabay-263402.jpg',
+    'assets/pexels-rdne-stock-project-6520084.jpg',
+    'assets/pexels-run-ffwpu-2486541.jpg',
+    // 'assets/stockambulance.jpg',
   ];
   // Dropdown menu items
   final List<String> dropdownItems = [
@@ -343,7 +354,14 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(20.0), // Add padding around the content
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image:
+                AssetImage("assets/back3.jpg"), // Change the path to your image
+            fit: BoxFit.cover,
+          ),
+        ),
+        padding: const EdgeInsets.all(20.0), // Add padding around the content
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -353,87 +371,39 @@ class _HomePageState extends State<HomePage> {
                 'Ambulance Booking', // Add the text here
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 24,
+                  color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
-              // Display images in two columns and three rows
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
+              Container(
+                height: 300.0,
+                width: double.infinity,
+                child: CarouselSlider(
+                  items: imageUrls.map((imageUrl) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        // color: Colors.amber,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    height: 300,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 2),
+                  ),
                 ),
-                itemCount: imageUrls.length,
-                itemBuilder: (BuildContext context, int index) {
-                  String text;
-                  switch (index) {
-                    case 0:
-                      text = "Emergency preparedness starts with you.";
-                      break;
-                    case 1:
-                      text =
-                          "Your action today could be someone's lifeline tomorrow.";
-                      break;
-                    case 2:
-                      text = "Your compassion fuels our mission.";
-                      break;
-                    case 3:
-                      text = "Act Now, Save Lives Immediately.";
-                      break;
-                    default:
-                      text = "Urgent Help Now";
-                  }
-                  return Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Opacity(
-                            opacity: 0.3,
-                            child: Image.asset(
-                              imageUrls[index],
-                              height: 150, // Set a fixed height for the images
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned.fill(
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 16.0),
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15.0),
-                                bottomRight: Radius.circular(15.0),
-                              ),
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                                colors: [Colors.black54, Colors.transparent],
-                              ),
-                            ),
-                            child: Text(
-                              text,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -461,14 +431,25 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  "It's your lifeline in critical situations, connecting you promptly to the support needed during emergencies.",
-                  style: TextStyle(fontSize: 16, color: Colors.blue),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  color: Color.fromARGB(255, 139, 18, 113),
+                  padding: EdgeInsets.all(30),
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  // padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: const Text(
+                    "It's your lifeline in critical situations, connecting you promptly to the support needed during emergencies.",
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      letterSpacing: -0.5,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               // New containers as requested
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20.0),
@@ -481,6 +462,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -674,7 +656,10 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 20),
                   const Text(
                     'By signing up or sending request, you agree to our Terms of Service and Privacy Policy.',
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
@@ -693,14 +678,15 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           'Terms of Service',
                           style: TextStyle(
-                            color: Colors.blue,
-                            decoration: TextDecoration.underline,
-                          ),
+                              color: Colors.yellow,
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
                         ),
                       ),
                       const Text(
                         ' and ',
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -713,8 +699,10 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           'Privacy Policy',
                           style: TextStyle(
-                            color: Colors.blue,
+                            color: Colors.yellow,
                             decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
                           ),
                         ),
                       ),
