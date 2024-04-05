@@ -46,7 +46,6 @@ class _HomePageState extends State<HomePage> {
     'assets/pexels-pixabay-263402.jpg',
     'assets/pexels-rdne-stock-project-6520084.jpg',
     'assets/pexels-run-ffwpu-2486541.jpg',
-    // 'assets/stockambulance.jpg',
   ];
   // Dropdown menu items
   final List<String> dropdownItems = [
@@ -399,9 +398,19 @@ class _HomePageState extends State<HomePage> {
                     );
                   }).toList(),
                   options: CarouselOptions(
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 0.8,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
                     height: 300,
                     autoPlay: true,
                     autoPlayInterval: Duration(seconds: 2),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0.5,
+                    scrollDirection: Axis.vertical,
                   ),
                 ),
               ),
