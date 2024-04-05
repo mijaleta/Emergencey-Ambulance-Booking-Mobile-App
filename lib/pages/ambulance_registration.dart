@@ -58,7 +58,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "assets/meshreg.png"), // Change the path to your image
+                  "assets/beautyreg.jpg"), // Change the path to your image
               fit: BoxFit.cover,
             ),
           ),
@@ -75,7 +75,7 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -84,14 +84,14 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                     decoration: InputDecoration(
                       labelText: 'Ambulance ID',
                       labelStyle: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       filled: true, // Fill the background color
                       fillColor: Colors
-                          .grey, // Set the fill color // Set the fill color
+                          .white, // Set the fill color // Set the fill color
                       // border: InputBorder.none,
                     ),
                   ),
@@ -100,11 +100,11 @@ class _RegisterAmbulanceState extends State<RegisterAmbulance> {
                     decoration: InputDecoration(
                       labelText: 'Registration Number',
                       labelStyle: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       filled: true, // Fill the background color
                       fillColor: Colors
-                          .grey, // Set the fill color // Set the fill color
+                          .white, // Set the fill color // Set the fill color
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(

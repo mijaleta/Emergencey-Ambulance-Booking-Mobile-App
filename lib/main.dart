@@ -18,6 +18,13 @@ import 'package:ambu_app/pages/nurse_page.dart';
 import 'package:ambu_app/pages/reset_password.dart';
 import 'package:ambu_app/pages/setting.dart';
 import 'package:ambu_app/pages/special_request_page.dart';
+import 'package:ambu_app/system/ambulance_fleet_management.dart';
+import 'package:ambu_app/system/ambulance_routing_tracking.dart';
+import 'package:ambu_app/system/continuous_improvement.dart';
+import 'package:ambu_app/system/dispatcher_management.dart';
+import 'package:ambu_app/system/emergency_response_coordination.dart';
+import 'package:ambu_app/system/regulatory_compliance.dart';
+import 'package:ambu_app/system/system_configuration_settings.dart';
 import 'package:ambu_app/users/dispatcher.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
@@ -35,7 +42,7 @@ import 'package:ambu_app/pages/language_selection_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() {
-    // await dotenv.load();
+  // await dotenv.load();
 
   runApp(MyApp());
 }
@@ -78,9 +85,24 @@ class MyApp extends StatelessWidget {
         'specialRequest': (context) => SpecialRequestPage(),
         'privacyPolicy': (context) => PrivacyPolicyPage(),
         'termsOfService': (context) => TermsOfServicePage(),
-        'driver':(context) => Driver(),
+        'driver': (context) => Driver(),
         'nurse': (context) => Nurse(),
         'dispatcher': (context) => Dispatcher(),
+        '/ambulanceFleetManagementPage': (context) =>
+            AmbulanceFleetManagementPage(),
+        '/ambulanceRoutingTrackingPage': (context) =>
+            AmbulanceRoutingTrackingPage(),
+        '/continuousImprovementPage': (context) => ContinuousImprovementPage(),
+        '/dataManagementReportingPage': (context) =>
+            DataManagementReportingPage(),
+        '/dispatcherManagementPage': (context) => DispatcherManagementPage(),
+        '/emergencyPreparednessPage': (context) => EmergencyPreparednessPage(),
+        '/emergencyResponseCoordinationPage': (context) =>
+            EmergencyResponseCoordinationPage(),
+        '/regulatoryCompliancePage': (context) => RegulatoryCompliancePage(),
+        '/systemConfigurationSettingsPage': (context) =>
+            SystemConfigurationSettingsPage(),
+        '/userManagementPage': (context) => UserManagementPage(),
       },
     );
   }
