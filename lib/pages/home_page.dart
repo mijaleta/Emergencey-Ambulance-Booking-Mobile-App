@@ -116,11 +116,11 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(builder: (context) => const Nurse()),
                 );
                 // Handle settings navigation
-              } else if (selectedMenuItem == 'Dispatcher') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Dispatcher()),
-                );
+              // } else if (selectedMenuItem == 'Dispatcher') {
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => const Dispatcher()),
+              //   );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Feedback') {
                 // Handle Feedback navigation
@@ -174,51 +174,51 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white, // Set icon color
                 ),
               ),
-              ListTile(
-                title: const Text(
-                  "History",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HospitalPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(
-                    left: 20.0), // Remove ListTile default padding
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.history,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Ambulance Types",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AmbulanceSearchPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.directions_car,
-                  color: Colors.white,
-                ),
-              ),
+              // ListTile(
+              //   title: const Text(
+              //     "History",
+              //     style: TextStyle(
+              //         color: Colors.white,
+              //         fontSize: 24,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              //   onTap: () => {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //           builder: (context) => const HospitalPage()),
+              //     )
+              //   },
+              //   contentPadding: const EdgeInsets.only(
+              //       left: 20.0), // Remove ListTile default padding
+              //   horizontalTitleGap: 5,
+              //   leading: const Icon(
+              //     Icons.history,
+              //     color: Colors.white,
+              //   ),
+              // ),
+              // ListTile(
+              //   title: const Text(
+              //     "Ambulance Types",
+              //     style: TextStyle(
+              //         color: Colors.white,
+              //         fontSize: 24,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              //   onTap: () => {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //           builder: (context) => const AmbulanceSearchPage()),
+              //     )
+              //   },
+              //   contentPadding: const EdgeInsets.only(left: 20.0),
+              //   horizontalTitleGap: 5,
+              //   leading: const Icon(
+              //     Icons.directions_car,
+              //     color: Colors.white,
+              //   ),
+              // ),
               ListTile(
                 title: const Text(
                   "Account",
