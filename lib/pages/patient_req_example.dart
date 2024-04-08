@@ -29,7 +29,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       );
       setState(() {
         _currentPosition = newPosition;
-        _location = '${_currentPosition.latitude},${_currentPosition.longitude}';
+        _location =
+            '${_currentPosition.latitude},${_currentPosition.longitude}';
       });
     } catch (e) {
       print('Error getting location: $e');
@@ -49,7 +50,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                initialValue: _location, // Set the initial value of the location field
+                initialValue:
+                    _location, // Set the initial value of the location field
                 decoration: InputDecoration(
                   labelText: 'Location',
                 ),
@@ -76,9 +78,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                 ),
                 items: ['low', 'medium', 'high']
                     .map((level) => DropdownMenuItem(
-                  value: level,
-                  child: Text(level),
-                ))
+                          value: level,
+                          child: Text(level),
+                        ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
@@ -102,7 +104,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       _formKey.currentState!.save();
       try {
         var response = await http.post(
-          Uri.parse('http://192.168.0.22:3000/patientRequest'),
+          Uri.parse('http://192.168.43.50:3000/patientRequest'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -138,7 +140,6 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   );
                 },
               );
-
             }
           } catch (e) {
             print('The response is not in JSON format: $e');
