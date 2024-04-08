@@ -22,17 +22,14 @@ import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
-import '../localizations/Amharic/yetamami_home_page.dart';
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AmharicHomePage extends StatefulWidget {
+  const AmharicHomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _AmharicHomePageState createState() => _AmharicHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AmharicHomePageState extends State<AmharicHomePage> {
   // List of image URLs
   final List<String> imageUrls = [
     'assets/ambu-blue.jpg',
@@ -53,14 +50,14 @@ class _HomePageState extends State<HomePage> {
   ];
   // Dropdown menu items
   final List<String> dropdownItems = [
-    'Account',
-    'Search',
-    'Settings',
-    'Driver',
-    'Nurse',
-    'Dispatcher',
-    'Logout',
-    'Feedback',
+    'መለያ',
+    // 'Search',
+    'ቅንብሮች',
+    'ሹፌር',
+    'ነርስ',
+    // 'Dispatcher',
+    'ውጣ',
+    'ግብረ መልስ',
   ];
   String? selectedMenuItem;
   @override
@@ -89,33 +86,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.language,
                 color: Colors.white,
               ),
-              onChanged: (Language? language) {
-                // Navigate to the selected page based on the language
-                switch (language?.id) {
-                  case 1:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const AmharicHomePage())));
-                    break;
-                  case 2:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
-                    break;
-                  // Add more cases for other languages if needed
-                  case 3:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
-                    break;
-                }
-              },
+              onChanged: (Language? language) {},
               items: Language.languageList()
                   .map<DropdownMenuItem<Language>>(
                     (e) => DropdownMenuItem<Language>(
@@ -143,32 +114,32 @@ class _HomePageState extends State<HomePage> {
                 selectedMenuItem = value;
               });
               // Handle menu item selection here
-              if (selectedMenuItem == 'Account') {
+              if (selectedMenuItem == 'መለያ') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
-              } else if (selectedMenuItem == 'Search') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AmbulanceSearchPage()),
-                );
-              } else if (selectedMenuItem == 'Settings') {
+                // } else if (selectedMenuItem == 'Search') {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const AmbulanceSearchPage()),
+                //   );
+              } else if (selectedMenuItem == 'ቅንብሮች') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
                 // Handle settings navigation
-              } else if (selectedMenuItem == 'Driver') {
+              } else if (selectedMenuItem == 'ሹፌር') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Driver()),
                 );
                 // Handle settings navigation
-              } else if (selectedMenuItem == 'Nurse') {
+              } else if (selectedMenuItem == 'ነርስ') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Nurse()),
@@ -180,11 +151,11 @@ class _HomePageState extends State<HomePage> {
                 //     MaterialPageRoute(builder: (context) => const Dispatcher()),
                 //   );
                 // Handle settings navigation
-              } else if (selectedMenuItem == 'Feedback') {
+              } else if (selectedMenuItem == 'ግብረ መልስ') {
                 // Handle Feedback navigation
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => FeedbackPage()));
-              } else if (selectedMenuItem == 'Logout') {
+              } else if (selectedMenuItem == 'ውጣ') {
                 // Handle logout navigation
                 Navigator.push(
                   context,
@@ -212,7 +183,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               ListTile(
                 title: const Text(
-                  "Book",
+                  "የአምቡላንስ እርዳታ",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -279,7 +250,7 @@ class _HomePageState extends State<HomePage> {
               // ),
               ListTile(
                 title: const Text(
-                  "Account",
+                  "መለያ",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -301,7 +272,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Settings",
+                  "ቅንብሮች",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -320,31 +291,31 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                 ),
               ),
+              // ListTile(
+              //   title: const Text(
+              //     "ጥያቄ",
+              //     style: TextStyle(
+              //         color: Colors.white,
+              //         fontSize: 24,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              //   onTap: () => {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //           builder: (context) => PatientRequestPage()),
+              //     )
+              //   },
+              //   contentPadding: const EdgeInsets.only(left: 20.0),
+              //   horizontalTitleGap: 5,
+              //   leading: const Icon(
+              //     Icons.request_page,
+              //     color: Colors.white,
+              //   ),
+              // ),
               ListTile(
                 title: const Text(
-                  "Request",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PatientRequestPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.request_page,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Policies",
+                  "ፖሊሲዎች",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -366,7 +337,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Help",
+                  "እገዛ",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -387,7 +358,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Exit",
+                  "ከመተግበሪያው ውጣ",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -425,7 +396,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               const SizedBox(height: 20),
               const Text(
-                'Ambulance Booking', // Add the text here
+                'አምቡላንስ ቦታ ማስያዝ', // Add the text here
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
@@ -490,7 +461,7 @@ class _HomePageState extends State<HomePage> {
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
-                    "Book Ambulance",
+                    "አምቡላንስ ያዙ",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -507,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width * 0.2,
                   // padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: const Text(
-                    "It's your lifeline in critical situations, connecting you promptly to the support needed during emergencies.",
+                    "በአስቸጋሪ ሁኔታዎች ውስጥ የህይወት መስመርዎን፣ በድንገተኛ ጊዜ ከሚያስፈልጉት ድጋፍ ጋር በፍጥነት ያገናኘዎታል።",
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -526,7 +497,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const Center(
                       child: Text(
-                        "Choose what you need",
+                        "የሚፈልጉትን ይምረጡ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
@@ -572,7 +543,7 @@ class _HomePageState extends State<HomePage> {
                                             height:
                                                 20), // Adjusted padding between icon and text
                                         const Text(
-                                          "Emergency",
+                                          "ድንገተኛ አደጋ",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 20,
@@ -605,7 +576,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const SizedBox(height: 20),
                                         const Text(
-                                          "Accessibility",
+                                          "ተደራሽነት",
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -643,7 +614,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const SizedBox(height: 20),
                                         const Text(
-                                          "First Aid",
+                                          "የመጀመሪያ እርዳታ",
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -675,7 +646,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const SizedBox(height: 20),
                                         const Text(
-                                          "Accident",
+                                          "አደጋ",
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -713,7 +684,7 @@ class _HomePageState extends State<HomePage> {
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
-                    "Login",
+                    "ግባ",
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -723,7 +694,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    'By signing up or sending request, you agree to our Terms of Service and Privacy Policy.',
+                    'በመመዝገብ ወይም ጥያቄ በመላክ፣ በእኛ የአገልግሎት ውል እና የግላዊነት መመሪያ ተስማምተሃል።',
                     style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
@@ -744,7 +715,7 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                         child: const Text(
-                          'Terms of Service',
+                          'የአገልግሎት ውል',
                           style: TextStyle(
                               color: Colors.yellow,
                               decoration: TextDecoration.underline,
@@ -753,7 +724,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       const Text(
-                        ' and ',
+                        ' እና ',
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       GestureDetector(
@@ -765,7 +736,7 @@ class _HomePageState extends State<HomePage> {
                                       const PrivacyPolicyPage()));
                         },
                         child: const Text(
-                          'Privacy Policy',
+                          'የ ግል ፖሊሲ',
                           style: TextStyle(
                             color: Colors.yellow,
                             decoration: TextDecoration.underline,

@@ -40,6 +40,11 @@ import 'package:ambu_app/pages/signup_page.dart';
 import 'package:ambu_app/pages/splash_screen.dart';
 import 'package:ambu_app/pages/language_selection_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
+import 'localizations/Amharic/yetamami_home_page.dart';
 
 void main() {
   // await dotenv.load();
@@ -58,6 +63,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // localizationsDelegates: [
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+
+      // ],
+      // supportedLocales: [
+      //   Locale('en'), // English
+      //   Locale('es'), // Spanish
+      // ],
       initialRoute: '/splash',
       routes: {
         '/home': (context) => HomePage(),
@@ -104,6 +119,8 @@ class MyApp extends StatelessWidget {
         '/systemConfigurationSettingsPage': (context) =>
             SystemConfigurationSettingsPage(),
         '/userManagementPage': (context) => UserManagementPage(),
+        'afanOromoHomepage': (context) => HomePageDhukkubsataa(),
+        'amharicHomepage': (context) => AmharicHomePage(),
       },
     );
   }

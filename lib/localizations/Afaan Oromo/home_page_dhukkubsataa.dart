@@ -22,17 +22,14 @@ import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
-import '../localizations/Amharic/yetamami_home_page.dart';
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePageDhukkubsataa extends StatefulWidget {
+  const HomePageDhukkubsataa({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageDhukkubsataaState createState() => _HomePageDhukkubsataaState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
   // List of image URLs
   final List<String> imageUrls = [
     'assets/ambu-blue.jpg',
@@ -54,13 +51,13 @@ class _HomePageState extends State<HomePage> {
   // Dropdown menu items
   final List<String> dropdownItems = [
     'Account',
-    'Search',
-    'Settings',
-    'Driver',
+    // 'Search',
+    'Sirreeffama',
+    'Konkolaachisaa',
     'Nurse',
-    'Dispatcher',
-    'Logout',
-    'Feedback',
+    // 'Dispatcher',
+    'Ba\'i\'',
+    'Yaada',
   ];
   String? selectedMenuItem;
   @override
@@ -89,33 +86,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.language,
                 color: Colors.white,
               ),
-              onChanged: (Language? language) {
-                // Navigate to the selected page based on the language
-                switch (language?.id) {
-                  case 1:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const AmharicHomePage())));
-                    break;
-                  case 2:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
-                    break;
-                  // Add more cases for other languages if needed
-                  case 3:
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
-                    break;
-                }
-              },
+              onChanged: (Language? language) {},
               items: Language.languageList()
                   .map<DropdownMenuItem<Language>>(
                     (e) => DropdownMenuItem<Language>(
@@ -149,20 +120,20 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
-              } else if (selectedMenuItem == 'Search') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AmbulanceSearchPage()),
-                );
-              } else if (selectedMenuItem == 'Settings') {
+                // } else if (selectedMenuItem == 'Search') {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const AmbulanceSearchPage()),
+                //   );
+              } else if (selectedMenuItem == 'Sirreeffama') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
                 // Handle settings navigation
-              } else if (selectedMenuItem == 'Driver') {
+              } else if (selectedMenuItem == 'Konkolaachisaa') {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Driver()),
@@ -180,11 +151,11 @@ class _HomePageState extends State<HomePage> {
                 //     MaterialPageRoute(builder: (context) => const Dispatcher()),
                 //   );
                 // Handle settings navigation
-              } else if (selectedMenuItem == 'Feedback') {
+              } else if (selectedMenuItem == 'Yaada') {
                 // Handle Feedback navigation
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => FeedbackPage()));
-              } else if (selectedMenuItem == 'Logout') {
+              } else if (selectedMenuItem == 'Ba\'i\'') {
                 // Handle logout navigation
                 Navigator.push(
                   context,
@@ -212,7 +183,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               ListTile(
                 title: const Text(
-                  "Book",
+                  "Gargaarsa Ambulansii",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -301,7 +272,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Settings",
+                  "Sirreeffama",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -322,7 +293,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Request",
+                  "Gaafachuu",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -344,7 +315,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Policies",
+                  "Imaammata",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -366,7 +337,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Help",
+                  "Gargaarsa",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -387,7 +358,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ListTile(
                 title: const Text(
-                  "Exit",
+                  "App dhiisi ba'i",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -425,7 +396,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               const SizedBox(height: 20),
               const Text(
-                'Ambulance Booking', // Add the text here
+                'Gargaarsa Ambulaansii', // Add the text here
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
@@ -490,7 +461,7 @@ class _HomePageState extends State<HomePage> {
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
-                    "Book Ambulance",
+                    "Ambulaansii Barbaaddaa?",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -507,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width * 0.2,
                   // padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: const Text(
-                    "It's your lifeline in critical situations, connecting you promptly to the support needed during emergencies.",
+                    "Haalota murteessoo ta'an keessatti sarara jireenyaa kee ti, yeroo balaa tasaa deeggarsa barbaachisu waliin hatattamaan wal sin qunnamsiisna.",
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
@@ -526,7 +497,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const Center(
                       child: Text(
-                        "Choose what you need",
+                        "Maal Barbaaddu?",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
@@ -572,7 +543,7 @@ class _HomePageState extends State<HomePage> {
                                             height:
                                                 20), // Adjusted padding between icon and text
                                         const Text(
-                                          "Emergency",
+                                          "Balaa Tasaatii?",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 20,
@@ -605,7 +576,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const SizedBox(height: 20),
                                         const Text(
-                                          "Accessibility",
+                                          "Dhaqqabummaa",
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -643,7 +614,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const SizedBox(height: 20),
                                         const Text(
-                                          "First Aid",
+                                          "Gargaarsa Duraa",
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -675,7 +646,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const SizedBox(height: 20),
                                         const Text(
-                                          "Accident",
+                                          "Balaa",
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -723,7 +694,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    'By signing up or sending request, you agree to our Terms of Service and Privacy Policy.',
+                    'Mallatteessuudhaan ykn gaaffii erguudhaan, Haala Tajaajilaa fi Imaammata Dhuunfaa keenya irratti walii galteetta.',
                     style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
@@ -744,7 +715,7 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                         child: const Text(
-                          'Terms of Service',
+                          'Haalota Tajaajilaa',
                           style: TextStyle(
                               color: Colors.yellow,
                               decoration: TextDecoration.underline,
@@ -753,7 +724,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       const Text(
-                        ' and ',
+                        ' fi ',
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       GestureDetector(
@@ -765,7 +736,7 @@ class _HomePageState extends State<HomePage> {
                                       const PrivacyPolicyPage()));
                         },
                         child: const Text(
-                          'Privacy Policy',
+                          'Imaammata Dhuunfaa',
                           style: TextStyle(
                             color: Colors.yellow,
                             decoration: TextDecoration.underline,
