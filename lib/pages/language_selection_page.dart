@@ -82,6 +82,8 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomePage()));
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => HomePage()));
                 // Navigate to the next page based on selectedLanguage
                 // _navigateToNextPage();
               },

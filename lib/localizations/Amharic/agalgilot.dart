@@ -7,8 +7,8 @@ import 'package:ambu_app/services/first_aid.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class OurServices extends StatelessWidget {
-  const OurServices({super.key});
+class YegnaAgalgilot extends StatelessWidget {
+  const YegnaAgalgilot({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class OurServices extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
-          'Services',
+          'አገልግሎቶች',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
@@ -37,13 +37,13 @@ class OurServices extends StatelessWidget {
               children: [
                 const Center(
                     child: Text(
-                  'Explore Our Services',
+                  'የምንሰጣቸው አገልግሎቶች',
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 )),
                 const Center(
                   child: Text(
-                    "Choose what you need",
+                    "ምን ይፋልጋሉ?",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
@@ -96,7 +96,7 @@ class OurServices extends StatelessWidget {
                                           height:
                                               20), // Adjusted padding between icon and text
                                       const Text(
-                                        "Emergency",
+                                        "ድንገተኛ አደጋ?",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
@@ -137,7 +137,7 @@ class OurServices extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 20),
                                       const Text(
-                                        "Accessibility",
+                                        "ተደራሽነት",
                                         style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
@@ -183,7 +183,7 @@ class OurServices extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 20),
                                       const Text(
-                                        "First Aid",
+                                        "የመጀመሪያ እርዳታ",
                                         style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
@@ -223,7 +223,7 @@ class OurServices extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 20),
                                       const Text(
-                                        "Accident",
+                                        "አደጋ",
                                         style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
@@ -268,7 +268,7 @@ class OurServices extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const OurServices()),
+                        builder: (context) => const YegnaAgalgilot()),
                   );
                   break;
                 case 2: // Navigate to Search page
@@ -282,7 +282,7 @@ class OurServices extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const OurServices()),
+                        builder: (context) => const YegnaAgalgilot()),
                   );
                   break;
 
@@ -293,19 +293,19 @@ class OurServices extends StatelessWidget {
             tabs: const [
               GButton(
                 icon: Icons.home,
-                text: 'Home',
+                text: 'መነሻ ገጽ',
               ),
               GButton(
                 icon: Icons.medical_services_outlined,
-                text: 'Services',
+                text: 'አገልግሎቶች',
               ),
               GButton(
                 icon: Icons.search,
-                text: 'Search',
+                text: 'ፈልግ',
               ),
               GButton(
                 icon: Icons.settings,
-                text: 'Settings',
+                text: 'ቅንብሮች',
               ),
             ],
           ),

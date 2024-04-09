@@ -1,3 +1,4 @@
+import 'package:ambu_app/localizations/Amharic/agalgilot.dart';
 import 'package:ambu_app/localizations/classes/language.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
@@ -6,6 +7,7 @@ import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/history.dart';
+import 'package:ambu_app/pages/home_page.dart';
 import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/policies.dart';
@@ -20,7 +22,10 @@ import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
+
+import '../Afaan Oromo/home_page_dhukkubsataa.dart';
 
 class AmharicHomePage extends StatefulWidget {
   const AmharicHomePage({super.key});
@@ -86,7 +91,30 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                 Icons.language,
                 color: Colors.white,
               ),
-              onChanged: (Language? language) {},
+              onChanged: (Language? language) {
+                switch (language?.id) {
+                  case 1:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const AmharicHomePage())));
+                    break;
+                  case 2:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const HomePage())));
+                    break;
+                  // Add more cases for other languages if needed
+                  case 3:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) =>
+                                const HomePageDhukkubsataa())));
+                    break;
+                }
+              },
               items: Language.languageList()
                   .map<DropdownMenuItem<Language>>(
                     (e) => DropdownMenuItem<Language>(
@@ -106,6 +134,20 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                   .toList(),
             ),
           ),
+
+          TextButton(
+            onPressed: () {
+              // Navigate to your login screen
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Login()));
+            },
+            child: Text(
+              'ግባ',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+
           PopupMenuButton(
             icon: Image.asset("icons/more.png"),
             onSelected: (String value) {
@@ -489,207 +531,28 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                 ),
               ),
               const SizedBox(height: 10),
-              // New containers as requested
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Center(
-                      child: Text(
-                        "የሚፈልጉትን ይምረጡ",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 450,
-                      margin: const EdgeInsets.only(top: 20.0),
-                      padding: const EdgeInsets.all(10.0), // Increased padding
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 61, 5, 71),
-                        borderRadius:
-                            BorderRadius.circular(20.0), // Rounded corners
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/emergency-call.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(
-                                            height:
-                                                20), // Adjusted padding between icon and text
-                                        const Text(
-                                          "ድንገተኛ አደጋ",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/dog-with-first-aid-kit-bag.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(height: 20),
-                                        const Text(
-                                          "ተደራሽነት",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/first-aid-box.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(height: 20),
-                                        const Text(
-                                          "የመጀመሪያ እርዳታ",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/medical1.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(height: 20),
-                                        const Text(
-                                          "አደጋ",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()));
-                },
-                style: ElevatedButton.styleFrom(
-                  side: const BorderSide(color: Colors.black, width: 2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ).copyWith(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  foregroundColor: MaterialStateProperty.all(Colors.black),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Text(
-                    "ግባ",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(context,
+              //         MaterialPageRoute(builder: (context) => Login()));
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     side: const BorderSide(color: Colors.black, width: 2),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(12),
+              //     ),
+              //   ).copyWith(
+              //     backgroundColor: MaterialStateProperty.all(Colors.white),
+              //     foregroundColor: MaterialStateProperty.all(Colors.black),
+              //   ),
+              //   child: const Padding(
+              //     padding: EdgeInsets.all(12.0),
+              //     child: Text(
+              //       "ግባ",
+              //       style: TextStyle(fontSize: 18),
+              //     ),
+              //   ),
+              // ),
               Column(
                 children: [
                   const SizedBox(height: 20),
@@ -748,6 +611,72 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                     ],
                   ),
                 ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+          child: GNav(
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.grey.shade800,
+            gap: 8,
+            padding: const EdgeInsets.all(16),
+            onTabChange: (index) {
+              switch (index) {
+                case 0: // Navigate to Home page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AmharicHomePage()),
+                  );
+                  break;
+                case 1: // Navigate to Services page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const YegnaAgalgilot()),
+                  );
+                  break;
+                case 2: // Navigate to Search page
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const AmbulanceSearchPage()),
+                  // );
+                  break;
+                case 3: // Navigate to Settings page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const YegnaAgalgilot()),
+                  );
+                  break;
+
+                default:
+                  break;
+              }
+            },
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'መነሻ ገጽ',
+              ),
+              GButton(
+                icon: Icons.medical_services_outlined,
+                text: 'አገልግሎቶች',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'ፈልግ',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'ቅንብሮች',
               ),
             ],
           ),

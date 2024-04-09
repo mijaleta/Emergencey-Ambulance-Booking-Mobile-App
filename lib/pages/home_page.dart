@@ -11,6 +11,7 @@ import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/policies.dart';
 import 'package:ambu_app/pages/setting.dart';
 import 'package:ambu_app/services/home_services_page.dart';
+import 'package:ambu_app/services/nav.dart';
 import 'package:ambu_app/users/dispatcher.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
@@ -136,6 +137,20 @@ class _HomePageState extends State<HomePage> {
                   .toList(),
             ),
           ),
+
+          TextButton(
+            onPressed: () {
+              // Navigate to your login screen
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Login()));
+            },
+            child: Text(
+              'Login',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+
           PopupMenuButton(
             icon: Image.asset("icons/more.png"),
             onSelected: (String value) {
@@ -150,12 +165,12 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
-              } else if (selectedMenuItem == 'Search') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AmbulanceSearchPage()),
-                );
+                // } else if (selectedMenuItem == 'Search') {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const AmbulanceSearchPage()),
+                //   );
               } else if (selectedMenuItem == 'Settings') {
                 Navigator.push(
                   context,
@@ -520,28 +535,28 @@ class _HomePageState extends State<HomePage> {
               ),
               // const SizedBox(height: 10),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()));
-                },
-                style: ElevatedButton.styleFrom(
-                  side: const BorderSide(color: Colors.black, width: 2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ).copyWith(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  foregroundColor: MaterialStateProperty.all(Colors.black),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(context,
+              //         MaterialPageRoute(builder: (context) => Login()));
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     side: const BorderSide(color: Colors.black, width: 2),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(12),
+              //     ),
+              //   ).copyWith(
+              //     backgroundColor: MaterialStateProperty.all(Colors.white),
+              //     foregroundColor: MaterialStateProperty.all(Colors.black),
+              //   ),
+              //   child: const Padding(
+              //     padding: EdgeInsets.all(12.0),
+              //     child: Text(
+              //       "Login",
+              //       style: TextStyle(fontSize: 18),
+              //     ),
+              //   ),
+              // ),
 
               Column(
                 children: [
@@ -606,96 +621,71 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      // bottomNavigationBar: Container(
-      //   color: Colors.black,
-      //   child: Padding(
-      //     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-      //     child: GNav(
-      //       backgroundColor: Colors.black,
-      //       color: Colors.white,
-      //       activeColor: Colors.white,
-      //       tabBackgroundColor: Colors.grey.shade800,
-      //       gap: 8,
-      //       padding: const EdgeInsets.all(16),
-      //       onTabChange: (index) {
-      //         switch (index) {
-      //           case 0: // Navigate to Home page
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(builder: (context) => HomePage()),
-      //             );
-      //             break;
-      //           case 1: // Navigate to Services page
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const OurServices()),
-      //             );
-      //             break;
-      //           case 2: // Navigate to Search page
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const AmbulanceSearchPage()),
-      //             );
-      //             break;
-      //           case 3: // Navigate to Settings page
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const OurServices()),
-      //             );
-      //             break;
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+          child: GNav(
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.grey.shade800,
+            gap: 8,
+            padding: const EdgeInsets.all(16),
+            onTabChange: (index) {
+              switch (index) {
+                case 0: // Navigate to Home page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                  break;
+                case 1: // Navigate to Services page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OurServices()),
+                  );
+                  break;
+                case 2: // Navigate to Search page
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const AmbulanceSearchPage()),
+                  // );
+                  break;
+                case 3: // Navigate to Settings page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OurServices()),
+                  );
+                  break;
 
-      //           default:
-      //             break;
-      //         }
-      //       },
-      //       tabs: const [
-      //         GButton(
-      //           icon: Icons.home,
-      //           text: 'Home',
-      //         ),
-      //         GButton(
-      //           icon: Icons.medical_services_outlined,
-      //           text: 'Services',
-      //         ),
-      //         GButton(
-      //           icon: Icons.search,
-      //           text: 'Search',
-      //         ),
-      //         GButton(
-      //           icon: Icons.settings,
-      //           text: 'Settings',
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
-
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.deepPurple,
-        color: Colors.deepPurple.shade200,
-        animationDuration: Duration(microseconds: 300),
-        onTap: (index) {},
-        items: const [
-          Icon(
-            Icons.home,
-            color: Colors.white,
+                default:
+                  break;
+              }
+            },
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.medical_services_outlined,
+                text: 'Services',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'Settings',
+              ),
+            ],
           ),
-          Icon(
-            Icons.medical_services,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.search,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.settings,
-            color: Colors.white,
-          ),
-        ],
+        ),
       ),
     );
   }
