@@ -15,7 +15,7 @@ import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/nurse_page.dart';
-import 'package:ambu_app/pages/reset_password.dart';
+// import 'package:ambu_app/pages/reset_password.dart';
 import 'package:ambu_app/pages/setting.dart';
 import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:ambu_app/system/ambulance_fleet_management.dart';
@@ -81,11 +81,11 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => SplashScreen(),
         '/languageSelection': (context) => LanguageSelectionPage(),
         '/ambulanceRequest': (context) => PatientRequestPage(),
-        '/dispatcherPage': (context) => DispatcherPage(), // Fixed typo here
+        // '/dispatcherPage': (context) => DispatcherPage(), // Fixed typo here
         '/changePasswordPage': (context) => ChangePasswordPage(),
         '/forgotPasswordPage': (context) => ForgotPasswordPage(),
         '/login': (context) => Login(),
-        '/reset': (context) => ResetPasswordPage(),
+        // '/reset': (context) => ResetPasswordPage(),
         '/searchAmbulancePage': (context) => AmbulanceSearchPage(),
         'feedbackPage': (context) => FeedbackPage(),
         'accountPage': (context) => AccountScreen(),
@@ -93,10 +93,10 @@ class MyApp extends StatelessWidget {
         'registerAmbulance': (context) => RegisterAmbulance(),
         'logout': (context) => Logout(),
         'history': (context) => History(),
-        'settings': (context) => SettingsScreen(),
+        // 'settings': (context) => SettingsScreen(),
         'nursePage': (context) => NursePage(),
         'driverPage': (context) => DriverPage(),
-        'hospitalPage': (context) => HospitalPage(),
+        // 'hospitalPage': (context) => HospitalPage(),
         'emergencyTypes': (context) => EmergencyTypeSelectionPage(),
         'specialRequest': (context) => SpecialRequestPage(),
         'privacyPolicy': (context) => PrivacyPolicyPage(),

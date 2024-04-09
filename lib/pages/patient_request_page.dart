@@ -186,12 +186,12 @@ class _PatientRequestPageState extends State<PatientRequestPage> {
                           actions: <Widget>[
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pop();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DispatcherPage()),
-                                );
+                                // Navigator.of(context).pop();
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (context) => DispatcherPage()),
+                                // );
                               },
                               child: Text("OK"),
                             ),

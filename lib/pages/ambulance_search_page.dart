@@ -32,54 +32,64 @@ class AmbulanceSearchPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              "Explore our services",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                  "assets/back3.jpg"), // Change the path to your image
+              fit: BoxFit.cover,
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(18.0),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                "Explore our services",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                          width: 8), // Add padding to the left side of the icon
-                      Image.asset(
-                        'icons/search-interface-symbol.png',
-                        width: 24, // Reduce the size of the icon
-                        height: 24,
-                      ),
-                      SizedBox(
-                          width:
-                              8), // Add padding between the icon and the text field
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Search',
-                            border: InputBorder.none, // Remove default border
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                            width:
+                                8), // Add padding to the left side of the icon
+                        Image.asset(
+                          'icons/search-interface-symbol.png',
+                          width: 24, // Reduce the size of the icon
+                          height: 24,
+                        ),
+                        SizedBox(
+                            width:
+                                8), // Add padding between the icon and the text field
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Search',
+                              border: InputBorder.none, // Remove default border
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            // Ambulance service and ranking items
-          ],
+              // Ambulance service and ranking items
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

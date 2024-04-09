@@ -279,10 +279,10 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                       fontWeight: FontWeight.bold),
                 ),
                 onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SettingsScreen()),
-                  )
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => SettingsScreen()),
+                  // )
                 },
                 contentPadding: const EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,

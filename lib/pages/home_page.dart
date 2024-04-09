@@ -10,16 +10,19 @@ import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/policies.dart';
 import 'package:ambu_app/pages/setting.dart';
+import 'package:ambu_app/services/home_services_page.dart';
 import 'package:ambu_app/users/dispatcher.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
@@ -96,15 +99,13 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                const AmharicHomePage())));
+                            builder: ((context) => const AmharicHomePage())));
                     break;
                   case 2:
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
+                            builder: ((context) => const HomePage())));
                     break;
                   // Add more cases for other languages if needed
                   case 3:
@@ -308,10 +309,10 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold),
                 ),
                 onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SettingsScreen()),
-                  )
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => SettingsScreen()),
+                  // )
                 },
                 contentPadding: const EdgeInsets.only(left: 20.0),
                 horizontalTitleGap: 5,
@@ -517,184 +518,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-              // New containers as requested
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Center(
-                      child: Text(
-                        "Choose what you need",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 450,
-                      margin: const EdgeInsets.only(top: 20.0),
-                      padding: const EdgeInsets.all(10.0), // Increased padding
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 61, 5, 71),
-                        borderRadius:
-                            BorderRadius.circular(20.0), // Rounded corners
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/emergency-call.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(
-                                            height:
-                                                20), // Adjusted padding between icon and text
-                                        const Text(
-                                          "Emergency",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/dog-with-first-aid-kit-bag.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(height: 20),
-                                        const Text(
-                                          "Accessibility",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/first-aid-box.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(height: 20),
-                                        const Text(
-                                          "First Aid",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    height: 200,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/medical1.png',
-                                          height: 100,
-                                          fit: BoxFit.contain,
-                                        ),
-                                        const SizedBox(height: 20),
-                                        const Text(
-                                          "Accident",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
+              // const SizedBox(height: 10),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
@@ -781,6 +605,97 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+      // bottomNavigationBar: Container(
+      //   color: Colors.black,
+      //   child: Padding(
+      //     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+      //     child: GNav(
+      //       backgroundColor: Colors.black,
+      //       color: Colors.white,
+      //       activeColor: Colors.white,
+      //       tabBackgroundColor: Colors.grey.shade800,
+      //       gap: 8,
+      //       padding: const EdgeInsets.all(16),
+      //       onTabChange: (index) {
+      //         switch (index) {
+      //           case 0: // Navigate to Home page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) => HomePage()),
+      //             );
+      //             break;
+      //           case 1: // Navigate to Services page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const OurServices()),
+      //             );
+      //             break;
+      //           case 2: // Navigate to Search page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const AmbulanceSearchPage()),
+      //             );
+      //             break;
+      //           case 3: // Navigate to Settings page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const OurServices()),
+      //             );
+      //             break;
+
+      //           default:
+      //             break;
+      //         }
+      //       },
+      //       tabs: const [
+      //         GButton(
+      //           icon: Icons.home,
+      //           text: 'Home',
+      //         ),
+      //         GButton(
+      //           icon: Icons.medical_services_outlined,
+      //           text: 'Services',
+      //         ),
+      //         GButton(
+      //           icon: Icons.search,
+      //           text: 'Search',
+      //         ),
+      //         GButton(
+      //           icon: Icons.settings,
+      //           text: 'Settings',
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.deepPurple,
+        color: Colors.deepPurple.shade200,
+        animationDuration: Duration(microseconds: 300),
+        onTap: (index) {},
+        items: const [
+          Icon(
+            Icons.home,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.medical_services,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.settings,
+            color: Colors.white,
+          ),
+        ],
       ),
     );
   }
