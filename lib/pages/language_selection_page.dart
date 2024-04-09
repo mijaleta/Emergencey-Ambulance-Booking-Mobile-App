@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ambu_app/pages/home_page.dart';
+import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
 
@@ -81,7 +82,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                    MaterialPageRoute(builder: (context) => MainPage()));
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => HomePage()));
                 // Navigate to the next page based on selectedLanguage
