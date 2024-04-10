@@ -1,3 +1,4 @@
+import 'package:ambu_app/localizations/Amharic/yeprivacy_policy.dart';
 import 'package:ambu_app/localizations/classes/language.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
@@ -16,6 +17,7 @@ import 'package:ambu_app/pages/login.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../Afaan Oromo/home_page_dhukkubsataa.dart';
+import 'agalgilot_term.dart';
 
 class AmharicHomePage extends StatefulWidget {
   const AmharicHomePage({super.key});
@@ -77,9 +79,12 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton<Language>(
               underline: const SizedBox(),
-              icon: const Icon(
-                Icons.language,
-                color: Colors.white,
+              icon: const Text(
+                'A/OROMO',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24), // Style the text as needed
               ),
               onChanged: (Language? language) {
                 switch (language?.id) {
@@ -131,7 +136,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Login()));
             },
-            child: Text(
+            child: const Text(
               'ግባ',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -425,7 +430,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Color.fromARGB(255, 139, 18, 113),
+                  color: Color.fromARGB(124, 119, 11, 220),
                   padding: EdgeInsets.all(30),
                   width: MediaQuery.of(context).size.width * 0.2,
                   // padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -462,7 +467,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const TermsOfServicePage()),
+                                    const AmharicTermsOfServicePage()),
                           );
                         },
                         child: const Text(
@@ -484,7 +489,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const PrivacyPolicyPage()));
+                                      const AmharicPrivacyPolicyPage()));
                         },
                         child: const Text(
                           'የ ግል ፖሊሲ',

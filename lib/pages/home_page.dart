@@ -79,9 +79,12 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton<Language>(
               underline: const SizedBox(),
-              icon: const Icon(
-                Icons.language,
-                color: Colors.white,
+              icon: const Text(
+                'አማርኛ',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24), // Style the text as needed
               ),
               onChanged: (Language? language) {
                 // Navigate to the selected page based on the language
@@ -451,7 +454,7 @@ class _HomePageState extends State<HomePage> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Color.fromARGB(255, 139, 18, 113),
+                  color: Color.fromARGB(124, 119, 11, 220),
                   padding: EdgeInsets.all(30),
                   width: MediaQuery.of(context).size.width * 0.2,
                   // padding: EdgeInsets.symmetric(horizontal: 20.0),

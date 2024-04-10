@@ -26,6 +26,9 @@ import 'package:flutter/widgets.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
+import 'policy_privacy.dart';
+import 'termi_tajaajilaa.dart';
+
 class HomePageDhukkubsataa extends StatefulWidget {
   const HomePageDhukkubsataa({super.key});
 
@@ -86,9 +89,12 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton<Language>(
               underline: const SizedBox(),
-              icon: const Icon(
-                Icons.language,
-                color: Colors.white,
+              icon: const Text(
+                'ENGLISH',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24), // Style the text as needed
               ),
               onChanged: (Language? language) {
                 switch (language?.id) {
@@ -396,7 +402,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     return Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      margin:const EdgeInsets.symmetric(horizontal: 10),
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                         // color: Colors.amber,
                         borderRadius: BorderRadius.circular(20),
@@ -418,8 +424,9 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     reverse: false,
                     height: 300,
                     autoPlay: true,
-                    autoPlayInterval:const Duration(seconds: 2),
-                    autoPlayAnimationDuration:const Duration(milliseconds: 800),
+                    autoPlayInterval: const Duration(seconds: 2),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.5,
@@ -456,8 +463,8 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Color.fromARGB(255, 224, 96, 196),
-                  padding: EdgeInsets.all(30),
+                  color: const Color.fromARGB(124, 119, 11, 220),
+                  padding: const EdgeInsets.all(30),
                   width: MediaQuery.of(context).size.width * 0.2,
                   // padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: const Text(
@@ -493,7 +500,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const TermsOfServicePage()),
+                                    const OromoTermsOfServicePage()),
                           );
                         },
                         child: const Text(
@@ -515,7 +522,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const PrivacyPolicyPage()));
+                                      const OromoPrivacyPolicyPage()));
                         },
                         child: const Text(
                           'Ittiin bulmaata',
