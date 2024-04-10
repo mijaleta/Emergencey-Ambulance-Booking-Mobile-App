@@ -72,17 +72,20 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+import 'agalgilot.dart';
+import 'yetamami_home_page.dart';
+
+class AmarignaMainPage extends StatefulWidget {
+  const AmarignaMainPage({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<AmarignaMainPage> createState() => _AmarignaMainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _AmarignaMainPageState extends State<AmarignaMainPage> {
   List pages = [
-    HomePage(),
-    OurServices(),
+    AmharicHomePage(),
+    YegnaAgalgilot(),
     SearchPage(),
     AccountScreen(),
   ];

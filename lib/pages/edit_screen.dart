@@ -181,7 +181,7 @@ class _EditAccountState extends State<EditAccount> {
                     child: const Text(
                       'Cancel',
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           letterSpacing: 2.2,
                           color: Colors.black,
                           fontWeight: FontWeight.w600),
@@ -191,11 +191,11 @@ class _EditAccountState extends State<EditAccount> {
                     width: 10,
                   ),
                   Expanded(
-                    // flex: 2,
+                    flex: 2,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        // padding: const EdgeInsets.symmetric(horizontal: 50),
                         backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -205,10 +205,10 @@ class _EditAccountState extends State<EditAccount> {
                       child: const Text(
                         'Save',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           color: Colors.white,
-                          fontSize: 20,
-                          letterSpacing: 3,
+                          fontSize: 18,
+                          letterSpacing: 2.2,
                         ),
                       ),
                     ),

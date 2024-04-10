@@ -46,6 +46,7 @@ import 'package:ambu_app/pages/language_selection_page.dart';
 
 import 'localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
 import 'localizations/Amharic/yetamami_home_page.dart';
+import 'pages/account_black.dart';
 
 void main() {
   // await dotenv.load();
@@ -104,21 +105,21 @@ class MyApp extends StatelessWidget {
         'termsOfService': (context) => TermsOfServicePage(),
         'driver': (context) => Driver(),
         'nurse': (context) => Nurse(),
-        'dispatcher': (context) => Dispatcher(),
-        '/ambulanceFleetManagementPage': (context) =>
-            AmbulanceFleetManagementPage(),
-        '/ambulanceRoutingTrackingPage': (context) =>
-            AmbulanceRoutingTrackingPage(),
-        '/continuousImprovementPage': (context) => ContinuousImprovementPage(),
-        '/dataManagementReportingPage': (context) =>
-            DataManagementReportingPage(),
-        '/dispatcherManagementPage': (context) => DispatcherManagementPage(),
-        '/emergencyPreparednessPage': (context) => EmergencyPreparednessPage(),
-        '/emergencyResponseCoordinationPage': (context) =>
-            EmergencyResponseCoordinationPage(),
-        '/regulatoryCompliancePage': (context) => RegulatoryCompliancePage(),
-        '/systemConfigurationSettingsPage': (context) =>
-            SystemConfigurationSettingsPage(),
+        'blackAccount': (context) => AccountBlack(),
+        // '/ambulanceFleetManagementPage': (context) =>
+        //     AmbulanceFleetManagementPage(),
+        // '/ambulanceRoutingTrackingPage': (context) =>
+        //     AmbulanceRoutingTrackingPage(),
+        // '/continuousImprovementPage': (context) => ContinuousImprovementPage(),
+        // '/dataManagementReportingPage': (context) =>
+        //     DataManagementReportingPage(),
+        // '/dispatcherManagementPage': (context) => DispatcherManagementPage(),
+        // '/emergencyPreparednessPage': (context) => EmergencyPreparednessPage(),
+        // '/emergencyResponseCoordinationPage': (context) =>
+        //     EmergencyResponseCoordinationPage(),
+        // '/regulatoryCompliancePage': (context) => RegulatoryCompliancePage(),
+        // '/systemConfigurationSettingsPage': (context) =>
+        //     SystemConfigurationSettingsPage(),
         '/servicesPage': (context) => OurServices(),
         'afanOromoHomepage': (context) => HomePageDhukkubsataa(),
         'amharicHomepage': (context) => AmharicHomePage(),

@@ -245,72 +245,72 @@ class YegnaAgalgilot extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-          child: GNav(
-            backgroundColor: Colors.black,
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
-            gap: 8,
-            padding: const EdgeInsets.all(16),
-            onTabChange: (index) {
-              switch (index) {
-                case 0: // Navigate to Home page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
-                  break;
-                case 1: // Navigate to Services page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const YegnaAgalgilot()),
-                  );
-                  break;
-                case 2: // Navigate to Search page
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const AmbulanceSearchPage()),
-                  // );
-                  break;
-                case 3: // Navigate to Settings page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const YegnaAgalgilot()),
-                  );
-                  break;
+      // bottomNavigationBar: Container(
+      //   color: Colors.black,
+      //   child: Padding(
+      //     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+      //     child: GNav(
+      //       backgroundColor: Colors.black,
+      //       color: Colors.white,
+      //       activeColor: Colors.white,
+      //       tabBackgroundColor: Colors.grey.shade800,
+      //       gap: 8,
+      //       padding: const EdgeInsets.all(16),
+      //       onTabChange: (index) {
+      //         switch (index) {
+      //           case 0: // Navigate to Home page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) => HomePage()),
+      //             );
+      //             break;
+      //           case 1: // Navigate to Services page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const YegnaAgalgilot()),
+      //             );
+      //             break;
+      //           case 2: // Navigate to Search page
+      //             // Navigator.push(
+      //             //   context,
+      //             //   MaterialPageRoute(
+      //             //       builder: (context) => const AmbulanceSearchPage()),
+      //             // );
+      //             break;
+      //           case 3: // Navigate to Settings page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const YegnaAgalgilot()),
+      //             );
+      //             break;
 
-                default:
-                  break;
-              }
-            },
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'መነሻ ገጽ',
-              ),
-              GButton(
-                icon: Icons.medical_services_outlined,
-                text: 'አገልግሎቶች',
-              ),
-              GButton(
-                icon: Icons.search,
-                text: 'ፈልግ',
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: 'ቅንብሮች',
-              ),
-            ],
-          ),
-        ),
-      ),
+      //           default:
+      //             break;
+      //         }
+      //       },
+      //       tabs: const [
+      //         GButton(
+      //           icon: Icons.home,
+      //           text: 'መነሻ ገጽ',
+      //         ),
+      //         GButton(
+      //           icon: Icons.medical_services_outlined,
+      //           text: 'አገልግሎቶች',
+      //         ),
+      //         GButton(
+      //           icon: Icons.search,
+      //           text: 'ፈልግ',
+      //         ),
+      //         GButton(
+      //           icon: Icons.settings,
+      //           text: 'ቅንብሮች',
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

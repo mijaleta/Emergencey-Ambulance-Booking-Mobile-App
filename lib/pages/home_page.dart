@@ -5,31 +5,19 @@ import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
-import 'package:ambu_app/pages/history.dart';
-import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/logout.dart';
-import 'package:ambu_app/pages/navpages/bar_item_page.dart';
-import 'package:ambu_app/pages/navpages/search_page.dart';
-import 'package:ambu_app/pages/policies.dart';
-import 'package:ambu_app/pages/setting.dart';
-import 'package:ambu_app/services/home_services_page.dart';
-import 'package:ambu_app/services/nav.dart';
-import 'package:ambu_app/users/dispatcher.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
-import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
-import '../localizations/Amharic/yetamami_home_page.dart';
+import '../localizations/Afaan Oromo/oromifa_main.dart';
+import '../localizations/Amharic/amarigna_main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,7 +27,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   // List of image URLs
   final List<String> imageUrls = [
     'assets/ambu-blue.jpg',
@@ -103,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const AmharicHomePage())));
+                            builder: ((context) => const AmarignaMainPage())));
                     break;
                   case 2:
                     Navigator.push(
@@ -116,8 +103,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
+                            builder: ((context) => const OromiffaMainPage())));
                     break;
                 }
               },
@@ -147,7 +133,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Login()));
             },
-            child: Text(
+            child: const Text(
               'Login',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -168,12 +154,6 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
-                // } else if (selectedMenuItem == 'Search') {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => const AmbulanceSearchPage()),
-                //   );
               } else if (selectedMenuItem == 'Settings') {
                 Navigator.push(
                   context,
@@ -192,13 +172,6 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(builder: (context) => const Nurse()),
                 );
-                // Handle settings navigation
-                // } else if (selectedMenuItem == 'Dispatcher') {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => const Dispatcher()),
-                //   );
-                // Handle settings navigation
               } else if (selectedMenuItem == 'Feedback') {
                 // Handle Feedback navigation
                 Navigator.push(context,
@@ -251,51 +224,6 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white, // Set icon color
                 ),
               ),
-              // ListTile(
-              //   title: const Text(
-              //     "History",
-              //     style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              //   onTap: () => {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => const HospitalPage()),
-              //     )
-              //   },
-              //   contentPadding: const EdgeInsets.only(
-              //       left: 20.0), // Remove ListTile default padding
-              //   horizontalTitleGap: 5,
-              //   leading: const Icon(
-              //     Icons.history,
-              //     color: Colors.white,
-              //   ),
-              // ),
-              // ListTile(
-              //   title: const Text(
-              //     "Ambulance Types",
-              //     style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              //   onTap: () => {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => const AmbulanceSearchPage()),
-              //     )
-              //   },
-              //   contentPadding: const EdgeInsets.only(left: 20.0),
-              //   horizontalTitleGap: 5,
-              //   leading: const Icon(
-              //     Icons.directions_car,
-              //     color: Colors.white,
-              //   ),
-              // ),
               ListTile(
                 title: const Text(
                   "Account",
@@ -487,7 +415,7 @@ class _HomePageState extends State<HomePage> {
                     autoPlayAnimationDuration: Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
-                    enlargeFactor: 0.5,
+                    enlargeFactor: 1.0,
                     scrollDirection: Axis.vertical,
                   ),
                 ),
@@ -501,18 +429,20 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => EmergencyTypeSelectionPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: Color.fromARGB(255, 72, 154, 220),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(20),
                   ),
+                  padding: EdgeInsets.all(7),
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
                     "Book Ambulance",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 22,
                       color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -532,35 +462,10 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.white,
                       letterSpacing: -0.5,
                     ),
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.start,
                   ),
                 ),
               ),
-              // const SizedBox(height: 10),
-              // const SizedBox(height: 20),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(context,
-              //         MaterialPageRoute(builder: (context) => Login()));
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //     side: const BorderSide(color: Colors.black, width: 2),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(12),
-              //     ),
-              //   ).copyWith(
-              //     backgroundColor: MaterialStateProperty.all(Colors.white),
-              //     foregroundColor: MaterialStateProperty.all(Colors.black),
-              //   ),
-              //   child: const Padding(
-              //     padding: EdgeInsets.all(12.0),
-              //     child: Text(
-              //       "Login",
-              //       style: TextStyle(fontSize: 18),
-              //     ),
-              //   ),
-              // ),
-
               Column(
                 children: [
                   const SizedBox(height: 20),
@@ -624,72 +529,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      // bottomNavigationBar: Container(
-      //   color: Colors.black,
-      //   child: Padding(
-      //     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-      //     child: GNav(
-      //       backgroundColor: Colors.black,
-      //       color: Colors.white,
-      //       activeColor: Colors.white,
-      //       tabBackgroundColor: Colors.grey.shade800,
-      //       gap: 8,
-      //       padding: const EdgeInsets.all(16),
-      //       onTabChange: (index) {
-      //         switch (index) {
-      //           case 0: // Navigate to Home page
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(builder: (context) => HomePage()),
-      //             );
-      //             break;
-      //           case 1: // Navigate to Services page
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const OurServices()),
-      //             );
-      //             break;
-      //           case 2: // Navigate to Search page
-      //             // Navigator.push(
-      //             //   context,
-      //             //   MaterialPageRoute(
-      //             //       builder: (context) => const AmbulanceSearchPage()),
-      //             // );
-      //             break;
-      //           case 3: // Navigate to Settings page
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const OurServices()),
-      //             );
-      //             break;
-
-      //           default:
-      //             break;
-      //         }
-      //       },
-      //       tabs: const [
-      //         GButton(
-      //           icon: Icons.home,
-      //           text: 'Home',
-      //         ),
-      //         GButton(
-      //           icon: Icons.medical_services_outlined,
-      //           text: 'Services',
-      //         ),
-      //         GButton(
-      //           icon: Icons.search,
-      //           text: 'Search',
-      //         ),
-      //         GButton(
-      //           icon: Icons.settings,
-      //           text: 'Settings',
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

@@ -1,21 +1,24 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:ambu_app/pages/account_black.dart';
+import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/edit_screen.dart';
+import 'package:ambu_app/widgets/dark_setting.dart';
 import 'package:ambu_app/widgets/forward_button.dart';
 import 'package:ambu_app/widgets/setting_item.dart';
 import 'package:ambu_app/widgets/setting_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart'; // Import Ionicons package
+import 'package:ionicons/ionicons.dart';
 
-class AccountScreen extends StatefulWidget {
-  const AccountScreen({super.key});
+import '../widgets/dark_setting_switch.dart'; // Import Ionicons package
+
+class AccountBlack extends StatefulWidget {
+  const AccountBlack({super.key});
 
   @override
-  State<AccountScreen> createState() => _AccountScreenState();
+  State<AccountBlack> createState() => _AccountBlackState();
 }
 
-class _AccountScreenState extends State<AccountScreen> {
+class _AccountBlackState extends State<AccountBlack> {
   bool isDarkMode = false;
 
   @override
@@ -35,7 +38,8 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
         leadingWidth: 80,
       ),
-      body: SingleChildScrollView(
+      body: Container(
+        color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.all(30),
           child: Column(
@@ -43,12 +47,18 @@ class _AccountScreenState extends State<AccountScreen> {
             children: [
               Text(
                 'Settings',
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               const SizedBox(height: 30),
               Text(
                 "Account",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
               ),
               const SizedBox(
                 height: 20,
@@ -73,7 +83,9 @@ class _AccountScreenState extends State<AccountScreen> {
                         Text(
                           'Great Beki',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
                         ),
                         SizedBox(
                           height: 10,
@@ -105,7 +117,10 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               const Text(
                 "Settings",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
               ),
               const SizedBox(
                 height: 20,
@@ -115,7 +130,7 @@ class _AccountScreenState extends State<AccountScreen> {
               // fontWeight: FontWeight.w500,),
               // ),
               // const SizedBox(height: 20,),
-              SettingItem(
+              DarkSettingItem(
                 title: 'Language',
                 icon: Ionicons.earth,
                 bgColor: Colors.red.shade100,
@@ -126,7 +141,7 @@ class _AccountScreenState extends State<AccountScreen> {
               const SizedBox(
                 height: 20,
               ),
-              SettingItem(
+              DarkSettingItem(
                 title: 'Notification',
                 icon: Ionicons.notifications,
                 bgColor: Colors.blue.shade100,
@@ -137,7 +152,7 @@ class _AccountScreenState extends State<AccountScreen> {
               const SizedBox(
                 height: 20,
               ),
-              SettingSwitch(
+              DarkSettingSwitch(
                 title: 'Dark Mode',
                 icon: Ionicons.moon,
                 bgColor: Colors.purple.shade100,
@@ -148,12 +163,12 @@ class _AccountScreenState extends State<AccountScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AccountBlack()));
+                            builder: (context) => AccountScreen()));
                   });
                 },
                 value: isDarkMode,
               ),
-              SettingItem(
+              DarkSettingItem(
                 title: 'Help',
                 icon: Ionicons.nuclear,
                 bgColor: Colors.red.shade100,

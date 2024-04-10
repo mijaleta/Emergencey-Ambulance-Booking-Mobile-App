@@ -16,7 +16,7 @@ class TajaajilootaKeenya extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
-          'Services',
+          'Tajaajila',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
@@ -245,72 +245,72 @@ class TajaajilootaKeenya extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-          child: GNav(
-            backgroundColor: Colors.black,
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
-            gap: 8,
-            padding: const EdgeInsets.all(16),
-            onTabChange: (index) {
-              switch (index) {
-                case 0: // Navigate to Home page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
-                  break;
-                case 1: // Navigate to Services page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const TajaajilootaKeenya()),
-                  );
-                  break;
-                case 2: // Navigate to Search page
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const AmbulanceSearchPage()),
-                  // );
-                  break;
-                case 3: // Navigate to Settings page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const TajaajilootaKeenya()),
-                  );
-                  break;
+      // bottomNavigationBar: Container(
+      //   color: Colors.black,
+      //   child: Padding(
+      //     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+      //     child: GNav(
+      //       backgroundColor: Colors.black,
+      //       color: Colors.white,
+      //       activeColor: Colors.white,
+      //       tabBackgroundColor: Colors.grey.shade800,
+      //       gap: 8,
+      //       padding: const EdgeInsets.all(16),
+      //       onTabChange: (index) {
+      //         switch (index) {
+      //           case 0: // Navigate to Home page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) => HomePage()),
+      //             );
+      //             break;
+      //           case 1: // Navigate to Services page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const TajaajilootaKeenya()),
+      //             );
+      //             break;
+      //           case 2: // Navigate to Search page
+      //             // Navigator.push(
+      //             //   context,
+      //             //   MaterialPageRoute(
+      //             //       builder: (context) => const AmbulanceSearchPage()),
+      //             // );
+      //             break;
+      //           case 3: // Navigate to Settings page
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const TajaajilootaKeenya()),
+      //             );
+      //             break;
 
-                default:
-                  break;
-              }
-            },
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
-              ),
-              GButton(
-                icon: Icons.medical_services_outlined,
-                text: 'Services',
-              ),
-              GButton(
-                icon: Icons.search,
-                text: 'Search',
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: 'Settings',
-              ),
-            ],
-          ),
-        ),
-      ),
+      //           default:
+      //             break;
+      //         }
+      //       },
+      //       tabs: const [
+      //         GButton(
+      //           icon: Icons.home,
+      //           text: 'Home',
+      //         ),
+      //         GButton(
+      //           icon: Icons.medical_services_outlined,
+      //           text: 'Services',
+      //         ),
+      //         GButton(
+      //           icon: Icons.search,
+      //           text: 'Search',
+      //         ),
+      //         GButton(
+      //           icon: Icons.settings,
+      //           text: 'Settings',
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

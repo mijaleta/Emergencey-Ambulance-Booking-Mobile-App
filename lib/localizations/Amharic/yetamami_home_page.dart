@@ -1,4 +1,3 @@
-import 'package:ambu_app/localizations/Amharic/agalgilot.dart';
 import 'package:ambu_app/localizations/classes/language.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
@@ -6,23 +5,14 @@ import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
-import 'package:ambu_app/pages/history.dart';
 import 'package:ambu_app/pages/home_page.dart';
-import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/logout.dart';
-import 'package:ambu_app/pages/policies.dart';
-import 'package:ambu_app/pages/setting.dart';
-import 'package:ambu_app/users/dispatcher.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
-import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
-import 'package:ambu_app/pages/patient_request_page.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../Afaan Oromo/home_page_dhukkubsataa.dart';
@@ -162,12 +152,6 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
-                // } else if (selectedMenuItem == 'Search') {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => const AmbulanceSearchPage()),
-                //   );
               } else if (selectedMenuItem == 'ቅንብሮች') {
                 Navigator.push(
                   context,
@@ -186,13 +170,6 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                   context,
                   MaterialPageRoute(builder: (context) => const Nurse()),
                 );
-                // Handle settings navigation
-                // } else if (selectedMenuItem == 'Dispatcher') {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => const Dispatcher()),
-                //   );
-                // Handle settings navigation
               } else if (selectedMenuItem == 'ግብረ መልስ') {
                 // Handle Feedback navigation
                 Navigator.push(context,
@@ -245,51 +222,6 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                   color: Colors.white, // Set icon color
                 ),
               ),
-              // ListTile(
-              //   title: const Text(
-              //     "History",
-              //     style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              //   onTap: () => {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => const HospitalPage()),
-              //     )
-              //   },
-              //   contentPadding: const EdgeInsets.only(
-              //       left: 20.0), // Remove ListTile default padding
-              //   horizontalTitleGap: 5,
-              //   leading: const Icon(
-              //     Icons.history,
-              //     color: Colors.white,
-              //   ),
-              // ),
-              // ListTile(
-              //   title: const Text(
-              //     "Ambulance Types",
-              //     style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              //   onTap: () => {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => const AmbulanceSearchPage()),
-              //     )
-              //   },
-              //   contentPadding: const EdgeInsets.only(left: 20.0),
-              //   horizontalTitleGap: 5,
-              //   leading: const Icon(
-              //     Icons.directions_car,
-              //     color: Colors.white,
-              //   ),
-              // ),
               ListTile(
                 title: const Text(
                   "መለያ",
@@ -333,28 +265,6 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                   color: Colors.white,
                 ),
               ),
-              // ListTile(
-              //   title: const Text(
-              //     "ጥያቄ",
-              //     style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              //   onTap: () => {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => PatientRequestPage()),
-              //     )
-              //   },
-              //   contentPadding: const EdgeInsets.only(left: 20.0),
-              //   horizontalTitleGap: 5,
-              //   leading: const Icon(
-              //     Icons.request_page,
-              //     color: Colors.white,
-              //   ),
-              // ),
               ListTile(
                 title: const Text(
                   "ፖሊሲዎች",
@@ -495,7 +405,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                           builder: (context) => EmergencyTypeSelectionPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: Color.fromARGB(255, 72, 154, 220),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -526,33 +436,11 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                       color: Colors.white,
                       letterSpacing: -0.5,
                     ),
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.start,
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(context,
-              //         MaterialPageRoute(builder: (context) => Login()));
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //     side: const BorderSide(color: Colors.black, width: 2),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(12),
-              //     ),
-              //   ).copyWith(
-              //     backgroundColor: MaterialStateProperty.all(Colors.white),
-              //     foregroundColor: MaterialStateProperty.all(Colors.black),
-              //   ),
-              //   child: const Padding(
-              //     padding: EdgeInsets.all(12.0),
-              //     child: Text(
-              //       "ግባ",
-              //       style: TextStyle(fontSize: 18),
-              //     ),
-              //   ),
-              // ),
               Column(
                 children: [
                   const SizedBox(height: 20),
@@ -611,72 +499,6 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                     ],
                   ),
                 ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-          child: GNav(
-            backgroundColor: Colors.black,
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
-            gap: 8,
-            padding: const EdgeInsets.all(16),
-            onTabChange: (index) {
-              switch (index) {
-                case 0: // Navigate to Home page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AmharicHomePage()),
-                  );
-                  break;
-                case 1: // Navigate to Services page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const YegnaAgalgilot()),
-                  );
-                  break;
-                case 2: // Navigate to Search page
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const AmbulanceSearchPage()),
-                  // );
-                  break;
-                case 3: // Navigate to Settings page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const YegnaAgalgilot()),
-                  );
-                  break;
-
-                default:
-                  break;
-              }
-            },
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'መነሻ ገጽ',
-              ),
-              GButton(
-                icon: Icons.medical_services_outlined,
-                text: 'አገልግሎቶች',
-              ),
-              GButton(
-                icon: Icons.search,
-                text: 'ፈልግ',
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: 'ቅንብሮች',
               ),
             ],
           ),

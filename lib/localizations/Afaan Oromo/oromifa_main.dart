@@ -65,24 +65,27 @@
 // }
 
 import 'package:ambu_app/pages/account_page.dart';
-import 'package:ambu_app/pages/home_page.dart';
+// import 'package:ambu_app/pages/home_page.dart';
 import 'package:ambu_app/pages/navpages/search_page.dart';
-import 'package:ambu_app/services/home_services_page.dart';
+// import 'package:ambu_app/services/home_services_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+import 'home_page_dhukkubsataa.dart';
+import 'home_service.dart';
+
+class OromiffaMainPage extends StatefulWidget {
+  const OromiffaMainPage({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<OromiffaMainPage> createState() => _OromiffaMainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _OromiffaMainPageState extends State<OromiffaMainPage> {
   List pages = [
-    HomePage(),
-    OurServices(),
+    HomePageDhukkubsataa(),
+    TajaajilootaKeenya(),
     SearchPage(),
     AccountScreen(),
   ];
@@ -108,7 +111,7 @@ class _MainPageState extends State<MainPage> {
                 currentIndex = index;
               });
             },
-            tabs: [
+            tabs: const [
               GButton(
                 icon: Ionicons.apps_outline,
                 text: 'Home',

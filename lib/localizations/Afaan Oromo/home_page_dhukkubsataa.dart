@@ -142,7 +142,8 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
             },
             child: Text(
               'Login',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
 
@@ -160,12 +161,6 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
-                // } else if (selectedMenuItem == 'Search') {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => const AmbulanceSearchPage()),
-                //   );
               } else if (selectedMenuItem == 'Sirreeffama') {
                 Navigator.push(
                   context,
@@ -184,13 +179,6 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                   context,
                   MaterialPageRoute(builder: (context) => const Nurse()),
                 );
-                // Handle settings navigation
-                // } else if (selectedMenuItem == 'Dispatcher') {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => const Dispatcher()),
-                //   );
-                // Handle settings navigation
               } else if (selectedMenuItem == 'Yaada') {
                 // Handle Feedback navigation
                 Navigator.push(context,
@@ -243,51 +231,6 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                   color: Colors.white, // Set icon color
                 ),
               ),
-              // ListTile(
-              //   title: const Text(
-              //     "History",
-              //     style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              //   onTap: () => {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => const HospitalPage()),
-              //     )
-              //   },
-              //   contentPadding: const EdgeInsets.only(
-              //       left: 20.0), // Remove ListTile default padding
-              //   horizontalTitleGap: 5,
-              //   leading: const Icon(
-              //     Icons.history,
-              //     color: Colors.white,
-              //   ),
-              // ),
-              // ListTile(
-              //   title: const Text(
-              //     "Ambulance Types",
-              //     style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 24,
-              //         fontWeight: FontWeight.bold),
-              //   ),
-              //   onTap: () => {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => const AmbulanceSearchPage()),
-              //     )
-              //   },
-              //   contentPadding: const EdgeInsets.only(left: 20.0),
-              //   horizontalTitleGap: 5,
-              //   leading: const Icon(
-              //     Icons.directions_car,
-              //     color: Colors.white,
-              //   ),
-              // ),
               ListTile(
                 title: const Text(
                   "Account",
@@ -453,7 +396,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     return Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      margin:const EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                         // color: Colors.amber,
                         borderRadius: BorderRadius.circular(20),
@@ -475,8 +418,8 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     reverse: false,
                     height: 300,
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 2),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayInterval:const Duration(seconds: 2),
+                    autoPlayAnimationDuration:const Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.5,
@@ -493,7 +436,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                           builder: (context) => EmergencyTypeSelectionPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: Color.fromARGB(255, 72, 154, 220),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -513,7 +456,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Color.fromARGB(255, 139, 18, 113),
+                  color: Color.fromARGB(255, 224, 96, 196),
                   padding: EdgeInsets.all(30),
                   width: MediaQuery.of(context).size.width * 0.2,
                   // padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -524,34 +467,11 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                       color: Colors.white,
                       letterSpacing: -0.5,
                     ),
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.start,
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              // const SizedBox(height: 20),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(context,
-              //         MaterialPageRoute(builder: (context) => Login()));
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //     side: const BorderSide(color: Colors.black, width: 2),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(12),
-              //     ),
-              //   ).copyWith(
-              //     backgroundColor: MaterialStateProperty.all(Colors.white),
-              //     foregroundColor: MaterialStateProperty.all(Colors.black),
-              //   ),
-              //   child: const Padding(
-              //     padding: EdgeInsets.all(12.0),
-              //     child: Text(
-              //       "Login",
-              //       style: TextStyle(fontSize: 18),
-              //     ),
-              //   ),
-              // ),
               Column(
                 children: [
                   const SizedBox(height: 20),
@@ -610,73 +530,6 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     ],
                   ),
                 ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-          child: GNav(
-            backgroundColor: Colors.black,
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
-            gap: 8,
-            padding: const EdgeInsets.all(16),
-            onTabChange: (index) {
-              switch (index) {
-                case 0: // Navigate to Home page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomePageDhukkubsataa()),
-                  );
-                  break;
-                case 1: // Navigate to Services page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const TajaajilootaKeenya()),
-                  );
-                  break;
-                case 2: // Navigate to Search page
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const AmbulanceSearchPage()),
-                  // );
-                  break;
-                case 3: // Navigate to Settings page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const TajaajilootaKeenya()),
-                  );
-                  break;
-
-                default:
-                  break;
-              }
-            },
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
-              ),
-              GButton(
-                icon: Icons.medical_services_outlined,
-                text: 'Services',
-              ),
-              GButton(
-                icon: Icons.search,
-                text: 'Search',
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: 'Settings',
               ),
             ],
           ),
