@@ -54,6 +54,8 @@ dependencies:
   permission_handler: ^11.3.1
   google_nav_bar: ^5.0.6
   curved_navigation_bar: ^1.0.3
+  firebase_core: ^2.29.0
+  firebase_messaging: ^14.8.1
   
   # carousel_slider: ^4.2.1
 

@@ -2,6 +2,9 @@ import 'package:ambu_app/pages/change_password.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/signup_page.dart';
 import 'package:ambu_app/pages/admin_page.dart';
+import 'package:ambu_app/pages/driver_page.dart';
+import 'package:ambu_app/users/driver.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -63,8 +66,10 @@ class Login extends StatelessWidget {
     Future<void> _submitLogin() async {
       final String username = usernameController.text;
       final String password = passwordController.text;
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-final url = Uri.parse('http://192.168.63.172:3000/login');
+
+final url = Uri.parse('http://192.168.0.22:3000/login');
 
 
       try {
@@ -77,6 +82,8 @@ final url = Uri.parse('http://192.168.63.172:3000/login');
           body: json.encode({
             'username': username,
             'password': password,
+            'fcmToken': await _firebaseMessaging.getToken(), // Get FCM token
+
           }),
         );
 
@@ -94,7 +101,9 @@ final url = Uri.parse('http://192.168.63.172:3000/login');
               switch (responseBody['user']['role']) {
                 case 'admin':
                   return AdminPage();
-                case 'nurse':
+                case 'driver':
+                  return Driver();
+                  case 'nurse':
                   return AdminPage();
                 // Add other roles here
                 default:
