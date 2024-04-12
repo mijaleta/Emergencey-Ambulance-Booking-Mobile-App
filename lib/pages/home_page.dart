@@ -19,6 +19,7 @@ import 'package:ionicons/ionicons.dart';
 
 import '../localizations/Afaan Oromo/oromifa_main.dart';
 import '../localizations/Amharic/amarigna_main.dart';
+import 'setting_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -66,6 +67,7 @@ class _HomePageState extends State<HomePage> {
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Ionicons.menu_outline),
+            // IconButton.styleFrom(colo),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
@@ -164,6 +166,11 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                       builder: (context) => const AccountScreen()),
                 );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => const SettingPage()),
+                // );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Driver') {
                 Navigator.push(

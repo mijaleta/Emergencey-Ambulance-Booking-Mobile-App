@@ -27,6 +27,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../pages/navpages/main_page.dart';
+import '../Amharic/amarigna_main.dart';
+import 'oromifa_main.dart';
 import 'policy_privacy.dart';
 import 'termi_tajaajilaa.dart';
 
@@ -103,7 +105,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const AmharicHomePage())));
+                            builder: ((context) => const AmarignaMainPage())));
                     break;
                   case 2:
                     Navigator.push(
@@ -116,8 +118,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
+                            builder: ((context) => const OromiffaMainPage())));
                     break;
                 }
               },

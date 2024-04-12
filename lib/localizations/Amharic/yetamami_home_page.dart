@@ -18,7 +18,9 @@ import 'package:ionicons/ionicons.dart';
 
 import '../../pages/navpages/main_page.dart';
 import '../Afaan Oromo/home_page_dhukkubsataa.dart';
+import '../Afaan Oromo/oromifa_main.dart';
 import 'agalgilot_term.dart';
+import 'amarigna_main.dart';
 
 class AmharicHomePage extends StatefulWidget {
   const AmharicHomePage({super.key});
@@ -93,7 +95,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const AmharicHomePage())));
+                            builder: ((context) => const AmarignaMainPage())));
                     break;
                   case 2:
                     Navigator.push(
@@ -106,8 +108,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                const HomePageDhukkubsataa())));
+                            builder: ((context) => const OromiffaMainPage())));
                     break;
                 }
               },
