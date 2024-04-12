@@ -26,6 +26,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../pages/navpages/main_page.dart';
 import 'policy_privacy.dart';
 import 'termi_tajaajilaa.dart';
 
@@ -108,7 +109,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HomePage())));
+                            builder: ((context) => const MainPage())));
                     break;
                   // Add more cases for other languages if needed
                   case 3:

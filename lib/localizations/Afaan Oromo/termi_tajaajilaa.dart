@@ -23,7 +23,7 @@ class OromoTermsOfServicePage extends StatelessWidget {
           child: Text(
             termsContent.content,
             style: const TextStyle(fontSize: 20),
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.start,
           ),
         ),
       ),

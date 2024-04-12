@@ -23,7 +23,7 @@ class OromoPrivacyPolicyPage extends StatelessWidget {
           child: Text(
             privacyContent.content,
             style: TextStyle(fontSize: 20),
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.start,
           ),
         ),
       ),

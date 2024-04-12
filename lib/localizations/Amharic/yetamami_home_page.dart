@@ -16,6 +16,7 @@ import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../pages/navpages/main_page.dart';
 import '../Afaan Oromo/home_page_dhukkubsataa.dart';
 import 'agalgilot_term.dart';
 
@@ -98,7 +99,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HomePage())));
+                            builder: ((context) => const MainPage())));
                     break;
                   // Add more cases for other languages if needed
                   case 3:

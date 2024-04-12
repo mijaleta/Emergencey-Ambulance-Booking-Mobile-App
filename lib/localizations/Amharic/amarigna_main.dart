@@ -111,7 +111,7 @@ class _AmarignaMainPageState extends State<AmarignaMainPage> {
                 currentIndex = index;
               });
             },
-            tabs: [
+            tabs:const [
               GButton(
                 icon: Ionicons.apps_outline,
                 text: 'Home',

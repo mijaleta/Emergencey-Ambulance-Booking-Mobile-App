@@ -6,6 +6,7 @@ import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/logout.dart';
+import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -48,11 +49,11 @@ class _HomePageState extends State<HomePage> {
   // Dropdown menu items
   final List<String> dropdownItems = [
     'Account',
-    'Search',
+    // 'Search',
     'Settings',
     'Driver',
     'Nurse',
-    'Dispatcher',
+    // 'Dispatcher',
     'Logout',
     'Feedback',
   ];
@@ -99,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HomePage())));
+                            builder: ((context) => const MainPage())));
                     break;
                   // Add more cases for other languages if needed
                   case 3:

@@ -7,7 +7,8 @@ class AmharicPrivacyPolicyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AmharicLegalContent privacyContent = AmharicLegalContent.privacyPolicyContent();
+    AmharicLegalContent privacyContent =
+        AmharicLegalContent.privacyPolicyContent();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -23,7 +24,7 @@ class AmharicPrivacyPolicyPage extends StatelessWidget {
           child: Text(
             privacyContent.content,
             style: TextStyle(fontSize: 20),
-            textAlign: TextAlign.justify,
+            textAlign: TextAlign.start,
           ),
         ),
       ),
