@@ -154,9 +154,9 @@ class _DriverState extends State<Driver> {
               markers: _markers,
             ),
             // Ambulance Information, Trip Information, and Driver Information Tab
-            SingleChildScrollView(
+            const SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
