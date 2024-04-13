@@ -1,10 +1,11 @@
-import 'package:ambu_app/sidebar/NavBar.dart';
-import 'package:ambu_app/sidebar/driver_sidebar.dart';
-import 'package:ambu_app/sidebar/nurse_navbar.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Driver extends StatefulWidget {
   const Driver({Key? key}) : super(key: key);
@@ -14,101 +15,181 @@ class Driver extends StatefulWidget {
 }
 
 class _DriverState extends State<Driver> {
+  late StreamSubscription<ConnectivityResult> subscription;
+  bool isDeviceConnected = false;
+  bool isAlertSet = false;
   final Set<Marker> _markers = {};
   GoogleMapController? mapController;
 
-  // Initial and destination positions (replace with your actual coordinates)
-  final LatLng initialPosition =
-      const LatLng(7.657066655358555, 36.84488862063615);
-  final LatLng destinationPosition =
-      const LatLng(7.598056219863879, 36.71631692063573);
-
-  // Variable to store current user location
-  LatLng? currentLocation;
+  // Placeholder for fetched data
+  String ambulanceInfo = 'Loading...';
+  String tripInfo = 'Loading...';
+  String driverInfo = 'Loading...';
 
   @override
   void initState() {
     super.initState();
-    _getUserLocation();
+    // Fetch data from schedule, dispatcher, and database
+    fetchAmbulanceInfo();
+    fetchTripInfo();
+    fetchDriverInfo();
+    getConnectivity();
   }
 
-  void _getUserLocation() async {
-    try {
-      // Check permission before accessing location
-      if (await _checkLocationPermission()) {
-        Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
-        );
-        setState(() {
-          currentLocation = LatLng(position.latitude, position.longitude);
-        });
-      }
-    } catch (e) {
-      // Handle exceptions related to location access
-      FlutterError.reportError(FlutterErrorDetails(
-        exception: e,
-        stack: StackTrace.current,
-      ));
-      print('Error getting location: $e'); // Log the error for debugging
-    }
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
   }
 
-  Future<bool> _checkLocationPermission() async {
-    var locationStatus = await Permission.location.request();
+  void getConnectivity() {
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (ConnectivityResult result) async {
+        isDeviceConnected = await InternetConnectionChecker().hasConnection;
+        if (!isDeviceConnected && !isAlertSet) {
+          showDialogBox();
+          isAlertSet = true;
+        }
+      },
+    );
+  }
 
-    if (locationStatus == PermissionStatus.granted) {
-      return true;
-    } else {
-      // Handle permission denied or permanently denied cases here (similar to Option 1)
-      print('Location permission not granted');
-      return false;
-    }
+  // Placeholder functions for fetching data
+  void fetchAmbulanceInfo() {
+    // Simulate fetching ambulance information from schedule
+    setState(() {
+      ambulanceInfo =
+          'Ambulance Type: XYZ\nModel: ABC\nRegistration Number: 123';
+    });
+  }
+
+  void fetchTripInfo() {
+    // Simulate fetching trip information from dispatcher
+    setState(() {
+      tripInfo =
+          'Patient Name: Great Beki\nAge: 35\nCondition: Stable\nAllergies: None\nPickup Location: ABC Hospital\nDrop-off Location: XYZ Clinic\nEstimated Arrival: 10 minutes';
+    });
+  }
+
+  void fetchDriverInfo() {
+    // Simulate fetching driver information from database
+    setState(() {
+      driverInfo =
+          'Name: Miretu Jaleta\nLicense: ABC123\nShift Schedule: 8 AM - 5 PM\nPerformance: Excellent';
+    });
   }
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
-    _addMarkers();
+    // You can add map markers here if needed
   }
 
-  void _addMarkers() {
-    setState(() {
-      // Add marker for initial position
-      _markers.add(
-        Marker(
-          markerId: const MarkerId('initial'),
-          position: initialPosition,
-          infoWindow: const InfoWindow(title: 'Initial Position'),
-        ),
-      );
+  // Placeholder functions for additional functionalities
+  void startCommunication() {
+    // Start communication with dispatcher or hospital staff
+    // Implement your logic here
+  }
 
-      // Add marker for destination position
-      _markers.add(
-        Marker(
-          markerId: const MarkerId('destination'),
-          position: destinationPosition,
-          infoWindow: const InfoWindow(title: 'Destination Position'),
-        ),
-      );
+  void reportIncident() {
+    // Report incident with photos or voice recordings
+    // Implement your logic here
+  }
 
-      // Add marker for current location (if available)
-      if (currentLocation != null) {
-        _markers.add(
-          Marker(
-            markerId: const MarkerId('current'),
-            position: currentLocation!,
-            infoWindow: const InfoWindow(title: 'Current Location'),
-          ),
+  void sendPanicSignal() {
+    // Send distress signal with location data
+    // Implement your logic here
+
+    // Example: Show a dialog indicating that the panic signal is being sent
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Sending Panic Signal'),
+          content: Text('Please wait while the panic signal is being sent...'),
+          actions: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
         );
-      }
+      },
+    );
+
+    // Simulate sending the panic signal (Replace with actual logic)
+    // Here, we'll use flutter_sms to send the message
+    sendSMS(
+      message: 'Emergency: Need Help!',
+      recipients: ['+251717904888'], // Replace with the desired phone number
+    );
+
+    // Example: Show a success dialog after sending the panic signal
+    Future.delayed(Duration(seconds: 2), () {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Panic Signal Sent'),
+            content: Text('The panic signal has been successfully sent.'),
+            actions: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
     });
   }
+
+  void performSafetyChecklist() {
+    // Perform digital checklist for equipment checks
+    // Implement your logic here
+  }
+
+  void markArrivalDeparture() {
+    // Mark arrival/departure at pickup and drop-off locations
+    // Implement your logic here
+  }
+
+  void accessEmergencyProcedures() {
+    // Access protocols for handling medical emergencies
+    // Implement your logic here
+  }
+
+  void receiveNotifications() {
+    // Receive alerts for new trip requests, updates, or announcements
+    // Implement your logic here
+  }
+
+  showDialogBox() => showDialog<String>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('No Connection!'),
+          content: const Text('Please check your internet connection!'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context, 'OK');
+                isAlertSet = false;
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        drawer: const DriverNavBar(),
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: const Text(
@@ -126,7 +207,6 @@ class _DriverState extends State<Driver> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // text: 'Details',
               ),
               Tab(
                 icon: ClipOval(
@@ -137,8 +217,7 @@ class _DriverState extends State<Driver> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // text: 'Details',
-              ), // Placeholder for the other tab
+              ),
             ],
           ),
         ),
@@ -147,75 +226,72 @@ class _DriverState extends State<Driver> {
             // Map Tab
             GoogleMap(
               onMapCreated: _onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: initialPosition,
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(7.657066655358555, 36.84488862063615),
                 zoom: 12.0,
               ),
               markers: _markers,
             ),
-            // Ambulance Information, Trip Information, and Driver Information Tab
-            const SingleChildScrollView(
+            // Ambulance, Trip, and Driver Information Tab
+            SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InformationDisplay(
-                      label: 'Ambulance Information:',
+                      label: 'Ambulance Information',
                       children: [
-                        Text(
-                            'Vehicle details (type, model, registration number)'),
-                        Text(
-                            'Equipment inventory (medical supplies, specialized equipment)'),
-                        Text('Maintenance schedule and status'),
+                        Text(ambulanceInfo),
                       ],
                     ),
                     InformationDisplay(
-                      label: 'Trip Information:',
+                      label: 'Trip Information',
                       children: [
-                        Text(
-                            'Patient details (name, age, condition, allergies, etc.) - Ensure patient privacy is protected.'),
-                        Text(
-                            'Pickup and drop-off locations with estimated arrival times'),
-                        Text(
-                            'Additional trip details (reason for call, dispatch instructions)'),
+                        Text(tripInfo),
                       ],
                     ),
                     InformationDisplay(
-                      label: 'Driver Information:',
+                      label: 'Driver Information',
                       children: [
-                        Text(
-                            'Profile details (name, photo, license information)'),
-                        Text('Shift schedule and availability'),
-                        Text(
-                            'Performance metrics (response times, patient satisfaction, etc.)'),
+                        Text(driverInfo),
                       ],
                     ),
                     InformationDisplay(
-                      label: 'Functions:',
+                      label: 'Functions',
                       children: [
-                        Text(
-                            'Real-time Tracking: Show location of other ambulances and hospital availability.'),
-                        Text(
-                            'Two-way Communication: Text chat or voice call functionality with dispatch or hospital staff.'),
-                        Text(
-                            'Navigation: Integrate with Google Maps or other navigation systems for optimized routes.'),
-                        Text(
-                            'Reporting: Ability to submit incident reports with photos or voice recordings.'),
-                        Text(
-                            'Panic Button: Option to send a distress signal with location data in case of emergencies.'),
-                        Text(
-                            'Safety Checklist: Digital checklist to ensure proper equipment checks before and after each trip.'),
-                        Text(
-                            'Accept/Reject Trips: Option to accept or decline new trip requests based on availability or vehicle suitability.'),
-                        Text(
-                            'Mark Arrival/Departure: Easy way to update trip status at pickup and drop-off locations.'),
-                        Text(
-                            'Emergency Procedures: Access to protocols for handling various medical emergencies.'),
-                        Text(
-                            'Offline Functionality: Ability to access basic information and functionalities (e.g., ambulance details, safety checklists) even with limited internet connectivity.'),
-                        Text(
-                            'Notifications: Alerts for new trip requests, updates on existing trips, or important announcements.'),
+                        ElevatedButton(
+                          onPressed: startCommunication,
+                          child: const Text('Start Communication'),
+                        ),
+                        ElevatedButton(
+                          onPressed: reportIncident,
+                          child: const Text('Report Incident'),
+                        ),
+                        ElevatedButton(
+                          onPressed: sendPanicSignal,
+                          child: const Text('Send Panic Signal'),
+                        ),
+                        ElevatedButton(
+                          onPressed: performSafetyChecklist,
+                          child: const Text('Perform Safety Checklist'),
+                        ),
+                        ElevatedButton(
+                          onPressed: markArrivalDeparture,
+                          child: const Text('Mark Arrival/Departure'),
+                        ),
+                        ElevatedButton(
+                          onPressed: accessEmergencyProcedures,
+                          child: const Text('Access Emergency Procedures'),
+                        ),
+                        ElevatedButton(
+                          onPressed: getConnectivity,
+                          child: const Text('Access Offline Functionality'),
+                        ),
+                        ElevatedButton(
+                          onPressed: receiveNotifications,
+                          child: const Text('Receive Notifications'),
+                        ),
                       ],
                     ),
                   ],
@@ -225,6 +301,22 @@ class _DriverState extends State<Driver> {
           ],
         ),
       ),
+    );
+  }
+
+  // Widget for displaying information
+  Widget informationDisplay(String label, String data) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        Text(data),
+        const SizedBox(height: 20),
+      ],
     );
   }
 }
@@ -246,11 +338,11 @@ class InformationDisplay extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ...children,
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }
