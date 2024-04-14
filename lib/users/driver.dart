@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -18,13 +18,13 @@ class Driver extends StatefulWidget {
 }
 
 class _DriverState extends State<Driver> {
-  String? fcmToken;
-  Future<void> _getFcmToken() async {
-    fcmToken = await FirebaseMessaging.instance.getToken();
-    print("FCM Token: $fcmToken");
+  // String? fcmToken;
+  // Future<void> _getFcmToken() async {
+  //   fcmToken = await FirebaseMessaging.instance.getToken();
+  //   print("FCM Token: $fcmToken");
 
-    // Optionally, store the token in a database or server for later use
-  }
+  // Optionally, store the token in a database or server for later use
+  // }
 
   late StreamSubscription<ConnectivityResult> subscription;
   bool isDeviceConnected = false;
@@ -45,7 +45,7 @@ class _DriverState extends State<Driver> {
     fetchTripInfo();
     fetchDriverInfo();
     getConnectivity();
-    _getFcmToken();
+    // _getFcmToken();
   }
 
   @override
@@ -116,14 +116,15 @@ class _DriverState extends State<Driver> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:const Text('Sending Panic Signal'),
-          content:const Text('Please wait while the panic signal is being sent...'),
+          title: const Text('Sending Panic Signal'),
+          content:
+              const Text('Please wait while the panic signal is being sent...'),
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child:const Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -143,14 +144,14 @@ class _DriverState extends State<Driver> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title:const Text('Panic Signal Sent'),
-            content:const Text('The panic signal has been successfully sent.'),
+            title: const Text('Panic Signal Sent'),
+            content: const Text('The panic signal has been successfully sent.'),
             actions: <Widget>[
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child:const Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );
@@ -283,9 +284,11 @@ class _DriverState extends State<Driver> {
                         ElevatedButton(
                           onPressed: () async {
                             // Request Call Permission
-                            var callPermissionStatus = await Permission.phone.request();
+                            var callPermissionStatus =
+                                await Permission.phone.request();
                             if (callPermissionStatus.isGranted) {
-                              final Uri callUri = Uri(scheme: 'tel', path: '+251961305788');
+                              final Uri callUri =
+                                  Uri(scheme: 'tel', path: '+251961305788');
                               try {
                                 await launchUrl(callUri);
                               } catch (e) {
@@ -300,10 +303,12 @@ class _DriverState extends State<Driver> {
                                 // Request permission again or show a snackbar with explanation
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: const Text('Call permission is required for making calls'),
+                                    content: const Text(
+                                        'Call permission is required for making calls'),
                                     action: SnackBarAction(
                                       label: 'Request Permission',
-                                      onPressed: () => Permission.phone.request(),
+                                      onPressed: () =>
+                                          Permission.phone.request(),
                                     ),
                                   ),
                                 );
@@ -313,18 +318,24 @@ class _DriverState extends State<Driver> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                           ),
-                          child: const Text('Call', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                          child: const Text('Call',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
                         ),
                         ElevatedButton(
                           // onPressed: sendPanicSignal,
                           onPressed: () async {
                             // Request SMS Permission
-                            var smsPermissionStatus = await Permission.sms.request();
+                            var smsPermissionStatus =
+                                await Permission.sms.request();
                             if (smsPermissionStatus.isGranted) {
                               final Uri smsUri = Uri(
                                 scheme: 'sms',
                                 path: '+251961305788',
-                                queryParameters: {'body': 'Emergency: Need Help!'},
+                                queryParameters: {
+                                  'body': 'Emergency: Need Help!'
+                                },
                               );
                               if (await canLaunchUrl(smsUri)) {
                                 try {
@@ -344,7 +355,8 @@ class _DriverState extends State<Driver> {
                                 // Request permission again or show a snackbar with explanation
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: const Text('SMS permission is required for sending messages'),
+                                    content: const Text(
+                                        'SMS permission is required for sending messages'),
                                     action: SnackBarAction(
                                       label: 'Request Permission',
                                       onPressed: () => Permission.sms.request(),
@@ -353,7 +365,6 @@ class _DriverState extends State<Driver> {
                                 );
                               }
                             }
-
                           },
                           child: const Text('Send Panic Signal'),
                         ),
