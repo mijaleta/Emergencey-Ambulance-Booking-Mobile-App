@@ -64,40 +64,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // localizationsDelegates: [
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      //   GlobalCupertinoLocalizations.delegate,
-
-      // ],
-      // supportedLocales: [
-      //   Locale('en'), // English
-      //   Locale('es'), // Spanish
-      // ],
       initialRoute: '/splash',
       routes: {
         '/home': (context) => HomePage(),
-        // '/loginPage': (context) => LoginPage(),
         '/signup': (context) => SignupPage(),
         '/splash': (context) => SplashScreen(),
         '/languageSelection': (context) => LanguageSelectionPage(),
         '/ambulanceRequest': (context) => PatientRequestPage(),
-        // '/dispatcherPage': (context) => DispatcherPage(), // Fixed typo here
         '/changePasswordPage': (context) => ChangePasswordPage(),
         '/forgotPasswordPage': (context) => ForgotPasswordPage(),
         '/login': (context) => Login(),
-        // '/reset': (context) => ResetPasswordPage(),
-        // '/searchAmbulancePage': (context) => AmbulanceSearchPage(),
         '/feedbackPage': (context) => FeedbackPage(),
         '/accountPage': (context) => AccountScreen(),
         '/editAccountScreen': (context) => EditAccount(),
         '/registerAmbulance': (context) => RegisterAmbulance(),
         '/logout': (context) => Logout(),
         '/history': (context) => History(),
-        // 'settings': (context) => SettingsScreen(),
         '/nursePage': (context) => NursePage(),
         '/driverPage': (context) => DriverPage(),
-        // 'hospitalPage': (context) => HospitalPage(),
         '/emergencyTypes': (context) => EmergencyTypeSelectionPage(),
         '/specialRequest': (context) => SpecialRequestPage(),
         '/privacyPolicy': (context) => PrivacyPolicyPage(),
@@ -105,20 +89,6 @@ class MyApp extends StatelessWidget {
         '/driver': (context) => Driver(),
         '/nurse': (context) => Nurse(),
         '/blackAccount': (context) => AccountBlack(),
-        // '/ambulanceFleetManagementPage': (context) =>
-        //     AmbulanceFleetManagementPage(),
-        // '/ambulanceRoutingTrackingPage': (context) =>
-        //     AmbulanceRoutingTrackingPage(),
-        // '/continuousImprovementPage': (context) => ContinuousImprovementPage(),
-        // '/dataManagementReportingPage': (context) =>
-        //     DataManagementReportingPage(),
-        // '/dispatcherManagementPage': (context) => DispatcherManagementPage(),
-        // '/emergencyPreparednessPage': (context) => EmergencyPreparednessPage(),
-        // '/emergencyResponseCoordinationPage': (context) =>
-        //     EmergencyResponseCoordinationPage(),
-        // '/regulatoryCompliancePage': (context) => RegulatoryCompliancePage(),
-        // '/systemConfigurationSettingsPage': (context) =>
-        //     SystemConfigurationSettingsPage(),
         '/servicesPage': (context) => OurServices(),
         '/afanOromoHomepage': (context) => HomePageDhukkubsataa(),
         '/amharicHomepage': (context) => AmharicHomePage(),
