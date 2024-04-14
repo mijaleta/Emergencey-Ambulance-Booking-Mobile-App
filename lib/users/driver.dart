@@ -1,21 +1,31 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:permission_handler/permission_handler.dart';
 // import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class Driver extends StatefulWidget {
-  const Driver({Key? key}) : super(key: key);
+  const Driver({super.key});
 
   @override
   State<Driver> createState() => _DriverState();
 }
 
 class _DriverState extends State<Driver> {
+  String? fcmToken;
+  Future<void> _getFcmToken() async {
+    fcmToken = await FirebaseMessaging.instance.getToken();
+    print("FCM Token: $fcmToken");
+
+    // Optionally, store the token in a database or server for later use
+  }
+
   late StreamSubscription<ConnectivityResult> subscription;
   bool isDeviceConnected = false;
   bool isAlertSet = false;
@@ -35,6 +45,7 @@ class _DriverState extends State<Driver> {
     fetchTripInfo();
     fetchDriverInfo();
     getConnectivity();
+    _getFcmToken();
   }
 
   @override
@@ -271,8 +282,33 @@ class _DriverState extends State<Driver> {
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            final Uri url =
-                                Uri(scheme: 'tel', path: '+251961305788');
+                            // Request Call Permission
+                            var callPermissionStatus = await Permission.phone.request();
+                            if (callPermissionStatus.isGranted) {
+                              final Uri callUri = Uri(scheme: 'tel', path: '+251961305788');
+                              try {
+                                await launchUrl(callUri);
+                              } catch (e) {
+                                print("Error launching call: $e");
+                              }
+                            } else {
+                              // Handle permission denied case
+                              if (callPermissionStatus.isPermanentlyDenied) {
+                                // Permission permanently denied, show a dialog to open app settings
+                                await openAppSettings();
+                              } else {
+                                // Request permission again or show a snackbar with explanation
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text('Call permission is required for making calls'),
+                                    action: SnackBarAction(
+                                      label: 'Request Permission',
+                                      onPressed: () => Permission.phone.request(),
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
@@ -282,16 +318,40 @@ class _DriverState extends State<Driver> {
                         ElevatedButton(
                           // onPressed: sendPanicSignal,
                           onPressed: () async {
-                            final Uri url = Uri(
+                            // Request SMS Permission
+                            var smsPermissionStatus = await Permission.sms.request();
+                            if (smsPermissionStatus.isGranted) {
+                              final Uri smsUri = Uri(
                                 scheme: 'sms',
                                 path: '+251961305788',
-                                queryParameters: {
-                                  'body': 'Emergency: Need Help!',
-                                });
-                            if(await canLaunchUrl(url)){
-                              await launchUrl(url);
-                            } else{
-                              print('Cannot launch this url');
+                                queryParameters: {'body': 'Emergency: Need Help!'},
+                              );
+                              if (await canLaunchUrl(smsUri)) {
+                                try {
+                                  await launchUrl(smsUri);
+                                } catch (e) {
+                                  print("Error launching SMS: $e");
+                                }
+                              } else {
+                                print('Cannot launch this url');
+                              }
+                            } else {
+                              // Handle permission denied case
+                              if (smsPermissionStatus.isPermanentlyDenied) {
+                                // Permission permanently denied, show a dialog to open app settings
+                                await openAppSettings();
+                              } else {
+                                // Request permission again or show a snackbar with explanation
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text('SMS permission is required for sending messages'),
+                                    action: SnackBarAction(
+                                      label: 'Request Permission',
+                                      onPressed: () => Permission.sms.request(),
+                                    ),
+                                  ),
+                                );
+                              }
                             }
 
                           },
