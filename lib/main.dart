@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_registration.dart';
 // import 'package:ambu_app/pages/ambulance_search_page.dart';
@@ -48,9 +50,10 @@ import 'localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
 import 'localizations/Amharic/yetamami_home_page.dart';
 import 'pages/account_black.dart';
 
-void main() {
+void main() async{
   // await dotenv.load();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
