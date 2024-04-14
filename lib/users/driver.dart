@@ -105,14 +105,14 @@ class _DriverState extends State<Driver> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Sending Panic Signal'),
-          content: Text('Please wait while the panic signal is being sent...'),
+          title:const Text('Sending Panic Signal'),
+          content:const Text('Please wait while the panic signal is being sent...'),
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child:const Text('OK'),
             ),
           ],
         );
@@ -127,19 +127,19 @@ class _DriverState extends State<Driver> {
     // );
 
     // Example: Show a success dialog after sending the panic signal
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Panic Signal Sent'),
-            content: Text('The panic signal has been successfully sent.'),
+            title:const Text('Panic Signal Sent'),
+            content:const Text('The panic signal has been successfully sent.'),
             actions: <Widget>[
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK'),
+                child:const Text('OK'),
               ),
             ],
           );
@@ -277,7 +277,7 @@ class _DriverState extends State<Driver> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                           ),
-                          child: const Text('Call'),
+                          child: const Text('Call', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                         ),
                         ElevatedButton(
                           // onPressed: sendPanicSignal,
