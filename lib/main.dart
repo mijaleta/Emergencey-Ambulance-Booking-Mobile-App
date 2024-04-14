@@ -1,9 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/ambulance_registration.dart';
-// import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
@@ -12,47 +9,30 @@ import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/history.dart';
-// import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/pages/nurse_page.dart';
-// import 'package:ambu_app/pages/reset_password.dart';
-// import 'package:ambu_app/pages/setting.dart';
+
 import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:ambu_app/services/home_services_page.dart';
-// import 'package:ambu_app/system/ambulance_fleet_management.dart';
-// import 'package:ambu_app/system/ambulance_routing_tracking.dart';
-// import 'package:ambu_app/system/continuous_improvement.dart';
-// import 'package:ambu_app/system/dispatcher_management.dart';
-// import 'package:ambu_app/system/emergency_response_coordination.dart';
-// import 'package:ambu_app/system/regulatory_compliance.dart';
-// import 'package:ambu_app/system/system_configuration_settings.dart';
-// import 'package:ambu_app/users/dispatcher.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-// import 'package:ambu_app/provider/request_provider.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
-// import 'package:ambu_app/pages/dispatcher_page.dart';
 import 'package:ambu_app/pages/change_password.dart';
-// import 'package:ambu_app/pages/login_page.dart';
 import 'package:ambu_app/pages/home_page.dart';
 import 'package:ambu_app/pages/signup_page.dart';
 import 'package:ambu_app/pages/splash_screen.dart';
 import 'package:ambu_app/pages/language_selection_page.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
-// import 'package:flutter_localization/flutter_localization.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
 import 'localizations/Amharic/yetamami_home_page.dart';
 import 'pages/account_black.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:firebase_core/firebase_core.dart';
+
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // Handle background notifications (optional)
 }
@@ -68,7 +48,6 @@ Future<void> main()  async {
     badge: true,
     sound: true,
   );
-
   // Optional: Register background message handler
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(MyApp());
