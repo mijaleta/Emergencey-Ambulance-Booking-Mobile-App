@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+// import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class Driver extends StatefulWidget {
   const Driver({Key? key}) : super(key: key);
@@ -120,10 +121,10 @@ class _DriverState extends State<Driver> {
 
     // Simulate sending the panic signal (Replace with actual logic)
     // Here, we'll use flutter_sms to send the message
-    sendSMS(
-      message: 'Emergency: Need Help!',
-      recipients: ['+251717904888'], // Replace with the desired phone number
-    );
+    // sendSMS(
+    //   message: 'Emergency: Need Help!',
+    //   recipients: ['+251717904888'], // Replace with the desired phone number
+    // );
 
     // Example: Show a success dialog after sending the panic signal
     Future.delayed(Duration(seconds: 2), () {
@@ -269,7 +270,31 @@ class _DriverState extends State<Driver> {
                           child: const Text('Report Incident'),
                         ),
                         ElevatedButton(
-                          onPressed: sendPanicSignal,
+                          onPressed: () async {
+                            final Uri url =
+                                Uri(scheme: 'tel', path: '+251961305788');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                          ),
+                          child: const Text('Call'),
+                        ),
+                        ElevatedButton(
+                          // onPressed: sendPanicSignal,
+                          onPressed: () async {
+                            final Uri url = Uri(
+                                scheme: 'sms',
+                                path: '+251961305788',
+                                queryParameters: {
+                                  'body': 'Emergency: Need Help!',
+                                });
+                            if(await canLaunchUrl(url)){
+                              await launchUrl(url);
+                            } else{
+                              print('Cannot launch this url');
+                            }
+
+                          },
                           child: const Text('Send Panic Signal'),
                         ),
                         ElevatedButton(
