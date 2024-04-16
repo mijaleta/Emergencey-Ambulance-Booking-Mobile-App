@@ -91,6 +91,7 @@ class MyApp extends StatelessWidget {
         '/afanOromoHomepage': (context) => HomePageDhukkubsataa(),
         '/amharicHomepage': (context) => AmharicHomePage(),
         '/mainPage': (context) => MainPage(),
+        '/nursingPage': (context) => NursePage(),
       },
     );
   }
