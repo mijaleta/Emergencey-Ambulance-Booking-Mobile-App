@@ -1,12 +1,18 @@
 import 'dart:async';
 
 // import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:ambu_app/services/constants.dart';
+import 'package:ambu_app/users/user_location.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:permission_handler/permission_handler.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:permission_handler/permission_handler.dart';
+import 'package:location/location.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 // import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,9 +32,13 @@ class _DriverState extends State<Driver> {
   // Optionally, store the token in a database or server for later use
   // }
 
+  Location _locationController = new Location();
+  final Completer<GoogleMapController> _mapController = Completer<GoogleMapController>();
+
   late StreamSubscription<ConnectivityResult> subscription;
   bool isDeviceConnected = false;
   bool isAlertSet = false;
+  // final Set<Marker> _markers = {};
   final Set<Marker> _markers = {};
   GoogleMapController? mapController;
 
@@ -46,6 +56,18 @@ class _DriverState extends State<Driver> {
     fetchDriverInfo();
     getConnectivity();
     // _getFcmToken();
+    // getLocationUpdates().then((_) => {
+    //   getPolylinesPoints().then((coordinates) => {
+    //     print(coordinates),
+    //   },),
+    // },
+    // );
+
+    getPolylinesPoints().then((coordinates) {
+      print("Polylines Coordinates: $coordinates");
+    }).catchError((error) {
+      print("Error generating polylines: $error");
+    });
   }
 
   @override
@@ -91,10 +113,19 @@ class _DriverState extends State<Driver> {
     });
   }
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-    // You can add map markers here if needed
-  }
+  // void _onMapCreated(GoogleMapController controller) {
+  //   mapController = controller;
+  //   setState(() {
+  //     // Add the current location marker here
+  //     _markers.add(
+  //       Marker(
+  //         markerId: const MarkerId("_currentLocation"),
+  //         icon: BitmapDescriptor.defaultMarker,
+  //         position: _currentP!,
+  //       ),
+  //     );
+  //   });
+  // }
 
   // Placeholder functions for additional functionalities
   void startCommunication() {
@@ -198,6 +229,11 @@ class _DriverState extends State<Driver> {
         ),
       );
 
+
+
+  static const LatLng _pGooglePlex = LatLng(7.550783972794435, 36.869152651316064);
+  static const LatLng _applePark = LatLng(7.7164763478329155, 36.80548802248252);
+  LatLng? _currentP = null;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -237,13 +273,22 @@ class _DriverState extends State<Driver> {
         body: TabBarView(
           children: [
             // Map Tab
-            GoogleMap(
-              onMapCreated: _onMapCreated,
+            _currentP == null ? const Center(child: Text("Loading..."),) : GoogleMap(
+              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer()),
+              },
+              onMapCreated: ((GoogleMapController controller) => _mapController.complete(controller) ),
               initialCameraPosition: const CameraPosition(
-                target: LatLng(7.657066655358555, 36.84488862063615),
+                target: _pGooglePlex,
+                // LatLng(7.657066655358555, 36.84488862063615)
                 zoom: 12.0,
               ),
-              markers: _markers,
+              // markers: _markers,
+              markers: {
+                Marker(markerId: MarkerId("_currentLocation"), icon: BitmapDescriptor.defaultMarker, position: _currentP!),
+                Marker(markerId: MarkerId("_sourceLocation"), icon: BitmapDescriptor.defaultMarker, position: _pGooglePlex),
+                Marker(markerId: MarkerId("destinationLocation"), icon: BitmapDescriptor.defaultMarker, position: _applePark)
+              },
             ),
             // Ambulance, Trip, and Driver Information Tab
             SingleChildScrollView(
@@ -284,36 +329,36 @@ class _DriverState extends State<Driver> {
                         ElevatedButton(
                           onPressed: () async {
                             // Request Call Permission
-                            var callPermissionStatus =
-                                await Permission.phone.request();
-                            if (callPermissionStatus.isGranted) {
-                              final Uri callUri =
-                                  Uri(scheme: 'tel', path: '+251961305788');
-                              try {
-                                await launchUrl(callUri);
-                              } catch (e) {
-                                print("Error launching call: $e");
-                              }
-                            } else {
-                              // Handle permission denied case
-                              if (callPermissionStatus.isPermanentlyDenied) {
-                                // Permission permanently denied, show a dialog to open app settings
-                                await openAppSettings();
-                              } else {
-                                // Request permission again or show a snackbar with explanation
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text(
-                                        'Call permission is required for making calls'),
-                                    action: SnackBarAction(
-                                      label: 'Request Permission',
-                                      onPressed: () =>
-                                          Permission.phone.request(),
-                                    ),
-                                  ),
-                                );
-                              }
-                            }
+                            // var callPermissionStatus =
+                            //     await Permission.phone.request();
+                            // if (callPermissionStatus.isGranted) {
+                            //   final Uri callUri =
+                            //       Uri(scheme: 'tel', path: '+251961305788');
+                            //   try {
+                            //     await launchUrl(callUri);
+                            //   } catch (e) {
+                            //     print("Error launching call: $e");
+                            //   }
+                            // } else {
+                            //   // Handle permission denied case
+                            //   if (callPermissionStatus.isPermanentlyDenied) {
+                            //     // Permission permanently denied, show a dialog to open app settings
+                            //     await openAppSettings();
+                            //   } else {
+                            //     // Request permission again or show a snackbar with explanation
+                            //     ScaffoldMessenger.of(context).showSnackBar(
+                            //       SnackBar(
+                            //         content: const Text(
+                            //             'Call permission is required for making calls'),
+                            //         action: SnackBarAction(
+                            //           label: 'Request Permission',
+                            //           onPressed: () =>
+                            //               Permission.phone.request(),
+                            //         ),
+                            //       ),
+                            //     );
+                            //   }
+                            // }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
@@ -327,50 +372,56 @@ class _DriverState extends State<Driver> {
                           // onPressed: sendPanicSignal,
                           onPressed: () async {
                             // Request SMS Permission
-                            var smsPermissionStatus =
-                                await Permission.sms.request();
-                            if (smsPermissionStatus.isGranted) {
-                              final Uri smsUri = Uri(
-                                scheme: 'sms',
-                                path: '+251961305788',
-                                queryParameters: {
-                                  'body': 'Emergency: Need Help!'
-                                },
-                              );
-                              if (await canLaunchUrl(smsUri)) {
-                                try {
-                                  await launchUrl(smsUri);
-                                } catch (e) {
-                                  print("Error launching SMS: $e");
-                                }
-                              } else {
-                                print('Cannot launch this url');
-                              }
-                            } else {
-                              // Handle permission denied case
-                              if (smsPermissionStatus.isPermanentlyDenied) {
-                                // Permission permanently denied, show a dialog to open app settings
-                                await openAppSettings();
-                              } else {
-                                // Request permission again or show a snackbar with explanation
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text(
-                                        'SMS permission is required for sending messages'),
-                                    action: SnackBarAction(
-                                      label: 'Request Permission',
-                                      onPressed: () => Permission.sms.request(),
-                                    ),
-                                  ),
-                                );
-                              }
-                            }
+                            // var smsPermissionStatus =
+                            //     await Permission.sms.request();
+                            // if (smsPermissionStatus.isGranted) {
+                            //   final Uri smsUri = Uri(
+                            //     scheme: 'sms',
+                            //     path: '+251961305788',
+                            //     queryParameters: {
+                            //       'body': 'Emergency: Need Help!'
+                            //     },
+                            //   );
+                            //   if (await canLaunchUrl(smsUri)) {
+                            //     try {
+                            //       await launchUrl(smsUri);
+                            //     } catch (e) {
+                            //       print("Error launching SMS: $e");
+                            //     }
+                            //   } else {
+                            //     print('Cannot launch this url');
+                            //   }
+                            // } else {
+                            //   // Handle permission denied case
+                            //   if (smsPermissionStatus.isPermanentlyDenied) {
+                            //     // Permission permanently denied, show a dialog to open app settings
+                            //     await openAppSettings();
+                            //   } else {
+                            //     // Request permission again or show a snackbar with explanation
+                            //     ScaffoldMessenger.of(context).showSnackBar(
+                            //       SnackBar(
+                            //         content: const Text(
+                            //             'SMS permission is required for sending messages'),
+                            //         action: SnackBarAction(
+                            //           label: 'Request Permission',
+                            //           onPressed: () => Permission.sms.request(),
+                            //         ),
+                            //       ),
+                            //     );
+                            //   }
+                            // }
                           },
                           child: const Text('Send Panic Signal'),
                         ),
                         ElevatedButton(
                           onPressed: performSafetyChecklist,
                           child: const Text('Perform Safety Checklist'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => UserLocationTracking()));
+                          },
+                          child: const Text('Track Patient'),
                         ),
                         ElevatedButton(
                           onPressed: markArrivalDeparture,
@@ -398,6 +449,55 @@ class _DriverState extends State<Driver> {
         ),
       ),
     );
+  }
+
+  Future<void> cameraToPosition(LatLng pos) async {
+    final GoogleMapController controller = await _mapController.future;
+    CameraPosition _newCameraPosition = new CameraPosition(target: pos, zoom: 13.0);
+    await controller.animateCamera(CameraUpdate.newCameraPosition(_newCameraPosition));
+  }
+
+  Future<void> getLocationUpdates () async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await _locationController.serviceEnabled();
+
+    if(_serviceEnabled){
+      _serviceEnabled = await _locationController.requestService();
+    }else{
+      return;
+    }
+    _permissionGranted = await _locationController.hasPermission();
+    if(_permissionGranted == PermissionStatus.denied){
+      _permissionGranted = await _locationController.requestPermission();
+      if(_permissionGranted != PermissionStatus.granted){
+        return;
+      }
+    }
+
+    _locationController.onLocationChanged.listen((LocationData currentLocation) {
+      if(currentLocation.latitude != null && currentLocation.longitude !=null){
+        setState(() {
+          _currentP = LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          cameraToPosition(_currentP!);
+        });
+      }
+    });
+  }
+
+  Future<List<LatLng>> getPolylinesPoints () async {
+    List<LatLng> polylinesCoordinates = [];
+    PolylinePoints polylinePoints = PolylinePoints();
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(GOOGLE_MAPS_API_KEY, PointLatLng(_pGooglePlex.latitude, _pGooglePlex.longitude), PointLatLng(-_applePark.latitude, _applePark.longitude), travelMode: TravelMode.driving);
+    if(result.points.isNotEmpty){
+      result.points.forEach((PointLatLng point) {
+        polylinesCoordinates.add(LatLng(point.latitude, point.longitude),);
+      });
+    }else{
+      print(result.errorMessage);
+    }
+    return polylinesCoordinates;
   }
 
   // Widget for displaying information

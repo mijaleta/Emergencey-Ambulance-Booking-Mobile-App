@@ -18,6 +18,7 @@ import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:ambu_app/services/home_services_page.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
+import 'package:ambu_app/users/user_location.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:ambu_app/pages/change_password.dart';
@@ -92,6 +93,7 @@ class MyApp extends StatelessWidget {
         '/amharicHomepage': (context) => AmharicHomePage(),
         '/mainPage': (context) => MainPage(),
         '/nursingPage': (context) => NursePage(),
+        '/patientLocationTracking': (context) => UserLocationTracking(),
       },
     );
   }

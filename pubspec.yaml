@@ -49,6 +49,10 @@ dependencies:
   flutter_dotenv: ^5.1.0
   firebase_core: ^2.29.0
   firebase_messaging: ^14.7.20
+  location: ^6.0.1
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.1
+  flutter_joystick: ^0.0.4
   # dropdown_search: ^5.0.6
   
 
