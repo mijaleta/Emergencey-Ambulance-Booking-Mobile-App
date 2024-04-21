@@ -12,7 +12,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 // import 'package:permission_handler/permission_handler.dart';
 import 'package:location/location.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+// import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 // import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
 // import 'package:shared_preferences/shared_preferences.dart';
 
@@ -63,11 +63,11 @@ class _DriverState extends State<Driver> {
     // },
     // );
 
-    getPolylinesPoints().then((coordinates) {
-      print("Polylines Coordinates: $coordinates");
-    }).catchError((error) {
-      print("Error generating polylines: $error");
-    });
+    // getPolylinesPoints().then((coordinates) {
+    //   print("Polylines Coordinates: $coordinates");
+    // }).catchError((error) {
+    //   print("Error generating polylines: $error");
+    // });
   }
 
   @override
@@ -486,19 +486,19 @@ class _DriverState extends State<Driver> {
     });
   }
 
-  Future<List<LatLng>> getPolylinesPoints () async {
-    List<LatLng> polylinesCoordinates = [];
-    PolylinePoints polylinePoints = PolylinePoints();
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(GOOGLE_MAPS_API_KEY, PointLatLng(_pGooglePlex.latitude, _pGooglePlex.longitude), PointLatLng(-_applePark.latitude, _applePark.longitude), travelMode: TravelMode.driving);
-    if(result.points.isNotEmpty){
-      result.points.forEach((PointLatLng point) {
-        polylinesCoordinates.add(LatLng(point.latitude, point.longitude),);
-      });
-    }else{
-      print(result.errorMessage);
-    }
-    return polylinesCoordinates;
-  }
+  // Future<List<LatLng>> getPolylinesPoints () async {
+  //   List<LatLng> polylinesCoordinates = [];
+  //   PolylinePoints polylinePoints = PolylinePoints();
+  //   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(GOOGLE_MAPS_API_KEY, PointLatLng(_pGooglePlex.latitude, _pGooglePlex.longitude), PointLatLng(-_applePark.latitude, _applePark.longitude), travelMode: TravelMode.driving);
+  //   if(result.points.isNotEmpty){
+  //     result.points.forEach((PointLatLng point) {
+  //       polylinesCoordinates.add(LatLng(point.latitude, point.longitude),);
+  //     });
+  //   }else{
+  //     print(result.errorMessage);
+  //   }
+  //   return polylinesCoordinates;
+  // }
 
   // Widget for displaying information
   Widget informationDisplay(String label, String data) {
