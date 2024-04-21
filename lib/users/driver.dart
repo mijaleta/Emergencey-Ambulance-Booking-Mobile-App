@@ -12,6 +12,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 // import 'package:permission_handler/permission_handler.dart';
 import 'package:location/location.dart';
 import 'package:flutter/gestures.dart';
+
+import '../sidebar/driver_sidebar.dart';
 // import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 // import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -239,6 +241,7 @@ class _DriverState extends State<Driver> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        drawer: const DriverNavBar(),
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: const Text(

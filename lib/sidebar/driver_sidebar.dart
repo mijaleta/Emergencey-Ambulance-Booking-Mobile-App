@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+import 'diriver_map.dart';
 
 class DriverNavBar extends StatelessWidget {
   const DriverNavBar({super.key});
@@ -118,7 +118,9 @@ class DriverNavBar extends StatelessWidget {
                   'Map',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
+                },
               ),
               const SizedBox(
                 height: 20,
