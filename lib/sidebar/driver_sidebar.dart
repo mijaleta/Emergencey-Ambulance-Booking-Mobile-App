@@ -1,3 +1,4 @@
+import 'package:ambu_app/pages/account_page.dart';
 import 'package:flutter/material.dart';
 
 import 'diriver_map.dart';
@@ -63,7 +64,9 @@ class DriverNavBar extends StatelessWidget {
                   'Driver Dashboard',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -90,7 +93,7 @@ class DriverNavBar extends StatelessWidget {
                   width: 40,
                 ),
                 title: const Text(
-                  'Patient Request',
+                  'Notifications',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {},
@@ -117,7 +120,7 @@ class DriverNavBar extends StatelessWidget {
                   width: 40,
                 ),
                 title: const Text(
-                  'Map',
+                  'Track Patient',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
@@ -157,7 +160,9 @@ class DriverNavBar extends StatelessWidget {
                   'Settings',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AccountScreen()),);
+                },
               ),
             ],
           )

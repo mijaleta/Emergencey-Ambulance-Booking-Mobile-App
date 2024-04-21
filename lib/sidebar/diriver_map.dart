@@ -17,7 +17,6 @@ class _DriverMapState extends State<DriverMap> {
     main();
     return Scaffold(
       body: Center(
-
       ),
     );
   }

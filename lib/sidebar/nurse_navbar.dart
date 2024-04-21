@@ -1,3 +1,4 @@
+import 'package:ambu_app/pages/account_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -73,7 +74,7 @@ class NurseNavBar extends StatelessWidget {
                   width: 40,
                 ),
                 title: const Text(
-                  'Ambulances',
+                  'Scheduled Ambulances',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {},
@@ -91,7 +92,9 @@ class NurseNavBar extends StatelessWidget {
                   'Patient Request',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  // showSearch(context: context, delegate: )
+                },
                 trailing: ClipOval(
                   child: Container(
                     color: Colors.red,
@@ -115,7 +118,7 @@ class NurseNavBar extends StatelessWidget {
                   width: 40,
                 ),
                 title: const Text(
-                  'Map',
+                  'Locate Patient',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {},
@@ -153,7 +156,9 @@ class NurseNavBar extends StatelessWidget {
                   'Settings',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AccountScreen()),);
+                },
               ),
             ],
           )
