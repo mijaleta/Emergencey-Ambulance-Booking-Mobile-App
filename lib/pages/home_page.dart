@@ -206,168 +206,168 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: Container(
-          color: const Color.fromARGB(
-              255, 83, 82, 82), // Set drawer background color
-          padding: EdgeInsets.only(top: 100.0),
-          child: ListView(
-            children: [
-              ListTile(
-                title: const Text(
-                  "Book",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold), // Set text color
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DriverPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(
-                    left: 20.0), // Remove ListTile default padding
-                horizontalTitleGap: 5, // Remove space between icon and text
-                leading: const Icon(
-                  Icons.book,
-                  color: Colors.white, // Set icon color
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Account",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AccountScreen()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Settings",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => SettingsScreen()),
-                  // )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Request",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PatientRequestPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.request_page,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Policies",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PrivacyPolicyPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.policy,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Help",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HelpPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.help,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Exit",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => History()),
-                  // )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.exit_to_app,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: Container(
+      //     color: const Color.fromARGB(
+      //         255, 83, 82, 82), // Set drawer background color
+      //     padding: EdgeInsets.only(top: 100.0),
+      //     child: ListView(
+      //       children: [
+      //         ListTile(
+      //           title: const Text(
+      //             "Book",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 24,
+      //                 fontWeight: FontWeight.bold), // Set text color
+      //           ),
+      //           onTap: () => {
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) => DriverPage()),
+      //             )
+      //           },
+      //           contentPadding: const EdgeInsets.only(
+      //               left: 20.0), // Remove ListTile default padding
+      //           horizontalTitleGap: 5, // Remove space between icon and text
+      //           leading: const Icon(
+      //             Icons.book,
+      //             color: Colors.white, // Set icon color
+      //           ),
+      //         ),
+      //         ListTile(
+      //           title: const Text(
+      //             "Account",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 24,
+      //                 fontWeight: FontWeight.bold),
+      //           ),
+      //           onTap: () => {
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const AccountScreen()),
+      //             )
+      //           },
+      //           contentPadding: const EdgeInsets.only(left: 20.0),
+      //           horizontalTitleGap: 5,
+      //           leading: const Icon(
+      //             Icons.account_circle,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //         ListTile(
+      //           title: const Text(
+      //             "Settings",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 24,
+      //                 fontWeight: FontWeight.bold),
+      //           ),
+      //           onTap: () => {
+      //             // Navigator.push(
+      //             //   context,
+      //             //   MaterialPageRoute(builder: (context) => SettingsScreen()),
+      //             // )
+      //           },
+      //           contentPadding: const EdgeInsets.only(left: 20.0),
+      //           horizontalTitleGap: 5,
+      //           leading: const Icon(
+      //             Icons.settings,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //         ListTile(
+      //           title: const Text(
+      //             "Request",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 24,
+      //                 fontWeight: FontWeight.bold),
+      //           ),
+      //           onTap: () => {
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => PatientRequestPage()),
+      //             )
+      //           },
+      //           contentPadding: const EdgeInsets.only(left: 20.0),
+      //           horizontalTitleGap: 5,
+      //           leading: const Icon(
+      //             Icons.request_page,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //         ListTile(
+      //           title: const Text(
+      //             "Policies",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 24,
+      //                 fontWeight: FontWeight.bold),
+      //           ),
+      //           onTap: () => {
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const PrivacyPolicyPage()),
+      //             )
+      //           },
+      //           contentPadding: const EdgeInsets.only(left: 20.0),
+      //           horizontalTitleGap: 5,
+      //           leading: const Icon(
+      //             Icons.policy,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //         ListTile(
+      //           title: const Text(
+      //             "Help",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 24,
+      //                 fontWeight: FontWeight.bold),
+      //           ),
+      //           onTap: () => {
+      //             Navigator.push(
+      //               context,
+      //               MaterialPageRoute(builder: (context) => HelpPage()),
+      //             )
+      //           },
+      //           contentPadding: const EdgeInsets.only(left: 20.0),
+      //           horizontalTitleGap: 5,
+      //           leading: const Icon(
+      //             Icons.help,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //         ListTile(
+      //           title: const Text(
+      //             "Exit",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 24,
+      //                 fontWeight: FontWeight.bold),
+      //           ),
+      //           onTap: () => {
+      //             // Navigator.push(
+      //             //   context,
+      //             //   MaterialPageRoute(builder: (context) => History()),
+      //             // )
+      //           },
+      //           contentPadding: const EdgeInsets.only(left: 20.0),
+      //           horizontalTitleGap: 5,
+      //           leading: const Icon(
+      //             Icons.exit_to_app,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

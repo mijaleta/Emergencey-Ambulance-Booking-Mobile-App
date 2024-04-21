@@ -1,6 +1,8 @@
 import 'package:ambu_app/sidebar/NavBar.dart';
 import 'package:flutter/material.dart';
 
+import '../sidebar/nurse_navbar.dart';
+
 class Nurse extends StatefulWidget {
   const Nurse({super.key});
 
@@ -12,7 +14,7 @@ class _NurseState extends State<Nurse> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+      drawer: NurseNavBar(),
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
