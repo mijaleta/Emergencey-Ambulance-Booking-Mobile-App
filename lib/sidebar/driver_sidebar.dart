@@ -1,5 +1,6 @@
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:flutter/material.dart';
+import 'package:gebetamap/gebetamap.dart';
 
 import 'diriver_map.dart';
 
@@ -124,7 +125,8 @@ class DriverNavBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
+                  callMapFunctions();
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
                 },
               ),
               const SizedBox(
@@ -170,4 +172,19 @@ class DriverNavBar extends StatelessWidget {
       ),
     );
   }
+
+  
+
+
+  // Function to handle map-related functionality
+  void callMapFunctions()  {
+    // Call the map-related functions here
+     callDirection();
+     callMatrix();
+     callTss();
+     callOneToMany();
+     callGeoCode();
+  }
+
+
 }

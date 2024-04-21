@@ -1,26 +1,4 @@
-
 import 'package:gebetamap/gebetamap.dart';
-import 'package:flutter/material.dart';
-import 'package:gebetamap/gebetamap.dart';
-
-class DriverMap extends StatefulWidget {
-  const DriverMap({super.key});
-
-  @override
-  State<DriverMap> createState() => _DriverMapState();
-}
-
-class _DriverMapState extends State<DriverMap> {
-
-  @override
-  Widget build(BuildContext context) {
-    main();
-    return Scaffold(
-      body: Center(
-      ),
-    );
-  }
-}
 
 void callDirection() async {
   GebetaMapRequest gmr = new GebetaMapRequest();
@@ -106,7 +84,7 @@ void callGeoCode() async {
   print(rs.data);
 }
 
-void main() async {
+void callMapFunctions() async {
   // making geocoding request
   callOneToMany();
   callGeoCode();
