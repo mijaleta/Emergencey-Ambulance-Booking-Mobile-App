@@ -3,11 +3,13 @@ import 'package:gebetamap/gebetamap.dart';
 void callDirection() async {
   GebetaMapRequest gmr = new GebetaMapRequest();
   var directionStart = new Map();
-  directionStart["lat"] = 9.022528936095531;
-  directionStart["lon"] = 38.80400061607361;
+  // 7.675808292092417,36.829905866568666
+  directionStart["lat"] = 7.675808292092417;
+  directionStart["lon"] = 36.829905866568666;
   var directionStop = new Map();
-  directionStop["lat"] = 9.021755421022991;
-  directionStop["lon"] = 38.79883468151093;
+  // 7.693872917682323,36.81926729439167
+  directionStop["lat"] = 7.693872917682323;
+  directionStop["lon"] = 36.81926729439167;
   String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjNiYmNhM2M4LWYwNWQtNDZiNy04YTk4LWQ1YmEyMTkzY2YzYSJ9.0InfDuks2cAZnfel8Wq8ItetdKkaLUXu2RjInGLQ0Pg";
 
   ResponseData rds = await gmr.direction(directionStart, directionStop, apiKey);
@@ -21,8 +23,10 @@ void callDirection() async {
 void callMatrix() async {
   String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjNiYmNhM2M4LWYwNWQtNDZiNy04YTk4LWQ1YmEyMTkzY2YzYSJ9.0InfDuks2cAZnfel8Wq8ItetdKkaLUXu2RjInGLQ0Pg";
   List<List<double>> points = [
-    [9.005980058445639, 38.785734616513466],
-    [9.01166345564756, 38.789008246478424]
+    // 7.675808292092417,36.829905866568666 - Start
+    // 7.693872917682323,36.81926729439167 - Stop
+    [7.675808292092417, 36.829905866568666],
+    [7.693872917682323, 36.81926729439167]
   ];
 
   GebetaMapRequest gmr = new GebetaMapRequest();
@@ -41,8 +45,10 @@ void callMatrix() async {
 void callTss() async {
   String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjNiYmNhM2M4LWYwNWQtNDZiNy04YTk4LWQ1YmEyMTkzY2YzYSJ9.0InfDuks2cAZnfel8Wq8ItetdKkaLUXu2RjInGLQ0Pg";
   List<List<double>> points = [
-    [9.005980058445639, 38.785734616513466],
-    [9.01166345564756, 38.789008246478424]
+    // 7.675808292092417,36.829905866568666 - Start
+    // 7.693872917682323,36.81926729439167 - Stop
+    [7.675808292092417, 36.829905866568666],
+    [7.693872917682323, 36.81926729439167]
   ];
 
   GebetaMapRequest gmr = new GebetaMapRequest();
@@ -55,12 +61,14 @@ void callTss() async {
 }
 
 void callOneToMany() async {
+  // Agri Cumpus - 7.685180740992518,36.82945544314987
+  // 7.693872917682323,36.81926729439167 - Stop
   var directionStart = new Map();
-  directionStart["lat"] = 9.022528936095531;
-  directionStart["lon"] = 38.80400061607361;
+  directionStart["lat"] = 7.685180740992518;
+  directionStart["lon"] = 36.82945544314987;
   List<List<double>> points = [
-    [9.005980058445639, 38.785734616513466],
-    [9.01166345564756, 38.789008246478424]
+    [7.685180740992518, 36.82945544314987],
+    [7.693872917682323, 36.81926729439167]
   ];
   String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjNiYmNhM2M4LWYwNWQtNDZiNy04YTk4LWQ1YmEyMTkzY2YzYSJ9.0InfDuks2cAZnfel8Wq8ItetdKkaLUXu2RjInGLQ0Pg";
 
@@ -77,18 +85,18 @@ void callOneToMany() async {
 }
 
 void callGeoCode() async {
-  String name = "kotebe 02";
-  String apiKey = "";
+  String name = "Jimma Health Center";
+  String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjNiYmNhM2M4LWYwNWQtNDZiNy04YTk4LWQ1YmEyMTkzY2YzYSJ9.0InfDuks2cAZnfel8Wq8ItetdKkaLUXu2RjInGLQ0Pg";
   GebetaMapRequest gmr = new GebetaMapRequest();
   ResponseData rs = await gmr.geocode(name, apiKey);
-  print(rs.data);
+  // print(rs.data);
 }
 
-void callMapFunctions() async {
-  // making geocoding request
-  callOneToMany();
-  callGeoCode();
-  callDirection();
-  callMatrix();
-  callTss();
-}
+// void callMapFunctions() async {
+//   making geocoding request
+//   callOneToMany();
+//   callGeoCode();
+//   callDirection();
+//   callMatrix();
+//   callTss();
+// }

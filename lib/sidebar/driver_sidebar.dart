@@ -180,9 +180,9 @@ class DriverNavBar extends StatelessWidget {
   void callMapFunctions()  {
     // Call the map-related functions here
      callDirection();
-     callMatrix();
-     callTss();
-     callOneToMany();
+     // callMatrix();
+     // callTss();
+     // callOneToMany();
      callGeoCode();
   }
 
