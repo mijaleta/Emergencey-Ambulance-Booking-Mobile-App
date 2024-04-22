@@ -31,7 +31,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
 #  flutter_polyline_points: ^2.0.0
   flutter_search_bar: ^3.0.0
-  permission_handler: ^11.3.1
+#  permission_handler: ^11.3.1
   google_nav_bar: ^5.0.6
   curved_navigation_bar: ^1.0.3
   connectivity_wrapper: ^1.1.4
@@ -56,7 +56,11 @@ dependencies:
 #  gebetamap: any
   flutter_map: ^4.0.0
   gebetamap: ^1.1.4
-  flutter_osm_plugin: ^0.70.4
+#  flutter_osm_plugin: ^0.70.4
+  permission_handler: ^10.2.0
+  flutter_osm_plugin: ^0.60.4
+
+  latlong2: ^0.8.2
 #  webview_flutter: ^4.7.0\
 
 #  flutter_map: any

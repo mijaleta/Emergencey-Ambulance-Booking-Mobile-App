@@ -1,4 +1,5 @@
 import 'package:ambu_app/pages/account_page.dart';
+import 'package:ambu_app/sidebar/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gebetamap/gebetamap.dart';
 
