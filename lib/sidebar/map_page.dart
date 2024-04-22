@@ -12,12 +12,13 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   MapController controller = MapController(
     // 7.784619644494936,36.72530388570615 - Yebu
-    initPosition: GeoPoint(latitude: 7.784619644494936, longitude: 36.72530388570615),
+    // 7.658815818923218,36.82208057454223 - Jimma
+    initPosition: GeoPoint(latitude: 7.6942, longitude: 36.8135),
     areaLimit: BoundingBox(
-      east: 37.602588571093925, //Eastern Longtude
-      north: 8.097725425956478,  //Northern Latitude
-      south: 7.157504950238041,  //Southern Latitude
-      west: 36.58595254315327,   //Western Longtude
+      east: 36.974, //Eastern Longtude 7.7091, 36.974
+      north: 7.9049,  //Northern Latitude  7.9049, 36.7905
+      south: 7.5046,  //Southern Latitude  7.5046, 36.8821
+      west: 36.6394,   //Western Longtude  7.6624, 36.6394
     ),
   );
   // or set manually init position
@@ -42,7 +43,7 @@ class _MapPageState extends State<MapPage> {
               unFollowUser: false,
             ),
             zoomOption: const ZoomOption(
-              initZoom: 15,
+              initZoom: 16,
               minZoomLevel: 3,
               maxZoomLevel: 19,
               stepZoom: 1.0,
@@ -65,14 +66,15 @@ class _MapPageState extends State<MapPage> {
             roadConfiguration: const RoadOption(
               roadColor: Colors.yellowAccent,
             ),
-            markerOption: MarkerOption(
-                defaultMarker: const MarkerIcon(
-                  icon: Icon(
-                    Icons.person_pin_circle,
-                    color: Colors.blue,
-                    size: 56,
-                  ),
-                )),
+            // markerOption: MarkerOption(
+            //     defaultMarker: MarkerIcon(
+            //       icon: Icon(
+            //         Icons.person_pin_circle,
+            //         color: Colors.blue,
+            //         size: 56,
+            //       ),
+            //     )
+            // ),
           ),
       ),
     );

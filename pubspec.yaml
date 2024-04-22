@@ -24,7 +24,7 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   fluttertoast:
   url_launcher: ^6.2.6
-  google_maps_flutter: ^2.6.0
+#  google_maps_flutter: ^2.6.0
   # intl: ^0.19.0
 #  google_maps: ^7.1.0
   shimmer: ^3.0.0
@@ -34,9 +34,9 @@ dependencies:
 #  permission_handler: ^11.3.1
   google_nav_bar: ^5.0.6
   curved_navigation_bar: ^1.0.3
-  connectivity_wrapper: ^1.1.4
+#  connectivity_wrapper: ^1.1.4
   flutter_bloc: ^8.1.5
-  connectivity_plus: ^5.0.1
+#  connectivity_plus: ^5.0.1
   internet_connection_checker: ^1.0.0+1
   # flutter_sms: ^2.3.3
 
@@ -57,11 +57,14 @@ dependencies:
   flutter_map: ^4.0.0
   gebetamap: ^1.1.4
 #  flutter_osm_plugin: ^0.70.4
-  permission_handler: ^11.0.1
+#  permission_handler: ^11.0.1
 #  flutter_osm_plugin: ^0.60.4
-  flutter_osm_plugin: 0.70.1
+#  flutter_osm_plugin: 0.70.1
+#  flutter_osm_plugin: ^1.0.0
+  flutter_osm_plugin: ^1.0.3
 
   latlong2: ^0.8.2
+#  flutter_osm_plugin: ^0.70.4
 #  webview_flutter: ^4.7.0\
 
 #  flutter_map: any

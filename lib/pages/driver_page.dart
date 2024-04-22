@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'new_driver_page.dart';
 import 'package:ambu_app/services/drivers.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:location/location.dart';
 
 class DriverPage extends StatefulWidget {
@@ -16,10 +16,10 @@ class _DriverPageState extends State<DriverPage> {
   // final locationController = Location();
   // StreamSubscription<LocationData>? locationSubscription;
 
-  static const googlePlex = LatLng(8.952153448511483, 36.98002342434236);
-  static const gibeRiver = LatLng(8.823928508371052, 36.92091930301226);
-
-  LatLng? currentPosition;
+  // static const googlePlex = LatLng(8.952153448511483, 36.98002342434236);
+  // static const gibeRiver = LatLng(8.823928508371052, 36.92091930301226);
+  //
+  // LatLng? currentPosition;
 
   // @override
   // void initState() {
@@ -77,30 +77,30 @@ class _DriverPageState extends State<DriverPage> {
             //         child: CircularProgressIndicator(),
             //       )
             //     :
-            GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: googlePlex,
-                zoom: 12,
-              ),
-              markers: {
+            // GoogleMap(
+            //   initialCameraPosition: CameraPosition(
+            //     target: googlePlex,
+            //     zoom: 12,
+            //   ),
+            //   markers: {
                 // Marker(
                 //   markerId: MarkerId('currentLocation'),
                 //   icon: BitmapDescriptor.defaultMarker,
                 //   position: currentPosition,
                 // ),
-                const Marker(
-                  markerId: MarkerId('sourceLocation'),
-                  icon: BitmapDescriptor.defaultMarker,
-                  position: googlePlex,
-                ),
-                const Marker(
-                  markerId: MarkerId('destinationLocation'),
-                  icon: BitmapDescriptor.defaultMarker,
-                  position: gibeRiver,
-                ),
-              },
+              //   const Marker(
+              //     markerId: MarkerId('sourceLocation'),
+              //     icon: BitmapDescriptor.defaultMarker,
+              //     position: googlePlex,
+              //   ),
+              //   const Marker(
+              //     markerId: MarkerId('destinationLocation'),
+              //     icon: BitmapDescriptor.defaultMarker,
+              //     position: gibeRiver,
+              //   ),
+              // },
               // onLongPress: _addMarker,
-            ),
+            // ),
             SingleChildScrollView(
               child: Column(
                 children: tab_cats[0],

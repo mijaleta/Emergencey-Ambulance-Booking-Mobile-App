@@ -5,8 +5,8 @@ import 'package:ambu_app/services/constants.dart';
 import 'package:ambu_app/users/user_location.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 // import 'package:url_launcher/url_launcher.dart';
 // import 'package:permission_handler/permission_handler.dart';
@@ -35,14 +35,14 @@ class _DriverState extends State<Driver> {
   // }
 
   Location _locationController = new Location();
-  final Completer<GoogleMapController> _mapController = Completer<GoogleMapController>();
+  // final Completer<GoogleMapController> _mapController = Completer<GoogleMapController>();
 
-  late StreamSubscription<ConnectivityResult> subscription;
+  // late StreamSubscription<ConnectivityResult> subscription;
   bool isDeviceConnected = false;
   bool isAlertSet = false;
   // final Set<Marker> _markers = {};
-  final Set<Marker> _markers = {};
-  GoogleMapController? mapController;
+  // final Set<Marker> _markers = {};
+  // GoogleMapController? mapController;
 
   // Placeholder for fetched data
   String ambulanceInfo = 'Loading...';
@@ -56,7 +56,7 @@ class _DriverState extends State<Driver> {
     fetchAmbulanceInfo();
     fetchTripInfo();
     fetchDriverInfo();
-    getConnectivity();
+    // getConnectivity();
     // _getFcmToken();
     // getLocationUpdates().then((_) => {
     //   getPolylinesPoints().then((coordinates) => {
@@ -72,23 +72,23 @@ class _DriverState extends State<Driver> {
     // });
   }
 
-  @override
-  void dispose() {
-    subscription.cancel();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   subscription.cancel();
+  //   super.dispose();
+  // }
 
-  void getConnectivity() {
-    subscription = Connectivity().onConnectivityChanged.listen(
-      (ConnectivityResult result) async {
-        isDeviceConnected = await InternetConnectionChecker().hasConnection;
-        if (!isDeviceConnected && !isAlertSet) {
-          showDialogBox();
-          isAlertSet = true;
-        }
-      },
-    );
-  }
+  // void getConnectivity() {
+  //   subscription = Connectivity().onConnectivityChanged.listen(
+  //     (ConnectivityResult result) async {
+  //       isDeviceConnected = await InternetConnectionChecker().hasConnection;
+  //       if (!isDeviceConnected && !isAlertSet) {
+  //         showDialogBox();
+  //         isAlertSet = true;
+  //       }
+  //     },
+  //   );
+  // }
 
   // Placeholder functions for fetching data
   void fetchAmbulanceInfo() {
@@ -233,9 +233,9 @@ class _DriverState extends State<Driver> {
 
 
 
-  static const LatLng _pGooglePlex = LatLng(7.550783972794435, 36.869152651316064);
-  static const LatLng _applePark = LatLng(7.7164763478329155, 36.80548802248252);
-  LatLng? _currentP = null;
+  // static const LatLng _pGooglePlex = LatLng(7.550783972794435, 36.869152651316064);
+  // static const LatLng _applePark = LatLng(7.7164763478329155, 36.80548802248252);
+  // LatLng? _currentP = null;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -276,23 +276,23 @@ class _DriverState extends State<Driver> {
         body: TabBarView(
           children: [
             // Map Tab
-            _currentP == null ? const Center(child: Text("Loading..."),) : GoogleMap(
-              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer()),
-              },
-              onMapCreated: ((GoogleMapController controller) => _mapController.complete(controller) ),
-              initialCameraPosition: const CameraPosition(
-                target: _pGooglePlex,
-                // LatLng(7.657066655358555, 36.84488862063615)
-                zoom: 12.0,
-              ),
-              // markers: _markers,
-              markers: {
-                Marker(markerId: MarkerId("_currentLocation"), icon: BitmapDescriptor.defaultMarker, position: _currentP!),
-                Marker(markerId: MarkerId("_sourceLocation"), icon: BitmapDescriptor.defaultMarker, position: _pGooglePlex),
-                Marker(markerId: MarkerId("destinationLocation"), icon: BitmapDescriptor.defaultMarker, position: _applePark)
-              },
-            ),
+            // _currentP == null ? const Center(child: Text("Loading..."),) : GoogleMap(
+            //   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+            //     Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer()),
+            //   },
+            //   onMapCreated: ((GoogleMapController controller) => _mapController.complete(controller) ),
+            //   initialCameraPosition: const CameraPosition(
+            //     target: _pGooglePlex,
+            //     // LatLng(7.657066655358555, 36.84488862063615)
+            //     zoom: 12.0,
+            //   ),
+            //   // markers: _markers,
+            //   markers: {
+            //     Marker(markerId: MarkerId("_currentLocation"), icon: BitmapDescriptor.defaultMarker, position: _currentP!),
+            //     Marker(markerId: MarkerId("_sourceLocation"), icon: BitmapDescriptor.defaultMarker, position: _pGooglePlex),
+            //     Marker(markerId: MarkerId("destinationLocation"), icon: BitmapDescriptor.defaultMarker, position: _applePark)
+            //   },
+            // ),
             // Ambulance, Trip, and Driver Information Tab
             SingleChildScrollView(
               child: Padding(
@@ -435,7 +435,8 @@ class _DriverState extends State<Driver> {
                           child: const Text('Access Emergency Procedures'),
                         ),
                         ElevatedButton(
-                          onPressed: getConnectivity,
+                          onPressed: (){} ,
+                          // getConnectivity
                           child: const Text('Access Offline Functionality'),
                         ),
                         ElevatedButton(
@@ -454,11 +455,11 @@ class _DriverState extends State<Driver> {
     );
   }
 
-  Future<void> cameraToPosition(LatLng pos) async {
-    final GoogleMapController controller = await _mapController.future;
-    CameraPosition _newCameraPosition = new CameraPosition(target: pos, zoom: 13.0);
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_newCameraPosition));
-  }
+  // Future<void> cameraToPosition(LatLng pos) async {
+  //   final GoogleMapController controller = await _mapController.future;
+  //   CameraPosition _newCameraPosition = new CameraPosition(target: pos, zoom: 13.0);
+  //   await controller.animateCamera(CameraUpdate.newCameraPosition(_newCameraPosition));
+  // }
 
   Future<void> getLocationUpdates () async {
     bool _serviceEnabled;
@@ -482,8 +483,8 @@ class _DriverState extends State<Driver> {
     _locationController.onLocationChanged.listen((LocationData currentLocation) {
       if(currentLocation.latitude != null && currentLocation.longitude !=null){
         setState(() {
-          _currentP = LatLng(currentLocation.latitude!, currentLocation.longitude!);
-          cameraToPosition(_currentP!);
+          // _currentP = LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          // cameraToPosition(_currentP!);
         });
       }
     });
