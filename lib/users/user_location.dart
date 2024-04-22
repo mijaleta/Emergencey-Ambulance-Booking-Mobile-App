@@ -1,51 +1,51 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_joystick/flutter_joystick.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_joystick/flutter_joystick.dart';
 // import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:location/location.dart';
-
-
-
-
-class UserLocationTracking extends StatefulWidget {
-  const UserLocationTracking({super.key});
-
-  @override
-  State<UserLocationTracking> createState() => _UserLocationTrackingState();
-}
-
-class _UserLocationTrackingState extends State<UserLocationTracking> {
-  final Location location = Location();
-  LocationData? _currentLocation;
-
-  @override
-  void initState() {
-    super.initState();
-    _startLocationTracking();
-  }
-
-  Future<void> _startLocationTracking() async {
-    final Location location = Location();
-    await location.requestPermission();
-    location.onLocationChanged.listen((LocationData currentLocation) {
-      setState(() {
-        _currentLocation = currentLocation;
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text('Location Tracking', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-      ),
-      // body: content(),
-    );
-  }
-}
-
+// // import 'package:latlong2/latlong.dart';
+// import 'package:location/location.dart';
+//
+//
+//
+//
+// class UserLocationTracking extends StatefulWidget {
+//   const UserLocationTracking({super.key});
+//
+//   @override
+//   State<UserLocationTracking> createState() => _UserLocationTrackingState();
+// }
+//
+// class _UserLocationTrackingState extends State<UserLocationTracking> {
+//   final Location location = Location();
+//   LocationData? _currentLocation;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _startLocationTracking();
+//   }
+//
+//   Future<void> _startLocationTracking() async {
+//     final Location location = Location();
+//     await location.requestPermission();
+//     location.onLocationChanged.listen((LocationData currentLocation) {
+//       setState(() {
+//         _currentLocation = currentLocation;
+//       });
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Colors.blue,
+//         title: Text('Location Tracking', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+//       ),
+//       // body: content(),
+//     );
+//   }
+// }
+//
 // Widget content() {
 //   return FlutterMap(options: MapOptions(initialCenter: LatLng(7.6802,36.8536),
 //     initialZoom: 11,

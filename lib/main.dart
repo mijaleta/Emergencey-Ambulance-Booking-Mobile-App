@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
         '/amharicHomepage': (context) => AmharicHomePage(),
         '/mainPage': (context) => MainPage(),
         '/nursingPage': (context) => NursePage(),
-        '/patientLocationTracking': (context) => UserLocationTracking(),
+        // '/patientLocationTracking': (context) => UserLocationTracking(),
       },
     );
   }

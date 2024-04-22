@@ -51,10 +51,15 @@ dependencies:
   firebase_messaging: ^14.7.20
   location: ^6.0.1
 #  flutter_map: ^6.1.0
-  latlong2: ^0.9.1
+#  latlong2: ^0.9.1
   flutter_joystick: ^0.0.4
+#  gebetamap: any
+  flutter_map: ^4.0.0
   gebetamap: ^1.1.4
-  webview_flutter: ^4.7.0
+  flutter_osm_plugin: ^0.70.4
+#  webview_flutter: ^4.7.0\
+
+#  flutter_map: any
   # dropdown_search: ^5.0.6
   
 

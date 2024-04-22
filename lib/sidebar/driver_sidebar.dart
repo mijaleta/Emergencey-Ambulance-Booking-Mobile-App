@@ -125,7 +125,8 @@ class DriverNavBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  callMapFunctions();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                  // callMapFunctions();
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
                 },
               ),
@@ -179,11 +180,11 @@ class DriverNavBar extends StatelessWidget {
   // Function to handle map-related functionality
   void callMapFunctions()  {
     // Call the map-related functions here
-     callDirection();
+    //  callDirection();
      // callMatrix();
      // callTss();
      // callOneToMany();
-     callGeoCode();
+     // callGeoCode();
   }
 
 
