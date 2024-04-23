@@ -87,3 +87,84 @@ class _MapPageState extends State<MapPage> {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+//
+// class PatientLocation extends StatefulWidget {
+//   @override
+//   _PatientLocationState createState() => _PatientLocationState();
+// }
+//
+// class _PatientLocationState extends State<PatientLocation> {
+//   final GlobalKey<OSMFlutterState> mapKey = GlobalKey<OSMFlutterState>();
+//
+//   Future<void> getMyLocation() async {
+//     try {
+//       GeoPoint p = await mapKey.currentState.myLocation();
+//       double lat = p.latitude;
+//       double lon = p.longitude;
+//       print("latitude is: $lat, longitude is: $lon");
+//     } on GeoPointException catch (e) {
+//       print("${e.errorMessage()}");
+//     }
+//   }
+//
+//   Future<void> drawRoadOnMap() async {
+//     try {
+//       await mapKey.currentState.drawRoad(
+//         GeoPoint(latitude: 28.596429, longitude: 77.190628),
+//         GeoPoint(latitude: 28.4573802, longitude: 73.1424312),
+//       );
+//     } on RoadException catch (e) {
+//       print("${e.errorMessage()}");
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Colors.blue,
+//         title: Text(
+//           'Tracking Patient Location',
+//           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+//         ),
+//       ),
+//       body: OSMFlutter(
+//         key: mapKey,
+//         controller: MapController(
+//           initMapWithUserPosition: UserTrackingOption(
+//             enableTracking: true,
+//             unFollowUser: false,
+//           ),
+//         ),
+//         osmOption: OSMOption(
+//           zoomOption: ZoomOption(
+//             initZoom: 16,
+//             minZoomLevel: 3,
+//             maxZoomLevel: 19,
+//             stepZoom: 1.0,
+//           ),
+//           userLocationMarker: UserLocationMaker(
+//             personMarker: MarkerIcon(
+//               icon: Icon(Icons.location_history_rounded, color: Colors.red, size: 48,),
+//             ),
+//             directionArrowMarker: MarkerIcon(
+//               icon: Icon(
+//                 Icons.location_history_rounded,
+//                 color: Colors.red,
+//                 size: 48,
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: getMyLocation,
+//         tooltip: 'Get My Location',
+//         child: Icon(Icons.location_on),
+//       ),
+//     );
+//   }
+// }
