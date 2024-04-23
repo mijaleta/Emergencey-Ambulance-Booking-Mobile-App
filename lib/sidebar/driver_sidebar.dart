@@ -1,5 +1,6 @@
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/sidebar/map_page.dart';
+import 'package:ambu_app/users/user_location.dart';
 import 'package:flutter/material.dart';
 import 'package:gebetamap/gebetamap.dart';
 
@@ -126,8 +127,9 @@ class DriverNavBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
-                  // callMapFunctions();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PatientLocation()));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                  // callMapFunctions();  PatientLocation
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
                 },
               ),

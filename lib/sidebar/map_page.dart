@@ -28,6 +28,13 @@ class _MapPageState extends State<MapPage> {
   //     longitude: 36.72530388570615,
   //   ),
   // );
+
+  @override
+  void dispose(){
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,34 +43,34 @@ class _MapPageState extends State<MapPage> {
         title:const Text('Tracking Patient Location', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
       ),
       body: OSMFlutter(
-          controller: controller,
+          controller:controller,
           osmOption: OSMOption(
-            userTrackingOption: const UserTrackingOption(
+            userTrackingOption: UserTrackingOption(
               enableTracking: true,
               unFollowUser: false,
             ),
-            zoomOption: const ZoomOption(
-              initZoom: 16,
+            zoomOption: ZoomOption(
+              initZoom: 8,
               minZoomLevel: 3,
               maxZoomLevel: 19,
               stepZoom: 1.0,
             ),
             userLocationMarker: UserLocationMaker(
-              personMarker: const MarkerIcon(
+              personMarker: MarkerIcon(
                 icon: Icon(
                   Icons.location_history_rounded,
                   color: Colors.red,
                   size: 48,
                 ),
               ),
-              directionArrowMarker: const MarkerIcon(
+              directionArrowMarker: MarkerIcon(
                 icon: Icon(
                   Icons.double_arrow,
                   size: 48,
                 ),
               ),
             ),
-            roadConfiguration: const RoadOption(
+            roadConfiguration: RoadOption(
               roadColor: Colors.yellowAccent,
             ),
             // markerOption: MarkerOption(
@@ -75,7 +82,7 @@ class _MapPageState extends State<MapPage> {
             //       ),
             //     )
             // ),
-          ),
+          )
       ),
     );
   }
