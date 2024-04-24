@@ -1,6 +1,8 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:location/location.dart'; // Import location package
+import 'package:gebetamap/gebetamap.dart';
 
 class PatientLocation extends StatefulWidget {
   const PatientLocation({super.key});
@@ -16,6 +18,7 @@ class _PatientLocationState extends State<PatientLocation> {
   final _mapController = MapController(
     initMapWithUserPosition: const UserTrackingOption(enableTracking: true,unFollowUser: false)
   );
+  late Location _location; // Location instance
 
   var markerMap = <String,String>{};
 
@@ -46,6 +49,38 @@ class _PatientLocationState extends State<PatientLocation> {
     });
 
     // _initializeMapController();
+    _location = Location(); // Initialize Location
+    _getDriverAndPatientLocations(); // Fetch driver and patient locations
+  }
+  // Function to fetch current location of driver and patient
+  void _getDriverAndPatientLocations() async {
+    // Get current location of driver
+    LocationData? driverLocation = await _location.getLocation();
+    double driverLatitude = driverLocation.latitude!;
+    double driverLongitude = driverLocation.longitude!;
+
+    // Get current location of patient
+    // You need to implement a similar method to fetch patient's location
+
+    // Get current location of patient
+    double patientLatitude = 9.0; // Replace with actual patient latitude
+    double patientLongitude = 38.0; // Replace with actual patient longitude
+    // Calculate route between driver and patient
+    _calculateRoute(driverLatitude, driverLongitude, patientLatitude, patientLongitude);
+  }
+
+  // Function to calculate route between driver and patient
+  void _calculateRoute(double driverLat, double driverLng, double patientLat, double patientLng) async {
+    // Call GebetaMap API function to calculate route between driver and patient
+    GebetaMapRequest gmr = GebetaMapRequest();
+    var directionStart = {'lat': driverLat, 'lon': driverLng};
+    var directionStop = {'lat': patientLat, 'lon': patientLng};
+    String apiKey = ""; // Your GebetaMap API key
+
+    ResponseData routeData = await gmr.direction(directionStart, directionStop, apiKey);
+
+    // Extract route information from routeData and update map
+    // You need to implement this part to draw the route on the map
   }
 
   @override
