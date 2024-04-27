@@ -99,7 +99,9 @@ class DriverNavBar extends StatelessWidget {
                   'Notifications',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+
+                },
                 trailing: ClipOval(
                   child: Container(
                     color: Colors.red,
