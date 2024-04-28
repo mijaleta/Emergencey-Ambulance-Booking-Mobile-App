@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'package:gebetamap/gebetamap.dart';
@@ -18,6 +19,7 @@ class PatientLocation extends StatefulWidget {
 // Define the state for the PatientLocation widget
 class _PatientLocationState extends State<PatientLocation> {
   final mongo.Db db = mongo.Db('mongodb://localhost:27017/location');
+  // List<Polyline> _polylines = []; // List to store polylines
   late MapController _mapController;
   late Location _location;
   var markerMap = <String, String>{};
@@ -130,6 +132,11 @@ class _PatientLocationState extends State<PatientLocation> {
     };
   }
 
+  List<LatLng> processResponsePath(ResponseData response) {
+    // Assuming response.path is a list of route points (lat, lng)
+    final routePoints = response.path.map((point) => LatLng(point[0], point[1])).toList();
+    return routePoints;
+  }
   // Function to calculate route between driver and patient using Gebeta Map API
   Future<void> calculateRoute(double driverLat, double driverLng, double patientLat, double patientLng) async {
     GebetaMapRequest gmr = GebetaMapRequest();
@@ -142,19 +149,20 @@ class _PatientLocationState extends State<PatientLocation> {
 
     // Extract route information and update map
     // You need to implement this part to draw the route on the map
-    Future.delayed(const Duration(seconds: 1), () {
-      print('Response message: ${routeData.message}');
-      print('Response status: ${routeData.status}');
-      print('path: ${routeData.path}');
-      print('distance: ${routeData.totalDistance}');
-      print('time: ${routeData.totaltime}');
-    });
+    // Future.delayed(const Duration(seconds: 1), () {
+    //   print('Response message: ${routeData.message}');
+    //   print('Response status: ${routeData.status}');
+    //   print('path: ${routeData.path}');
+    //   print('distance: ${routeData.totalDistance}');
+    //   print('time: ${routeData.totaltime}');
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: const Text(
           'Tracking Patient Location',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
