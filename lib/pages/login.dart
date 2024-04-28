@@ -68,7 +68,7 @@ class Login extends StatelessWidget {
       final String password = passwordController.text;
 // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-      final url = Uri.parse('http://192.168.0.22:3000/login');
+      final url = Uri.parse('http://ambulance-website.samiintegratedfarm.com/login');
 
       try {
         final response = await http.post(

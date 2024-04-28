@@ -83,7 +83,7 @@ class _MainPageState extends State<MainPage> {
   List pages = [
     HomePage(),
     OurServices(),
-    SearchPage(),
+    // SearchPage(),
     AccountScreen(),
   ];
   int currentIndex = 0;

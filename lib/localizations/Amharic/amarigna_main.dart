@@ -86,7 +86,7 @@ class _AmarignaMainPageState extends State<AmarignaMainPage> {
   List pages = [
     AmharicHomePage(),
     YegnaAgalgilot(),
-    SearchPage(),
+    // SearchPage(),
     AccountScreen(),
   ];
   int currentIndex = 0;

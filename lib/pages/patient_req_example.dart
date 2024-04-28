@@ -103,7 +103,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       _formKey.currentState!.save();
       try {
         var response = await http.post(
-          Uri.parse('http://192.168.0.22:3000/patientRequest'),
+          Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
