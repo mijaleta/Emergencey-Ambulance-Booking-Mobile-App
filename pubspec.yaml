@@ -69,6 +69,10 @@ dependencies:
 
 #  flutter_map: any
   # dropdown_search: ^5.0.6
+#  mongo_dart: ^0.5.10
+  mongo_dart: ^0.10.2
+  permission_handler: ^11.0.1
+  flutter_polyline_points: ^1.0.0
   
 
 dev_dependencies:

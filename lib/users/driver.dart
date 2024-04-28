@@ -2,6 +2,7 @@ import 'dart:async';
 
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:ambu_app/services/constants.dart';
+import 'package:ambu_app/sidebar/map_page.dart';
 import 'package:ambu_app/users/user_location.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -422,7 +423,7 @@ class _DriverState extends State<Driver> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) => UserLocationTracking()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
                           },
                           child: const Text('Track Patient'),
                         ),
