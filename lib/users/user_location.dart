@@ -15,9 +15,7 @@ class PatientLocation extends StatefulWidget {
 class _PatientLocationState extends State<PatientLocation> {
 
 
-  final _mapController = MapController(
-    initMapWithUserPosition: const UserTrackingOption(enableTracking: true,unFollowUser: false)
-  );
+  late MapController _mapController;
   late Location _location; // Location instance
 
   var markerMap = <String,String>{};
@@ -48,6 +46,9 @@ class _PatientLocationState extends State<PatientLocation> {
       });
     });
 
+    _mapController = MapController(
+      initMapWithUserPosition: const UserTrackingOption(enableTracking: true, unFollowUser: false),
+    );
     // _initializeMapController();
     _location = Location(); // Initialize Location
     _getDriverAndPatientLocations(); // Fetch driver and patient locations
