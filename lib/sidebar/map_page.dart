@@ -83,7 +83,7 @@ class _MapPageState extends State<MapPage> {
             polylines: [
               Polyline(
                 points: points,
-                color: Colors.blue,
+                color: Colors.red,
                 strokeWidth: 5,
               ),
             ],
