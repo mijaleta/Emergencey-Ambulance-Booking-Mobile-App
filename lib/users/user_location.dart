@@ -36,10 +36,10 @@ class _PatientLocationState extends State<PatientLocation> {
     _location = Location();
     // Get user location and center the map on successful retrieval
     _determinePosition().then((Position position) async {
-      GeoPoint centerMap = await _mapController.centerMap;
+      // GeoPoint centerMap = await _mapController.centerMap;
       setState(() {
         // You can access the centered location details if needed (optional)
-        print('Map centered at: $centerMap');
+        // print('Map centered at: $centerMap');
       });
     }).catchError((error) {
       // Handle errors during location retrieval
