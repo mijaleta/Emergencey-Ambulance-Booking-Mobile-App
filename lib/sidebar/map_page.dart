@@ -1,62 +1,67 @@
 import 'dart:convert';
-
-import 'package:ambu_app/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
+import 'package:gebetamap/gebetamap.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({super.key});
+  const MapPage({Key? key}) : super(key: key);
 
   @override
   State<MapPage> createState() => _MapPageState();
 }
 
 class _MapPageState extends State<MapPage> {
-
-  List listOfPoints = [];
+  // List<dynamic> listOfPoints = [];
+  // List<LatLng> points = [];
   List<LatLng> points = [];
-  final String baseUrl = "https://api.openrouteservice.org/v2/directions/driving-car";
-  final String apiKey = "5b3ce3597851110001cf624897e9009a48f9408592f2b3cff5720ab5";
+  final String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjNiYmNhM2M4LWYwNWQtNDZiNy04YTk4LWQ1YmEyMTkzY2YzYSJ9.0InfDuks2cAZnfel8Wq8ItetdKkaLUXu2RjInGLQ0Pg"; // Replace with your actual API key
 
-  //Function that consume the openrouteservices API
-  // getCoordinates() async {
-  //   var response = await http.get(getRouteUrl("36.8149151878519c,7.697165300922039", "36.8416139276352, 7.694018027280917"));
-  //
-  //   setState(() {
-  //     if(response.statusCode == 200 ) {
-  //       var data = jsonDecode(response.body);
-  //       listOfPoints = data['features'][0]['geometry']['coordinates'];
-  //
-  //       points = listOfPoints.map((e) => LatLng(e[1].toDouble(), e[0].toDouble())).toList();
-  //     }
-  //   });
-  // }
-  //Function that consumes the openrouteservice API
-  Future<void> getCoordinates() async {
+  Future<void> calculateRoute(double driverLat, double driverLng, double patientLat, double patientLng) async {
     try {
-      final response = await http.get(Uri.parse(getRouteUrl("36.8149151878519c,7.697165300922039", "36.8416139276352, 7.694018027280917")));
+      GebetaMapRequest gmr = GebetaMapRequest();
+      var directionStart = {'lat': driverLat, 'lon': driverLng};
+      var directionStop = {'lat': patientLat, 'lon': patientLng};
 
+      ResponseData rds = await gmr.direction(directionStart, directionStop, apiKey);
 
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        listOfPoints = data['features'][0]['geometry']['coordinates'];
-        points = listOfPoints.map((e) => LatLng(e[1].toDouble(), e[0].toDouble())).toList();
-        setState(() {});
+      if (rds.status == "success") {
+        if (rds.path != null) {
+          points = rds.path.map((e) => LatLng(e['lat'] as double, e['lon'] as double)).toList();
+          setState(() {}); // Update UI with new route
+          print('Extracted coordinates: $points');
+        } else {
+          print("Route coordinates not found in response");
+        }
       } else {
-        print("Failed to load route coordinates: ${response.statusCode}");
+        print("Error: API call failed. Reason: ${rds.message}");
       }
     } catch (e) {
       print("Error fetching route coordinates: $e");
     }
   }
 
-  String getRouteUrl(String startPoint, String endPoint) {
-    return '$baseUrl?api_key=$apiKey&start=$startPoint&end=$endPoint';
+  // Assuming you have functions to fetch patient and driver locations (replace with your implementation)
+  Future<double> getPatientLatitude() async {
+    // Implement logic to fetch patient's latitude
+    return 7.697165300922039; // Placeholder value, replace with actual data
   }
 
+  Future<double> getPatientLongitude() async {
+    // Implement logic to fetch patient's longitude
+    return 36.8149151878519; // Placeholder value, replace with actual data
+  }
 
+  Future<double> getDriverLatitude() async {
+    // Implement logic to fetch driver's latitude
+    return 7.712294604883809; // Placeholder value, replace with actual data
+  }
+
+  Future<double> getDriverLongitude() async {
+    // Implement logic to fetch driver's longitude
+    return 36.80699730678395; // Placeholder value, replace with actual data
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +98,7 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
               Marker(
-                point: LatLng(7.694018027280917, 36.8416139276352),
+                point: LatLng(7.712294604883809, 36.80699730678395),
                 width: 80,
                 height: 80,
                 builder: (context) => IconButton(
@@ -104,22 +109,21 @@ class _MapPageState extends State<MapPage> {
               ),
             ],
           ),
-          PolylineLayer(
-            polylines: [
-              Polyline(
-                points: points,
-                color: Colors.red,
-                strokeWidth: 5,
-              ),
-            ],
-          ),
+          if (points.isNotEmpty)
+            PolylineLayer(
+              polylines: [
+                Polyline(
+                  points: points,
+                  color: Colors.red,
+                  strokeWidth: 5,
+                ),
+              ],
+            ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          getCoordinates();
-        },
-        tooltip: 'Increament',
+        onPressed: calculateRoute,
+        tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
