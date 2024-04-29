@@ -122,7 +122,15 @@ class _MapPageState extends State<MapPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: calculateRoute,
+        onPressed: () async {
+          double patientLat = await getPatientLatitude();
+          double patientLng = await getPatientLongitude();
+          double driverLat = await getDriverLatitude();
+          double driverLng = await getDriverLongitude();
+
+          // Calculate route using the fetched locations
+          await calculateRoute(driverLat, driverLng, patientLat, patientLng);
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
