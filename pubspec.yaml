@@ -74,6 +74,7 @@ dependencies:
   permission_handler: ^11.0.1
   flutter_polyline_points: ^1.0.0
   http: ^0.13.6
+  google_maps_flutter: ^2.2.8
   
 
 dev_dependencies:

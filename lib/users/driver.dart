@@ -2,6 +2,7 @@ import 'dart:async';
 
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:ambu_app/services/constants.dart';
+import 'package:ambu_app/sidebar/google_map_page.dart';
 import 'package:ambu_app/sidebar/map_page.dart';
 import 'package:ambu_app/users/user_location.dart';
 import 'package:flutter/foundation.dart';
@@ -332,37 +333,7 @@ class _DriverState extends State<Driver> {
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            // Request Call Permission
-                            // var callPermissionStatus =
-                            //     await Permission.phone.request();
-                            // if (callPermissionStatus.isGranted) {
-                            //   final Uri callUri =
-                            //       Uri(scheme: 'tel', path: '+251961305788');
-                            //   try {
-                            //     await launchUrl(callUri);
-                            //   } catch (e) {
-                            //     print("Error launching call: $e");
-                            //   }
-                            // } else {
-                            //   // Handle permission denied case
-                            //   if (callPermissionStatus.isPermanentlyDenied) {
-                            //     // Permission permanently denied, show a dialog to open app settings
-                            //     await openAppSettings();
-                            //   } else {
-                            //     // Request permission again or show a snackbar with explanation
-                            //     ScaffoldMessenger.of(context).showSnackBar(
-                            //       SnackBar(
-                            //         content: const Text(
-                            //             'Call permission is required for making calls'),
-                            //         action: SnackBarAction(
-                            //           label: 'Request Permission',
-                            //           onPressed: () =>
-                            //               Permission.phone.request(),
-                            //         ),
-                            //       ),
-                            //     );
-                            //   }
-                            // }
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => GoogleMapPage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
@@ -375,45 +346,7 @@ class _DriverState extends State<Driver> {
                         ElevatedButton(
                           // onPressed: sendPanicSignal,
                           onPressed: () async {
-                            // Request SMS Permission
-                            // var smsPermissionStatus =
-                            //     await Permission.sms.request();
-                            // if (smsPermissionStatus.isGranted) {
-                            //   final Uri smsUri = Uri(
-                            //     scheme: 'sms',
-                            //     path: '+251961305788',
-                            //     queryParameters: {
-                            //       'body': 'Emergency: Need Help!'
-                            //     },
-                            //   );
-                            //   if (await canLaunchUrl(smsUri)) {
-                            //     try {
-                            //       await launchUrl(smsUri);
-                            //     } catch (e) {
-                            //       print("Error launching SMS: $e");
-                            //     }
-                            //   } else {
-                            //     print('Cannot launch this url');
-                            //   }
-                            // } else {
-                            //   // Handle permission denied case
-                            //   if (smsPermissionStatus.isPermanentlyDenied) {
-                            //     // Permission permanently denied, show a dialog to open app settings
-                            //     await openAppSettings();
-                            //   } else {
-                            //     // Request permission again or show a snackbar with explanation
-                            //     ScaffoldMessenger.of(context).showSnackBar(
-                            //       SnackBar(
-                            //         content: const Text(
-                            //             'SMS permission is required for sending messages'),
-                            //         action: SnackBarAction(
-                            //           label: 'Request Permission',
-                            //           onPressed: () => Permission.sms.request(),
-                            //         ),
-                            //       ),
-                            //     );
-                            //   }
-                            // }
+
                           },
                           child: const Text('Send Panic Signal'),
                         ),
