@@ -17,20 +17,45 @@ class _MapPageState extends State<MapPage> {
 
   List listOfPoints = [];
   List<LatLng> points = [];
+  final String baseUrl = "https://api.openrouteservice.org/v2/directions/driving-car";
+  final String apiKey = "5b3ce3597851110001cf624897e9009a48f9408592f2b3cff5720ab5";
 
   //Function that consume the openrouteservices API
-  getCoordinates() async {
-    var response = await http.get(getRouteUrl("36.8149151878519c,7.697165300922039", "36.8416139276352, 7.694018027280917"));
+  // getCoordinates() async {
+  //   var response = await http.get(getRouteUrl("36.8149151878519c,7.697165300922039", "36.8416139276352, 7.694018027280917"));
+  //
+  //   setState(() {
+  //     if(response.statusCode == 200 ) {
+  //       var data = jsonDecode(response.body);
+  //       listOfPoints = data['features'][0]['geometry']['coordinates'];
+  //
+  //       points = listOfPoints.map((e) => LatLng(e[1].toDouble(), e[0].toDouble())).toList();
+  //     }
+  //   });
+  // }
+  //Function that consumes the openrouteservice API
+  Future<void> getCoordinates() async {
+    try {
+      final response = await http.get(Uri.parse(getRouteUrl("36.8149151878519c,7.697165300922039", "36.8416139276352, 7.694018027280917")));
 
-    setState(() {
-      if(response.statusCode == 200 ) {
-        var data = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
         listOfPoints = data['features'][0]['geometry']['coordinates'];
-
         points = listOfPoints.map((e) => LatLng(e[1].toDouble(), e[0].toDouble())).toList();
+        setState(() {});
+      } else {
+        print("Failed to load route coordinates: ${response.statusCode}");
       }
-    });
+    } catch (e) {
+      print("Error fetching route coordinates: $e");
+    }
   }
+
+  String getRouteUrl(String startPoint, String endPoint) {
+    return '$baseUrl?api_key=$apiKey&start=$startPoint&end=$endPoint';
+  }
+
 
 
   @override
