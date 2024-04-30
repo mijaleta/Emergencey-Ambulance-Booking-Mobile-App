@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:latlong2/latlong.dart' as latlang;
+// import 'package:latlong2/latlong.dart' as latlang;
 import 'package:location/location.dart';
 
 class GoogleMapPage extends StatefulWidget {
@@ -15,8 +15,8 @@ class GoogleMapPage extends StatefulWidget {
 
 class _GoogleMapPageState extends State<GoogleMapPage> {
   final locationController = Location();
-  static final googlePlex = LatLng(7.694687998729552, 36.816481597954756);
-  static final mountainview = LatLng(7.7176078060398625, 36.80540921925276);
+  static const  googlePlex = LatLng(7.694687998729552, 36.816481597954756);
+  static const  mountainview = LatLng(7.7176078060398625, 36.80540921925276);
   // 7.7176078060398625, 36.80540921925276 - Walda Amanuel
   // 7.697165300922039, 36.8149151878519 - The first
 
@@ -38,16 +38,16 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
         ),
       ),
       body: GoogleMap(
-        initialCameraPosition: CameraPosition(
+        initialCameraPosition:const CameraPosition(
           target:googlePlex,
           zoom: 13,
         ),
         markers: {
-          Marker(markerId: const MarkerId('currentLocation'),
+          const Marker(markerId: MarkerId('currentLocation'),
             icon: BitmapDescriptor.defaultMarker,
             position: googlePlex,
           ),
-          Marker(markerId:const MarkerId('destinationLocation'),
+          const Marker(markerId: MarkerId('destinationLocation'),
             icon: BitmapDescriptor.defaultMarker,
             position: mountainview,
           ),
@@ -78,12 +78,18 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
     }
 
     locationController.onLocationChanged.listen((currentLocation) {
-      if(currentLocation.latitude!= null && currentLocation.longitude!= null){
-        setState(() {
-          currentPosition = LatLng(currentLocation.latitude!, currentLocation.longitude!);
-        });
-        print(currentPosition);
+      if (currentLocation.latitude != null && currentLocation.longitude != null&& currentLocation.accuracy! < 100) {
+        if (currentPosition == null || currentPosition != LatLng(currentLocation.latitude!, currentLocation.longitude!)) {
+          setState(() {
+            currentPosition = LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          });
+          print(currentPosition);
+        }
+        else{
+          print('Current Position is not updating');
+        }
       }
     });
+
   }
 }
