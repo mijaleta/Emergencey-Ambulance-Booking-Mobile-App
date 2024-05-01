@@ -15,7 +15,7 @@
 <!-- android:name="${applicationName} " -->
     <application
         android:label="ambu_app"
-        android:name="com.example.ambu_app.MainActivity"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true">
         <activity

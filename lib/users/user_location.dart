@@ -47,11 +47,7 @@ class _PatientLocationState extends State<PatientLocation> {
     });
     _getAndDisplayPatientLocation(); // Fetch and display patient's location
   }
-
-
-
   /// Determine the current position of the device.
-  ///
   /// When the location services are not enabled or permissions
   /// are denied the `Future` will return an error.
   Future<Position> _determinePosition() async {
@@ -85,7 +81,6 @@ class _PatientLocationState extends State<PatientLocation> {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
@@ -170,7 +165,6 @@ class _PatientLocationState extends State<PatientLocation> {
       ),
       body: OSMFlutter(
         controller: _mapController,
-
         onMapIsReady: (isReady) async {
           if (isReady) {
             await Future.delayed(const Duration(seconds: 1), () async {

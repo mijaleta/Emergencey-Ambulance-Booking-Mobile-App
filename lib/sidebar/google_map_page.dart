@@ -6,6 +6,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:latlong2/latlong.dart' as latlang;
 import 'package:location/location.dart';
 
+// Replace with your actual GebetaMap API key
+const String apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjNiYmNhM2M4LWYwNWQtNDZiNy04YTk4LWQ1YmEyMTkzY2YzYSJ9.0InfDuks2cAZnfel8Wq8ItetdKkaLUXu2RjInGLQ0Pg";
+
 class GoogleMapPage extends StatefulWidget {
   const GoogleMapPage({super.key});
 
@@ -59,16 +62,13 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
   Future<void> fetchLocationUpdates() async {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
-
     serviceEnabled = await locationController.serviceEnabled();
-
     if(serviceEnabled){
       serviceEnabled = await locationController.requestService();
     }
     else{
       return;
     }
-
     permissionGranted = await locationController.hasPermission();
     if(permissionGranted == PermissionStatus.denied){
       permissionGranted = await locationController.requestPermission();
@@ -76,7 +76,6 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
         return;
       }
     }
-
     locationController.onLocationChanged.listen((currentLocation) {
       if (currentLocation.latitude != null && currentLocation.longitude != null&& currentLocation.accuracy! < 100) {
         if (currentPosition == null || currentPosition != LatLng(currentLocation.latitude!, currentLocation.longitude!)) {
@@ -90,6 +89,5 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
         }
       }
     });
-
   }
 }
