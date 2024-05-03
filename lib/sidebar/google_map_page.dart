@@ -92,12 +92,19 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
                   center: routpoints[0],
                   zoom: 14,
                 ),
-                children: [  // Use children for regular layers
-                  // Add your tile layers and other map elements here
-                ],
-                // Use nonRotatedChildren specifically for attribution (assuming it's available)
-                nonRotatedChildren: [
-
+                children: [
+                  TileLayer(
+                    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    userAgentPackageName: 'com.example.app',
+                  ),
+                  RichAttributionWidget(
+                    attributions: [
+                      TextSourceAttribution(
+                        'OpenStreetMap contributors',
+                        onTap: () => launchUrl(Uri.parse('https://openstreetmap.org/copyright')),
+                      ),
+                    ],
+                  ),
                 ],
               )
 
