@@ -129,7 +129,7 @@ class DriverNavBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => PatientLocation()));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => PatientLocation()));
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
                   // callMapFunctions();  PatientLocation
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
