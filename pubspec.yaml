@@ -80,6 +80,7 @@ dependencies:
   google_maps_flutter: ^2.2.8
   latlng: ^2.0.7
   geocoding: ^3.0.0
+  geodesy: ^0.4.0-nullsafety.0
   
 
 dev_dependencies:
