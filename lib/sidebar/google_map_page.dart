@@ -8,6 +8,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:geolocator/geolocator.dart'; // Import geolocator package
 
 
 class GoogleMapPage extends StatefulWidget {
@@ -23,10 +24,28 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
   bool isVisible = false;
   List<LatLng> routpoints = [LatLng(9.352951154649515, 42.80603840681846)];
 
+
+  @override
+  void initState (){
+    super.initState();
+    getCurrentLocation();
+  }
   // Placeholder method to simulate getting the driver's current location
   Future<LatLng> getCurrentDriverLocation() async {
     // For demonstration purposes, let's return a fixed location
     return LatLng(9.352951154649515, 42.80603840681846);
+  }
+
+  // Method to fetch the current location of the user
+  void getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    // Reverse geocode to get address from the position
+    List<Placemark> placemarks =
+    await placemarkFromCoordinates(position.latitude, position.longitude);
+    String address = placemarks[0].name ?? "";
+    // Set the fetched address in the start text input field
+    start.text = address;
   }
 
 
