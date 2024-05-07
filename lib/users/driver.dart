@@ -1,3 +1,4 @@
+import 'package:ambu_app/sidebar/patient_tracking.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
@@ -479,7 +480,7 @@ class TrackPatientDialog extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PatientTrackingPage(),
+            builder: (context) => const PatientTrackingPage(),
           ),
         );
       },
