@@ -32,18 +32,22 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
 
 
   @override
-  void initState () async{
+  void initState () {
     super.initState();
     requestLocationPermission();
-    await _initializeCurrentLocation();
+    initializeCurrentLocation();
     // getCurrentLocation();
     //startLocationUpdates();
   }
   LatLng? currentLocation; // Nullable type to indicate that it might be null initially
 
-  Future<void> _initializeCurrentLocation() async {
-    currentLocation = await _getCurrentLocation(); // Get current location from device
-    // Optionally handle cases where currentLocation is null or not available
+  // Future<void> _initializeCurrentLocation() async {
+  //   currentLocation = await _getCurrentLocation(); // Get current location from device
+  //   // Optionally handle cases where currentLocation is null or not available
+  // }
+  Future<void> initializeCurrentLocation() async {
+    await requestLocationPermission();
+    await getCurrentLocation();
   }
 
   @override
@@ -55,7 +59,7 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
   Future<bool> requestLocationPermission() async {
     var status = await Permission.locationWhenInUse.request();
     if (status.isGranted) {
-      await _getCurrentLocation(); // Get location upon permission grant
+      await getCurrentLocation(); // Get location upon permission grant
       return true;
     } else {
       // Handle permission denied scenarios (e.g., show explanation)
@@ -63,7 +67,7 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
     }
   }
 
-  Future<void> _getCurrentLocation() async {
+  Future<void> getCurrentLocation() async {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     String address = await getAddressFromLatLng(LatLng(position.latitude, position.longitude));
@@ -164,7 +168,11 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
                             // Use the closest known location as the starting point for the route
                             start.text = closestLocation.name; // Update start location input with closest known location name
                             // Calculate route from the closest known location to the end location
-                            await calculateRouteAndDraw(currentLocation, closestLocation.coordinates);
+                            if (currentLocation != null) {
+                              await calculateRouteAndDraw(currentLocation!, closestLocation.coordinates);
+                            } else {
+                              // Handle the case where currentLocation is null
+                            }
 
                           } else {
                             // Handle scenario where no known locations are found nearby
