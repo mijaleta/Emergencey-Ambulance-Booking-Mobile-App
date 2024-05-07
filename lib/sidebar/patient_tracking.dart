@@ -12,14 +12,14 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart'; // Import geolocator package
 import 'package:permission_handler/permission_handler.dart';
 
-class GoogleMapPage extends StatefulWidget {
-  const GoogleMapPage({super.key});
+class PatientTrackingPage extends StatefulWidget {
+  const PatientTrackingPage({super.key});
 
   @override
-  State<GoogleMapPage> createState() => _GoogleMapPageState();
+  State<PatientTrackingPage> createState() => _PatientTrackingPageState();
 }
 
-class _GoogleMapPageState extends State<GoogleMapPage> {
+class _PatientTrackingPageState extends State<PatientTrackingPage> {
   final start = TextEditingController();
   final end = TextEditingController();
   // LatLng currentLocation = await _getCurrentLocation(); // Get current location from device

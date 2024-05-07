@@ -1,52 +1,15 @@
-import 'dart:async';
-
-// import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:ambu_app/services/constants.dart';
-import 'package:ambu_app/sidebar/google_map_page.dart';
-import 'package:ambu_app/sidebar/map_page.dart';
-import 'package:ambu_app/users/user_location.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-// import 'package:url_launcher/url_launcher.dart';
-// import 'package:permission_handler/permission_handler.dart';
 import 'package:location/location.dart';
-import 'package:flutter/gestures.dart';
-
-import '../sidebar/driver_sidebar.dart';
-// import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-// import 'package:flutter_sms/flutter_sms.dart'; // Import flutter_sms
-// import 'package:shared_preferences/shared_preferences.dart';
 
 class Driver extends StatefulWidget {
-  const Driver({super.key});
+  const Driver({Key? key}) : super(key: key);
 
   @override
   State<Driver> createState() => _DriverState();
 }
 
 class _DriverState extends State<Driver> {
-  // String? fcmToken;
-  // Future<void> _getFcmToken() async {
-  //   fcmToken = await FirebaseMessaging.instance.getToken();
-  //   print("FCM Token: $fcmToken");
-
-  // Optionally, store the token in a database or server for later use
-  // }
-
-  Location _locationController = new Location();
-  // final Completer<GoogleMapController> _mapController = Completer<GoogleMapController>();
-
-  // late StreamSubscription<ConnectivityResult> subscription;
-  bool isDeviceConnected = false;
-  bool isAlertSet = false;
-  // final Set<Marker> _markers = {};
-  // final Set<Marker> _markers = {};
-  // GoogleMapController? mapController;
-
-  // Placeholder for fetched data
+  Location _locationController = Location();
   String ambulanceInfo = 'Loading...';
   String tripInfo = 'Loading...';
   String driverInfo = 'Loading...';
@@ -54,248 +17,51 @@ class _DriverState extends State<Driver> {
   @override
   void initState() {
     super.initState();
-    // Fetch data from schedule, dispatcher, and database
     fetchAmbulanceInfo();
     fetchTripInfo();
     fetchDriverInfo();
-    // getConnectivity();
-    // _getFcmToken();
-    // getLocationUpdates().then((_) => {
-    //   getPolylinesPoints().then((coordinates) => {
-    //     print(coordinates),
-    //   },),
-    // },
-    // );
-
-    // getPolylinesPoints().then((coordinates) {
-    //   print("Polylines Coordinates: $coordinates");
-    // }).catchError((error) {
-    //   print("Error generating polylines: $error");
-    // });
   }
 
-  // @override
-  // void dispose() {
-  //   subscription.cancel();
-  //   super.dispose();
-  // }
-
-  // void getConnectivity() {
-  //   subscription = Connectivity().onConnectivityChanged.listen(
-  //     (ConnectivityResult result) async {
-  //       isDeviceConnected = await InternetConnectionChecker().hasConnection;
-  //       if (!isDeviceConnected && !isAlertSet) {
-  //         showDialogBox();
-  //         isAlertSet = true;
-  //       }
-  //     },
-  //   );
-  // }
-
-  // Placeholder functions for fetching data
   void fetchAmbulanceInfo() {
-    // Simulate fetching ambulance information from schedule
     setState(() {
       ambulanceInfo =
-          'Ambulance Type: XYZ\nModel: ABC\nRegistration Number: 123';
+      'Ambulance Type: XYZ\nModel: ABC\nRegistration Number: 123';
     });
   }
 
   void fetchTripInfo() {
-    // Simulate fetching trip information from dispatcher
     setState(() {
       tripInfo =
-          'Patient Name: Great Beki\nAge: 35\nCondition: Stable\nAllergies: None\nPickup Location: ABC Hospital\nDrop-off Location: XYZ Clinic\nEstimated Arrival: 10 minutes';
+      'Patient Name: Great Beki\nAge: 35\nCondition: Stable\nAllergies: None\nPickup Location: ABC Hospital\nDrop-off Location: XYZ Clinic\nEstimated Arrival: 10 minutes';
     });
   }
 
   void fetchDriverInfo() {
-    // Simulate fetching driver information from database
     setState(() {
       driverInfo =
-          'Name: Miretu Jaleta\nLicense: ABC123\nShift Schedule: 8 AM - 5 PM\nPerformance: Excellent';
+      'Name: Miretu Jaleta\nLicense: ABC123\nShift Schedule: 8 AM - 5 PM\nPerformance: Excellent';
     });
   }
 
-  // void _onMapCreated(GoogleMapController controller) {
-  //   mapController = controller;
-  //   setState(() {
-  //     // Add the current location marker here
-  //     _markers.add(
-  //       Marker(
-  //         markerId: const MarkerId("_currentLocation"),
-  //         icon: BitmapDescriptor.defaultMarker,
-  //         position: _currentP!,
-  //       ),
-  //     );
-  //   });
-  // }
-
-  // Placeholder functions for additional functionalities
-  void startCommunication() {
-    // Start communication with dispatcher or hospital staff
-    // Implement your logic here
-  }
-
-  void reportIncident() {
-    // Report incident with photos or voice recordings
-    // Implement your logic here
-  }
-
-  void sendPanicSignal() {
-    // Send distress signal with location data
-    // Implement your logic here
-
-    // Example: Show a dialog indicating that the panic signal is being sent
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Sending Panic Signal'),
-          content:
-              const Text('Please wait while the panic signal is being sent...'),
-          actions: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-
-    // Simulate sending the panic signal (Replace with actual logic)
-    // Here, we'll use flutter_sms to send the message
-    // sendSMS(
-    //   message: 'Emergency: Need Help!',
-    //   recipients: ['+251717904888'], // Replace with the desired phone number
-    // );
-
-    // Example: Show a success dialog after sending the panic signal
-    Future.delayed(const Duration(seconds: 2), () {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Panic Signal Sent'),
-            content: const Text('The panic signal has been successfully sent.'),
-            actions: <Widget>[
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    });
-  }
-
-  void performSafetyChecklist() {
-    // Perform digital checklist for equipment checks
-    // Implement your logic here
-  }
-
-  void markArrivalDeparture() {
-    // Mark arrival/departure at pickup and drop-off locations
-    // Implement your logic here
-  }
-
-  void accessEmergencyProcedures() {
-    // Access protocols for handling medical emergencies
-    // Implement your logic here
-  }
-
-  void receiveNotifications() {
-    // Receive alerts for new trip requests, updates, or announcements
-    // Implement your logic here
-  }
-
-  showDialogBox() => showDialog<String>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('No Connection!'),
-          content: const Text('Please check your internet connection!'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () async {
-                Navigator.pop(context, 'OK');
-                isAlertSet = false;
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
-
-
-
-  // static const LatLng _pGooglePlex = LatLng(7.550783972794435, 36.869152651316064);
-  // static const LatLng _applePark = LatLng(7.7164763478329155, 36.80548802248252);
-  // LatLng? _currentP = null;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        drawer: const DriverNavBar(),
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text(
-            'Driver',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          bottom: TabBar(
+          title: const Text('Driver'),
+          bottom: const TabBar(
             tabs: [
-              Tab(
-                icon: ClipOval(
-                  child: Image.asset(
-                    'icons/google-maps.png',
-                    height: 40,
-                    width: 40,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Tab(
-                icon: ClipOval(
-                  child: Image.asset(
-                    'assets/44.jpg',
-                    width: 40.0, // Adjust width and height as needed
-                    height: 40.0,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              Tab(icon: Icon(Icons.map)),
+              Tab(icon: Icon(Icons.info)),
             ],
           ),
         ),
+        drawer: const Drawer(
+          // Add your drawer content here
+        ),
         body: TabBarView(
           children: [
-            // Map Tab
-            // _currentP == null ? const Center(child: Text("Loading..."),) : GoogleMap(
-            //   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-            //     Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer()),
-            //   },
-            //   onMapCreated: ((GoogleMapController controller) => _mapController.complete(controller) ),
-            //   initialCameraPosition: const CameraPosition(
-            //     target: _pGooglePlex,
-            //     // LatLng(7.657066655358555, 36.84488862063615)
-            //     zoom: 12.0,
-            //   ),
-            //   // markers: _markers,
-            //   markers: {
-            //     Marker(markerId: MarkerId("_currentLocation"), icon: BitmapDescriptor.defaultMarker, position: _currentP!),
-            //     Marker(markerId: MarkerId("_sourceLocation"), icon: BitmapDescriptor.defaultMarker, position: _pGooglePlex),
-            //     Marker(markerId: MarkerId("destinationLocation"), icon: BitmapDescriptor.defaultMarker, position: _applePark)
-            //   },
-            // ),
-            // Ambulance, Trip, and Driver Information Tab
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -320,64 +86,187 @@ class _DriverState extends State<Driver> {
                         Text(driverInfo),
                       ],
                     ),
-                    InformationDisplay(
-                      label: 'Functions',
-                      children: [
-                        ElevatedButton(
-                          onPressed: startCommunication,
-                          child: const Text('Start Communication'),
-                        ),
-                        ElevatedButton(
-                          onPressed: reportIncident,
-                          child: const Text('Report Incident'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => GoogleMapPage()));
+                    const SizedBox(height: 20),
+                    AnimatedCard(
+                      icon: Icons.phone,
+                      title: 'Call',
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Call"),
+                              content: Text("Initiate a call to the trip requester to clarify details or provide assistance."),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text("Close"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                          ),
-                          child: const Text('Call',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        ElevatedButton(
-                          // onPressed: sendPanicSignal,
-                          onPressed: () async {
-
+                        );
+                      },
+                    ),
+                    AnimatedCard(
+                      icon: Icons.warning,
+                      title: 'Report Incident',
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Report Incident"),
+                              content: Text("Report an incident with photos or voice recordings."),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text("Close"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
                           },
-                          child: const Text('Send Panic Signal'),
-                        ),
-                        ElevatedButton(
-                          onPressed: performSafetyChecklist,
-                          child: const Text('Perform Safety Checklist'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                        );
+                      },
+                    ),
+                    AnimatedCard(
+                      icon: Icons.dangerous,
+                      title: 'Send Panic Signal',
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Send Panic Signal"),
+                              content: Text("Send a distress signal with location data."),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text("Close"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
                           },
-                          child: const Text('Track Patient'),
-                        ),
-                        ElevatedButton(
-                          onPressed: markArrivalDeparture,
-                          child: const Text('Mark Arrival/Departure'),
-                        ),
-                        ElevatedButton(
-                          onPressed: accessEmergencyProcedures,
-                          child: const Text('Access Emergency Procedures'),
-                        ),
-                        ElevatedButton(
-                          onPressed: (){} ,
-                          // getConnectivity
-                          child: const Text('Access Offline Functionality'),
-                        ),
-                        ElevatedButton(
-                          onPressed: receiveNotifications,
-                          child: const Text('Receive Notifications'),
-                        ),
-                      ],
+                        );
+                      },
+                    ),
+                    AnimatedCard(
+                      icon: Icons.checklist,
+                      title: 'Safety Checklist',
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Safety Checklist"),
+                              content: Text("Perform a digital checklist for equipment checks."),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text("Close"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BeautifulCard(
+                      title: 'Receive Notifications',
+                      description:
+                      'Receive alerts for new trip requests, updates, or announcements',
+                      icon: Icons.notifications,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ReceiveNotificationsDialog();
+                          },
+                        );
+                      },
+                    ),
+                    BeautifulCard(
+                      title: 'Track Patient',
+                      description: 'Track the patient\'s location during the trip',
+                      icon: Icons.location_on,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return TrackPatientDialog();
+                          },
+                        );
+                      },
+                    ),
+                    BeautifulCard(
+                      title: 'Access Emergency Procedures',
+                      description: 'Access protocols for handling medical emergencies',
+                      icon: Icons.medical_services,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return EmergencyProceduresDialog();
+                          },
+                        );
+                      },
+                    ),
+                    BeautifulCard(
+                      title: 'Access Offline Functionality',
+                      description: 'Access certain functionalities offline',
+                      icon: Icons.offline_bolt,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AccessOfflineFunctionalityDialog();
+                          },
+                        );
+                      },
+                    ),
+                    BeautifulCard(
+                      title: 'View Reports',
+                      description: 'View reports and analytics for trips',
+                      icon: Icons.analytics,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ViewReportsDialog();
+                          },
+                        );
+                      },
+                    ),
+                    BeautifulCard(
+                      title: 'Settings',
+                      description: 'Adjust app settings',
+                      icon: Icons.settings,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SettingsDialog();
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -388,69 +277,54 @@ class _DriverState extends State<Driver> {
       ),
     );
   }
+}
 
-  // Future<void> cameraToPosition(LatLng pos) async {
-  //   final GoogleMapController controller = await _mapController.future;
-  //   CameraPosition _newCameraPosition = new CameraPosition(target: pos, zoom: 13.0);
-  //   await controller.animateCamera(CameraUpdate.newCameraPosition(_newCameraPosition));
-  // }
+class AnimatedCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final VoidCallback onPressed;
 
-  Future<void> getLocationUpdates () async {
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
+  const AnimatedCard({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.onPressed,
+  }) : super(key: key);
 
-    _serviceEnabled = await _locationController.serviceEnabled();
-
-    if(_serviceEnabled){
-      _serviceEnabled = await _locationController.requestService();
-    }else{
-      return;
-    }
-    _permissionGranted = await _locationController.hasPermission();
-    if(_permissionGranted == PermissionStatus.denied){
-      _permissionGranted = await _locationController.requestPermission();
-      if(_permissionGranted != PermissionStatus.granted){
-        return;
-      }
-    }
-
-    _locationController.onLocationChanged.listen((LocationData currentLocation) {
-      if(currentLocation.latitude != null && currentLocation.longitude !=null){
-        setState(() {
-          // _currentP = LatLng(currentLocation.latitude!, currentLocation.longitude!);
-          // cameraToPosition(_currentP!);
-        });
-      }
-    });
-  }
-
-  // Future<List<LatLng>> getPolylinesPoints () async {
-  //   List<LatLng> polylinesCoordinates = [];
-  //   PolylinePoints polylinePoints = PolylinePoints();
-  //   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(GOOGLE_MAPS_API_KEY, PointLatLng(_pGooglePlex.latitude, _pGooglePlex.longitude), PointLatLng(-_applePark.latitude, _applePark.longitude), travelMode: TravelMode.driving);
-  //   if(result.points.isNotEmpty){
-  //     result.points.forEach((PointLatLng point) {
-  //       polylinesCoordinates.add(LatLng(point.latitude, point.longitude),);
-  //     });
-  //   }else{
-  //     print(result.errorMessage);
-  //   }
-  //   return polylinesCoordinates;
-  // }
-
-  // Widget for displaying information
-  Widget informationDisplay(String label, String data) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      height: 120,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.blue.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: InkWell(
+        onTap: onPressed,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 36,
+              color: Colors.blue,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: 8),
-        Text(data),
-        const SizedBox(height: 20),
-      ],
+      ),
     );
   }
 }
@@ -477,6 +351,274 @@ class InformationDisplay extends StatelessWidget {
         const SizedBox(height: 8),
         ...children,
         const SizedBox(height: 20),
+      ],
+    );
+  }
+}
+
+class BeautifulCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const BeautifulCard({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.icon,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(12),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 36,
+              color: Colors.blue,
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    description,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ReceiveNotificationsDialog extends StatefulWidget {
+  @override
+  _ReceiveNotificationsDialogState createState() =>
+      _ReceiveNotificationsDialogState();
+}
+
+class _ReceiveNotificationsDialogState
+    extends State<ReceiveNotificationsDialog> {
+  bool _notificationsEnabled = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Receive Notifications'),
+      content: Row(
+        children: [
+          Expanded(
+            child: Text('Enable Notifications'),
+          ),
+          Switch(
+            value: _notificationsEnabled,
+            onChanged: (value) {
+              setState(() {
+                _notificationsEnabled = value;
+              });
+              // Perform database interaction here to update user settings
+              // Example: Update user's notification preference in the database
+              // database.updateUserSettings(notificationEnabled: value);
+            },
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('OK'),
+        ),
+      ],
+    );
+  }
+}
+
+class TrackPatientDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedCard(
+      icon: Icons.location_on,
+      title: 'Track Patient',
+      onPressed: () {
+        // Navigate to the TrackPatientMapPage when the card is clicked
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PatientTrackingPage(),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class EmergencyProceduresDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Perform database interaction here to retrieve emergency procedures
+    // Example: Fetch emergency procedures from the database
+    // List<Procedure> emergencyProcedures = database.getEmergencyProcedures();
+    return AlertDialog(
+      title: Text('Emergency Procedures'),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('List of Emergency Procedures:'),
+          // Display the list of procedures here
+          // Replace this with a ListView or other suitable widget
+          Text('1. Procedure 1'),
+          Text('2. Procedure 2'),
+          Text('3. Procedure 3'),
+          // Add more procedures as needed
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Close'),
+        ),
+      ],
+    );
+  }
+}
+
+class AccessOfflineFunctionalityDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // This dialog box may not directly interact with the database
+    // It can present a predefined list of offline features
+    return AlertDialog(
+      title: Text('Access Offline Functionality'),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Features Available Offline:'),
+          // Display the list of offline features here
+          // Replace this with a ListView or other suitable widget
+          Text('1. Feature 1'),
+          Text('2. Feature 2'),
+          Text('3. Feature 3'),
+          // Add more features as needed
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Close'),
+        ),
+      ],
+    );
+  }
+}
+
+class ViewReportsDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Perform database interaction here to retrieve trip reports
+    // Example: Fetch trip reports from the database
+    // List<TripReport> tripReports = database.getTripReports();
+    return AlertDialog(
+      title: Text('View Reports'),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('List of Trip Reports:'),
+          // Display the list of trip reports here
+          // Replace this with a ListView or other suitable widget
+          Text('1. Trip Report 1'),
+          Text('2. Trip Report 2'),
+          Text('3. Trip Report 3'),
+          // Add more trip reports as needed
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Close'),
+        ),
+      ],
+    );
+  }
+}
+
+class SettingsDialog extends StatefulWidget {
+  @override
+  _SettingsDialogState createState() => _SettingsDialogState();
+}
+
+class _SettingsDialogState extends State<SettingsDialog> {
+  bool _darkModeEnabled = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Settings'),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Dark Mode'),
+          Switch(
+            value: _darkModeEnabled,
+            onChanged: (value) {
+              setState(() {
+                _darkModeEnabled = value;
+              });
+              // Perform database interaction here to update user settings
+              // Example: Update user's dark mode preference in the database
+              // database.updateUserSettings(darkModeEnabled: value);
+            },
+          ),
+          // Add more settings options as needed
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Close'),
+        ),
       ],
     );
   }
