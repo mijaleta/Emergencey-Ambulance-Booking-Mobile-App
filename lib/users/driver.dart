@@ -915,46 +915,58 @@ class PanicSignalScreen extends StatelessWidget {
 }
 
 
-class SafetyChecklistScreen extends StatelessWidget {
+class SafetyChecklistScreen extends StatefulWidget {
+  @override
+  _SafetyChecklistScreenState createState() => _SafetyChecklistScreenState();
+}
+
+class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
+  // List to store completion status of each checklist item
+  final List<bool> _isChecked = [false, false, false]; // Replace with actual data
+
+  void _handleCheckboxChange(int index, bool value) {
+    setState(() {
+      _isChecked[index] = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Safety Checklist Screen'),
+        backgroundColor: Colors.blue,
+        title: Text('Safety Checklist Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Safety Checklist:'),
+            Text('Pre-Work Safety Checklist:'),
             CheckboxListTile(
-              title: Text('Checklist Item 1'),
-              value: true, // Replace with actual completion status
-              onChanged: (value) {
-                // Implement checkbox logic
-              },
+              title: Text('Ensure all equipment is in good working order'),
+              value: _isChecked[0],
+              onChanged: (value) => _handleCheckboxChange(0, value!),
             ),
             CheckboxListTile(
-              title: Text('Checklist Item 2'),
-              value: false, // Replace with actual completion status
-              onChanged: (value) {
-                // Implement checkbox logic
-              },
+              title: Text('Wear appropriate Personal Protective Equipment (PPE)'),
+              value: _isChecked[1],
+              onChanged: (value) => _handleCheckboxChange(1, value!),
             ),
             CheckboxListTile(
-              title: Text('Checklist Item 3'),
-              value: false, // Replace with actual completion status
-              onChanged: (value) {
-                // Implement checkbox logic
-              },
+              title: Text('Identify and clear any potential hazards in the work area'),
+              value: _isChecked[2],
+              onChanged: (value) => _handleCheckboxChange(2, value!),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Submit checklist logic
-              },
-              child: Text('Submit Checklist'),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Implement logic to submit checklist data (e.g., save to database)
+                  // You can access completion status from _isChecked list
+                },
+                child: Text('Submit Checklist'),
+              ),
             ),
           ],
         ),
@@ -962,3 +974,4 @@ class SafetyChecklistScreen extends StatelessWidget {
     );
   }
 }
+
