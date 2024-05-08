@@ -46,7 +46,6 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         // for notification
             //   applicationId "miretu.jaleta.chala"
 
@@ -59,20 +58,13 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-<<<<<<< HEAD
-
-
-        multiDexEnabled true
-=======
         // for notificatio       n
          multiDexEnabled true
         // for notificatio       ☻n
->>>>>>> 5d2047bb1cbb055c732ca4c04a26f46437196119
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
@@ -85,10 +77,6 @@ flutter {
 }
 
 dependencies {
-<<<<<<< HEAD
-    implementation "com.android.support:multidex:1.0.3"
-}
-=======
   // Import the Firebase BoM for version consistency
 //   implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
 
@@ -109,4 +97,3 @@ dependencies {
 }
 // apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 apply plugin: 'com.android.application'
->>>>>>> 5d2047bb1cbb055c732ca4c04a26f46437196119
