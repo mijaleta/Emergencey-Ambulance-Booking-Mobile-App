@@ -51,10 +51,7 @@ class FeedbackPageState extends State<FeedbackPage> {
     // Send the feedback data to the backend
     var response = await http.post(
       // Uri.parse('http://yourbackend.com/submit-feedback'), // Replace with your backend URL
-      //  Uri.parse('http://192.168.0.65:3000/submit-feedback'),
-              Uri.parse('http://ambulance-website.samiintegratedfarm.com/submit-feedback'),
-
-      //  Uri.parse('http://192.168.185.172:3000/submit-feedback'),
+       Uri.parse('http://192.168.0.65:3000/submit-feedback'),
 
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -198,54 +195,62 @@ class FeedbackPageState extends State<FeedbackPage> {
     );
   }
 
-// added now with form validation
-TextFormField buildNumberField() {
-  return TextFormField(
-    controller: contactNumberController,
-    keyboardType: TextInputType.number,
-    style: TextStyle(color: Colors.black),
-    decoration: InputDecoration(
-      contentPadding: EdgeInsets.all(0.0),
-      prefixIcon: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              border: Border(
-                right: BorderSide(
-                  width: 1.0,
-                  color: Color(0xFFC5C5C5),
-                ),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(width: 10.0),
-                const Text(
-                  "+251",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+  buildNumberField() {
+    return TextField(
+      controller: contactNumberController,
+      keyboardType: TextInputType.number,
+      style: TextStyle(color: Colors.black),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(0.0),
+        prefixIcon: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  right: BorderSide(
+                    width: 1.0,
                     color: Color(0xFFC5C5C5),
                   ),
                 ),
-                Icon(Icons.arrow_drop_down, color: Colors.cyan),
-                const SizedBox(width: 10.0),
-              ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    width: 10.0,
+                  ),
+                  const Text(
+                    "+251",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFC5C5C5),
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.cyan,
+                  ),
+                  const SizedBox(
+                    width: 10.0,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(width: 10.0),
-        ],
+            const SizedBox(
+              width: 10.0,
+            ),
+          ],
+        ),
+        hintStyle: TextStyle(
+          fontSize: 14.0,
+          color: Color(0xFFC5C5C5),
+        ),
+        hintText: "Phone Number",
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(40.0)),
       ),
-      hintStyle: TextStyle(fontSize: 14.0, color: Color(0xFFC5C5C5)),
-      hintText: "Phone Number",
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(40.0)),
-    ),
-   
-  );
-}
-
-// added now with form validation
+    );
+  }
 
   buildFeedbackForm() {
     return Container(
@@ -267,6 +272,51 @@ TextFormField buildNumberField() {
               ),
             ),
           ),
+// commented for screenshoot
+
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       border: Border(
+          //         top: BorderSide(
+          //           width: 1.0,
+          //           color: Color(0xFFA6A6A6),
+          //         ),
+          //       ),
+          //     ),
+          //     padding: EdgeInsets.all(8.0),
+          //     child: Row(
+          //       children: [
+          //         Container(
+          //           decoration: BoxDecoration(
+          //             color: Color(0xFFE5E5E5),
+          //             borderRadius: BorderRadius.circular(5.0),
+          //           ),
+          //           child: Padding(
+          //             padding: EdgeInsets.all(8.0),
+          //             child: Icon(
+          //               Icons.add,
+          //               color: Color(0xFFA5A5A5),
+          //             ),
+          //           ),
+          //         ),
+          //         const SizedBox(
+          //           width: 10.0,
+          //         ),
+          //         const Text(
+          //           "Upload screenshot (optional)",
+          //           style: TextStyle(
+          //             color: Color(0xFFC5C5C5),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // )
+        
+// commented for screenshoot
+
 
         ],
       ),

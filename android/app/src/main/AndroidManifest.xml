@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
 <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
@@ -11,6 +12,18 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+=======
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+ package="miretu.jaleta.chala">
+<!-- for notification -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- for notificaation -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+>>>>>>> Stashed changes
     <application
         android:label="ambu_app"
         android:name="${applicationName}"
@@ -42,15 +55,30 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+            <!-- for notificaton -->
+                    <!-- Set custom default icon for notifications -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        
+        <!-- Set default notification channel ID -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <!-- ScheduledNotificationBootReceiver -->
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+            android:exported="false">
+            <!-- for notificaton☻ -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAC55wPIAOzU6qJfSEzEGKlKG8QlyHg4QU" />
-    </application>
-    <!-- Required to query activities that can process text, see:
-         https://developer.android.com/training/package-visibility?hl=en and
-         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+                    </receiver>
 
-         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
+    </application>
+
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>

@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 class SpecialRequestPage extends StatefulWidget {
   SpecialRequestPage({super.key});
 
@@ -10,32 +8,7 @@ class SpecialRequestPage extends StatefulWidget {
 }
 
 class _SpecialRequestPageState extends State<SpecialRequestPage> {
-    String _specialRequest = '';
-
-  // ... (other code)
-
-  Future<void> _submitRequest() async {
-    // var url =  Uri.parse('http://192.168.0.65:3000/special-requests');
-         var url= Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest');
-
-    try {
-      var response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({'requestText': _specialRequest}),
-      );
-      if (response.statusCode == 201) {
-        _showSuccessDialog();
-      } else {
-        // Handle server errors
-        print('Server error: ${response.body}');
-      }
-    } catch (e) {
-      // Handle network errors
-      print('Network error: $e');
-    }
-  }
-
+  String _specialRequest = '';
 
   void _showSuccessDialog() {
     showDialog(
@@ -115,7 +88,9 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                              onPressed:_submitRequest,
+                              onPressed: () {
+                                _showSuccessDialog();
+                              },
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green),
                               child: const Text(

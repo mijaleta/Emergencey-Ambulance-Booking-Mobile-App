@@ -1,0 +1,8 @@
+<resources>
+    <!-- Firebase Cloud Messaging configuration values -->
+    <string name="gcm_defaultSenderId" translatable="false">377705294001</string> <!-- project_number -->
+    <string name="google_api_key" translatable="false">AIzaSyBsCxuVN8EHay5wPuke_0N0fvfMQ6Eo-Zw</string> <!-- current_key -->
+    <string name="google_app_id" translatable="false">1:377705294001:android:d1f9f8f1ebf7cc10c4da90</string> <!-- mobilesdk_app_id -->
+    <string name="google_storage_bucket" translatable="false">ambulnaceappf.appspot.com</string> <!-- storage_bucket -->
+    <string name="project_id" translatable="false">ambulnaceappf</string> <!-- project_id -->
+</resources>

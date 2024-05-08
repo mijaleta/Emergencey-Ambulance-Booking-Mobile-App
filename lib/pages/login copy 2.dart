@@ -44,6 +44,7 @@ class Login extends StatelessWidget {
       ),
     );
   }
+
   _header(context) {
     return const Column(
       children: [
@@ -68,11 +69,7 @@ class Login extends StatelessWidget {
       final String password = passwordController.text;
 // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-<<<<<<< Updated upstream
-      final url = Uri.parse('http://ambulance-website.samiintegratedfarm.com/login');
-=======
       final url = Uri.parse('http://192.168.0.65:3000/login');
->>>>>>> Stashed changes
 
       try {
         final response = await http.post(
@@ -227,6 +224,4 @@ class Login extends StatelessWidget {
       ],
     );
   }
-
-
 }

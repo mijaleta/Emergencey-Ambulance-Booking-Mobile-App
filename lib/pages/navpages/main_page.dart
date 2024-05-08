@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage> {
                 currentIndex = index;
               });
             },
-            tabs: [
+            tabs: const [
               GButton(
                 icon: Ionicons.apps_outline,
                 text: 'Home',
