@@ -6,11 +6,11 @@ import 'package:latlong2/latlong.dart';
 import 'package:gebetamap/gebetamap.dart';
 
 class MapPage extends StatefulWidget {
-  c-onst MapPage({Key? key}) : super(key: key);
+  const MapPage({Key? key}) : super(key: key);
 
   @override
   State<MapPage> createState() => _MapPageState();
-}=-
+}
 
 class _MapPageState extends State<MapPage> {
   // List<dynamic> listOfPoints = [];
