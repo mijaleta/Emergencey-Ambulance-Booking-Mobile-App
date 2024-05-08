@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:ambu_app/sidebar/driver_sidebar.dart';
 import 'package:ambu_app/sidebar/patient_tracking.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/plugin_api.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'package:permission_handler/permission_handler.dart';
@@ -688,7 +690,8 @@ class _CallScreenState extends State<CallScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Call Screen'),
+        backgroundColor: Colors.blue,
+        title: Text('Call Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -736,13 +739,22 @@ class _CallScreenState extends State<CallScreen> {
           ),
           SizedBox(height: 20),
           Text('00:10:32'), // Call duration timer
-          ElevatedButton(
-            onPressed: () {
-              String phoneNumber = _phoneNumberController.text;
-              // Validate phone number (optional)
-              _makePhoneCall('tel:$phoneNumber');
-            },
-            child:const Text('Call'),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  String phoneNumber = _phoneNumberController.text;
+                  // Validate phone number (optional)
+                  _makePhoneCall('tel:$phoneNumber');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black
+                ),
+                child:const Text('Call', style: TextStyle(color: Colors.white),),
+              ),
+            ),
           ),
         ],
       ),
@@ -813,31 +825,42 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
             ),
             SizedBox(height: 20),
             Text('Select Severity Level:'),
-            DropdownButton<String>(
-              items: [
-                DropdownMenuItem(
-                  child: Text('Low'),
-                  value: 'Low',
+            Center(
+              child: SizedBox(
+                width: double.infinity,
+                child: DropdownButton<String>(
+                  items: [
+                    DropdownMenuItem(
+                      child: Text('Low'),
+                      value: 'Low',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Medium'),
+                      value: 'Medium',
+                    ),
+                    DropdownMenuItem(
+                      child: Text('High'),
+                      value: 'High',
+                    ),
+                  ],
+                  onChanged: (value) {},
+                  value: 'Low', // Default value
                 ),
-                DropdownMenuItem(
-                  child: Text('Medium'),
-                  value: 'Medium',
-                ),
-                DropdownMenuItem(
-                  child: Text('High'),
-                  value: 'High',
-                ),
-              ],
-              onChanged: (value) {},
-              value: 'Low', // Default value
+              ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Implement incident reporting logic with attached files
-                // You can access the file paths using _attachedFiles.map((file) => file.path).toList()
-              },
-              child: Text('Report Incident'),
+            Center(
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Implement incident reporting logic with attached files
+                    // You can access the file paths using _attachedFiles.map((file) => file.path).toList()
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  child: Text('Report Incident', style: TextStyle(color: Colors.white),),
+                ),
+              ),
             ),
           ],
         ),
@@ -877,34 +900,51 @@ class PanicSignalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Panic Signal Screen'),
+        backgroundColor: Colors.blue,
+        title: Text('Panic Signal Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Send Panic Signal'),
+            Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Implement panic signal logic
-              },
-              child: Text('Send Panic Signal'),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Implement panic signal logic
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black,),
+                  child: Text('Send Panic Signal', style: TextStyle(color: Colors.white ) ),
+                ),
+              ),
             ),
             SizedBox(height: 20),
             Text('Your Current Location:'),
             SizedBox(height: 10),
-            Container(
-              height: 200, // Adjust the height according to your design
-              color: Colors.grey[200],
-              child: Center(child: Text('Map Widget')),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 200, // Adjust the height according to your design
+                color: Colors.grey[200],
+                child: FlutterMap(options: MapOptions(
+                  center: LatLng(7.694773056555514, 36.81639576726418),
+                  zoom: 13,
+                )),
+              ),
             ),
             SizedBox(height: 20),
-            TextField(
-              maxLines: 5,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Additional Notes (Optional)',
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: TextField(
+                maxLines: 5,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Additional Notes (Optional)',
+                ),
               ),
             ),
           ],
@@ -959,13 +999,15 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
               onChanged: (value) => _handleCheckboxChange(2, value!),
             ),
             SizedBox(height: 20),
-            Center(
+            SizedBox(
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   // Implement logic to submit checklist data (e.g., save to database)
                   // You can access completion status from _isChecked list
                 },
-                child: Text('Submit Checklist'),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                child: Text('Submit Checklist', style: TextStyle(color: Colors.white),),
               ),
             ),
           ],
