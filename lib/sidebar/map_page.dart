@@ -6,11 +6,11 @@ import 'package:latlong2/latlong.dart';
 import 'package:gebetamap/gebetamap.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({Key? key}) : super(key: key);
+  c-onst MapPage({Key? key}) : super(key: key);
 
   @override
   State<MapPage> createState() => _MapPageState();
-}
+}=-
 
 class _MapPageState extends State<MapPage> {
   // List<dynamic> listOfPoints = [];
@@ -60,7 +60,7 @@ class _MapPageState extends State<MapPage> {
 
   Future<double> getDriverLongitude() async {
     // Implement logic to fetch driver's longitude
-    return 36.80699730678395; // Placeholder value, replace with actual data
+    return 36.80699730678395; // Placeh-older value, replace with actual data
   }
 
   @override

@@ -3,8 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+<<<<<<< HEAD
   file_selector_windows
   firebase_core
+=======
+  connectivity_plus
+>>>>>>> 5d2047bb1cbb055c732ca4c04a26f46437196119
   geolocator_windows
   permission_handler_windows
   url_launcher_windows

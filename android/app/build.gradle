@@ -2,6 +2,9 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    // for notfifcation
+
+    // for notfifcation☻
 }
 
 def localProperties = new Properties()
@@ -44,7 +47,11 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.ambu_app"
+        // for notification
+            //   applicationId "miretu.jaleta.chala"
+
+        // for notifi☻cation
+
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         // minSdkVersion flutter.minSdkVersion
@@ -52,9 +59,15 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+<<<<<<< HEAD
 
 
         multiDexEnabled true
+=======
+        // for notificatio       n
+         multiDexEnabled true
+        // for notificatio       ☻n
+>>>>>>> 5d2047bb1cbb055c732ca4c04a26f46437196119
     }
 
     buildTypes {
@@ -65,14 +78,6 @@ android {
         }
     }
 
-//     buildTypes {
-//         debug {
-// // Disable profiler
-//             debuggable true
-//             jniDebuggable true
-//             profiling false
-//         }
-//     }
 }
 
 flutter {
@@ -80,5 +85,28 @@ flutter {
 }
 
 dependencies {
+<<<<<<< HEAD
     implementation "com.android.support:multidex:1.0.3"
 }
+=======
+  // Import the Firebase BoM for version consistency
+//   implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+
+  // Add specific Firebase SDK dependencies (replace with desired services)
+//   implementation "com.google.firebase:firebase-analytics"
+//   implementation "com.google.firebase:firebase-firestore" // Example: Add Firestore SDK
+//   implementation 'com.android.support:multidex:1.0.3'
+
+
+
+
+//   now
+// implementation 'com.google.firebase:firebase-perf'
+// implementation 'com.google.firebase:firebase-messaging'
+
+
+  // ... (other Firebase SDKs)
+}
+// apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+apply plugin: 'com.android.application'
+>>>>>>> 5d2047bb1cbb055c732ca4c04a26f46437196119

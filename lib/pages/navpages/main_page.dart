@@ -83,7 +83,7 @@ class _MainPageState extends State<MainPage> {
   List pages = [
     HomePage(),
     OurServices(),
-    SearchPage(),
+    // SearchPage(),
     AccountScreen(),
   ];
   int currentIndex = 0;
@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage> {
                 currentIndex = index;
               });
             },
-            tabs: [
+            tabs: const [
               GButton(
                 icon: Ionicons.apps_outline,
                 text: 'Home',

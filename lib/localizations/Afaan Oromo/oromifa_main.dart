@@ -86,7 +86,7 @@ class _OromiffaMainPageState extends State<OromiffaMainPage> {
   List pages = [
     HomePageDhukkubsataa(),
     TajaajilootaKeenya(),
-    SearchPage(),
+    // SearchPage(),
     AccountScreen(),
   ];
   int currentIndex = 0;

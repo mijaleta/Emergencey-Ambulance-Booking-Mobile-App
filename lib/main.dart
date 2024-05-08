@@ -30,27 +30,18 @@ import 'package:ambu_app/pages/language_selection_page.dart';
 import 'localizations/Afaan Oromo/home_page_dhukkubsataa.dart';
 import 'localizations/Amharic/yetamami_home_page.dart';
 import 'pages/account_black.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
 
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-// Handle background notifications (optional)
-// }
-// Future<void> main()  async {
-// await dotenv.load();
-// WidgetsFlutterBinding.ensureInitialized();
-// await Firebase.initializeApp();
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+ 
+void main()  {
+  
 
-// FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-//   alert: true,
-//   badge: true,
-//   sound: true,
-// );
-// Optional: Register background message handler
-// FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-void main() {
   runApp(MyApp());
 }
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key});
@@ -62,7 +53,7 @@ class MyApp extends StatelessWidget {
       title: 'Emergency Ambulance Booking',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-      ),
+      ), 
       initialRoute: '/splash',
       routes: {
         '/home': (context) => HomePage(),
