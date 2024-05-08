@@ -1,18 +1,3 @@
-<<<<<<< Updated upstream
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
-<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-<!--    <uses-permission android:name="android.permission.INTERNET"/>-->
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-=======
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
  package="miretu.jaleta.chala">
 <!-- for notification -->
@@ -23,7 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
->>>>>>> Stashed changes
     <application
         android:label="ambu_app"
         android:name="${applicationName}"

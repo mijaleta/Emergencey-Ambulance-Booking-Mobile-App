@@ -48,7 +48,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         // for notification
-              applicationId "miretu.jaleta.chala"
+            //   applicationId "miretu.jaleta.chala"
 
         // for notifi☻cation
 
@@ -59,13 +59,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-<<<<<<< Updated upstream
-        multiDexEnabled true
-=======
         // for notificatio       n
          multiDexEnabled true
         // for notificatio       ☻n
->>>>>>> Stashed changes
     }
 
     buildTypes {
@@ -84,22 +80,22 @@ flutter {
 
 dependencies {
   // Import the Firebase BoM for version consistency
-  implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+//   implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
 
   // Add specific Firebase SDK dependencies (replace with desired services)
-  implementation "com.google.firebase:firebase-analytics"
-  implementation "com.google.firebase:firebase-firestore" // Example: Add Firestore SDK
-  implementation 'com.android.support:multidex:1.0.3'
+//   implementation "com.google.firebase:firebase-analytics"
+//   implementation "com.google.firebase:firebase-firestore" // Example: Add Firestore SDK
+//   implementation 'com.android.support:multidex:1.0.3'
 
 
 
 
 //   now
-implementation 'com.google.firebase:firebase-perf'
-implementation 'com.google.firebase:firebase-messaging'
+// implementation 'com.google.firebase:firebase-perf'
+// implementation 'com.google.firebase:firebase-messaging'
 
 
   // ... (other Firebase SDKs)
 }
-apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+// apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 apply plugin: 'com.android.application'

@@ -54,8 +54,6 @@ dependencies:
 #  gebetamap: any
   flutter_map: ^4.0.0
   gebetamap: ^1.1.4
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 #  flutter_osm_plugin: ^0.70.4
   permission_handler: ^11.0.1
 #  flutter_osm_plugin: ^0.60.4
@@ -65,14 +63,9 @@ dependencies:
 #  webview_flutter: ^4.7.0\
 
 #  flutter_map: any
-=======
-  flutter_polyline_points: ^1.0.0
->>>>>>> Stashed changes
-=======
   flutter_polyline_points: ^1.0.0
   flutter_local_notifications: ^17.1.0
   http: ^0.13.6
->>>>>>> Stashed changes
   # dropdown_search: ^5.0.6
   
 

@@ -103,13 +103,11 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       _formKey.currentState!.save();
       try {
         var response = await http.post(
-<<<<<<< Updated upstream
           Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest'),
-=======
+
           // Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest'),
           // Uri.parse('http://192.168.137.1:3000/patientRequest'),
-          Uri.parse('http://192.168.0.65:3000/patientRequest'),
->>>>>>> Stashed changes
+          // Uri.parse('http://192.168.0.65:3000/patientRequest'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
