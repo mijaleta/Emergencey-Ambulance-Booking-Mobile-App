@@ -651,6 +651,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
 }
 
 class CallScreen extends StatefulWidget {
+  const CallScreen({super.key});
+
   @override
   _CallScreenState createState() => _CallScreenState();
 }
@@ -691,13 +693,13 @@ class _CallScreenState extends State<CallScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Call Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title:const Text('Call Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Caller: Chala Kebede'),
-          SizedBox(height: 20),
+          const Text('Caller: Chala Kebede'),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: TextField(
@@ -707,38 +709,38 @@ class _CallScreenState extends State<CallScreen> {
                 hintText: '+251961305788',
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0), // Adjust as desired
-                  borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                  borderSide:const BorderSide(color: Colors.grey, width: 1.0),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0), // Adjust as desired
-                  borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                  borderSide:const BorderSide(color: Colors.blue, width: 2.0),
                 ),
               ),
               keyboardType: TextInputType.phone,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 onPressed: () {},
-                child: Icon(Icons.mic_off),
+                child:const Icon(Icons.mic_off),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {},
-                child: Icon(Icons.pause),
+                child:const Icon(Icons.pause),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {},
-                child: Icon(Icons.call_end),
+                child:const Icon(Icons.call_end),
               ),
             ],
           ),
-          SizedBox(height: 20),
-          Text('00:10:32'), // Call duration timer
+          const SizedBox(height: 20),
+          const Text('00:10:32'), // Call duration timer
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
@@ -791,22 +793,22 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Report Incident Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title:const Text('Report Incident Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding:const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Attach Photos/Videos:'),
-            SizedBox(height: 10),
+            const Center(child: Text('Attach Photos/Videos', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),)),
+            const SizedBox(height: 10),
             _attachedFiles == null
                 ? InkWell(
               onTap: _pickMedia,
               child: Container(
                 height: 150, // Adjust the height according to your design
                 color: Colors.grey[200],
-                child: Center(child: Text('Tap to Attach')),
+                child:const Center(child: Text('Tap to Attach')),
               ),
             )
                 : Wrap(
@@ -815,32 +817,32 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
                 return _buildAttachedItem(_attachedFiles![index]);
               }),
             ),
-            SizedBox(height: 20),
-            Text('Incident Details:'),
-            TextField(
+            const SizedBox(height: 20),
+            const Text('Incident Details'),
+            const TextField(
               maxLines: 5,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
-            Text('Select Severity Level:'),
+            const SizedBox(height: 20),
+            const Center(child: Text('Select Severity Level')),
             Center(
               child: SizedBox(
                 width: double.infinity,
                 child: DropdownButton<String>(
-                  items: [
+                  items:const  [
                     DropdownMenuItem(
-                      child: Text('Low'),
                       value: 'Low',
+                      child: Text('Low'),
                     ),
                     DropdownMenuItem(
-                      child: Text('Medium'),
                       value: 'Medium',
+                      child: Text('Medium'),
                     ),
                     DropdownMenuItem(
-                      child: Text('High'),
                       value: 'High',
+                      child: Text('High'),
                     ),
                   ],
                   onChanged: (value) {},
@@ -848,7 +850,7 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: SizedBox(
                 width: double.infinity,
@@ -858,7 +860,7 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
                     // You can access the file paths using _attachedFiles.map((file) => file.path).toList()
                   },
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                  child: Text('Report Incident', style: TextStyle(color: Colors.white),),
+                  child:const Text('Report Incident', style: TextStyle(color: Colors.white),),
                 ),
               ),
             ),
@@ -871,18 +873,18 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
   Widget _buildAttachedItem(XFile file) {
     return Stack(
       children: [
-        Container(
+        SizedBox(
           width: 100,
           height: 100,
           child: file.mimeType!.startsWith('image/')
               ? Image.file(File(file.path))
-              : Icon(Icons.videocam),
+              :const Icon(Icons.videocam),
         ),
         Positioned(
           right: 0,
           top: 0,
           child: IconButton(
-            icon: Icon(Icons.close),
+            icon:const Icon(Icons.close),
             onPressed: () {
               setState(() {
                 _attachedFiles!.remove(file);
@@ -896,19 +898,21 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
 }
 
 class PanicSignalScreen extends StatelessWidget {
+  const PanicSignalScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Panic Signal Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title:const Text('Panic Signal Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-            SizedBox(height: 20),
+            const Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: SizedBox(
@@ -918,13 +922,13 @@ class PanicSignalScreen extends StatelessWidget {
                     // Implement panic signal logic
                   },
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.black,),
-                  child: Text('Send Panic Signal', style: TextStyle(color: Colors.white ) ),
+                  child:const Text('Send Panic Signal', style: TextStyle(color: Colors.white ) ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Text('Your Current Location:'),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
+            const Text('Your Current Location:'),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -936,9 +940,9 @@ class PanicSignalScreen extends StatelessWidget {
                 )),
               ),
             ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.all(15.0),
               child: TextField(
                 maxLines: 5,
                 decoration: InputDecoration(
@@ -975,30 +979,30 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Safety Checklist Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title:const Text('Safety Checklist Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding:const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Pre-Work Safety Checklist:'),
+            const Center(child: Text('Pre-Work Safety Checklist', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),)),
             CheckboxListTile(
-              title: Text('Ensure all equipment is in good working order'),
+              title:const Text('Ensure all equipment is in good working order'),
               value: _isChecked[0],
               onChanged: (value) => _handleCheckboxChange(0, value!),
             ),
             CheckboxListTile(
-              title: Text('Wear appropriate Personal Protective Equipment (PPE)'),
+              title:const Text('Wear appropriate Personal Protective Equipment (PPE)'),
               value: _isChecked[1],
               onChanged: (value) => _handleCheckboxChange(1, value!),
             ),
             CheckboxListTile(
-              title: Text('Identify and clear any potential hazards in the work area'),
+              title:const Text('Identify and clear any potential hazards in the work area'),
               value: _isChecked[2],
               onChanged: (value) => _handleCheckboxChange(2, value!),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -1007,7 +1011,7 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
                   // You can access completion status from _isChecked list
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                child: Text('Submit Checklist', style: TextStyle(color: Colors.white),),
+                child:const Text('Submit Checklist', style: TextStyle(color: Colors.white),),
               ),
             ),
           ],

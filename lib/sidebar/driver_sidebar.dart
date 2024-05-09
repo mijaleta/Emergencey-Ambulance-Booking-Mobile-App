@@ -1,11 +1,12 @@
 import 'package:ambu_app/pages/account_page.dart';
-import 'package:ambu_app/sidebar/map_page.dart';
+// import 'package:ambu_app/sidebar/map_page.dart';
+import 'package:ambu_app/sidebar/patient_tracking.dart';
 import 'package:ambu_app/users/driver.dart';
-import 'package:ambu_app/users/user_location.dart';
+// import 'package:ambu_app/users/user_location.dart';
 import 'package:flutter/material.dart';
-import 'package:gebetamap/gebetamap.dart';
+// import 'package:gebetamap/gebetamap.dart';
 
-import 'diriver_map.dart';
+// import 'diriver_map.dart';
 
 // import 'diriver_map.dart';
 
@@ -90,35 +91,35 @@ class DriverNavBar extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ListTile(
-                leading: const Image(
-                  image: AssetImage('icons/patient.png'),
-                  height: 40,
-                  width: 40,
-                ),
-                title: const Text(
-                  'Notifications',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                onTap: () {
-
-                },
-                trailing: ClipOval(
-                  child: Container(
-                    color: Colors.red,
-                    width: 20,
-                    height: 20,
-                    child: const Center(
-                        child: Text(
-                      '8',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    )),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+              // ListTile(
+              //   leading: const Image(
+              //     image: AssetImage('icons/patient.png'),
+              //     height: 40,
+              //     width: 40,
+              //   ),
+              //   title: const Text(
+              //     'Notifications',
+              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              //   ),
+              //   onTap: () {
+              //
+              //   },
+              //   trailing: ClipOval(
+              //     child: Container(
+              //       color: Colors.red,
+              //       width: 20,
+              //       height: 20,
+              //       child: const Center(
+              //           child: Text(
+              //         '8',
+              //         style: TextStyle(color: Colors.white, fontSize: 12),
+              //       )),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               ListTile(
                 leading: const Image(
                   image: AssetImage('icons/google-maps.png'),
@@ -130,7 +131,7 @@ class DriverNavBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => PatientLocation()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const PatientTrackingPage()));
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
                   // callMapFunctions();  PatientLocation
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
@@ -153,7 +154,9 @@ class DriverNavBar extends StatelessWidget {
                   'Contact',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const CallScreen()));
+                },
               ),
               const SizedBox(
                 height: 20,
