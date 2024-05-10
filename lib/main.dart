@@ -76,7 +76,10 @@ class MyApp extends StatelessWidget {
         '/specialRequest': (context) => SpecialRequestPage(),
         '/privacyPolicy': (context) => PrivacyPolicyPage(),
         '/termsOfService': (context) => TermsOfServicePage(),
-        '/driver': (context) => Driver(),
+      
+
+          '/driver': (context) => Driver(username: 'your_username_here'),
+
         '/nurse': (context) => Nurse(),
         '/blackAccount': (context) => AccountBlack(),
         '/servicesPage': (context) => OurServices(),

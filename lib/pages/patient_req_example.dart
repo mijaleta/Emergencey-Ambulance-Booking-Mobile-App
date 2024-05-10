@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart'; // Import the geolocator package
+import 'car_page.dart'; // Replace with the actual path to your CarPage file
+import 'labour_page.dart'; // Replace with the actual path to your LabourPage file
+import 'animal_page.dart'; // Replace with the actual path to your AnimalPage file
 
 class RequestAmbulancePage extends StatefulWidget {
   @override
@@ -12,7 +15,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   final _formKey = GlobalKey<FormState>();
   String _location = ''; // Initialize location variable
   String _contactInfo = '';
-  String _urgencyLevel = 'low';
+  String _address = '';
+  String _number = '';
+  String _emergency_type= 'Car';
   late Position _currentPosition; // Variable to store current position
 
   @override
@@ -57,6 +62,25 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                 ),
                 enabled: false, // Disable editing of the location field
               ),
+
+
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Address',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your address information';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _address = value!;
+                },
+              ),
+              
+
+               
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Contact Information',
@@ -71,12 +95,14 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   _contactInfo = value!;
                 },
               ),
+              
+              
               DropdownButtonFormField(
-                value: _urgencyLevel,
+                value: _emergency_type,
                 decoration: InputDecoration(
-                  labelText: 'Urgency Level',
+                  labelText: 'Emergency type',
                 ),
-                items: ['low', 'medium', 'high']
+                items: ['Car',  'Labour','Animal']
                     .map((level) => DropdownMenuItem(
                           value: level,
                           child: Text(level),
@@ -84,10 +110,33 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    _urgencyLevel = value as String;
+                    _emergency_type = value as String;
                   });
                 },
               ),
+              
+
+              // number of incident
+              TextFormField(
+  decoration: InputDecoration(
+    labelText: 'Contact Number',
+  ),
+  keyboardType: TextInputType.number, // Use number input type for numeric keyboard
+  validator: (value) {
+    if (value!.isEmpty) {
+      return 'patient number';
+    }
+    // Add a condition to check if the entered value is a valid number
+    if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return 'Please enter a valid number';
+    }
+    return null;
+  },
+  onSaved: (value) {
+    _number = value!;
+  },
+),
+
               ElevatedButton(
                 onPressed: _submitRequest,
                 child: Text('Submit Request'),
@@ -98,62 +147,126 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       ),
     );
   }
-  void _submitRequest() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      try {
-        var response = await http.post(
-          Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest'),
 
-          // Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest'),
-          // Uri.parse('http://192.168.137.1:3000/patientRequest'),
-          // Uri.parse('http://192.168.0.65:3000/patientRequest'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonEncode(<String, String>{
-            'location': _location,
-            'contactInfo': _contactInfo,
-            'urgencyLevel': _urgencyLevel,
-          }),
-        );
-        if (response.statusCode == 200) {
-          try {
-            final responseData = jsonDecode(response.body);
-            if (responseData['message'] ==
-                'Booking request submitted successfully') {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Success'),
-                    content: Text(responseData['message']),
-                    actions: <Widget>[
-                      TextButton(
-                        child: Text('OK'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.blue,
-                        ),
-                      ),
-                    ],
-                  );
-                },
+ void _submitRequest() async {
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
+    try {
+      var response = await http.post(
+        Uri.parse('http://192.168.185.172:3000/patientRequest'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'location': _location,
+          'contactInfo': _contactInfo,
+          'emergency_type': _emergency_type,
+          'address': _address,
+          'number':_number
+        }),
+      );
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        if (responseData['message'] ==
+            'Booking request submitted successfully') {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Success'),
+                content: Text(responseData['message']),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                      _navigateToEmergencyPage(context); // Navigate to the emergency page
+                    },
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
+                    ),
+                  ),
+                ],
               );
-            }
-          } catch (e) {
-            print('The response is not in JSON format: $e');
-          }
-        } else {
-          print('Failed to send request. Status code: ${response.statusCode}');
-          print('Response body: ${response.body}');
+            },
+          );
         }
-      } catch (e) {
-        print('An error occurred: $e');
+      } else {
+        print('Failed to send request. Status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
       }
+    } catch (e) {
+      print('An error occurred: $e');
     }
+  }
+}
+
+void _navigateToEmergencyPage(BuildContext context) {
+  switch (_emergency_type) {
+    case 'Car':
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CarPage()));
+      break;
+    case 'Labour':
+      Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
+      break;
+    case 'Animal':
+      Navigator.push(context, MaterialPageRoute(builder: (context) => AnimalPage()));
+      break;
+    default:
+      // Handle unknown emergency type if necessary
+      break;
+  }
+}
+
+
+}
+
+
+
+
+
+
+
+
+class CarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Car Emergency'),
+      ),
+      body: Center(
+        child: Text('Details about Car Emergency'),
+      ),
+    );
+  }
+}
+
+class LabourPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Labour Emergency'),
+      ),
+      body: Center(
+        child: Text('Details about Labour Emergency'),
+      ),
+    );
+  }
+}
+
+class AnimalPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Animal Emergency'),
+      ),
+      body: Center(
+        child: Text('Details about Animal Emergency'),
+      ),
+    );
   }
 }

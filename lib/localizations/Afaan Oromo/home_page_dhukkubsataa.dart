@@ -177,10 +177,10 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                 );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Konkolaachisaa') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Driver()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const Driver()),
+                // );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'Nurse') {
                 Navigator.push(
