@@ -1,3 +1,4 @@
+import 'package:ambu_app/helpers/demomap.dart';
 import 'package:ambu_app/pages/account_page.dart';
 // import 'package:ambu_app/sidebar/map_page.dart';
 import 'package:ambu_app/sidebar/patient_tracking.dart';
@@ -131,8 +132,8 @@ class DriverNavBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const PatientTrackingPage()));
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) =>const PatientTrackingPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const DemoMap()));
                   // callMapFunctions();  PatientLocation
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
                 },

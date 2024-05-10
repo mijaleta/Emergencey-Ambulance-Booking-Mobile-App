@@ -898,66 +898,131 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
 }
 
 class PanicSignalScreen extends StatelessWidget {
-  const PanicSignalScreen({super.key});
+  const PanicSignalScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title:const Text('Panic Signal Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: const Text(
+          'Panic Signal Screen',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Implement panic signal logic
-                  },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black,),
-                  child:const Text('Send Panic Signal', style: TextStyle(color: Colors.white ) ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+              ),
+              const SizedBox(height: 20),
+        
+              const SizedBox(height: 20),
+              const Text('Your Current Location:'),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    height: 400, // Adjust the height according to your design
+                    color: Colors.grey[200],
+                    child: FutureBuilder<LocationData>(
+                      future: _getLocation(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const Center(child: CircularProgressIndicator());
+                        } else if (snapshot.hasError) {
+                          return Center(child: Text('Error: ${snapshot.error}'));
+                        } else {
+                          final locationData = snapshot.data!;
+                          return FlutterMap(
+                            options: MapOptions(
+                              center: LatLng(locationData.latitude!, locationData.longitude!),
+                              zoom: 13,
+                            ),
+                            children: [
+                              TileLayer(
+                                urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                subdomains: ['a', 'b', 'c'],
+                                userAgentPackageName: 'com.example.app',
+                              ),
+                              MarkerLayer(
+                                markers: [
+                                  Marker(
+                                    width: 80.0,
+                                    height: 80.0,
+                                    point: LatLng(locationData.latitude!, locationData.longitude!),
+                                    builder: (ctx) => Container(
+                                      child: Icon(Icons.location_on, size: 50, color: Colors.red),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              RichAttributionWidget(
+                                attributions: [
+                                  TextSourceAttribution(
+                                    'OpenStreetMap contributors',
+                                    onTap: () => launchUrl(Uri.parse('https://openstreetmap.org/copyright')),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            const Text('Your Current Location:'),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 200, // Adjust the height according to your design
-                color: Colors.grey[200],
-                child: FlutterMap(options: MapOptions(
-                  center: LatLng(7.694773056555514, 36.81639576726418),
-                  zoom: 13,
-                )),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.all(15.0),
-              child: TextField(
-                maxLines: 5,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Additional Notes (Optional)',
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextField(
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Additional Notes (Optional)',
+                  ),
                 ),
               ),
-            ),
-          ],
+        
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Implement panic signal logic
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    child: const Text('Send Panic Signal', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-}
 
+  Future<LocationData> _getLocation() async {
+    Location location = Location();
+
+    try {
+      return await location.getLocation();
+    } catch (e) {
+      return Future.error('Failed to get location: $e');
+    }
+  }
+}
 
 class SafetyChecklistScreen extends StatefulWidget {
   @override
