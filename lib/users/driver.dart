@@ -788,50 +788,130 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
     }
   }
 
+  Future<void> _reportIncident() async {
+    if (_attachedFiles == null || _attachedFiles!.isEmpty) {
+      // Show error message if no files are attached
+      _showErrorMessage('Please attach photos/videos before reporting the incident.');
+      return;
+    }
+
+    // Implement your incident reporting logic here
+    // You can access the file paths using _attachedFiles.map((file) => file.path).toList()
+
+    // Show success dialog
+    _showSuccessDialog('Incident reported successfully!');
+  }
+
+  void _showErrorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSuccessDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Success'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildAttachedItem(XFile file) {
+    return Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.blue, width: 2),
+        borderRadius: BorderRadius.circular(8),
+        image: DecorationImage(
+          image: FileImage(File(file.path)),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title:const Text('Report Incident Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: Text(
+          'Report Incident Screen',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
-        padding:const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(child: Text('Attach Photos/Videos', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),)),
-            const SizedBox(height: 10),
+            Center(
+              child: Text(
+                'Attach Photos/Videos',
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
+              ),
+            ),
+            SizedBox(height: 10),
             _attachedFiles == null
                 ? InkWell(
               onTap: _pickMedia,
               child: Container(
                 height: 150, // Adjust the height according to your design
                 color: Colors.grey[200],
-                child:const Center(child: Text('Tap to Attach')),
+                child: Center(child: Text('Tap to Attach')),
               ),
             )
                 : Wrap(
               spacing: 10,
-              children: List.generate(_attachedFiles!.length, (index) {
-                return _buildAttachedItem(_attachedFiles![index]);
-              }),
+              children: List.generate(
+                _attachedFiles!.length,
+                    (index) {
+                  return _buildAttachedItem(_attachedFiles![index]);
+                },
+              ),
             ),
-            const SizedBox(height: 20),
-            const Text('Incident Details'),
-            const TextField(
+            SizedBox(height: 20),
+            Text('Incident Details'),
+            TextField(
               maxLines: 5,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20),
-            const Center(child: Text('Select Severity Level')),
+            SizedBox(height: 20),
+            Center(child: Text('Select Severity Level')),
             Center(
               child: SizedBox(
                 width: double.infinity,
                 child: DropdownButton<String>(
-                  items:const  [
+                  items: [
                     DropdownMenuItem(
                       value: 'Low',
                       child: Text('Low'),
@@ -850,17 +930,17 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Center(
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Implement incident reporting logic with attached files
-                    // You can access the file paths using _attachedFiles.map((file) => file.path).toList()
-                  },
+                  onPressed: _reportIncident,
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                  child:const Text('Report Incident', style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    'Report Incident',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -869,7 +949,7 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
       ),
     );
   }
-
+}
   Widget _buildAttachedItem(XFile file) {
     return Stack(
       children: [
@@ -886,16 +966,15 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
           child: IconButton(
             icon:const Icon(Icons.close),
             onPressed: () {
-              setState(() {
-                _attachedFiles!.remove(file);
-              });
+              // setState(() {
+              //   _attachedFiles!.remove(file);
+              // });
             },
           ),
         ),
       ],
     );
   }
-}
 
 class PanicSignalScreen extends StatelessWidget {
   const PanicSignalScreen({Key? key}) : super(key: key);
@@ -920,7 +999,7 @@ class PanicSignalScreen extends StatelessWidget {
                 child: Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
               ),
               const SizedBox(height: 20),
-        
+
               const SizedBox(height: 20),
               const Text('Your Current Location:'),
               const SizedBox(height: 10),
@@ -990,14 +1069,14 @@ class PanicSignalScreen extends StatelessWidget {
                   ),
                 ),
               ),
-        
+
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Implement panic signal logic
+                      _sendPanicSignal(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -1019,10 +1098,33 @@ class PanicSignalScreen extends StatelessWidget {
     try {
       return await location.getLocation();
     } catch (e) {
-      return Future.error('Failed to get location: $e');
+      throw ('Failed to get location: $e');
     }
   }
+
+  void _sendPanicSignal(BuildContext context) {
+    // Implement panic signal logic
+    // Placeholder for success dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Success'),
+          content: Text('Panic signal sent successfully!'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
+
 
 class SafetyChecklistScreen extends StatefulWidget {
   @override
@@ -1033,10 +1135,97 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
   // List to store completion status of each checklist item
   final List<bool> _isChecked = [false, false, false]; // Replace with actual data
 
+  bool _isSubmitting = false;
+
   void _handleCheckboxChange(int index, bool value) {
     setState(() {
       _isChecked[index] = value;
     });
+  }
+
+  Future<void> _submitChecklist() async {
+    // Check if all checkboxes are selected
+    if (_isChecked.every((isChecked) => !isChecked)) {
+      // Show error dialog if any checkbox is not selected
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Please ensure atleast one checkbox is selected.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return; // Exit the method early if any checkbox is not selected
+    }
+
+    // Implement logic to submit checklist data (e.g., save to database)
+    // You can access completion status from _isChecked list
+
+    // Placeholder for submission
+    setState(() {
+      _isSubmitting = true;
+    });
+
+    try {
+      // Simulate submission delay (replace with actual submission logic)
+      await Future.delayed(Duration(seconds: 2));
+
+      // After submission, reset the checklist and show a success dialog
+      setState(() {
+        _isSubmitting = false;
+        _isChecked.fillRange(0, _isChecked.length, false);
+      });
+
+      // Show success dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Success'),
+            content: Text('Checklist submitted successfully!'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      // Handle submission error
+      setState(() {
+        _isSubmitting = false;
+      });
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Failed to submit checklist: $e'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -1044,39 +1233,49 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title:const Text('Safety Checklist Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: Text(
+          'Safety Checklist Screen',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
-        padding:const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(child: Text('Pre-Work Safety Checklist', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),)),
+            Center(
+              child: Text(
+                'Pre-Work Safety Checklist',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            ),
             CheckboxListTile(
-              title:const Text('Ensure all equipment is in good working order'),
+              title: Text('Ensure all equipment is in good working order'),
               value: _isChecked[0],
               onChanged: (value) => _handleCheckboxChange(0, value!),
             ),
             CheckboxListTile(
-              title:const Text('Wear appropriate Personal Protective Equipment (PPE)'),
+              title: Text('Wear appropriate Personal Protective Equipment (PPE)'),
               value: _isChecked[1],
               onChanged: (value) => _handleCheckboxChange(1, value!),
             ),
             CheckboxListTile(
-              title:const Text('Identify and clear any potential hazards in the work area'),
+              title: Text('Identify and clear any potential hazards in the work area'),
               value: _isChecked[2],
               onChanged: (value) => _handleCheckboxChange(2, value!),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  // Implement logic to submit checklist data (e.g., save to database)
-                  // You can access completion status from _isChecked list
-                },
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                child:const Text('Submit Checklist', style: TextStyle(color: Colors.white),),
+                onPressed: _isSubmitting ? null : _submitChecklist,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                ),
+                child: Text(
+                  'Submit Checklist',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ],
@@ -1085,4 +1284,3 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
     );
   }
 }
-
