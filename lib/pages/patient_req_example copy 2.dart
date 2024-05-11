@@ -12,34 +12,32 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   final _formKey = GlobalKey<FormState>();
   String _location = ''; // Initialize location variable
   String _contactInfo = '';
-  String _urgencyLevel = 'low';
+  String _address = '';
+  String _number = '';
+  String _emergency_type= 'Car';
+  late Position _currentPosition; // Variable to store current position
 
   @override
   void initState() {
     super.initState();
-    _getLocation(); // Call the function to get the user's location when the page is initialized
+    _getCurrentLocation(); // Call the function to get the user's location when the page is initialized
   }
 
   // Function to get the user's current location
-  // void _getLocation() async {
-  //   Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.high);
-  //   setState(() {
-  //     _location = '${position.latitude},${position.longitude}'; // Combine latitude and longitude
-  //   });
-  // }
-  void _getLocation() async {
-  try {
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-    setState(() {
-      _location = '${position.latitude},${position.longitude}';
-    });
-  } catch (e) {
-    print('Error getting location: $e');
+  void _getCurrentLocation() async {
+    try {
+      Position newPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+      );
+      setState(() {
+        _currentPosition = newPosition;
+        _location =
+            '${_currentPosition.latitude},${_currentPosition.longitude}';
+      });
+    } catch (e) {
+      print('Error getting location: $e');
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +52,32 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                initialValue: _location, // Set the initial value of the location field
+                initialValue:
+                    _location, // Set the initial value of the location field
                 decoration: InputDecoration(
                   labelText: 'Location',
                 ),
                 enabled: false, // Disable editing of the location field
               ),
+
+
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Address',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your address information';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _address = value!;
+                },
+              ),
+              
+
+               
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Contact Information',
@@ -74,12 +92,14 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   _contactInfo = value!;
                 },
               ),
+              
+              
               DropdownButtonFormField(
-                value: _urgencyLevel,
+                value: _emergency_type,
                 decoration: InputDecoration(
-                  labelText: 'Urgency Level',
+                  labelText: 'Emergency type',
                 ),
-                items: ['low', 'medium', 'high']
+                items: ['Car',  'Labour','Animal']
                     .map((level) => DropdownMenuItem(
                           value: level,
                           child: Text(level),
@@ -87,10 +107,33 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    _urgencyLevel = value as String;
+                    _emergency_type = value as String;
                   });
                 },
               ),
+              
+
+              // number of incident
+              TextFormField(
+  decoration: InputDecoration(
+    labelText: 'Contact Number',
+  ),
+  keyboardType: TextInputType.number, // Use number input type for numeric keyboard
+  validator: (value) {
+    if (value!.isEmpty) {
+      return 'patient number';
+    }
+    // Add a condition to check if the entered value is a valid number
+    if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return 'Please enter a valid number';
+    }
+    return null;
+  },
+  onSaved: (value) {
+    _number = value!;
+  },
+),
+
               ElevatedButton(
                 onPressed: _submitRequest,
                 child: Text('Submit Request'),
@@ -101,20 +144,25 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       ),
     );
   }
-
   void _submitRequest() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
         var response = await http.post(
-          Uri.parse('http://192.168.0.22:3000/patientRequest'),
+          // Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest'),
+
+          // Uri.parse('http://ambulance-website.samiintegratedfarm.com/patientRequest'),
+          // Uri.parse('http://192.168.137.1:3000/patientRequest'),
+          Uri.parse('http://192.168.185.172:3000/patientRequest'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: jsonEncode(<String, String>{
             'location': _location,
             'contactInfo': _contactInfo,
-            'urgencyLevel': _urgencyLevel,
+            'emergency_type': _emergency_type,
+            'address': _address,
+            'number':_number
           }),
         );
         if (response.statusCode == 200) {
@@ -143,7 +191,6 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   );
                 },
               );
-
             }
           } catch (e) {
             print('The response is not in JSON format: $e');

@@ -70,9 +70,9 @@ class DriverNavBar extends StatelessWidget {
                   'Driver Dashboard',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Driver()));
-                },
+                // onTap: () {
+                //   Navigator.push(context, MaterialPageRoute(builder: (context) => Driver()));
+                // },
               ),
               const SizedBox(
                 height: 20,

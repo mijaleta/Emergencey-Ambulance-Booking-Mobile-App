@@ -167,10 +167,10 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                 );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'ሹፌር') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Driver()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const Driver()),
+                // );
                 // Handle settings navigation
               } else if (selectedMenuItem == 'ነርስ') {
                 Navigator.push(

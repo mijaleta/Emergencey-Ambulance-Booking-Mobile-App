@@ -1,17 +1,14 @@
 import 'package:ambu_app/pages/change_password.dart';
 import 'package:ambu_app/pages/forgot_password_page.dart';
-import 'package:ambu_app/pages/signup_page.dart';
 import 'package:ambu_app/pages/admin_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/users/driver.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
-
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,7 +33,6 @@ class Login extends StatelessWidget {
               _header(context),
               _inputField(context),
               _forgotPassword(context),
-              _signup(context),
             ],
           ),
           // ),
@@ -68,8 +64,8 @@ class Login extends StatelessWidget {
       final String password = passwordController.text;
 // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-      final url = Uri.parse('http://ambulance-website.samiintegratedfarm.com/login');
-      // final url = Uri.parse('http://192.168.0.65:3000/login');
+      // final url = Uri.parse('http://ambulance-website.samiintegratedfarm.com/login');
+      final url = Uri.parse('http://192.168.0.65:3000/login');
 
       try {
         final response = await http.post(
@@ -88,20 +84,9 @@ class Login extends StatelessWidget {
           final responseBody = json.decode(response.body);
           if (responseBody['success']) {
             // Handle successful login (e.g., store session cookie)
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.setString(
-                'sessionCookie', response.headers['set-cookie'] ?? '');
-            // Navigate to appropriate dashboard based on user role
-
-
-
-// for notificaton
-  
-
-
-
-
-// for notific☻aton
+SharedPreferences prefs = await SharedPreferences.getInstance();
+// Store the username in SharedPreferences
+await prefs.setString('username', responseBody['user']['username']);
 
             // Example:
             Navigator.of(context)
@@ -110,7 +95,9 @@ class Login extends StatelessWidget {
                 case 'admin':
                   return AdminPage();
                 case 'driver':
-                  return const Driver();
+                  // return Driver(); // Pass the driver's name here
+      return Driver(username: responseBody['user']['username']);
+
                 case 'nurse':
                   return AdminPage();
                 // Add other roles here
@@ -202,28 +189,6 @@ class Login extends StatelessWidget {
     );
   }
 
-  _signup(context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Don\'t have an account? ',
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignupPage()),
-            );
-          },
-          child: Text(
-            'Sign up',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
 
 
 }

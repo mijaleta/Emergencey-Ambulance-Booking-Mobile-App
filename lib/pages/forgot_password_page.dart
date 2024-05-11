@@ -11,8 +11,8 @@ class ForgotPasswordPage extends StatelessWidget {
 
   Future<void> _sendPasswordResetEmail(BuildContext context) async {
     final String email = emailController.text;
-    final url = Uri.parse(dotenv.env['IP_ADDRESS']!);
-    try {
+final url = Uri.parse('https://ambulance-website.samiintegratedfarm.com/forgot-password');    
+try {
       final response = await http.post(
         url,
         headers: {

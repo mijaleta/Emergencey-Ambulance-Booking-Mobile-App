@@ -1,67 +1,120 @@
-import 'dart:convert';
 import 'dart:io';
+
 import 'package:ambu_app/sidebar/driver_sidebar.dart';
 import 'package:ambu_app/sidebar/patient_tracking.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/plugin_api.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'package:permission_handler/permission_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
+ 
 // Define MongoDB connection parameters
 // final String mongoUrl = 'mongodb://localhost:27017';
 // final String dbName = 'ambulance-website';
 
-class Driver extends StatefulWidget {
-  final String username;
 
-  Driver({required this.username});
+class Driver extends StatefulWidget {
+  const Driver({Key? key}) : super(key: key);
+
   @override
-  _DriverState createState() => _DriverState();
+  State<Driver> createState() => _DriverState();
 }
 
 class _DriverState extends State<Driver> {
-  String driverName = ''; // Add this line
-
   Location _locationController = Location();
   String ambulanceInfo = 'loaading...';
   String tripInfo = 'Loading...';
   String driverInfo = 'Loading...';
 
-  @override
-  void initState() {
-    super.initState();
-    _loadDriverInfo();
-  }
+  // // Define MongoDB connection parameters
+  // final String mongoUrl = 'mongodb://localhost:27017'; // MongoDB connection URI
+  // final String dbName = 'your_database_name'; // Your database name
+  // late mongo.Db db; // MongoDB client 
 
-  Future<void> _loadDriverInfo() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // Assuming 'username' is stored in SharedPreferences upon login
-    String? username = prefs.getString('username');
-    setState(() {
-      // Set the driverName with the username from SharedPreferences
-      driverName = username ?? 'No username found';
-      driverInfo =
-          'Username: $driverName'; // Update driverInfo with the username
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchAmbulanceInfo();
+  //   // fetchTripInfo();
+  //   fetchDriverInfo();
+  //   // Connect to MongoDB when the widget initializes
+  //   connectToMongo();
+  // }
+  // // Function to connect to MongoDB
+  // void connectToMongo() async {
+  //   db = mongo.Db(mongoUrl);
+  //   await db.open();
+  //   // You can perform additional database operations here
+  //   // For example, fetch data from the database
+  //   fetchData();
+  // } 
+
+  // // Function to fetch data from the database
+  // void fetchData() async {
+  //   // Perform database queries here
+  //   // For example:
+  //   var collection = db.collection('ambulances');
+  //   var documents = await collection.find().toList();
+  //   // Update the UI with the fetched data
+  //   setState(() {
+  //     // Update state variables or UI elements with the fetched data
+  //   });
+  // }
+
+  // @override
+  // void dispose() {
+  //   // Close the MongoDB connection when the widget is disposed
+  //   db.close();
+  //   super.dispose();
+  // }
+
+  // void fetchAmbulanceInfo() async {
+  //   var ambulanceCollection = db.collection('ambulances');
+  //   var ambulanceQuery = mongo.where.eq('assignedDriver', 'specific_driver_id');
+  //   var ambulanceResult = await ambulanceCollection.findOne(ambulanceQuery);
+
+  //   if (ambulanceResult != null) {
+  //     setState(() {
+  //       ambulanceInfo =
+  //       'Ambulance Type: ${ambulanceResult['type']}\nModel: ${ambulanceResult['model']}\nRegistration Number: ${ambulanceResult['registrationNumber']}';
+  //     });
+  //   } else {
+  //     setState(() {
+  //       ambulanceInfo = 'Ambulance not found';
+  //     });
+  //   }
+  // }
+
+  // void fetchDriverInfo() async {
+  //   var driverCollection = db.collection('drivers');
+  //   var driverQuery = mongo.where.eq('_id', 'specific_driver_id');
+  //   var driverResult = await driverCollection.findOne(driverQuery);
+
+  //   if (driverResult != null) {
+  //     setState(() {
+  //       driverInfo =
+  //       'Name: ${driverResult['name']}\nLicense: ${driverResult['license']}\nShift Schedule: ${driverResult['shiftSchedule']}\nPerformance: ${driverResult['performance']}';
+  //     });
+  //   } else {
+  //     setState(() {
+  //       driverInfo = 'Driver not found';
+  //     });
+  //   }
+  // }
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        drawer: const DriverNavBar(),
+        drawer:const DriverNavBar(),
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title: const Text(
-            'Driver',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+          title: const Text('Driver', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.map)),
@@ -80,18 +133,12 @@ class _DriverState extends State<Driver> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InformationDisplay(
+                     InformationDisplay(
                       label: 'Driver Information',
                       children: [
-                        Text(
-                            driverInfo), // This will display the driver's username
-                        if (driverName
-                            .isNotEmpty) // Check if the name is not empty
-                          Text(
-                              'Name: $driverName'), // This will display the name
+                        Text(driverInfo),
                       ],
                     ),
-
                     InformationDisplay(
                       label: 'Ambulance Information',
                       children: [
@@ -104,7 +151,7 @@ class _DriverState extends State<Driver> {
                         Text(tripInfo),
                       ],
                     ),
-
+                   
                     const SizedBox(height: 20),
                     // InformationDisplay widgets for displaying ambulance, trip, and driver information
                     // These widgets will display fetched information from MongoDB
@@ -128,6 +175,7 @@ class _DriverState extends State<Driver> {
                       title: 'Safety Checklist',
                       onPressed: () => _performSafetyChecklist(context),
                     ),
+
                   ],
                 ),
               ),
@@ -141,7 +189,7 @@ class _DriverState extends State<Driver> {
                     BeautifulCard(
                       title: 'Receive Notifications',
                       description:
-                          'Receive alerts for new trip requests, updates, or announcements',
+                      'Receive alerts for new trip requests, updates, or announcements',
                       icon: Icons.notifications,
                       onPressed: () {
                         showDialog(
@@ -154,21 +202,15 @@ class _DriverState extends State<Driver> {
                     ),
                     BeautifulCard(
                       title: 'Track Patient',
-                      description:
-                          'Track the patient\'s location during the trip',
+                      description: 'Track the patient\'s location during the trip',
                       icon: Icons.location_on,
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const PatientTrackingPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) =>const PatientTrackingPage()));
                       },
                     ),
                     BeautifulCard(
                       title: 'Access Emergency Procedures',
-                      description:
-                          'Access protocols for handling medical emergencies',
+                      description: 'Access protocols for handling medical emergencies',
                       icon: Icons.medical_services,
                       onPressed: () {
                         showDialog(
@@ -256,6 +298,9 @@ void _performSafetyChecklist(BuildContext context) {
     MaterialPageRoute(builder: (context) => SafetyChecklistScreen()),
   );
 }
+
+
+
 
 class AnimatedCard extends StatelessWidget {
   final IconData icon;
@@ -416,8 +461,7 @@ class _ReceiveNotificationsDialogState
   // Replace this with actual database interaction code
   void updateUserSettings({required bool notificationEnabled}) {
     // Simulated database update
-    print(
-        'Updating user settings - Notifications Enabled: $notificationEnabled');
+    print('Updating user settings - Notifications Enabled: $notificationEnabled');
   }
 
   @override
@@ -452,7 +496,6 @@ class _ReceiveNotificationsDialogState
     );
   }
 }
-
 class TrackPatientDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -610,8 +653,6 @@ class _SettingsDialogState extends State<SettingsDialog> {
 }
 
 class CallScreen extends StatefulWidget {
-  const CallScreen({super.key});
-
   @override
   _CallScreenState createState() => _CallScreenState();
 }
@@ -646,18 +687,18 @@ class _CallScreenState extends State<CallScreen> {
     _animateHint(); // Start the animation on widget initialization
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title:const Text('Call Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: Text('Call Screen'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Caller: Chala Kebede'),
-          const SizedBox(height: 20),
+          Text('Caller: Chala Kebede'),
+          SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: TextField(
@@ -666,87 +707,53 @@ class _CallScreenState extends State<CallScreen> {
                 labelText: 'Enter Phone Number',
                 hintText: '+251961305788',
                 enabledBorder: OutlineInputBorder(
-<<<<<<< HEAD
                   borderRadius: BorderRadius.circular(10.0), // Adjust as desired
-                  borderSide:const BorderSide(color: Colors.grey, width: 1.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0), // Adjust as desired
-                  borderSide:const BorderSide(color: Colors.blue, width: 2.0),
-=======
-                  borderRadius:
-                      BorderRadius.circular(10.0), // Adjust as desired
                   borderSide: BorderSide(color: Colors.grey, width: 1.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius:
-                      BorderRadius.circular(10.0), // Adjust as desired
+                  borderRadius: BorderRadius.circular(10.0), // Adjust as desired
                   borderSide: BorderSide(color: Colors.blue, width: 2.0),
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
                 ),
               ),
               keyboardType: TextInputType.phone,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 onPressed: () {},
-                child:const Icon(Icons.mic_off),
+                child: Icon(Icons.mic_off),
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {},
-                child:const Icon(Icons.pause),
+                child: Icon(Icons.pause),
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {},
-                child:const Icon(Icons.call_end),
+                child: Icon(Icons.call_end),
               ),
             ],
           ),
-<<<<<<< HEAD
-          const SizedBox(height: 20),
-          const Text('00:10:32'), // Call duration timer
-=======
           SizedBox(height: 20),
           Text('00:10:32'), // Call duration timer
-<<<<<<< Updated upstream
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  String phoneNumber = _phoneNumberController.text;
-                  // Validate phone number (optional)
-                  _makePhoneCall('tel:$phoneNumber');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black
-                ),
-                child:const Text('Call', style: TextStyle(color: Colors.white),),
-              ),
-            ),
-=======
           ElevatedButton(
             onPressed: () {
               String phoneNumber = _phoneNumberController.text;
               // Validate phone number (optional)
               _makePhoneCall('tel:$phoneNumber');
             },
-            child: const Text('Call'),
->>>>>>> Stashed changes
+            child:const Text('Call'),
           ),
         ],
       ),
     );
   }
 }
+
 
 class ReportIncidentScreen extends StatefulWidget {
   @override
@@ -771,125 +778,37 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
     }
   }
 
-  Future<void> _reportIncident() async {
-    if (_attachedFiles == null || _attachedFiles!.isEmpty) {
-      // Show error message if no files are attached
-      _showErrorMessage('Please attach photos/videos before reporting the incident.');
-      return;
-    }
-
-    // Implement your incident reporting logic here
-    // You can access the file paths using _attachedFiles.map((file) => file.path).toList()
-
-    // Show success dialog
-    _showSuccessDialog('Incident reported successfully!');
-  }
-
-  void _showErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Error'),
-          content: Text(message),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _showSuccessDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Success'),
-          content: Text(message),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildAttachedItem(XFile file) {
-    return Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.blue, width: 2),
-        borderRadius: BorderRadius.circular(8),
-        image: DecorationImage(
-          image: FileImage(File(file.path)),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text(
-          'Report Incident Screen',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+        title: Text('Report Incident Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Text(
-                'Attach Photos/Videos',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
-              ),
-            ),
+            Text('Attach Photos/Videos:'),
             SizedBox(height: 10),
             _attachedFiles == null
                 ? InkWell(
-                    onTap: _pickMedia,
-                    child: Container(
-                      height: 150, // Adjust the height according to your design
-                      color: Colors.grey[200],
-                      child: Center(child: Text('Tap to Attach')),
-                    ),
-                  )
-                : Wrap(
-<<<<<<< HEAD
-              spacing: 10,
-              children: List.generate(
-                _attachedFiles!.length,
-                    (index) {
-                  return _buildAttachedItem(_attachedFiles![index]);
-                },
+              onTap: _pickMedia,
+              child: Container(
+                height: 150, // Adjust the height according to your design
+                color: Colors.grey[200],
+                child: Center(child: Text('Tap to Attach')),
               ),
+            )
+                : Wrap(
+              spacing: 10,
+              children: List.generate(_attachedFiles!.length, (index) {
+                return _buildAttachedItem(_attachedFiles![index]);
+              }),
             ),
-=======
-                    spacing: 10,
-                    children: List.generate(_attachedFiles!.length, (index) {
-                      return _buildAttachedItem(_attachedFiles![index]);
-                    }),
-                  ),
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
             SizedBox(height: 20),
-            Text('Incident Details'),
+            Text('Incident Details:'),
             TextField(
               maxLines: 5,
               decoration: InputDecoration(
@@ -897,384 +816,149 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
               ),
             ),
             SizedBox(height: 20),
-            Center(child: Text('Select Severity Level')),
-            Center(
-              child: SizedBox(
-                width: double.infinity,
-                child: DropdownButton<String>(
-                  items: [
-                    DropdownMenuItem(
-                      value: 'Low',
-                      child: Text('Low'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Medium',
-                      child: Text('Medium'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'High',
-                      child: Text('High'),
-                    ),
-                  ],
-                  onChanged: (value) {},
-                  value: 'Low', // Default value
+            Text('Select Severity Level:'),
+            DropdownButton<String>(
+              items: [
+                DropdownMenuItem(
+                  child: Text('Low'),
+                  value: 'Low',
                 ),
-              ),
+                DropdownMenuItem(
+                  child: Text('Medium'),
+                  value: 'Medium',
+                ),
+                DropdownMenuItem(
+                  child: Text('High'),
+                  value: 'High',
+                ),
+              ],
+              onChanged: (value) {},
+              value: 'Low', // Default value
             ),
             SizedBox(height: 20),
-            Center(
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _reportIncident,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                  child: Text(
-                    'Report Incident',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+            ElevatedButton(
+              onPressed: () {
+                // Implement incident reporting logic with attached files
+                // You can access the file paths using _attachedFiles.map((file) => file.path).toList()
+              },
+              child: Text('Report Incident'),
             ),
           ],
         ),
       ),
     );
   }
-}
+
   Widget _buildAttachedItem(XFile file) {
     return Stack(
       children: [
-        SizedBox(
+        Container(
           width: 100,
           height: 100,
           child: file.mimeType!.startsWith('image/')
               ? Image.file(File(file.path))
-              :const Icon(Icons.videocam),
+              : Icon(Icons.videocam),
         ),
         Positioned(
           right: 0,
           top: 0,
           child: IconButton(
-            icon:const Icon(Icons.close),
+            icon: Icon(Icons.close),
             onPressed: () {
-              // setState(() {
-              //   _attachedFiles!.remove(file);
-              // });
+              setState(() {
+                _attachedFiles!.remove(file);
+              });
             },
           ),
         ),
       ],
     );
   }
+}
 
 class PanicSignalScreen extends StatelessWidget {
-  const PanicSignalScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text(
-          'Panic Signal Screen',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+        title: Text('Panic Signal Screen'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-              ),
-              const SizedBox(height: 20),
-
-              const SizedBox(height: 20),
-              const Text('Your Current Location:'),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    height: 400, // Adjust the height according to your design
-                    color: Colors.grey[200],
-                    child: FutureBuilder<LocationData>(
-                      future: _getLocation(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return const Center(child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                          return Center(child: Text('Error: ${snapshot.error}'));
-                        } else {
-                          final locationData = snapshot.data!;
-                          return FlutterMap(
-                            options: MapOptions(
-                              center: LatLng(locationData.latitude!, locationData.longitude!),
-                              zoom: 13,
-                            ),
-                            children: [
-                              TileLayer(
-                                urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                subdomains: ['a', 'b', 'c'],
-                                userAgentPackageName: 'com.example.app',
-                              ),
-                              MarkerLayer(
-                                markers: [
-                                  Marker(
-                                    width: 80.0,
-                                    height: 80.0,
-                                    point: LatLng(locationData.latitude!, locationData.longitude!),
-                                    builder: (ctx) => Container(
-                                      child: Icon(Icons.location_on, size: 50, color: Colors.red),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              RichAttributionWidget(
-                                attributions: [
-                                  TextSourceAttribution(
-                                    'OpenStreetMap contributors',
-                                    onTap: () => launchUrl(Uri.parse('https://openstreetmap.org/copyright')),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.all(15.0),
-                child: TextField(
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Additional Notes (Optional)',
-                  ),
-                ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _sendPanicSignal(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
-                    child: const Text('Send Panic Signal', style: TextStyle(color: Colors.white)),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<LocationData> _getLocation() async {
-    Location location = Location();
-
-    try {
-      return await location.getLocation();
-    } catch (e) {
-      throw ('Failed to get location: $e');
-    }
-  }
-
-  void _sendPanicSignal(BuildContext context) {
-    // Implement panic signal logic
-    // Placeholder for success dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Success'),
-          content: Text('Panic signal sent successfully!'),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Send Panic Signal'),
+            SizedBox(height: 20),
+            ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                // Implement panic signal logic
               },
+              child: Text('Send Panic Signal'),
+            ),
+            SizedBox(height: 20),
+            Text('Your Current Location:'),
+            SizedBox(height: 10),
+            Container(
+              height: 200, // Adjust the height according to your design
+              color: Colors.grey[200],
+              child: Center(child: Text('Map Widget')),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              maxLines: 5,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Additional Notes (Optional)',
+              ),
             ),
           ],
-        );
-      },
+        ),
+      ),
     );
   }
 }
 
-<<<<<<< Updated upstream
 
-class SafetyChecklistScreen extends StatefulWidget {
-  @override
-  _SafetyChecklistScreenState createState() => _SafetyChecklistScreenState();
-}
-
-class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
-  // List to store completion status of each checklist item
-  final List<bool> _isChecked = [false, false, false]; // Replace with actual data
-
-  bool _isSubmitting = false;
-
-  void _handleCheckboxChange(int index, bool value) {
-    setState(() {
-      _isChecked[index] = value;
-    });
-  }
-
-<<<<<<< HEAD
-  Future<void> _submitChecklist() async {
-    // Check if all checkboxes are selected
-    if (_isChecked.every((isChecked) => !isChecked)) {
-      // Show error dialog if any checkbox is not selected
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Please ensure atleast one checkbox is selected.'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-      return; // Exit the method early if any checkbox is not selected
-    }
-
-    // Implement logic to submit checklist data (e.g., save to database)
-    // You can access completion status from _isChecked list
-
-    // Placeholder for submission
-    setState(() {
-      _isSubmitting = true;
-    });
-
-    try {
-      // Simulate submission delay (replace with actual submission logic)
-      await Future.delayed(Duration(seconds: 2));
-
-      // After submission, reset the checklist and show a success dialog
-      setState(() {
-        _isSubmitting = false;
-        _isChecked.fillRange(0, _isChecked.length, false);
-      });
-
-      // Show success dialog
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Success'),
-            content: Text('Checklist submitted successfully!'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    } catch (e) {
-      // Handle submission error
-      setState(() {
-        _isSubmitting = false;
-      });
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Failed to submit checklist: $e'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-=======
-=======
 class SafetyChecklistScreen extends StatelessWidget {
->>>>>>> Stashed changes
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(
-          'Safety Checklist Screen',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+        title: Text('Safety Checklist Screen'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Text(
-                'Pre-Work Safety Checklist',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-              ),
+            Text('Safety Checklist:'),
+            CheckboxListTile(
+              title: Text('Checklist Item 1'),
+              value: true, // Replace with actual completion status
+              onChanged: (value) {
+                // Implement checkbox logic
+              },
             ),
             CheckboxListTile(
-              title: Text('Ensure all equipment is in good working order'),
-              value: _isChecked[0],
-              onChanged: (value) => _handleCheckboxChange(0, value!),
+              title: Text('Checklist Item 2'),
+              value: false, // Replace with actual completion status
+              onChanged: (value) {
+                // Implement checkbox logic
+              },
             ),
             CheckboxListTile(
-              title: Text('Wear appropriate Personal Protective Equipment (PPE)'),
-              value: _isChecked[1],
-              onChanged: (value) => _handleCheckboxChange(1, value!),
-            ),
-            CheckboxListTile(
-              title: Text('Identify and clear any potential hazards in the work area'),
-              value: _isChecked[2],
-              onChanged: (value) => _handleCheckboxChange(2, value!),
+              title: Text('Checklist Item 3'),
+              value: false, // Replace with actual completion status
+              onChanged: (value) {   
+                // Implement checkbox logic
+              },
             ),
             SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _isSubmitting ? null : _submitChecklist,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                ),
-                child: Text(
-                  'Submit Checklist',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+            ElevatedButton(
+              onPressed: () {
+                // Submit checklist logic
+              },
+              child: Text('Submit Checklist'),
             ),
           ],
         ),
