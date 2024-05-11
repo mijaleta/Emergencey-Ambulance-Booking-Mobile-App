@@ -651,7 +651,10 @@ class _CallScreenState extends State<CallScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title:const Text('Call Screen', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: const Text(
+          'Call Screen',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -685,28 +688,24 @@ class _CallScreenState extends State<CallScreen> {
             children: [
               ElevatedButton(
                 onPressed: () {},
-                child:const Icon(Icons.mic_off),
+                child: const Icon(Icons.mic_off),
               ),
               const SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {},
-                child:const Icon(Icons.pause),
+                child: const Icon(Icons.pause),
               ),
               const SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {},
-                child:const Icon(Icons.call_end),
+                child: const Icon(Icons.call_end),
               ),
             ],
           ),
-<<<<<<< HEAD
           const SizedBox(height: 20),
           const Text('00:10:32'), // Call duration timer
-=======
           SizedBox(height: 20),
           Text('00:10:32'), // Call duration timer
-<<<<<<< Updated upstream
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
@@ -717,21 +716,13 @@ class _CallScreenState extends State<CallScreen> {
                   // Validate phone number (optional)
                   _makePhoneCall('tel:$phoneNumber');
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                child: const Text(
+                  'Call',
+                  style: TextStyle(color: Colors.white),
                 ),
-                child:const Text('Call', style: TextStyle(color: Colors.white),),
               ),
             ),
-=======
-          ElevatedButton(
-            onPressed: () {
-              String phoneNumber = _phoneNumberController.text;
-              // Validate phone number (optional)
-              _makePhoneCall('tel:$phoneNumber');
-            },
-            child: const Text('Call'),
->>>>>>> Stashed changes
           ),
         ],
       ),
@@ -765,7 +756,8 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
   Future<void> _reportIncident() async {
     if (_attachedFiles == null || _attachedFiles!.isEmpty) {
       // Show error message if no files are attached
-      _showErrorMessage('Please attach photos/videos before reporting the incident.');
+      _showErrorMessage(
+          'Please attach photos/videos before reporting the incident.');
       return;
     }
 
@@ -863,22 +855,14 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
                     ),
                   )
                 : Wrap(
-<<<<<<< HEAD
-              spacing: 10,
-              children: List.generate(
-                _attachedFiles!.length,
-                    (index) {
-                  return _buildAttachedItem(_attachedFiles![index]);
-                },
-              ),
-            ),
-=======
                     spacing: 10,
-                    children: List.generate(_attachedFiles!.length, (index) {
-                      return _buildAttachedItem(_attachedFiles![index]);
-                    }),
+                    children: List.generate(
+                      _attachedFiles!.length,
+                      (index) {
+                        return _buildAttachedItem(_attachedFiles![index]);
+                      },
+                    ),
                   ),
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
             SizedBox(height: 20),
             Text('Incident Details'),
             TextField(
@@ -918,7 +902,8 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _reportIncident,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
                   child: Text(
                     'Report Incident',
                     style: TextStyle(color: Colors.white),
@@ -932,31 +917,32 @@ class _ReportIncidentScreenState extends State<ReportIncidentScreen> {
     );
   }
 }
-  Widget _buildAttachedItem(XFile file) {
-    return Stack(
-      children: [
-        SizedBox(
-          width: 100,
-          height: 100,
-          child: file.mimeType!.startsWith('image/')
-              ? Image.file(File(file.path))
-              :const Icon(Icons.videocam),
+
+Widget _buildAttachedItem(XFile file) {
+  return Stack(
+    children: [
+      SizedBox(
+        width: 100,
+        height: 100,
+        child: file.mimeType!.startsWith('image/')
+            ? Image.file(File(file.path))
+            : const Icon(Icons.videocam),
+      ),
+      Positioned(
+        right: 0,
+        top: 0,
+        child: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {
+            // setState(() {
+            //   _attachedFiles!.remove(file);
+            // });
+          },
         ),
-        Positioned(
-          right: 0,
-          top: 0,
-          child: IconButton(
-            icon:const Icon(Icons.close),
-            onPressed: () {
-              // setState(() {
-              //   _attachedFiles!.remove(file);
-              // });
-            },
-          ),
-        ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
+}
 
 class PanicSignalScreen extends StatelessWidget {
   const PanicSignalScreen({Key? key}) : super(key: key);
@@ -978,10 +964,11 @@ class PanicSignalScreen extends StatelessWidget {
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 30),
-                child: Text('Send Panic Signal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                child: Text('Send Panic Signal',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
               ),
               const SizedBox(height: 20),
-
               const SizedBox(height: 20),
               const Text('Your Current Location:'),
               const SizedBox(height: 10),
@@ -995,20 +982,25 @@ class PanicSignalScreen extends StatelessWidget {
                     child: FutureBuilder<LocationData>(
                       future: _getLocation(),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return const Center(child: CircularProgressIndicator());
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
                         } else if (snapshot.hasError) {
-                          return Center(child: Text('Error: ${snapshot.error}'));
+                          return Center(
+                              child: Text('Error: ${snapshot.error}'));
                         } else {
                           final locationData = snapshot.data!;
                           return FlutterMap(
                             options: MapOptions(
-                              center: LatLng(locationData.latitude!, locationData.longitude!),
+                              center: LatLng(locationData.latitude!,
+                                  locationData.longitude!),
                               zoom: 13,
                             ),
                             children: [
                               TileLayer(
-                                urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                urlTemplate:
+                                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                                 subdomains: ['a', 'b', 'c'],
                                 userAgentPackageName: 'com.example.app',
                               ),
@@ -1017,9 +1009,11 @@ class PanicSignalScreen extends StatelessWidget {
                                   Marker(
                                     width: 80.0,
                                     height: 80.0,
-                                    point: LatLng(locationData.latitude!, locationData.longitude!),
+                                    point: LatLng(locationData.latitude!,
+                                        locationData.longitude!),
                                     builder: (ctx) => Container(
-                                      child: Icon(Icons.location_on, size: 50, color: Colors.red),
+                                      child: Icon(Icons.location_on,
+                                          size: 50, color: Colors.red),
                                     ),
                                   ),
                                 ],
@@ -1028,7 +1022,8 @@ class PanicSignalScreen extends StatelessWidget {
                                 attributions: [
                                   TextSourceAttribution(
                                     'OpenStreetMap contributors',
-                                    onTap: () => launchUrl(Uri.parse('https://openstreetmap.org/copyright')),
+                                    onTap: () => launchUrl(Uri.parse(
+                                        'https://openstreetmap.org/copyright')),
                                   ),
                                 ],
                               ),
@@ -1051,7 +1046,6 @@ class PanicSignalScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
@@ -1063,7 +1057,8 @@ class PanicSignalScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                     ),
-                    child: const Text('Send Panic Signal', style: TextStyle(color: Colors.white)),
+                    child: const Text('Send Panic Signal',
+                        style: TextStyle(color: Colors.white)),
                   ),
                 ),
               ),
@@ -1107,8 +1102,6 @@ class PanicSignalScreen extends StatelessWidget {
   }
 }
 
-<<<<<<< Updated upstream
-
 class SafetyChecklistScreen extends StatefulWidget {
   @override
   _SafetyChecklistScreenState createState() => _SafetyChecklistScreenState();
@@ -1116,7 +1109,11 @@ class SafetyChecklistScreen extends StatefulWidget {
 
 class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
   // List to store completion status of each checklist item
-  final List<bool> _isChecked = [false, false, false]; // Replace with actual data
+  final List<bool> _isChecked = [
+    false,
+    false,
+    false
+  ]; // Replace with actual data
 
   bool _isSubmitting = false;
 
@@ -1126,7 +1123,6 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
     });
   }
 
-<<<<<<< HEAD
   Future<void> _submitChecklist() async {
     // Check if all checkboxes are selected
     if (_isChecked.every((isChecked) => !isChecked)) {
@@ -1212,8 +1208,6 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
     }
   }
 
-
-class SafetyChecklistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1241,12 +1235,14 @@ class SafetyChecklistScreen extends StatelessWidget {
               onChanged: (value) => _handleCheckboxChange(0, value!),
             ),
             CheckboxListTile(
-              title: Text('Wear appropriate Personal Protective Equipment (PPE)'),
+              title:
+                  Text('Wear appropriate Personal Protective Equipment (PPE)'),
               value: _isChecked[1],
               onChanged: (value) => _handleCheckboxChange(1, value!),
             ),
             CheckboxListTile(
-              title: Text('Identify and clear any potential hazards in the work area'),
+              title: Text(
+                  'Identify and clear any potential hazards in the work area'),
               value: _isChecked[2],
               onChanged: (value) => _handleCheckboxChange(2, value!),
             ),
