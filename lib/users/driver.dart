@@ -666,14 +666,6 @@ class _CallScreenState extends State<CallScreen> {
                 labelText: 'Enter Phone Number',
                 hintText: '+251961305788',
                 enabledBorder: OutlineInputBorder(
-<<<<<<< HEAD
-                  borderRadius: BorderRadius.circular(10.0), // Adjust as desired
-                  borderSide:const BorderSide(color: Colors.grey, width: 1.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0), // Adjust as desired
-                  borderSide:const BorderSide(color: Colors.blue, width: 2.0),
-=======
                   borderRadius:
                       BorderRadius.circular(10.0), // Adjust as desired
                   borderSide: BorderSide(color: Colors.grey, width: 1.0),
@@ -682,7 +674,6 @@ class _CallScreenState extends State<CallScreen> {
                   borderRadius:
                       BorderRadius.circular(10.0), // Adjust as desired
                   borderSide: BorderSide(color: Colors.blue, width: 2.0),
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
                 ),
               ),
               keyboardType: TextInputType.phone,
@@ -1221,11 +1212,8 @@ class _SafetyChecklistScreenState extends State<SafetyChecklistScreen> {
     }
   }
 
-=======
-=======
+
 class SafetyChecklistScreen extends StatelessWidget {
->>>>>>> Stashed changes
->>>>>>> 60730784f860f182e5583937dadb1483f4c7b781
   @override
   Widget build(BuildContext context) {
     return Scaffold(
