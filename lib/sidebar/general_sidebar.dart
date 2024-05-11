@@ -1,8 +1,14 @@
+import 'package:ambu_app/pages/animal_page.dart';
+import 'package:ambu_app/pages/car_page.dart';
+import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
+import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
+import 'package:ambu_app/pages/labour_page.dart';
+import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Side extends StatelessWidget {
-  const Side({super.key});
+class CommonSideBar extends StatelessWidget {
+  const CommonSideBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,23 +19,23 @@ class Side extends StatelessWidget {
           Center(
             child: UserAccountsDrawerHeader(
               accountName: const Text(
-                'Great Bekele',
+                'Welcome to Quick \nAmbulance Service',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               accountEmail: const Text(
-                'Admin',
+                'User',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-              currentAccountPicture: CircleAvatar(
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/44.jpg',
-                    width: 90,
-                    height: 90,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              // currentAccountPicture: CircleAvatar(
+              //   child: ClipOval(
+              //     child: Image.asset(
+              //       'assets/44.jpg',
+              //       width: 90,
+              //       height: 90,
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              // ),
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/profileback.jpg'),
@@ -43,7 +49,7 @@ class Side extends StatelessWidget {
           ),
           const Center(
             child: Text(
-              'Emergency Responses',
+              'User Services',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
@@ -57,10 +63,12 @@ class Side extends StatelessWidget {
                   width: 40,
                 ),
                 title: const Text(
-                  'Dispatcher Dashboard',
+                  'Home',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CarPage()));
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -75,7 +83,9 @@ class Side extends StatelessWidget {
                   'Ambulances',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -87,37 +97,41 @@ class Side extends StatelessWidget {
                   width: 40,
                 ),
                 title: const Text(
-                  'Patient Request',
+                  'Book Now!',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
-                trailing: ClipOval(
-                  child: Container(
-                    color: Colors.red,
-                    width: 20,
-                    height: 20,
-                    child: const Center(
-                        child: Text(
-                      '8',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    )),
-                  ),
-                ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AnimalPage()));
+                },
+                // trailing: ClipOval(
+                //   child: Container(
+                //     color: Colors.red,
+                //     width: 20,
+                //     height: 20,
+                //     child: const Center(
+                //         child: Text(
+                //       '8',
+                //       style: TextStyle(color: Colors.white, fontSize: 12),
+                //     )),
+                //   ),
+                // ),
               ),
               const SizedBox(
                 height: 20,
               ),
               ListTile(
                 leading: const Image(
-                  image: AssetImage('icons/google-maps.png'),
+                  image: AssetImage('icons/patient.png'),
                   height: 40,
                   width: 40,
                 ),
                 title: const Text(
-                  'Map',
+                  'Help',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -136,24 +150,35 @@ class Side extends StatelessWidget {
                   'Contact',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+                },
               ),
               const SizedBox(
                 height: 20,
               ),
               const Divider(),
               ListTile(
-                leading: const Image(
-                  image: AssetImage('icons/setting.png'),
-                  height: 40,
-                  width: 40,
-                ),
+                leading: const Icon(Icons.assignment), // Use the built-in "assignment" icon for Terms of Services
                 title: const Text(
-                  'Settings',
+                  'Terms Of Services',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const TermsOfServicePage()));
+                },
               ),
+              ListTile(
+                leading: const Icon(Icons.privacy_tip), // Use the built-in "privacy_tip" icon for Privacy Policy
+                title: const Text(
+                  'Privacy Policy',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const PrivacyPolicyPage()));
+                },
+              ),
+
             ],
           )
         ],

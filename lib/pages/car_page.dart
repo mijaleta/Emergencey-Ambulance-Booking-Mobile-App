@@ -1,47 +1,77 @@
 // CarPage.dart
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Car Emergency'),
+        backgroundColor: Colors.blue,
+        title: Text('Car Emergency', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Text(
-              'If you are involved in a car accident or witness one, please follow these steps:',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18.0),
+              'Emergency Contact Numbers:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 8.0),
+            Text('Roadside Assistance: 123-456-7890'),
+            Text('Towing Services: 987-654-3210'),
+            Divider(),
             Text(
-              '1. Ensure your safety first.',
-              style: TextStyle(fontSize: 16.0),
+              'What to Do in Case of a Car Accident:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
+            SizedBox(height: 8.0),
+            Text('1. Ensure Safety: Move to a safe location if possible.'),
+            Text('2. Contact Emergency Services: Dial 911.'),
+            Text('3. Check for Injuries: Administer basic first aid if trained.'),
+            Divider(),
             Text(
-              '2. Check on the well-being of others involved.',
-              style: TextStyle(fontSize: 16.0),
+              'Basic First Aid for Common Car Accident Injuries:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
+            SizedBox(height: 8.0),
+            Text('1. CPR: Learn CPR techniques to assist someone in cardiac arrest.'),
+            Text('2. Bleeding: Apply direct pressure to stop bleeding.'),
+            Divider(),
+            ElevatedButton(
+              onPressed: () => _launchPhoneCall('911'),
+              child: Text('Call Emergency Services'),
+            ),
+            SizedBox(height: 16.0),
             Text(
-              '3. Call for an ambulance if there are any injuries.',
-              style: TextStyle(fontSize: 16.0),
+              'Map with Nearby Hospitals/Clinics:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
-            Text(
-              '4. Do not move injured people unless necessary.',
-              style: TextStyle(fontSize: 16.0),
+            SizedBox(height: 8.0),
+            // Add a map widget showing nearby hospitals/clinics
+            Container(
+              height: 200.0,
+              color: Colors.grey,
+              child: Center(
+                child: Text('Map Placeholder'),
+              ),
             ),
-            Text(
-              '5. Wait for emergency services to arrive.',
-              style: TextStyle(fontSize: 16.0),
-            ),
+            // Add additional functionalities as required
           ],
         ),
       ),
     );
+  }
+
+  // Function to launch phone call
+  void _launchPhoneCall(String phoneNumber) async {
+    String url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

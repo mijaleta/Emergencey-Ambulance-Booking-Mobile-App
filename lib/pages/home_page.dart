@@ -7,6 +7,7 @@ import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/navpages/main_page.dart';
+import 'package:ambu_app/sidebar/general_sidebar.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -62,6 +63,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer:const CommonSideBar(),
       appBar: AppBar(
         backgroundColor: Colors.blue,
         leading: Builder(
