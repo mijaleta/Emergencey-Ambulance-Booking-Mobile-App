@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
       await precacheImage(asset); // Only the asset image is required
     }
 
-    precacheImage(const AssetImage('assets/unsplash.jpg'));  // Replace with your image path
+    precacheImage(const AssetImage('assets/unsplash.png'));  // Replace with your image path
 
     // Navigation logic here to navigate to the language selection page first
     Future.delayed(const Duration(seconds: 7), () { // Reduced delay (optional)
@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/unsplash.jpg'), // Pre-loaded image
+            image: AssetImage('assets/unsplash.png'), // Pre-loaded image
             fit: BoxFit.cover,
           ),
         ),
