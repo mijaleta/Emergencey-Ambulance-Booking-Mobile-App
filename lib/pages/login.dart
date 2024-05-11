@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
+
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,7 @@ class Login extends StatelessWidget {
       ),
     );
   }
+
   _header(context) {
     return const Column(
       children: [
@@ -64,8 +66,9 @@ class Login extends StatelessWidget {
       final String password = passwordController.text;
 // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-      // final url = Uri.parse('http://ambulance-website.samiintegratedfarm.com/login');
-      final url = Uri.parse('http://192.168.0.65:3000/login');
+      final url =
+          Uri.parse('http://ambulance-website.samiintegratedfarm.com/login');
+      // final url = Uri.parse('http://192.168.0.65:3000/login');
 
       try {
         final response = await http.post(
@@ -84,9 +87,9 @@ class Login extends StatelessWidget {
           final responseBody = json.decode(response.body);
           if (responseBody['success']) {
             // Handle successful login (e.g., store session cookie)
-SharedPreferences prefs = await SharedPreferences.getInstance();
+            SharedPreferences prefs = await SharedPreferences.getInstance();
 // Store the username in SharedPreferences
-await prefs.setString('username', responseBody['user']['username']);
+            await prefs.setString('username', responseBody['user']['username']);
 
             // Example:
             Navigator.of(context)
@@ -96,7 +99,7 @@ await prefs.setString('username', responseBody['user']['username']);
                   return AdminPage();
                 case 'driver':
                   // return Driver(); // Pass the driver's name here
-      return Driver(username: responseBody['user']['username']);
+                  return Driver(username: responseBody['user']['username']);
 
                 case 'nurse':
                   return AdminPage();
@@ -188,7 +191,4 @@ await prefs.setString('username', responseBody['user']['username']);
       ),
     );
   }
-
-
-
 }
