@@ -59,6 +59,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                 initialValue:
                     _location, // Set the initial value of the location field
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                  ),
                   labelText: 'Location',
                 ),
                 enabled: false, // Disable editing of the location field
@@ -66,6 +69,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
 
               TextFormField(
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                  ),
                   labelText: 'Address',
                 ),
                 validator: (value) {
@@ -81,6 +87,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
 
               TextFormField(
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                  ),
                   labelText: 'patient condition',
                 ),
                 validator: (value) {
@@ -96,6 +105,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
 
               TextFormField(
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                  ),
                   labelText: 'Contact Information',
                 ),
                 validator: (value) {
@@ -112,6 +124,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
               DropdownButtonFormField(
                 value: _emergency_type,
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                  ),
                   labelText: 'Emergency type',
                 ),
                 items: ['Car', 'Labour', 'Animal']
@@ -130,6 +145,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
               // number of incident
               TextFormField(
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                  ),
                   labelText: 'Contact Number',
                 ),
                 keyboardType: TextInputType
@@ -149,9 +167,15 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                 },
               ),
 
-              ElevatedButton(
-                onPressed: _submitRequest,
-                child: Text('Submit Request'),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _submitRequest,
+                    child: Text('Submit Request', style: TextStyle(color: Colors.white),),
+                  ),
+                ),
               ),
             ],
           ),

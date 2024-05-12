@@ -90,16 +90,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/image/icon2.png"
 
   # path_provider: ^2.1.2
 
   flutter_lints: ^3.0.0
   get:
 
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/image/icon2.png"
 
 # The following section is specific to Flutter packages.
 flutter:
