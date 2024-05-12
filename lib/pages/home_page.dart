@@ -44,13 +44,13 @@ class _HomePageState extends State<HomePage> {
   ];
   // Dropdown menu items
   final List<String> dropdownItems = [
-    'Account',
+    // 'Account',
     // 'Search',
-    'Settings',
+    // 'Settings',
     // 'Driver',
-    'Nurse',
+    // 'Nurse',
     // 'Dispatcher',
-    'Logout',
+    // 'Logout',
     'Feedback',
   ];
   String? selectedMenuItem;

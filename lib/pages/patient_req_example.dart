@@ -47,137 +47,151 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Emergency Ambulance Booking Request'),
+        backgroundColor: Colors.blue,
+        title: Text('Emergency Ambulance Booking Request', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
       ),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                initialValue:
-                    _location, // Set the initial value of the location field
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
-                  ),
-                  labelText: 'Location',
-                ),
-                enabled: false, // Disable editing of the location field
-              ),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
 
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
-                  ),
-                  labelText: 'Address',
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your address information';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _address = value!;
-                },
-              ),
+          child: Padding(
 
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                Text('Book Now!', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.cyan, fontSize: 24),),
+                Text('Get quick services!', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.tealAccent, fontSize: 24),),
+                SizedBox(height: 20,),
+                TextFormField(
+                  initialValue:
+                      _location, // Set the initial value of the location field
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                    ),
+                    labelText: 'Location',
                   ),
-                  labelText: 'patient condition',
+                  enabled: false, // Disable editing of the location field
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'patient condition here';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _patient_condition = value!;
-                },
-              ),
-
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                SizedBox(height: 20,),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                    ),
+                    labelText: 'Address',
                   ),
-                  labelText: 'Contact Information',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your address information';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _address = value!;
+                  },
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your contact information';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _contactInfo = value!;
-                },
-              ),
-
-              DropdownButtonFormField(
-                value: _emergency_type,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                SizedBox(height: 20,),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                    ),
+                    labelText: 'patient condition',
                   ),
-                  labelText: 'Emergency type',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'patient condition here';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _patient_condition = value!;
+                  },
                 ),
-                items: ['Car', 'Labour', 'Animal']
-                    .map((level) => DropdownMenuItem(
-                          value: level,
-                          child: Text(level),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    _emergency_type = value as String;
-                  });
-                },
-              ),
-
-              // number of incident
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                SizedBox(height: 20,),
+        
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                    ),
+                    labelText: 'Contact Information',
                   ),
-                  labelText: 'Contact Number',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your contact information';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _contactInfo = value!;
+                  },
                 ),
-                keyboardType: TextInputType
-                    .number, // Use number input type for numeric keyboard
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'patient number';
-                  }
-                  // Add a condition to check if the entered value is a valid number
-                  if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-                    return 'Please enter a valid number';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _number = value!;
-                },
-              ),
-
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _submitRequest,
-                    child: Text('Submit Request', style: TextStyle(color: Colors.white),),
+                SizedBox(height: 20,),
+        
+                DropdownButtonFormField(
+                  value: _emergency_type,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                    ),
+                    labelText: 'Emergency type',
+                  ),
+                  items: ['Car', 'Labour', 'Animal']
+                      .map((level) => DropdownMenuItem(
+                            value: level,
+                            child: Text(level),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _emergency_type = value as String;
+                    });
+                  },
+                ),
+                SizedBox(height: 20,),
+        
+                // number of incident
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                    ),
+                    labelText: 'Contact Number',
+                  ),
+                  keyboardType: TextInputType
+                      .number, // Use number input type for numeric keyboard
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'patient number';
+                    }
+                    // Add a condition to check if the entered value is a valid number
+                    if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                      return 'Please enter a valid number';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _number = value!;
+                  },
+                ),
+        
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                      ),
+                      onPressed: _submitRequest,
+                      child: Text('Submit Request', style: TextStyle(color: Colors.white),),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

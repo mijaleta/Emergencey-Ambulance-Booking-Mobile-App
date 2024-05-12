@@ -1,29 +1,17 @@
-import 'package:ambu_app/localizations/Afaan%20Oromo/home_service.dart';
-import 'package:ambu_app/localizations/Amharic/yetamami_home_page.dart';
 import 'package:ambu_app/localizations/classes/language.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
-import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
-import 'package:ambu_app/pages/history.dart';
-import 'package:ambu_app/pages/home_page.dart';
-import 'package:ambu_app/pages/hospital_page.dart';
 import 'package:ambu_app/pages/logout.dart';
-import 'package:ambu_app/pages/policies.dart';
-import 'package:ambu_app/pages/setting.dart';
-import 'package:ambu_app/users/dispatcher.dart';
-import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
-import 'package:ambu_app/pages/ambulance_search_page.dart';
 import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/patient_request_page.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../pages/navpages/main_page.dart';
@@ -60,13 +48,13 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
   ];
   // Dropdown menu items
   final List<String> dropdownItems = [
-    'Account',
+    // 'Account',
     // 'Search',
-    'Sirreeffama',
-    'Konkolaachisaa',
-    'Nurse',
+    // 'Sirreeffama',
+    // 'Konkolaachisaa',
+    // 'Nurse',
     // 'Dispatcher',
-    'Ba\'i\'',
+    // 'Ba\'i\'',
     'Yaada',
   ];
   String? selectedMenuItem;

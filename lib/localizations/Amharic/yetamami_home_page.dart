@@ -1,14 +1,11 @@
 import 'package:ambu_app/localizations/Amharic/yeprivacy_policy.dart';
 import 'package:ambu_app/localizations/classes/language.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
-import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
-import 'package:ambu_app/pages/home_page.dart';
 import 'package:ambu_app/pages/logout.dart';
-import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +14,6 @@ import 'package:ambu_app/pages/login.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../pages/navpages/main_page.dart';
-import '../Afaan Oromo/home_page_dhukkubsataa.dart';
 import '../Afaan Oromo/oromifa_main.dart';
 import 'agalgilot_term.dart';
 import 'amarigna_main.dart';
@@ -50,13 +46,13 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
   ];
   // Dropdown menu items
   final List<String> dropdownItems = [
-    'መለያ',
+    // 'መለያ',
     // 'Search',
-    'ቅንብሮች',
-    'ሹፌር',
-    'ነርስ',
+    // 'ቅንብሮች',
+    // 'ሹፌር',
+    // 'ነርስ',
     // 'Dispatcher',
-    'ውጣ',
+    // 'ውጣ',
     'ግብረ መልስ',
   ];
   String? selectedMenuItem;
