@@ -33,32 +33,19 @@ import 'pages/account_black.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
- 
-void main()  {
-  
 
-  runApp(MyApp());
-}
-
-
-
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+void main() {
+  runApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Emergency Ambulance Booking',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-      ), 
-      initialRoute: '/splash',
+      ),
+      home: SplashScreen(), // Set SplashScreen as the initial route
       routes: {
         '/home': (context) => HomePage(),
         '/signup': (context) => SignupPage(),
-        '/splash': (context) => SplashScreen(),
         '/languageSelection': (context) => LanguageSelectionPage(),
         '/ambulanceRequest': (context) => PatientRequestPage(),
         '/changePasswordPage': (context) => ChangePasswordPage(),
@@ -76,10 +63,7 @@ class MyApp extends StatelessWidget {
         '/specialRequest': (context) => SpecialRequestPage(),
         '/privacyPolicy': (context) => PrivacyPolicyPage(),
         '/termsOfService': (context) => TermsOfServicePage(),
-      
-
-          '/driver': (context) => Driver(username: 'your_username_here'),
-
+        '/driver': (context) => Driver(username: 'your_username_here'),
         '/nurse': (context) => Nurse(),
         '/blackAccount': (context) => AccountBlack(),
         '/servicesPage': (context) => OurServices(),
@@ -87,8 +71,7 @@ class MyApp extends StatelessWidget {
         '/amharicHomepage': (context) => AmharicHomePage(),
         '/mainPage': (context) => MainPage(),
         '/nursingPage': (context) => NursePage(),
-        // '/patientLocationTracking': (context) => UserLocationTracking(),
       },
-    );
-  }
+    ),
+  );
 }
