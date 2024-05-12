@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -40,8 +41,21 @@ class AnimalPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
               ),
               SizedBox(height: 8.0),
-              Text('Animal Control: 123-456-7890'),
-              Text('Veterinary Clinic: 987-654-3210'),
+              // GestureDetector(
+              //   onTap: () {
+              //     _launchPhoneCall('+251918684281'); // Replace with your phone number
+              //   },
+              //   child: Text('Animal Control: +251 91 868 4281'),
+              // ),
+              // GestureDetector(
+              //   onTap: () {
+              //     _launchPhoneCall('+251996826264'); // Replace with your phone number
+              //   },
+              //   child: Text('Veterinary Clinic: +251 99 682 6264'),
+              // ),
+              buildPhoneNumberLink('Animal Control: ', '+251 91 868 4281', Colors.black, Colors.blue),
+              buildPhoneNumberLink('Veterinary Clinic: ', '+251 99 682 6264', Colors.black, Colors.blue),
+
               Divider(),
               Text(
                 'Additional Advice',
@@ -112,7 +126,7 @@ class AnimalPage extends StatelessWidget {
               SizedBox(height: 16.0),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Additional Text Field',
+                  labelText: 'Search...',
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
@@ -124,5 +138,34 @@ class AnimalPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget buildPhoneNumberLink(String label, String phoneNumber, Color labelColor, Color numberColor) {
+    return RichText(
+      text: TextSpan(
+        style: TextStyle(color: labelColor),
+        children: [
+          TextSpan(text: label),
+          TextSpan(
+            text: phoneNumber,
+            style: TextStyle(color: numberColor),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                _launchPhoneCall(phoneNumber);
+              },
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+  _launchPhoneCall(String phoneNumber) async {
+    if (await canLaunch('tel:$phoneNumber')) {
+      await launch('tel:$phoneNumber');
+    } else {
+      throw 'Could not launch $phoneNumber';
+    }
   }
 }

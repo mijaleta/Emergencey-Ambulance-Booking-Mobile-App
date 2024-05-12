@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart'; // Import the geolocator package
-import 'car_page.dart'; // Replace with the actual path to your CarPage file
-import 'labour_page.dart'; // Replace with the actual path to your LabourPage file
-import 'animal_page.dart'; // Replace with the actual path to your AnimalPage file
+import 'car_page.dart';
+import 'labour_page.dart';
+import 'animal_page.dart';
 
 class RequestAmbulancePage extends StatefulWidget {
   @override
@@ -97,7 +97,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
                     ),
-                    labelText: 'patient condition',
+                    labelText: 'Patient condition',
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -176,18 +176,15 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     _number = value!;
                   },
                 ),
-        
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                      ),
-                      onPressed: _submitRequest,
-                      child: Text('Submit Request', style: TextStyle(color: Colors.white),),
+                SizedBox(height: 20,),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
                     ),
+                    onPressed: _submitRequest,
+                    child: Text('Submit Request', style: TextStyle(color: Colors.white),),
                   ),
                 ),
               ],
@@ -274,47 +271,5 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
         // Handle unknown emergency type if necessary
         break;
     }
-  }
-}
-
-class CarPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Car Emergency'),
-      ),
-      body: Center(
-        child: Text('Details about Car Emergency'),
-      ),
-    );
-  }
-}
-
-class LabourPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Labour Emergency'),
-      ),
-      body: Center(
-        child: Text('Details about Labour Emergency'),
-      ),
-    );
-  }
-}
-
-class AnimalPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Animal Emergency'),
-      ),
-      body: Center(
-        child: Text('Details about Animal Emergency'),
-      ),
-    );
   }
 }
