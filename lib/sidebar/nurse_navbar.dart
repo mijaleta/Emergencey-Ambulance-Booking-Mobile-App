@@ -17,7 +17,7 @@ class _NurseNavBarState extends State<NurseNavBar> {
 
   // for logout
   Future<void> _logout() async {
-    final url = Uri.parse('http://192.168.0.65:3000/logout');
+    final url = Uri.parse('http://ambulance-website.samiintegratedfarm.com/logout');
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {
