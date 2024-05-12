@@ -1,10 +1,10 @@
-import 'package:ambu_app/pages/ambulance_search_page.dart';
-import 'package:ambu_app/pages/home_page.dart';
-import 'package:ambu_app/services/acceessiblity.dart';
-import 'package:ambu_app/services/accident.dart';
-import 'package:ambu_app/services/emergency.dart';
-import 'package:ambu_app/services/first_aid.dart';
+import 'package:ambu_app/pages/animal_page.dart';
+import 'package:ambu_app/pages/car_page.dart';
+import 'package:ambu_app/pages/labour_page.dart';
 import 'package:flutter/material.dart';
+
+import '../pages/patient_req_example.dart';
+
 
 class OurServices extends StatelessWidget {
   const OurServices({super.key});
@@ -75,7 +75,7 @@ class OurServices extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Emergency()));
+                                              RequestAmbulancePage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -118,7 +118,7 @@ class OurServices extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Accessibility()));
+                                              LabourPage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -164,7 +164,7 @@ class OurServices extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const FirstAid()));
+                                              AnimalPage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -204,7 +204,7 @@ class OurServices extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Accident()));
+                                              CarPage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

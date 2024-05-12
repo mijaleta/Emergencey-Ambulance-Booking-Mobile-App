@@ -11,7 +11,7 @@
     <application
         android:label="Emergency Ambulance"
         android:name="${applicationName}"
-        android:icon="@mipmap/icon2"
+        android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true">
         <activity
             android:name=".MainActivity"

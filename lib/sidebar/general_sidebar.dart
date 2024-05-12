@@ -2,8 +2,10 @@ import 'package:ambu_app/pages/animal_page.dart';
 import 'package:ambu_app/pages/car_page.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
+import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/labour_page.dart';
 import 'package:ambu_app/pages/navpages/main_page.dart';
+import 'package:ambu_app/users/driver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,16 +28,7 @@ class CommonSideBar extends StatelessWidget {
                 'User',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-              // currentAccountPicture: CircleAvatar(
-              //   child: ClipOval(
-              //     child: Image.asset(
-              //       'assets/44.jpg',
-              //       width: 90,
-              //       height: 90,
-              //       fit: BoxFit.cover,
-              //     ),
-              //   ),
-              // ),
+
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/profileback.jpg'),
@@ -67,26 +60,26 @@ class CommonSideBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CarPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
                 },
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              ListTile(
-                leading: const Image(
-                  image: AssetImage('icons/starambu.png'),
-                  height: 40,
-                  width: 40,
-                ),
-                title: const Text(
-                  'Ambulances',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
-                },
-              ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              // ListTile(
+              //   leading: const Image(
+              //     image: AssetImage('icons/starambu.png'),
+              //     height: 40,
+              //     width: 40,
+              //   ),
+              //   title: const Text(
+              //     'Ambulances',
+              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              //   ),
+              //   onTap: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
+              //   },
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -130,7 +123,7 @@ class CommonSideBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HelpPage()));
                 },
               ),
               const SizedBox(
@@ -151,7 +144,7 @@ class CommonSideBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CallScreen()));
                 },
               ),
               const SizedBox(
