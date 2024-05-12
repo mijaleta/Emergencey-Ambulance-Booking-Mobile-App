@@ -17,7 +17,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   String _contactInfo = '';
   String _address = '';
   String _number = '';
-  String _emergency_type= 'Car';
+  String _emergency_type = 'Car';
+  String _patient_condition = '';
   late Position _currentPosition; // Variable to store current position
 
   @override
@@ -63,7 +64,6 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                 enabled: false, // Disable editing of the location field
               ),
 
-
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Address',
@@ -78,9 +78,22 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   _address = value!;
                 },
               ),
-              
 
-               
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'patient condition',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'patient condition here';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _patient_condition = value!;
+                },
+              ),
+
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Contact Information',
@@ -95,14 +108,13 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   _contactInfo = value!;
                 },
               ),
-              
-              
+
               DropdownButtonFormField(
                 value: _emergency_type,
                 decoration: InputDecoration(
                   labelText: 'Emergency type',
                 ),
-                items: ['Car',  'Labour','Animal']
+                items: ['Car', 'Labour', 'Animal']
                     .map((level) => DropdownMenuItem(
                           value: level,
                           child: Text(level),
@@ -114,28 +126,28 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   });
                 },
               ),
-              
 
               // number of incident
               TextFormField(
-  decoration: InputDecoration(
-    labelText: 'Contact Number',
-  ),
-  keyboardType: TextInputType.number, // Use number input type for numeric keyboard
-  validator: (value) {
-    if (value!.isEmpty) {
-      return 'patient number';
-    }
-    // Add a condition to check if the entered value is a valid number
-    if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-      return 'Please enter a valid number';
-    }
-    return null;
-  },
-  onSaved: (value) {
-    _number = value!;
-  },
-),
+                decoration: InputDecoration(
+                  labelText: 'Contact Number',
+                ),
+                keyboardType: TextInputType
+                    .number, // Use number input type for numeric keyboard
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'patient number';
+                  }
+                  // Add a condition to check if the entered value is a valid number
+                  if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return 'Please enter a valid number';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  _number = value!;
+                },
+              ),
 
               ElevatedButton(
                 onPressed: _submitRequest,
@@ -148,87 +160,84 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
     );
   }
 
- void _submitRequest() async {
-  if (_formKey.currentState!.validate()) {
-    _formKey.currentState!.save();
-    try {
-      var response = await http.post(
-        // Uri.parse('http://192.168.185.172:3000/patientRequest'),
-        Uri.parse('https://ambulance-website.samiintegratedfarm.com/patientRequest'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'location': _location,
-          'contactInfo': _contactInfo,
-          'emergency_type': _emergency_type,
-          'address': _address,
-          'number':_number
-        }),
-      );
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
-        if (responseData['message'] ==
-            'Booking request submitted successfully') {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text('Success'),
-                content: Text(responseData['message']),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text('OK'),
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
-                      _navigateToEmergencyPage(context); // Navigate to the emergency page
-                    },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.blue,
+  void _submitRequest() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      try {
+        var response = await http.post(
+          // Uri.parse('http://192.168.0.49:3000/patientRequest'),
+          Uri.parse(
+              'https://ambulance-website.samiintegratedfarm.com/patientRequest'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'location': _location,
+            'contactInfo': _contactInfo,
+            'emergency_type': _emergency_type,
+            'address': _address,
+            'number': _number,
+            'patient_condition': _patient_condition
+          }),
+        );
+        if (response.statusCode == 200) {
+          final responseData = jsonDecode(response.body);
+          if (responseData['message'] ==
+              'Booking request submitted successfully') {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Success'),
+                  content: Text(responseData['message']),
+                  actions: <Widget>[
+                    TextButton(
+                      child: Text('OK'),
+                      onPressed: () {
+                        Navigator.of(context).pop(); // Close the dialog
+                        _navigateToEmergencyPage(
+                            context); // Navigate to the emergency page
+                      },
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.blue,
+                      ),
                     ),
-                  ),
-                ],
-              );
-            },
-          );
+                  ],
+                );
+              },
+            );
+          }
+        } else {
+          print('Failed to send request. Status code: ${response.statusCode}');
+          print('Response body: ${response.body}');
         }
-      } else {
-        print('Failed to send request. Status code: ${response.statusCode}');
-        print('Response body: ${response.body}');
+      } catch (e) {
+        print('An error occurred: $e');
       }
-    } catch (e) {
-      print('An error occurred: $e');
+    }
+  }
+
+  void _navigateToEmergencyPage(BuildContext context) {
+    switch (_emergency_type) {
+      case 'Car':
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => CarPage()));
+        break;
+      case 'Labour':
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LabourPage()));
+        break;
+      case 'Animal':
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AnimalPage()));
+        break;
+      default:
+        // Handle unknown emergency type if necessary
+        break;
     }
   }
 }
-
-void _navigateToEmergencyPage(BuildContext context) {
-  switch (_emergency_type) {
-    case 'Car':
-      Navigator.push(context, MaterialPageRoute(builder: (context) => CarPage()));
-      break;
-    case 'Labour':
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
-      break;
-    case 'Animal':
-      Navigator.push(context, MaterialPageRoute(builder: (context) => AnimalPage()));
-      break;
-    default:
-      // Handle unknown emergency type if necessary
-      break;
-  }
-}
-
-
-}
-
-
-
-
-
-
-
 
 class CarPage extends StatelessWidget {
   @override
