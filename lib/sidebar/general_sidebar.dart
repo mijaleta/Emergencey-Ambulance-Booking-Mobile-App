@@ -1,12 +1,9 @@
 import 'package:ambu_app/pages/animal_page.dart';
-import 'package:ambu_app/pages/car_page.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
-import 'package:ambu_app/pages/labour_page.dart';
 import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/users/driver.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CommonSideBar extends StatelessWidget {

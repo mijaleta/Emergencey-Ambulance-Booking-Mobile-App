@@ -56,7 +56,7 @@ class _HelpPageState extends State<HelpPage> {
                   backgroundColor: Colors.blue,
                 ),
                 onPressed: () {
-                  // Implement functionality to contact support
+
                 },
                 icon: const Icon(Icons.call, color: Colors.white,),
                 // SizedBox(width: 15,),

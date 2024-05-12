@@ -24,6 +24,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // Preload the background image
+  //   _backgroundImage = AssetImage("assets/back3.jpg");
+  //   precacheImage(_backgroundImage, context);
+  // }
+
   // List of image URLs
   final List<String> imageUrls = [
     'assets/ambu-blue.jpg',
@@ -54,6 +62,10 @@ class _HomePageState extends State<HomePage> {
     'Feedback',
   ];
   String? selectedMenuItem;
+
+
+  late final ImageProvider _backgroundImage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
