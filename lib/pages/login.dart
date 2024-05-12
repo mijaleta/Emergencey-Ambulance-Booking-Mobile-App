@@ -3,6 +3,7 @@ import 'package:ambu_app/pages/forgot_password_page.dart';
 import 'package:ambu_app/pages/admin_page.dart';
 import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/users/driver.dart';
+import 'package:ambu_app/users/nurse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -103,7 +104,7 @@ class Login extends StatelessWidget {
                   return Driver(username: responseBody['user']['username']);
 
                 case 'nurse':
-                  return AdminPage();
+                  return const Nurse();
                 // Add other roles here
                 default:
                   return const Scaffold(

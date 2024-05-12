@@ -98,7 +98,7 @@ class _AccountBlackState extends State<AccountBlack> {
                     ),
                     // const Spacer(),
                     SizedBox(
-                      width: 100,
+                      width: 80,
                     ),
                     ForwardButton(
                       onTap: () {

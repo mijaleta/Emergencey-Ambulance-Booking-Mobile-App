@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/sidebar/driver_sidebar.dart';
 import 'package:ambu_app/sidebar/patient_tracking.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,22 @@ class _DriverState extends State<Driver> {
               Tab(icon: Icon(Icons.info)),
             ],
           ),
+
+          actions: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              decoration: BoxDecoration(
+                color: Colors.green, // Change the background color here
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.logout, color: Colors.white), // Change the icon color
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const MainPage()));
+                },
+              ),
+            ),
+          ],
         ),
         // drawer: const Drawer(
         //         //   // Add your drawer content here

@@ -86,7 +86,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     // const Spacer(),
                     SizedBox(
-                      width: 100,
+                      width: 80,
                     ),
                     ForwardButton(
                       onTap: () {

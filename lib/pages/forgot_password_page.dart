@@ -129,7 +129,8 @@ class SuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Success'),
+        title: Text('Success', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.green,
       ),
       body: Center(
         child: Column(
@@ -144,22 +145,28 @@ class SuccessScreen extends StatelessWidget {
               'Password reset email sent!',
               style: TextStyle(fontSize: 24),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // Replace the current screen with the login screen
-                // Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Login()),
-                );
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-              child: const Text(
-                'Back to Login',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Replace the current screen with the login screen
+                    // Navigator.of(context).popUntil((route) => route.isFirst);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Text(
+                    'Back to Login',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
+                ),
               ),
             ),
           ],

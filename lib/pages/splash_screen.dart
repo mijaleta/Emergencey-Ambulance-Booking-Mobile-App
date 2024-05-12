@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
     precacheImage(const AssetImage('assets/unsplash.png'));  // Replace with your image path
 
     // Navigation logic here to navigate to the language selection page first
-    Future.delayed(const Duration(seconds: 7), () { // Reduced delay (optional)
+    Future.delayed(const Duration(seconds: 3), () { // Reduced delay (optional)
       Navigator.pushReplacementNamed(context, '/mainPage');
     });
 

@@ -1,26 +1,20 @@
 import 'package:ambu_app/localizations/classes/language.dart';
 import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
 import 'package:ambu_app/pages/conditions/terms_of_service_page.dart';
-import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
-import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/sidebar/general_sidebar.dart';
-import 'package:ambu_app/users/driver.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/account_page.dart';
 import 'package:ambu_app/pages/login.dart';
-import 'package:ambu_app/pages/patient_request_page.dart';
-import 'package:flutter/widgets.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../localizations/Afaan Oromo/oromifa_main.dart';
 import '../localizations/Amharic/amarigna_main.dart';
-import 'setting_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -53,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     'Account',
     // 'Search',
     'Settings',
-    'Driver',
+    // 'Driver',
     'Nurse',
     // 'Dispatcher',
     'Logout',
@@ -63,7 +57,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:const CommonSideBar(),
+      drawer: const CommonSideBar(),
       appBar: AppBar(
         backgroundColor: Colors.blue,
         leading: Builder(
@@ -188,12 +182,12 @@ class _HomePageState extends State<HomePage> {
               } else if (selectedMenuItem == 'Feedback') {
                 // Handle Feedback navigation
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FeedbackPage()));
+                    MaterialPageRoute(builder: (context) =>const FeedbackPage()));
               } else if (selectedMenuItem == 'Logout') {
                 // Handle logout navigation
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Logout()),
+                  MaterialPageRoute(builder: (context) =>const Logout()),
                 );
               }
             },
@@ -208,168 +202,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      // drawer: Drawer(
-      //   child: Container(
-      //     color: const Color.fromARGB(
-      //         255, 83, 82, 82), // Set drawer background color
-      //     padding: EdgeInsets.only(top: 100.0),
-      //     child: ListView(
-      //       children: [
-      //         ListTile(
-      //           title: const Text(
-      //             "Book",
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 24,
-      //                 fontWeight: FontWeight.bold), // Set text color
-      //           ),
-      //           onTap: () => {
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(builder: (context) => DriverPage()),
-      //             )
-      //           },
-      //           contentPadding: const EdgeInsets.only(
-      //               left: 20.0), // Remove ListTile default padding
-      //           horizontalTitleGap: 5, // Remove space between icon and text
-      //           leading: const Icon(
-      //             Icons.book,
-      //             color: Colors.white, // Set icon color
-      //           ),
-      //         ),
-      //         ListTile(
-      //           title: const Text(
-      //             "Account",
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 24,
-      //                 fontWeight: FontWeight.bold),
-      //           ),
-      //           onTap: () => {
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const AccountScreen()),
-      //             )
-      //           },
-      //           contentPadding: const EdgeInsets.only(left: 20.0),
-      //           horizontalTitleGap: 5,
-      //           leading: const Icon(
-      //             Icons.account_circle,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //         ListTile(
-      //           title: const Text(
-      //             "Settings",
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 24,
-      //                 fontWeight: FontWeight.bold),
-      //           ),
-      //           onTap: () => {
-      //             // Navigator.push(
-      //             //   context,
-      //             //   MaterialPageRoute(builder: (context) => SettingsScreen()),
-      //             // )
-      //           },
-      //           contentPadding: const EdgeInsets.only(left: 20.0),
-      //           horizontalTitleGap: 5,
-      //           leading: const Icon(
-      //             Icons.settings,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //         ListTile(
-      //           title: const Text(
-      //             "Request",
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 24,
-      //                 fontWeight: FontWeight.bold),
-      //           ),
-      //           onTap: () => {
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => PatientRequestPage()),
-      //             )
-      //           },
-      //           contentPadding: const EdgeInsets.only(left: 20.0),
-      //           horizontalTitleGap: 5,
-      //           leading: const Icon(
-      //             Icons.request_page,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //         ListTile(
-      //           title: const Text(
-      //             "Policies",
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 24,
-      //                 fontWeight: FontWeight.bold),
-      //           ),
-      //           onTap: () => {
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(
-      //                   builder: (context) => const PrivacyPolicyPage()),
-      //             )
-      //           },
-      //           contentPadding: const EdgeInsets.only(left: 20.0),
-      //           horizontalTitleGap: 5,
-      //           leading: const Icon(
-      //             Icons.policy,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //         ListTile(
-      //           title: const Text(
-      //             "Help",
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 24,
-      //                 fontWeight: FontWeight.bold),
-      //           ),
-      //           onTap: () => {
-      //             Navigator.push(
-      //               context,
-      //               MaterialPageRoute(builder: (context) => HelpPage()),
-      //             )
-      //           },
-      //           contentPadding: const EdgeInsets.only(left: 20.0),
-      //           horizontalTitleGap: 5,
-      //           leading: const Icon(
-      //             Icons.help,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //         ListTile(
-      //           title: const Text(
-      //             "Exit",
-      //             style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 24,
-      //                 fontWeight: FontWeight.bold),
-      //           ),
-      //           onTap: () => {
-      //             // Navigator.push(
-      //             //   context,
-      //             //   MaterialPageRoute(builder: (context) => History()),
-      //             // )
-      //           },
-      //           contentPadding: const EdgeInsets.only(left: 20.0),
-      //           horizontalTitleGap: 5,
-      //           leading: const Icon(
-      //             Icons.exit_to_app,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -402,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                     return Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      margin:const EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                         // color: Colors.amber,
                         borderRadius: BorderRadius.circular(20),
@@ -424,8 +256,8 @@ class _HomePageState extends State<HomePage> {
                     reverse: false,
                     height: 300,
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 2),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayInterval:const Duration(seconds: 2),
+                    autoPlayAnimationDuration:const Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     enlargeFactor: 1.0,
@@ -442,11 +274,11 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => EmergencyTypeSelectionPage()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 72, 154, 220),
+                  backgroundColor:const Color.fromARGB(255, 72, 154, 220),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  padding: EdgeInsets.all(7),
+                  padding:const EdgeInsets.all(7),
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
@@ -464,8 +296,8 @@ class _HomePageState extends State<HomePage> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: Color.fromARGB(124, 119, 11, 220),
-                  padding: EdgeInsets.all(30),
+                  color:const Color.fromARGB(124, 119, 11, 220),
+                  padding:const EdgeInsets.all(30),
                   width: MediaQuery.of(context).size.width * 0.2,
                   // padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: const Text(

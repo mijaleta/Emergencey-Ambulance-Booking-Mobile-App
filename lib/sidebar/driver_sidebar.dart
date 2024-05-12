@@ -1,19 +1,39 @@
 import 'package:ambu_app/helpers/demomap.dart';
 import 'package:ambu_app/pages/account_page.dart';
-// import 'package:ambu_app/sidebar/map_page.dart';
-import 'package:ambu_app/sidebar/patient_tracking.dart';
+import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/users/driver.dart';
-// import 'package:ambu_app/users/user_location.dart';
 import 'package:flutter/material.dart';
-// import 'package:gebetamap/gebetamap.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-// import 'diriver_map.dart';
-
-// import 'diriver_map.dart';
-
-class DriverNavBar extends StatelessWidget {
+class DriverNavBar extends StatefulWidget {
   const DriverNavBar({super.key});
 
+  @override
+  State<DriverNavBar> createState() => _DriverNavBarState();
+}
+
+class _DriverNavBarState extends State<DriverNavBar> {
+
+  // for logout
+  Future<void> _logout() async {
+    final url = Uri.parse('http://192.168.0.65:3000/logout');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        // Clear user data from SharedPreferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.remove('username');
+        // Redirect to Login page
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Login()));
+      } else {
+        print('Logout failed with status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error during logout: $e');
+    }
+  }
+// for logout
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -70,9 +90,9 @@ class DriverNavBar extends StatelessWidget {
                   'Driver Dashboard',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                // onTap: () {
-                //   Navigator.push(context, MaterialPageRoute(builder: (context) => Driver()));
-                // },
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Driver(username: '',)));
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -92,35 +112,6 @@ class DriverNavBar extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              // ListTile(
-              //   leading: const Image(
-              //     image: AssetImage('icons/patient.png'),
-              //     height: 40,
-              //     width: 40,
-              //   ),
-              //   title: const Text(
-              //     'Notifications',
-              //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              //   ),
-              //   onTap: () {
-              //
-              //   },
-              //   trailing: ClipOval(
-              //     child: Container(
-              //       color: Colors.red,
-              //       width: 20,
-              //       height: 20,
-              //       child: const Center(
-              //           child: Text(
-              //         '8',
-              //         style: TextStyle(color: Colors.white, fontSize: 12),
-              //       )),
-              //     ),
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 20,
-              // ),
               ListTile(
                 leading: const Image(
                   image: AssetImage('icons/google-maps.png'),
@@ -174,8 +165,22 @@ class DriverNavBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AccountScreen()),);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const AccountScreen()),);
                 },
+              ),
+
+              const Divider(),
+              ListTile(
+                leading:const Icon(
+                  Icons.logout, // Use the built-in logout icon
+                  size: 40,
+                  color: Colors.red, // Change the color of the icon
+                ),
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                onTap: _logout,
               ),
             ],
           )
@@ -183,9 +188,6 @@ class DriverNavBar extends StatelessWidget {
       ),
     );
   }
-
-  
-
 
   // Function to handle map-related functionality
   void callMapFunctions()  {
@@ -196,6 +198,4 @@ class DriverNavBar extends StatelessWidget {
      // callOneToMany();
      // callGeoCode();
   }
-
-
 }

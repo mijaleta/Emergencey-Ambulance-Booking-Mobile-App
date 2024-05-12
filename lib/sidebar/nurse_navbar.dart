@@ -1,10 +1,39 @@
 import 'package:ambu_app/pages/account_page.dart';
+import 'package:ambu_app/pages/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class NurseNavBar extends StatelessWidget {
+class NurseNavBar extends StatefulWidget {
   const NurseNavBar({super.key});
+
+  @override
+  State<NurseNavBar> createState() => _NurseNavBarState();
+}
+
+class _NurseNavBarState extends State<NurseNavBar> {
+
+  // for logout
+  Future<void> _logout() async {
+    final url = Uri.parse('http://192.168.0.65:3000/logout');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        // Clear user data from SharedPreferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.remove('username');
+        // Redirect to Login page
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Login()));
+      } else {
+        print('Logout failed with status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error during logout: $e');
+    }
+  }
+// for logout
 
   @override
   Widget build(BuildContext context) {
@@ -159,6 +188,20 @@ class NurseNavBar extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => AccountScreen()),);
                 },
+              ),
+
+              const Divider(),
+              ListTile(
+                leading:const Icon(
+                  Icons.logout, // Use the built-in logout icon
+                  size: 40,
+                  color: Colors.red, // Change the color of the icon
+                ),
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                onTap: _logout,
               ),
             ],
           )
