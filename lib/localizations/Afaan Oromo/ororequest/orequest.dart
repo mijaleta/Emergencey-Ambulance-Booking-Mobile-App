@@ -38,7 +38,7 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
       setState(() {
         _currentPosition = newPosition;
         _location =
-        '${_currentPosition.latitude},${_currentPosition.longitude}';
+            '${_currentPosition.latitude},${_currentPosition.longitude}';
       });
     } catch (e) {
       print('Location kee argachuu hin dandeenye: $e');
@@ -50,20 +50,35 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Ambulaansii Balaa tasaa Gaafachuu', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: Text(
+          'Ambulaansii Balaa tasaa Gaafachuu',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-
           child: Padding(
-
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                Text('Amma Gaafadhu!', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.cyan, fontSize: 24),),
-                Text('Tajaajila hatattamaa!', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.tealAccent, fontSize: 24),),
-                SizedBox(height: 20,),
+                Text(
+                  'Amma Gaafadhu!',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.cyan,
+                      fontSize: 24),
+                ),
+                Text(
+                  'Tajaajila hatattamaa!',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.tealAccent,
+                      fontSize: 24),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 // TextFormField(
                 //   initialValue:
                 //   _location, // Set the initial value of the location field
@@ -75,13 +90,16 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                 //   ),
                 //   enabled: false, // Disable editing of the location field
                 // ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Visibility(
                   visible: false,
                   child: TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Adjust the radius as needed
                       ),
                       labelText: 'Bakka amma jirtu galchi',
                     ),
@@ -96,11 +114,14 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                     },
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Haala dhukkubsataan irra jiru galchi',
                   ),
@@ -114,12 +135,15 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                     _patient_condition = value!;
                   },
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
 
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Lakkoofsa bilbilaa galchi',
                   ),
@@ -133,21 +157,24 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                     _contactInfo = value!;
                   },
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
 
                 DropdownButtonFormField(
                   value: _emergency_type,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Gosa balaa Tasaa',
                   ),
                   items: ['Car', 'Labour', 'Animal']
                       .map((level) => DropdownMenuItem(
-                    value: level,
-                    child: Text(level),
-                  ))
+                            value: level,
+                            child: Text(level),
+                          ))
                       .toList(),
                   onChanged: (value) {
                     setState(() {
@@ -155,15 +182,18 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                     });
                   },
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
 
                 // number of incident
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
-                    labelText: 'Baay\'\ina Dukkubsattootaa' ,
+                    labelText: 'Baay\'\ina Dukkubsattootaa',
                   ),
                   keyboardType: TextInputType
                       .number, // Use number input type for numeric keyboard
@@ -181,7 +211,9 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                     _number = value!;
                   },
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -189,7 +221,10 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                       backgroundColor: Colors.green,
                     ),
                     onPressed: _submitRequest,
-                    child: Text('Ergi', style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      'Gaaffiikee Ergi',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],
@@ -249,7 +284,8 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
             );
           }
         } else {
-          print('Gaaffiinkee hin ergamne. Koodii Haalaa: ${response.statusCode}');
+          print(
+              'Gaaffiinkee hin ergamne. Koodii Haalaa: ${response.statusCode}');
           print('Qaama deebii: ${response.body}');
         }
       } catch (e) {
@@ -275,7 +311,7 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
             context, MaterialPageRoute(builder: (context) => AnimalPage()));
         break;
       default:
-      // Handle unknown emergency type if necessary
+        // Handle unknown emergency type if necessary
         break;
     }
   }
