@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:ambu_app/pages/login.dart';
 import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/sidebar/driver_sidebar.dart';
 import 'package:ambu_app/sidebar/patient_tracking.dart';
@@ -80,7 +81,7 @@ class _DriverState extends State<Driver> {
               child: IconButton(
                 icon: Icon(Icons.logout, color: Colors.white), // Change the icon color
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const MainPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>Login()));
                 },
               ),
             ),

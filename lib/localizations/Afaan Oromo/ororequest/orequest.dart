@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
@@ -79,23 +80,24 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                 SizedBox(
                   height: 20,
                 ),
-                // TextFormField(
-                //   initialValue:
-                //   _location, // Set the initial value of the location field
-                //   decoration: InputDecoration(
-                //     border: OutlineInputBorder(
-                //       borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
-                //     ),
-                //     labelText: 'Location',
-                //   ),
-                //   enabled: false, // Disable editing of the location field
-                // ),
-                SizedBox(
-                  height: 20,
-                ),
                 Visibility(
                   visible: false,
                   child: TextFormField(
+                    initialValue:
+                    _location, // Set the initial value of the location field
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      ),
+                      labelText: 'Location',
+                    ),
+                    enabled: false, // Disable editing of the location field
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(
@@ -113,7 +115,6 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                       _address = value!;
                     },
                   ),
-                ),
                 SizedBox(
                   height: 20,
                 ),
