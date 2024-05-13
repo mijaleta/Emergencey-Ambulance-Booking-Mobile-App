@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SpecialRequestPage extends StatefulWidget {
-  SpecialRequestPage({super.key});
+class OSpecialRequestPage extends StatefulWidget {
+  OSpecialRequestPage({super.key});
 
   @override
-  _SpecialRequestPageState createState() => _SpecialRequestPageState();
+  _OSpecialRequestPageState createState() => _OSpecialRequestPageState();
 }
 
-class _SpecialRequestPageState extends State<SpecialRequestPage> {
+class _OSpecialRequestPageState extends State<OSpecialRequestPage> {
   String _specialRequest = '';
 
   // ... (other code)
@@ -29,11 +29,11 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
         _showSuccessDialog();
       } else {
         // Handle server errors
-        print('Server error: ${response.body}');
+        print('Rakkoo Serverii: ${response.body}');
       }
     } catch (e) {
       // Handle network errors
-      print('Network error: $e');
+      print('Rakkoo Networkii: $e');
     }
   }
 
@@ -42,8 +42,8 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Success"),
-          content: Text("Your request submitted successfully."),
+          title: Text("Ergameera"),
+          content: Text("Gaaffiin keessan milkaa'inaan ergameera"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -64,7 +64,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: const Text(
-            'Special Requests',
+            'Gaaffilee Addaa',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
@@ -78,13 +78,13 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
             ),
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(top: 50.0, left: 20, right: 20),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'Add any special requests or additional information:',
+                        'Gaaffii addaa ykn odeeffannoo dabalataa kamiyyuu kennuu ykn gaafachuu ni barbaadduu?',
                         style: TextStyle(
                           fontSize: 22.0,
                           color: Colors.white,
@@ -95,7 +95,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                       TextFormField(
                         maxLines: 10,
                         decoration: const InputDecoration(
-                          hintText: 'Type here...',
+                          hintText: 'Asitti barreessaa...',
                           filled: true, // Fill the background color
                           fillColor: Colors.white, // Background color
                           hintStyle:
@@ -119,7 +119,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green),
                               child: const Text(
-                                'Save',
+                                'Gaaffii Ergaa',
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
@@ -75,22 +76,25 @@ class _ORequestAmbulancePageState extends State<ORequestAmbulancePage> {
                 //   enabled: false, // Disable editing of the location field
                 // ),
                 SizedBox(height: 20,),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                Visibility(
+                  visible: false,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      ),
+                      labelText: 'Bakka amma jirtu galchi',
                     ),
-                    labelText: 'Bakka amma jirtu galchi',
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Odeeffannoo Bakka itti argamtuu guuti';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      _address = value!;
+                    },
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Odeeffannoo Bakka itti argamtuu guuti';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _address = value!;
-                  },
                 ),
                 SizedBox(height: 20,),
                 TextFormField(

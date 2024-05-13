@@ -6,12 +6,14 @@ import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/users/driver.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/patient_req_example.dart';
+
 class CommonSideBar extends StatelessWidget {
   const CommonSideBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-        return Drawer(
+    return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -25,7 +27,6 @@ class CommonSideBar extends StatelessWidget {
                 'User',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/profileback.jpg'),
@@ -57,7 +58,8 @@ class CommonSideBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MainPage()));
                 },
               ),
               // const SizedBox(
@@ -91,7 +93,10 @@ class CommonSideBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => AnimalPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RequestAmbulancePage()));
                 },
                 // trailing: ClipOval(
                 //   child: Container(
@@ -120,7 +125,8 @@ class CommonSideBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HelpPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HelpPage()));
                 },
               ),
               const SizedBox(
@@ -141,7 +147,8 @@ class CommonSideBar extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CallScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CallScreen()));
                 },
               ),
               const SizedBox(
@@ -149,26 +156,33 @@ class CommonSideBar extends StatelessWidget {
               ),
               const Divider(),
               ListTile(
-                leading: const Icon(Icons.assignment), // Use the built-in "assignment" icon for Terms of Services
+                leading: const Icon(Icons
+                    .assignment), // Use the built-in "assignment" icon for Terms of Services
                 title: const Text(
                   'Terms Of Services',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const TermsOfServicePage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TermsOfServicePage()));
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.privacy_tip), // Use the built-in "privacy_tip" icon for Privacy Policy
+                leading: const Icon(Icons
+                    .privacy_tip), // Use the built-in "privacy_tip" icon for Privacy Policy
                 title: const Text(
                   'Privacy Policy',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const PrivacyPolicyPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PrivacyPolicyPage()));
                 },
               ),
-
             ],
           )
         ],

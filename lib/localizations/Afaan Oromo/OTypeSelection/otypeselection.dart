@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:flutter/widgets.dart';
 
-import 'patient_req_example.dart';
+import '../../../pages/patient_req_example.dart';
+import '../OSpecialrequest/ospecialrequest.dart';
 
-class EmergencyTypeSelectionPage extends StatelessWidget {
+class OEmergencyTypeSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
-          "Select Emergency Type",
+          "Gosa Balaa Tasaa filadhu",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
@@ -45,7 +46,7 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Request Ambulance',
+                      'Ambulansii Gaafachuu',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -67,7 +68,7 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          "Start Request",
+                          "Gaaffii Jalqabsiisi",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -78,7 +79,7 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Before requesting an ambulance, ensure your safety and provide necessary details:',
+              'Ambulaansii gaafachuu kee dura nageenya kee mirkaneessi, ibsa barbaachisaa ta’e kenni',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -90,21 +91,21 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.info, color: Colors.black),
               title: Text(
-                'Stay calm and assess the situation.',
+                'Tasgabbiidhaan haala jiru madaali.',
                 style: TextStyle(color: Colors.black),
               ),
             ),
             ListTile(
               leading: Icon(Icons.info, color: Colors.black),
               title: Text(
-                'Check for any injuries and provide basic first aid if possible.',
+                'Miidhaa kamiyyuu ilaaluun yoo danda’ame ammoo gargaarsa jalqabaa bu’uuraa kennuuf yaali.',
                 style: TextStyle(color: Colors.black),
               ),
             ),
             ListTile(
               leading: Icon(Icons.info, color: Colors.black),
               title: Text(
-                'Provide accurate location details and describe the emergency clearly.',
+                'Bal’inaan bakka sirrii ta’e kennuun balaa tasaa ifatti/sirriitti ibsi.',
                 style: TextStyle(color: Colors.black),
               ),
             ),
@@ -118,12 +119,12 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SpecialRequestPage(),
+                        builder: (context) => OSpecialRequestPage(),
                       ),
                     );
                   },
                   child: Text(
-                    "Special Request",
+                    "Gaaffi dabalataa/Addaa",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

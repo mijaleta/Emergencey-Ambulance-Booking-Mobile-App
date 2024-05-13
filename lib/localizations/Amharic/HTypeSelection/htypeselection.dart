@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:ambu_app/pages/special_request_page.dart';
 import 'package:flutter/widgets.dart';
 
-import 'patient_req_example.dart';
+import '../../../pages/patient_req_example.dart';
+import '../HSpecialrequest/hspecialrequest.dart';
 
-class EmergencyTypeSelectionPage extends StatelessWidget {
+class HEmergencyTypeSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
-          "Select Emergency Type",
+          "የአደጋውን አይነት መምረጥ",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
@@ -45,7 +46,7 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Request Ambulance',
+                      'አምቡላንስ ይጠይቁ',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -67,7 +68,7 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          "Start Request",
+                          "ጥያቄ ጀምር",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -78,7 +79,7 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Before requesting an ambulance, ensure your safety and provide necessary details:',
+              'አምቡላንስ ከመጠየቅዎ በፊት ደህንነትዎን ያረጋግጡ እና አስፈላጊ ዝርዝሮችን ያቅርቡ.',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -90,21 +91,21 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.info, color: Colors.black),
               title: Text(
-                'Stay calm and assess the situation.',
+                'ተረጋግተህ ሁኔታውን ገምግም።',
                 style: TextStyle(color: Colors.black),
               ),
             ),
             ListTile(
               leading: Icon(Icons.info, color: Colors.black),
               title: Text(
-                'Check for any injuries and provide basic first aid if possible.',
+                'ማንኛውንም ጉዳት ያረጋግጡ እና ከተቻለ መሰረታዊ የመጀመሪያ እርዳታ ያቅርቡ።',
                 style: TextStyle(color: Colors.black),
               ),
             ),
             ListTile(
               leading: Icon(Icons.info, color: Colors.black),
               title: Text(
-                'Provide accurate location details and describe the emergency clearly.',
+                'ትክክለኛ የአካባቢ ዝርዝሮችን ያቅርቡ እና የአደጋ ጊዜን በግልፅ ይግለጹ።',
                 style: TextStyle(color: Colors.black),
               ),
             ),
@@ -118,12 +119,12 @@ class EmergencyTypeSelectionPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SpecialRequestPage(),
+                        builder: (context) => HSpecialRequestPage(),
                       ),
                     );
                   },
                   child: Text(
-                    "Special Request",
+                    "ልዩ ጥያቄ",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

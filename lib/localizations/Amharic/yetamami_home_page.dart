@@ -12,6 +12,7 @@ import 'package:ionicons/ionicons.dart';
 
 import '../../pages/navpages/main_page.dart';
 import '../Afaan Oromo/oromifa_main.dart';
+import 'HTypeSelection/htypeselection.dart';
 import 'agalgilot_term.dart';
 import 'amarigna_main.dart';
 import 'habeshasidebar/hsidebar.dart';
@@ -264,7 +265,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => EmergencyTypeSelectionPage()));
+                          builder: (context) => HEmergencyTypeSelectionPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 72, 154, 220),

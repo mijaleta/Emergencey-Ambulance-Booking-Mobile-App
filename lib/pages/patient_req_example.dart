@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart'; // Import the geolocator package
@@ -48,36 +49,58 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Emergency Ambulance Booking Request', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        title: Text(
+          'Emergency Ambulance Booking Request',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-
           child: Padding(
-
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                Text('Book Now!', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.cyan, fontSize: 24),),
-                Text('Get quick services!', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.tealAccent, fontSize: 24),),
-                SizedBox(height: 20,),
-                TextFormField(
-                  initialValue:
-                      _location, // Set the initial value of the location field
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
-                    ),
-                    labelText: 'Location',
-                  ),
-                  enabled: false, // Disable editing of the location field
+                Text(
+                  'Book Now!',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.cyan,
+                      fontSize: 24),
                 ),
-                SizedBox(height: 20,),
+                Text(
+                  'Get quick services!',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.tealAccent,
+                      fontSize: 24),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Visibility(
+                  visible: false,
+                  child: TextFormField(
+                    initialValue:
+                        _location, // Set the initial value of the location field
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Adjust the radius as needed
+                      ),
+                      labelText: 'Location',
+                    ),
+                    enabled: false, // Disable editing of the location field
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Address',
                   ),
@@ -91,11 +114,14 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     _address = value!;
                   },
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Patient condition',
                   ),
@@ -109,12 +135,15 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     _patient_condition = value!;
                   },
                 ),
-                SizedBox(height: 20,),
-        
+                SizedBox(
+                  height: 20,
+                ),
+
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Contact Information',
                   ),
@@ -128,13 +157,16 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     _contactInfo = value!;
                   },
                 ),
-                SizedBox(height: 20,),
-        
+                SizedBox(
+                  height: 20,
+                ),
+
                 DropdownButtonFormField(
                   value: _emergency_type,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Emergency type',
                   ),
@@ -150,13 +182,16 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     });
                   },
                 ),
-                SizedBox(height: 20,),
-        
+                SizedBox(
+                  height: 20,
+                ),
+
                 // number of incident
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Adjust the radius as needed
                     ),
                     labelText: 'Passenger(Patient) Number',
                   ),
@@ -176,7 +211,9 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     _number = value!;
                   },
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -184,7 +221,10 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                       backgroundColor: Colors.green,
                     ),
                     onPressed: _submitRequest,
-                    child: Text('Submit Request', style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      'Submit Request',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],

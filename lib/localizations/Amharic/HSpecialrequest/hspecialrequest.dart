@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SpecialRequestPage extends StatefulWidget {
-  SpecialRequestPage({super.key});
+class HSpecialRequestPage extends StatefulWidget {
+  HSpecialRequestPage({super.key});
 
   @override
-  _SpecialRequestPageState createState() => _SpecialRequestPageState();
+  _HSpecialRequestPageState createState() => _HSpecialRequestPageState();
 }
 
-class _SpecialRequestPageState extends State<SpecialRequestPage> {
+class _HSpecialRequestPageState extends State<HSpecialRequestPage> {
   String _specialRequest = '';
 
   // ... (other code)
@@ -29,11 +30,11 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
         _showSuccessDialog();
       } else {
         // Handle server errors
-        print('Server error: ${response.body}');
+        print('የአገልጋይ ስህተት: ${response.body}');
       }
     } catch (e) {
       // Handle network errors
-      print('Network error: $e');
+      print('የአውታረ መረብ ስህተት: $e');
     }
   }
 
@@ -43,7 +44,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Success"),
-          content: Text("Your request submitted successfully."),
+          content: Text("ጥያቄዎ በተሳካ ሁኔታ ገብቷል።"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -64,7 +65,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: const Text(
-            'Special Requests',
+            'ልዩ ጥያቄዎች',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
@@ -78,13 +79,13 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
             ),
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(top: 50.0, left: 20, right: 20),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'Add any special requests or additional information:',
+                        'ማንኛውንም ልዩ ጥያቄዎች ወይም ተጨማሪ መረጃ ያክሉ',
                         style: TextStyle(
                           fontSize: 22.0,
                           color: Colors.white,
@@ -92,23 +93,26 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16.0),
-                      TextFormField(
-                        maxLines: 10,
-                        decoration: const InputDecoration(
-                          hintText: 'Type here...',
-                          filled: true, // Fill the background color
-                          fillColor: Colors.white, // Background color
-                          hintStyle:
-                              TextStyle(color: Colors.grey), // Hint text color
-                          // border: OutlineInputBorder(),
-                          border: OutlineInputBorder(),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: TextFormField(
+                          maxLines: 10,
+                          decoration: const InputDecoration(
+                            hintText: 'እዚህ ጻፍ...',
+                            filled: true, // Fill the background color
+                            fillColor: Colors.white, // Background color
+                            hintStyle: TextStyle(
+                                color: Colors.grey), // Hint text color
+                            // border: OutlineInputBorder(),
+                            border: OutlineInputBorder(),
+                          ),
+                          style: TextStyle(color: Colors.black),
+                          onChanged: (value) {
+                            setState(() {
+                              _specialRequest = value;
+                            });
+                          },
                         ),
-                        style: TextStyle(color: Colors.black),
-                        onChanged: (value) {
-                          setState(() {
-                            _specialRequest = value;
-                          });
-                        },
                       ),
                       const SizedBox(height: 16.0),
                       Row(
@@ -119,7 +123,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green),
                               child: const Text(
-                                'Save',
+                                'ጥያቄዎን ያስገቡ',
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,

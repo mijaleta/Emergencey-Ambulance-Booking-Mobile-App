@@ -17,6 +17,7 @@ import 'package:ionicons/ionicons.dart';
 
 import '../../pages/navpages/main_page.dart';
 import '../Amharic/amarigna_main.dart';
+import 'OTypeSelection/otypeselection.dart';
 import 'oromifa_main.dart';
 import 'oromosidebar/osidebar.dart';
 import 'policy_privacy.dart';
@@ -271,7 +272,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => EmergencyTypeSelectionPage()));
+                          builder: (context) => OEmergencyTypeSelectionPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 72, 154, 220),
@@ -282,7 +283,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
-                    "Ambulaansii Barbaaddaa?",
+                    "Gargaarsa Ambulaansii",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
