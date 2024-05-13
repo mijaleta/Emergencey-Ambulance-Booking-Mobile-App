@@ -563,13 +563,11 @@ class ViewReportsDialog extends StatelessWidget {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('List of Trip Reports:'),
-          // Display the list of trip reports here
-          // Replace this with a ListView or other suitable widget
-          Text('1. Trip Report 1'),
-          Text('2. Trip Report 2'),
-          Text('3. Trip Report 3'),
-          // Add more trip reports as needed
+          Text('List of Trip Reports'),
+          Text('1. Trip Report while Labour Mother'),
+          Text('2. Trip Report During Injury'),
+          Text('3. Trip Report Car Emergency'),
+
         ],
       ),
       actions: [
@@ -606,12 +604,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
               setState(() {
                 _darkModeEnabled = value;
               });
-              // Perform database interaction here to update user settings
-              // Example: Update user's dark mode preference in the database
-              // database.updateUserSettings(darkModeEnabled: value);
             },
           ),
-          // Add more settings options as needed
         ],
       ),
       actions: [

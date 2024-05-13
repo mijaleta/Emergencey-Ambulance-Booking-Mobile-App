@@ -5,6 +5,7 @@ import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
 import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/logout.dart';
+import 'package:ambu_app/sidebar/general_sidebar.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'package:ionicons/ionicons.dart';
 import '../../pages/navpages/main_page.dart';
 import '../Amharic/amarigna_main.dart';
 import 'oromifa_main.dart';
+import 'oromosidebar/osidebar.dart';
 import 'policy_privacy.dart';
 import 'termi_tajaajilaa.dart';
 
@@ -198,168 +200,7 @@ class _HomePageDhukkubsataaState extends State<HomePageDhukkubsataa> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: Container(
-          color: const Color.fromARGB(
-              255, 83, 82, 82), // Set drawer background color
-          padding: EdgeInsets.only(top: 100.0),
-          child: ListView(
-            children: [
-              ListTile(
-                title: const Text(
-                  "Gargaarsa Ambulansii",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold), // Set text color
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DriverPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(
-                    left: 20.0), // Remove ListTile default padding
-                horizontalTitleGap: 5, // Remove space between icon and text
-                leading: const Icon(
-                  Icons.book,
-                  color: Colors.white, // Set icon color
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Account",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AccountScreen()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Sirreeffama",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => SettingsScreen()),
-                  // )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Gaafachuu",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PatientRequestPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.request_page,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Imaammata",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PrivacyPolicyPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.policy,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "Gargaarsa",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HelpPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.help,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "App dhiisi ba'i",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => History()),
-                  // )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.exit_to_app,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: OSideBar(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

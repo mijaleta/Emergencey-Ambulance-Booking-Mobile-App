@@ -1,10 +1,7 @@
 import 'package:ambu_app/localizations/Amharic/yeprivacy_policy.dart';
 import 'package:ambu_app/localizations/classes/language.dart';
-import 'package:ambu_app/pages/conditions/privacy_policy_page.dart';
-import 'package:ambu_app/pages/driver_page.dart';
 import 'package:ambu_app/pages/emergency_types.dart';
 import 'package:ambu_app/pages/feedback_page.dart';
-import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/logout.dart';
 import 'package:ambu_app/users/nurse.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -17,6 +14,7 @@ import '../../pages/navpages/main_page.dart';
 import '../Afaan Oromo/oromifa_main.dart';
 import 'agalgilot_term.dart';
 import 'amarigna_main.dart';
+import 'habeshasidebar/hsidebar.dart';
 
 class AmharicHomePage extends StatefulWidget {
   const AmharicHomePage({super.key});
@@ -196,146 +194,7 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: Container(
-          color: const Color.fromARGB(
-              255, 83, 82, 82), // Set drawer background color
-          padding: EdgeInsets.only(top: 100.0),
-          child: ListView(
-            children: [
-              ListTile(
-                title: const Text(
-                  "የአምቡላንስ እርዳታ",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold), // Set text color
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DriverPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(
-                    left: 20.0), // Remove ListTile default padding
-                horizontalTitleGap: 5, // Remove space between icon and text
-                leading: const Icon(
-                  Icons.book,
-                  color: Colors.white, // Set icon color
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "መለያ",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AccountScreen()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "ቅንብሮች",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => SettingsScreen()),
-                  // )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "ፖሊሲዎች",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PrivacyPolicyPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.policy,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "እገዛ",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HelpPage()),
-                  )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.help,
-                  color: Colors.white,
-                ),
-              ),
-              ListTile(
-                title: const Text(
-                  "ከመተግበሪያው ውጣ",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                onTap: () => {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => History()),
-                  // )
-                },
-                contentPadding: const EdgeInsets.only(left: 20.0),
-                horizontalTitleGap: 5,
-                leading: const Icon(
-                  Icons.exit_to_app,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: HSideBar(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
