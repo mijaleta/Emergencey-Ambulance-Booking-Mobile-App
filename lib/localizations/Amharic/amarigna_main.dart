@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../pages/feedback_page.dart';
+import '../../pages/patient_req_example.dart';
 import 'agalgilot.dart';
 import 'yetamami_home_page.dart';
 
@@ -21,7 +23,9 @@ class _AmarignaMainPageState extends State<AmarignaMainPage> {
     AmharicHomePage(),
     YegnaAgalgilot(),
     // SearchPage(),
-    AccountScreen(),
+    // AccountScreen(),
+    FeedbackPage(),
+    RequestAmbulancePage(),
   ];
   int currentIndex = 0;
 
@@ -55,12 +59,12 @@ class _AmarignaMainPageState extends State<AmarignaMainPage> {
                 text: 'Services',
               ),
               GButton(
-                icon: Ionicons.search_outline,
-                text: 'Search',
+                icon: Icons.feedback,
+                text: 'Feedback',
               ),
               GButton(
-                icon: Ionicons.settings_outline,
-                text: 'Settings',
+                icon: Icons.request_page_rounded,
+                text: 'Book',
               ),
             ],
           ),

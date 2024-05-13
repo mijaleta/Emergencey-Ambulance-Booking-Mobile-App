@@ -141,47 +141,16 @@ class _AmharicHomePageState extends State<AmharicHomePage> {
           ),
 
           PopupMenuButton(
-            icon: Image.asset("icons/more.png"),
+            icon: Icon(Icons.more_vert, size: 24), // Adjust the size as needed
             onSelected: (String value) {
               // Update the selectedMenuItem variable
               setState(() {
                 selectedMenuItem = value;
               });
-              // Handle menu item selection here
-              if (selectedMenuItem == 'መለያ') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AccountScreen()),
-                );
-              } else if (selectedMenuItem == 'ቅንብሮች') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AccountScreen()),
-                );
-                // Handle settings navigation
-              } else if (selectedMenuItem == 'ሹፌር') {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const Driver()),
-                // );
-                // Handle settings navigation
-              } else if (selectedMenuItem == 'ነርስ') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Nurse()),
-                );
-              } else if (selectedMenuItem == 'ግብረ መልስ') {
+              if (selectedMenuItem == 'ግብረ መልስ') {
                 // Handle Feedback navigation
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => FeedbackPage()));
-              } else if (selectedMenuItem == 'ውጣ') {
-                // Handle logout navigation
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Logout()),
-                );
               }
             },
             itemBuilder: (BuildContext context) {

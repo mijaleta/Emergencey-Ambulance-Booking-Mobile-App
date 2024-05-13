@@ -1,5 +1,7 @@
 import 'package:ambu_app/pages/ambulance_search_page.dart';
+import 'package:ambu_app/pages/helpPage.dart';
 import 'package:ambu_app/pages/home_page.dart';
+import 'package:ambu_app/pages/patient_req_example%20copy.dart';
 import 'package:ambu_app/services/acceessiblity.dart';
 import 'package:ambu_app/services/accident.dart';
 import 'package:ambu_app/services/emergency.dart';
@@ -76,7 +78,7 @@ class YegnaAgalgilot extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Emergency()));
+                                              CarPage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -119,7 +121,7 @@ class YegnaAgalgilot extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Accessibility()));
+                                              HelpPage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -165,7 +167,7 @@ class YegnaAgalgilot extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const FirstAid()));
+                                              AnimalPage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -205,7 +207,7 @@ class YegnaAgalgilot extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Accident()));
+                                              LabourPage()));
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

@@ -31,17 +31,22 @@ class Login extends StatelessWidget {
           ),
         ),
         // body: SingleChildScrollView(
-        body: Container(
-          margin: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _header(context),
-              _inputField(context),
-              _forgotPassword(context),
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            margin: const EdgeInsets.all(24),
+            padding: EdgeInsets.only(top: 100, bottom: 100),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _header(context),
+                SizedBox(height: 50,),
+                _inputField(context),
+                SizedBox(height: 50,),
+                _forgotPassword(context),
+              ],
+            ),
+            // ),
           ),
-          // ),
         ),
       ),
     );
@@ -66,7 +71,9 @@ class Login extends StatelessWidget {
     final TextEditingController usernameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
+    final _formKey = GlobalKey<FormState>();
     Future<void> _submitLogin() async {
+      if (_formKey.currentState!.validate()) {
       final String username = usernameController.text;
       final String password = passwordController.text;
 // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
@@ -124,62 +131,79 @@ class Login extends StatelessWidget {
       } catch (e) {
         print('Error: $e');
       }
+      }
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const SizedBox(
-          height: 15,
-        ),
-        TextField(
-          controller: usernameController,
-          decoration: InputDecoration(
-            hintText: "Username",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: BorderSide.none,
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(
+            height: 15,
+          ),
+          TextFormField(
+            controller: usernameController,
+            decoration: InputDecoration(
+              hintText: "Username",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none,
+              ),
+              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+              filled: true,
+              prefixIcon: const Icon(Icons.person),
             ),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            prefixIcon: const Icon(Icons.person),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your username';
+              }
+              return null;
+            },
+      
           ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        TextField(
-          controller: passwordController,
-          decoration: InputDecoration(
-            hintText: "Password",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: BorderSide.none,
+          const SizedBox(
+            height: 15,
+          ),
+          TextFormField(
+            controller: passwordController,
+            decoration: InputDecoration(
+              hintText: "Password",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none,
+              ),
+              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
+              filled: true,
+              prefixIcon: Icon(Icons.password_rounded),
             ),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            prefixIcon: Icon(Icons.password_rounded),
+            obscureText: true,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              return null;
+            },
           ),
-          obscureText: true,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        ElevatedButton(
-          onPressed: _submitLogin,
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.blue,
+          const SizedBox(
+            height: 15,
           ),
-          child: const Text(
-            'Login',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+          ElevatedButton(
+            onPressed: _submitLogin,
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              backgroundColor: Colors.blue,
+            ),
+            child: const Text(
+              'Login',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
