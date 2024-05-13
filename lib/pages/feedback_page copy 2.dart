@@ -2,11 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key}) : super(key: key);
   @override
   FeedbackPageState createState() => FeedbackPageState();
 }
+
 class FeedbackPageState extends State<FeedbackPage> {
   List<bool> isTypeSelected = [false, false, false, true, true];
   TextEditingController contactNumberController = TextEditingController();
@@ -20,7 +22,7 @@ class FeedbackPageState extends State<FeedbackPage> {
     "Suggestions",
   ];
 
-    // Define a TextEditingController for the feedback text
+  // Define a TextEditingController for the feedback text
   TextEditingController feedbackTextController = TextEditingController();
   // ... your existing methods ...
   // Make sure to dispose controllers when the state is disposed
@@ -30,14 +32,15 @@ class FeedbackPageState extends State<FeedbackPage> {
     feedbackTextController.dispose();
     super.dispose();
   }
+
   // Function to submit feedback
   Future<void> submitFeedback() async {
-
     // Convert the selected feedback types to a list of strings
     List<String> selectedFeedbackTypes = [];
     for (int i = 0; i < isTypeSelected.length; i++) {
       if (isTypeSelected[i]) {
-        selectedFeedbackTypes.add(feedbackTypes[i]); // Assuming you have a list of feedback type strings
+        selectedFeedbackTypes.add(feedbackTypes[
+            i]); // Assuming you have a list of feedback type strings
       }
     }
 
@@ -45,13 +48,14 @@ class FeedbackPageState extends State<FeedbackPage> {
     Map<String, dynamic> feedbackData = {
       'contactNumber': contactNumberController.text,
       'feedbackType': selectedFeedbackTypes,
-      'feedbackText': feedbackTextController.text, // Assuming you have a TextEditingController for feedback text
+      'feedbackText': feedbackTextController
+          .text, // Assuming you have a TextEditingController for feedback text
     };
 
     // Send the feedback data to the backend
     var response = await http.post(
       // Uri.parse('http://yourbackend.com/submit-feedback'), // Replace with your backend URL
-       Uri.parse('http://192.168.0.65:3000/submit-feedback'),
+      Uri.parse('http://192.168.0.65:3000/submit-feedback'),
 
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -62,29 +66,30 @@ class FeedbackPageState extends State<FeedbackPage> {
     // Check the response status
     if (response.statusCode == 201) {
       // Handle successful submission
-          // Navigate to the SuccessPage
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SuccessPage()),
-    );
+      // Navigate to the SuccessPage
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SuccessPage()),
+      );
       print('Feedback submitted successfully');
     } else {
       // Handle error
       print('Failed to submit feedback: ${response.body}');
     }
   }
+
 // added code for backend
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         elevation: 2.0,
         centerTitle: true,
         title: const Text(
           "Feedback ",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -258,7 +263,7 @@ class FeedbackPageState extends State<FeedbackPage> {
       child: Stack(
         children: [
           TextField(
-          controller: feedbackTextController, // Set the controller here
+            controller: feedbackTextController, // Set the controller here
 
             maxLines: 10,
             decoration: InputDecoration(
@@ -314,10 +319,8 @@ class FeedbackPageState extends State<FeedbackPage> {
           //     ),
           //   ),
           // )
-        
+
 // commented for screenshoot
-
-
         ],
       ),
     );
@@ -345,7 +348,7 @@ class FeedbackPageState extends State<FeedbackPage> {
   }
 }
 
-// succe page 
+// succe page
 class SuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

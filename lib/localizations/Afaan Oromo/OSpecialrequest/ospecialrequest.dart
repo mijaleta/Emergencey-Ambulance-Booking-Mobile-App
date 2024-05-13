@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -92,23 +93,26 @@ class _OSpecialRequestPageState extends State<OSpecialRequestPage> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16.0),
-                      TextFormField(
-                        maxLines: 10,
-                        decoration: const InputDecoration(
-                          hintText: 'Asitti barreessaa...',
-                          filled: true, // Fill the background color
-                          fillColor: Colors.white, // Background color
-                          hintStyle:
-                              TextStyle(color: Colors.grey), // Hint text color
-                          // border: OutlineInputBorder(),
-                          border: OutlineInputBorder(),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextFormField(
+                          maxLines: 10,
+                          decoration: const InputDecoration(
+                            hintText: 'Asitti barreessaa...',
+                            filled: true, // Fill the background color
+                            fillColor: Colors.white, // Background color
+                            hintStyle: TextStyle(
+                                color: Colors.grey), // Hint text color
+                            // border: OutlineInputBorder(),
+                            border: OutlineInputBorder(),
+                          ),
+                          style: TextStyle(color: Colors.black),
+                          onChanged: (value) {
+                            setState(() {
+                              _specialRequest = value;
+                            });
+                          },
                         ),
-                        style: TextStyle(color: Colors.black),
-                        onChanged: (value) {
-                          setState(() {
-                            _specialRequest = value;
-                          });
-                        },
                       ),
                       const SizedBox(height: 16.0),
                       Row(

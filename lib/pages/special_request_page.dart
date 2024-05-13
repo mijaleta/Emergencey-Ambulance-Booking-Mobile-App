@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -78,7 +79,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
             ),
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(top: 50.0, left: 20, right: 20),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,23 +93,26 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 16.0),
-                      TextFormField(
-                        maxLines: 10,
-                        decoration: const InputDecoration(
-                          hintText: 'Type here...',
-                          filled: true, // Fill the background color
-                          fillColor: Colors.white, // Background color
-                          hintStyle:
-                              TextStyle(color: Colors.grey), // Hint text color
-                          // border: OutlineInputBorder(),
-                          border: OutlineInputBorder(),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextFormField(
+                          maxLines: 10,
+                          decoration: const InputDecoration(
+                            hintText: 'Type here...',
+                            filled: true, // Fill the background color
+                            fillColor: Colors.white, // Background color
+                            hintStyle: TextStyle(
+                                color: Colors.grey), // Hint text color
+                            // border: OutlineInputBorder(),
+                            border: OutlineInputBorder(),
+                          ),
+                          style: TextStyle(color: Colors.black),
+                          onChanged: (value) {
+                            setState(() {
+                              _specialRequest = value;
+                            });
+                          },
                         ),
-                        style: TextStyle(color: Colors.black),
-                        onChanged: (value) {
-                          setState(() {
-                            _specialRequest = value;
-                          });
-                        },
                       ),
                       const SizedBox(height: 16.0),
                       Row(
@@ -119,7 +123,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green),
                               child: const Text(
-                                'Save',
+                                'Submit',
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,

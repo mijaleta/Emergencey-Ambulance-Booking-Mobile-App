@@ -18,7 +18,10 @@ class Login extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          title:const Text('Login', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+          title: const Text(
+            'Login',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
