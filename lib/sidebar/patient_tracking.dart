@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:ambu_app/users/myInput.dart';
 import 'package:geodesy/geodesy.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:geolocator/geolocator.dart'; // Import geolocator package
+import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PatientTrackingPage extends StatefulWidget {
@@ -24,7 +23,7 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
   final end = TextEditingController();
   // LatLng currentLocation = await _getCurrentLocation(); // Get current location from device
 
-  bool isVisible = false;
+  bool isVisible = true;
   List<LatLng> routpoints = [LatLng(9.352951154649515, 42.80603840681846)];
 
   // Timer for continuous location updates
@@ -88,36 +87,6 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
     await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
     return placemarks[0].name ?? ""; // Return address or empty string
   }
-
-
-
-
-  // Method to start the timer for continuous location updates
-  // void startLocationUpdates() {
-  //   locationUpdateTimer = Timer.periodic(Duration(seconds: 30), (timer) {
-  //     // Update the driver's location and route
-  //     // updateDriverLocationAndRoute();
-  //   });
-  // }
-
-  // Placeholder method to simulate getting the driver's current location
-  // Future<LatLng> getCurrentDriverLocation() async {
-  //   // For demonstration purposes, let's return a fixed location
-  //   return LatLng(9.352951154649515, 42.80603840681846);
-  // }
-
-  // Method to fetch the current location of the user
-  // void getCurrentLocation() async {
-  //   Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.high);
-  //   // Reverse geocode to get address from the position
-  //   List<Placemark> placemarks =
-  //   await placemarkFromCoordinates(position.latitude, position.longitude);
-  //   String address = placemarks[0].name ?? "";
-  //   // Set the fetched address in the start text input field
-  //   start.text = address;
-  // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -293,87 +262,6 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
   Future<void> calculateRouteAndDraw(LatLng start, LatLng end) async {
     // Implement the logic to calculate the route using a routing service like OSRM and draw it on the map
   }
-
-
-// Future<bool> requestLocationPermission() async {
-  //   var status = await Permission.locationWhenInUse.request();
-  //   if (status.isGranted) {
-  //     return true;
-  //   } else {
-  //     if (status.isDenied) {
-  //       // Show an explanation to the user
-  //       await showDialog(
-  //         context: context,
-  //         builder: (BuildContext context) => AlertDialog(
-  //           title: Text('Location Permission Required'),
-  //           content: Text('This app requires location access to function properly.'),
-  //           actions: <Widget>[
-  //             TextButton(
-  //               child: Text('OK'),
-  //               onPressed: () {
-  //                 Navigator.of(context).pop();
-  //               },
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     } else if (status.isPermanentlyDenied) {
-  //       // Open app settings
-  //       await openAppSettings();
-  //     }
-  //     return false;
-  //   }
-  // }
-
-  // Method to update driver's location dynamically
-  // void updateDriverLocation() async {
-  //   // Replace this with actual code to get driver's location
-  //   LatLng driverLocation = await getCurrentDriverLocation();
-  //
-  //   // Get patient's location from the text field
-  //   List<Location> endLocation = await locationFromAddress(end.text);
-  //   LatLng patientLocation = LatLng(endLocation[0].latitude, endLocation[0].longitude);
-  //
-  //   // Update the route based on the new driver's location
-  //   // and patient's location
-  //   updateRoute(driverLocation, patientLocation);
-  // }
-
-  // Call this method periodically or whenever you want to update the driver's location
-  // void startUpdatingDriverLocation() {
-  //   // Start a timer to periodically update the driver's location
-  //   Timer.periodic(Duration(seconds: 30), (timer) {
-  //     // Update driver's location
-  //     updateDriverLocation();
-  //   });
-  // }
-
-  // Method to update route dynamically
-  // void updateRoute(LatLng driverLocation, LatLng patientLocation) async {
-  //   var url = Uri.parse('http://router.project-osrm.org/route/v1/driving/'
-  //       '${driverLocation.longitude},${driverLocation.latitude};'
-  //       '${patientLocation.longitude},${patientLocation.latitude}'
-  //       '?steps=true&annotations=true&geometries=geojson&overview=full');
-  //
-  //   var response = await http.get(url);
-  //
-  //   setState(() {
-  //     routpoints = [];
-  //
-  //     var ruter = jsonDecode(response.body)['routes'][0]['geometry']['coordinates'];
-  //     for(int i= 0; i< ruter.length; i++){
-  //       var reep = ruter[i].toString();
-  //       reep = reep.replaceAll("[","");
-  //       reep = reep.replaceAll("]","");
-  //
-  //       var lat1 = reep.split(',');
-  //       var long1 = reep.split(",");
-  //
-  //       routpoints.add(LatLng(double.parse(lat1[1]), double.parse(long1[0])));
-  //     }
-  //     print(routpoints);
-  //   });
-  // }
 }
 
 // Define a simple class to represent a known location

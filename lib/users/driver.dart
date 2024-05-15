@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:ambu_app/pages/login.dart';
-import 'package:ambu_app/pages/navpages/main_page.dart';
 import 'package:ambu_app/sidebar/driver_sidebar.dart';
 import 'package:ambu_app/sidebar/patient_tracking.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +7,9 @@ import 'package:flutter_map/plugin_api.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
-import 'package:mongo_dart/mongo_dart.dart' as mongo;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
-// Define MongoDB connection parameters
-// final String mongoUrl = 'mongodb://localhost:27017';
-// final String dbName = 'ambulance-website';
 
 class Driver extends StatefulWidget {
   final String username;
@@ -87,9 +80,6 @@ class _DriverState extends State<Driver> {
             ),
           ],
         ),
-        // drawer: const Drawer(
-        //         //   // Add your drawer content here
-        //         // ),
         body: TabBarView(
           children: [
             SingleChildScrollView(
@@ -124,8 +114,6 @@ class _DriverState extends State<Driver> {
                     ),
 
                     const SizedBox(height: 20),
-                    // InformationDisplay widgets for displaying ambulance, trip, and driver information
-                    // These widgets will display fetched information from MongoDB
                     AnimatedCard(
                       icon: Icons.phone,
                       title: 'Call',
@@ -556,9 +544,6 @@ class AccessOfflineFunctionalityDialog extends StatelessWidget {
 class ViewReportsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Perform database interaction here to retrieve trip reports
-    // Example: Fetch trip reports from the database
-    // List<TripReport> tripReports = database.getTripReports();
     return AlertDialog(
       title: Text('View Reports'),
       content: Column(
