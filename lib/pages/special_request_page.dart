@@ -130,7 +130,7 @@ class _SpecialRequestPageState extends State<SpecialRequestPage> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'This field cannot be empty';
-                              } else if (value.length < 10) {
+                              } else if (value.length <= 10) {
                                 return 'Request should be at least 10 characters long';
                               }
                               return null;
