@@ -95,7 +95,7 @@ class _CarPageState extends State<CarPage> {
             ),
             SizedBox(height: 16.0),
             Text(
-              'Map with Nearby Hospitals/Clinics:',
+              'Map with Nearby Hospitals/Clinics',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
             SizedBox(height: 8.0),
@@ -139,7 +139,7 @@ class _CarPageState extends State<CarPage> {
             ),
             SizedBox(height: 16.0),
             Text(
-              'Additional Advice:',
+              'Additional Advice',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
             ),
             SizedBox(height: 8.0),

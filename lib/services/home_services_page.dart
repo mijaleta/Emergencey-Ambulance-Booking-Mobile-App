@@ -14,6 +14,12 @@ class OurServices extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        // ),
         title: const Text(
           'Services',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -38,14 +44,14 @@ class OurServices extends StatelessWidget {
                     child: Text(
                   'Explore Our Services',
                   style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                      color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 25),
                 )),
                 const Center(
                   child: Text(
                     "Choose what you need",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: 22,
                       color: Colors.white,
                     ),
                   ),
