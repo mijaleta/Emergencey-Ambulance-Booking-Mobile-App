@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+import 'patient_tracking.dart';
+
 class DriverNavBar extends StatefulWidget {
   const DriverNavBar({super.key});
 
@@ -124,7 +126,7 @@ class _DriverNavBarState extends State<DriverNavBar> {
                 ),
                 onTap: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (context) =>const PatientTrackingPage()));
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const DemoMap()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const PatientTrackingPage()));
                   // callMapFunctions();  PatientLocation
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => const DriverMap(),),);
                 },
