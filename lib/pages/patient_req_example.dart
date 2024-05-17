@@ -23,6 +23,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   String _patientCondition = '';
   late Position _currentPosition;
 
+
   @override
   void initState() {
     super.initState();
@@ -56,9 +57,42 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
     }
   }
 
+  void _showIncompleteFormDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Incomplete Form'),
+          content: Text('Please answer all the questions to submit the request.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
   void _submitRequest() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      if (_emergencyType == 'Car' && _address.isEmpty) {
+        _showIncompleteFormDialog(context);
+        return;
+      }
+      if (_emergencyType == 'Labour' && _address.isEmpty) {
+        _showIncompleteFormDialog(context);
+        return;
+      }
+      if (_emergencyType == 'Animal' && (_address.isEmpty || _patientCondition.isEmpty)) {
+        _showIncompleteFormDialog(context);
+        return;
+      }
       try {
         var response = await http.post(
           Uri.parse('https://ambulance-website.samiintegratedfarm.com/patientRequest'),
@@ -109,6 +143,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       }
     }
   }
+
 
   void _navigateToEmergencyPage(BuildContext context) {
     switch (_emergencyType) {
@@ -324,14 +359,14 @@ class _CarQuestionsState extends State<CarQuestions> {
       return; // Do not update priority if any question is unanswered
     }
 
-    String priority = 'low';
+    String priority = 'Low';
 
     if (_conscious == 'no' && _breathing == 'no' && _pulse == 'none') {
-      priority = 'high';
+      priority = 'High';
     } else if (_bleeding == 'severe' || _conscious == 'no' || _breathing == 'no') {
-      priority = 'medium';
+      priority = 'Medium';
     } else {
-      priority = 'low';
+      priority = 'Low';
     }
 
     setState(() {
@@ -460,14 +495,14 @@ class _LabourQuestionsState extends State<LabourQuestions> {
       return; // Do not update priority if any question is unanswered
     }
 
-    String priority = 'low';
+    String priority = 'Low';
 
     if (_q2 == 'yes' || _q3 == 'yes' || _q4 == 'no') {
-      priority = 'high';
+      priority = 'High';
     } else if (_q1 == 'yes') {
-      priority = 'medium';
+      priority = 'Medium';
     } else {
-      priority = 'low';
+      priority = 'Low';
     }
 
     setState(() {
@@ -567,14 +602,14 @@ class _AnimalQuestionsState extends State<AnimalQuestions> {
       return; // Do not update priority if any question is unanswered
     }
 
-    String priority = 'low';
+    String priority = 'Low';
 
     if (_q2 == 'yes' || _q3 == 'yes') {
-      priority = 'high';
+      priority = 'High';
     } else if (_q4 == 'no') {
-      priority = 'medium';
+      priority = 'Medium';
     } else {
-      priority = 'low';
+      priority = 'Low';
     }
 
     setState(() {
