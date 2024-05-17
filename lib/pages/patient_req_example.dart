@@ -349,21 +349,29 @@ class CarQuestions extends StatefulWidget {
 class _CarQuestionsState extends State<CarQuestions> {
   String? _conscious;
   String? _breathing;
-  String? _airway;
+  String? _injuries;
   String? _bleeding;
   String? _pulse;
   String _priority = '';
 
   void _determinePriority() {
-    if (_conscious == null || _breathing == null || _airway == null || _bleeding == null || _pulse == null) {
+    if (_conscious == null || _breathing == null || _injuries == null || _bleeding == null || _pulse == null) {
       return; // Do not update priority if any question is unanswered
     }
 
     String priority = 'Low';
+    // Is the patient conscious?
+    // Is the patient breathing?
+    // Are there any severe injuries?
+    // Is there any visible bleeding?
+    // What is the patient’s pulse rate?
 
-    if (_conscious == 'no' && _breathing == 'no' && _pulse == 'none') {
+    if ((_conscious == 'no' && _breathing == 'no' && _pulse == 'none' && _bleeding == 'severe' && _injuries == 'yes') ||
+        (_conscious == 'no' && _breathing == 'no' && _pulse == 'none' && _bleeding == 'moderate' && _injuries == 'no') ||
+        (_conscious == 'yes' && _breathing == 'no' && _pulse == 'none' && _bleeding == 'moderate' && _injuries == 'yes')) {
       priority = 'High';
-    } else if (_bleeding == 'severe' || _conscious == 'no' || _breathing == 'no') {
+    } else if ((_bleeding == 'severe' && _conscious == 'yes' && _injuries == 'yes') || (_bleeding == 'moderate' && _conscious == 'yes' && _injuries == 'no') ||
+        (_bleeding == 'moderate' && _conscious == 'yes' && _pulse == 'none' && _injuries == 'yes')) {
       priority = 'Medium';
     } else {
       priority = 'Low';
@@ -446,9 +454,12 @@ class _CarQuestionsState extends State<CarQuestions> {
               (value) => setState(() => _breathing = value),
         ),
         _buildRadioQuestion(
-          'Is the airway clear?',
-          _airway,
-              (value) => setState(() => _airway = value),
+          // Are there any severe injuries?
+          // Is there any visible bleeding?
+          // What is the patient’s pulse rate?
+          'Are there any severe injuries?',
+          _injuries,
+              (value) => setState(() => _injuries = value),
         ),
         _buildRadioQuestionMultipleOptions(
           'Is there any visible bleeding?',
