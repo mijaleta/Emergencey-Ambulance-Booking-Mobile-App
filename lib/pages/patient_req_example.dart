@@ -720,7 +720,7 @@ class _AnimalQuestionsState extends State<AnimalQuestions> with IncompleteDialog
   String? _q2;
   String? _q3;
   String? _q4;
-  String _priority = 'Medium';
+  String _priority = '';
 
   void _determinePriority() {
     // Check if all questions are answered
