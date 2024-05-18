@@ -96,6 +96,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
         _showIncompleteFormDialog(context);
         return;
       }
+
+
       try {
         var response = await http.post(
           Uri.parse('https://ambulance-website.samiintegratedfarm.com/patientRequest'),
