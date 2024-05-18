@@ -341,12 +341,41 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   }
 }
 
+// Define the mixin
+mixin IncompleteDialogMixin<T extends StatefulWidget> on State<T> {
+  List<String> incompleteQuestions = [];
+
+  void _showIncompleteDialog(BuildContext context) {
+    if (incompleteQuestions.isNotEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Incomplete Form'),
+            content: Text('Please answer all questions before submitting.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+// Other methods and widgets...
+}
+
 class CarQuestions extends StatefulWidget {
   @override
   _CarQuestionsState createState() => _CarQuestionsState();
 }
 
-class _CarQuestionsState extends State<CarQuestions> {
+class _CarQuestionsState extends State<CarQuestions> with IncompleteDialogMixin<CarQuestions> {
   String? _conscious;
   String? _breathing;
   String? _injuries;
@@ -355,7 +384,14 @@ class _CarQuestionsState extends State<CarQuestions> {
   String _priority = '';
 
   void _determinePriority() {
-    if (_conscious == null || _breathing == null || _injuries == null || _bleeding == null || _pulse == null) {
+    // Check if all questions are answered
+    if (_conscious == null ||
+        _breathing == null ||
+        _injuries == null ||
+        _bleeding == null ||
+        _pulse == null) {
+      // Store incomplete questions
+      incompleteQuestions = ['conscious', 'breathing', 'injuries', 'bleeding', 'pulse'];
       return; // Do not update priority if any question is unanswered
     }
 
@@ -376,6 +412,8 @@ class _CarQuestionsState extends State<CarQuestions> {
     } else {
       priority = 'Low';
     }
+    // // Clear incomplete questions list
+    //     incompleteQuestions.clear();
 
     setState(() {
       _priority = priority; // Update _priority
@@ -494,34 +532,52 @@ class LabourQuestions extends StatefulWidget {
   _LabourQuestionsState createState() => _LabourQuestionsState();
 }
 
-class _LabourQuestionsState extends State<LabourQuestions> {
-  String? _q1;
-  String? _q2;
-  String? _q3;
-  String? _q4;
+class _LabourQuestionsState extends State<LabourQuestions> with IncompleteDialogMixin<LabourQuestions> {
+  String? _complications;
+  String? _medicalConditions;
+  String? _unusualSymptoms;
+  String? _otherSymptoms;
+  String? _vaginalBleeding;
+  String? _painIntensity;
   String _priority = '';
 
   void _determinePriority() {
-    if (_q1 == null || _q2 == null || _q3 == null || _q4 == null) {
-      return; // Do not update priority if any question is unanswered
+    // Check if all questions are answered
+    if (_complications == null ||
+        _medicalConditions == null ||
+        _unusualSymptoms == null ||
+        _otherSymptoms == null ||
+        _vaginalBleeding == null ||
+        _painIntensity == null) {
+      // Show incomplete dialog if any question is unanswered
+      _showIncompleteDialog(context);
+      return;
     }
 
     String priority = 'Low';
 
-    if (_q2 == 'yes' || _q3 == 'yes' || _q4 == 'no') {
+    if ((_complications == 'yes' && _unusualSymptoms == 'yes') ||
+        (_complications == 'yes' && _vaginalBleeding == 'yes') ||
+        (_vaginalBleeding == 'yes' && _painIntensity == '9') ||
+        (_vaginalBleeding == 'yes' && _otherSymptoms == 'yes')) {
       priority = 'High';
-    } else if (_q1 == 'yes') {
+    } else if ((_complications == 'yes' && _vaginalBleeding == 'no') ||
+        (_medicalConditions == 'yes' && _vaginalBleeding == 'no') ||
+        (_unusualSymptoms == 'yes' && _vaginalBleeding == 'no') ||
+        (_otherSymptoms == 'yes' && _vaginalBleeding == 'no') ||
+        (_vaginalBleeding == 'yes' && _painIntensity != '9')) {
       priority = 'Medium';
     } else {
       priority = 'Low';
     }
 
     setState(() {
-      _priority = priority; // Update _priority
+      _priority = priority;
     });
   }
 
-  Widget _buildRadioQuestion(String question, String? value, Function(String?) onChanged) {
+  Widget _buildRadioQuestion(
+      String question, String? value, Function(String?) onChanged) {
     return Column(
       children: [
         Text(question),
@@ -534,7 +590,7 @@ class _LabourQuestionsState extends State<LabourQuestions> {
                 groupValue: value,
                 onChanged: (newValue) {
                   onChanged(newValue);
-                  _determinePriority(); // Calculate priority when any radio button changes
+                  _determinePriority();
                 },
               ),
             ),
@@ -545,11 +601,32 @@ class _LabourQuestionsState extends State<LabourQuestions> {
                 groupValue: value,
                 onChanged: (newValue) {
                   onChanged(newValue);
-                  _determinePriority(); // Calculate priority when any radio button changes
+                  _determinePriority();
                 },
               ),
             ),
           ],
+        ),
+        SizedBox(height: 20),
+      ],
+    );
+  }
+
+  Widget _buildSliderQuestion(
+      String question, String? value, Function(double) onChanged) {
+    return Column(
+      children: [
+        Text(question),
+        Slider(
+          value: double.tryParse(value ?? '0') ?? 0,
+          min: 0,
+          max: 10,
+          divisions: 10,
+          label: value,
+          onChanged: (newValue) {
+            onChanged(newValue);
+            _determinePriority();
+          },
         ),
         SizedBox(height: 20),
       ],
@@ -561,32 +638,42 @@ class _LabourQuestionsState extends State<LabourQuestions> {
     return Column(
       children: [
         _buildRadioQuestion(
-          'How far apart are your contractions (in minutes)?',
-          _q1,
-              (value) => setState(() => _q1 = value),
+          'Have you experienced any complications during this pregnancy?',
+          _complications,
+              (value) => setState(() => _complications = value),
         ),
         _buildRadioQuestion(
-          'Has your water broken?',
-          _q2,
-              (value) => setState(() => _q2 = value),
+          'Do you have any medical conditions or allergies?',
+          _medicalConditions,
+              (value) => setState(() => _medicalConditions = value),
+        ),
+        _buildRadioQuestion(
+          'Have you experienced any unusual symptoms during this pregnancy?',
+          _unusualSymptoms,
+              (value) => setState(() => _unusualSymptoms = value),
+        ),
+        _buildRadioQuestion(
+          'Are you experiencing any other symptoms such as dizziness, nausea, or headache?',
+          _otherSymptoms,
+              (value) => setState(() => _otherSymptoms = value),
         ),
         _buildRadioQuestion(
           'Are you experiencing any vaginal bleeding?',
-          _q3,
-              (value) => setState(() => _q3 = value),
+          _vaginalBleeding,
+              (value) => setState(() => _vaginalBleeding = value),
         ),
-        _buildRadioQuestion(
-          'Are you still feeling the baby move?',
-          _q4,
-              (value) => setState(() => _q4 = value),
+        _buildSliderQuestion(
+          'How intense is your pain on a scale from 1 to 10?',
+          _painIntensity,
+              (value) => setState(() => _painIntensity = value.toString()),
         ),
         SizedBox(height: 20),
         TextFormField(
-          readOnly: true, // Make it read-only
-          controller: TextEditingController(text: _priority), // Use controller to set the text
+          readOnly: true,
+          controller: TextEditingController(text: _priority),
           decoration: InputDecoration(
-            labelText: 'Priority', // Label for the text field
-            border: OutlineInputBorder(), // Border decoration
+            labelText: 'Priority',
+            border: OutlineInputBorder(),
           ),
         ),
       ],
@@ -596,26 +683,33 @@ class _LabourQuestionsState extends State<LabourQuestions> {
 
 
 
+
 class AnimalQuestions extends StatefulWidget {
   @override
   _AnimalQuestionsState createState() => _AnimalQuestionsState();
 }
 
-class _AnimalQuestionsState extends State<AnimalQuestions> {
+class _AnimalQuestionsState extends State<AnimalQuestions> with IncompleteDialogMixin<AnimalQuestions> {
   String? _q1;
   String? _q2;
   String? _q3;
   String? _q4;
-  String _priority = '';
+  String _priority = 'Medium';
 
   void _determinePriority() {
-    if (_q1 == null || _q2 == null || _q3 == null || _q4 == null) {
+    // Check if all questions are answered
+    if (_q1 == null ||
+        _q2 == null ||
+        _q3 == null ||
+        _q4 == null) {
+      // Show incomplete dialog if any question is unanswered
+      _showIncompleteDialog(context);
       return; // Do not update priority if any question is unanswered
     }
 
     String priority = 'Low';
 
-    if (_q2 == 'yes' || _q3 == 'yes') {
+    if (_q2 == 'yes' && _q3 == 'yes' && (_q1 != 'dog' || _q1 != 'cat')) {
       priority = 'High';
     } else if (_q4 == 'no') {
       priority = 'Medium';
