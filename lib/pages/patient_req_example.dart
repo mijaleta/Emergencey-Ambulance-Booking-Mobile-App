@@ -21,6 +21,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   String _number = '';
   String _emergencyType = 'Car';
   String _patientCondition = '';
+  String _patientName = '';
   late Position _currentPosition;
 
 
@@ -218,6 +219,24 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     ),
                     enabled: false,
                   ),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    labelText: 'Patient Name',
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter patient Name';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _patientName = value!;
+                  },
                 ),
                 SizedBox(height: 20),
                 TextFormField(
