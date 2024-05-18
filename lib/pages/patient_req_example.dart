@@ -19,7 +19,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   String _contactInfo = '';
   String _address = '';
   String _number = '';
-  String _emergencyType = 'Car';
+  String? _emergencyType;
   String _patientCondition = '';
   String _patientName = '';
   late Position _currentPosition;
@@ -46,16 +46,18 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   }
 
   Widget _getEmergencyQuestionsWidget() {
-    switch (_emergencyType) {
-      case 'Car':
-        return CarQuestions();
-      case 'Labour':
-        return LabourQuestions();
-      case 'Animal':
-        return AnimalQuestions();
-      default:
-        return Container();
-    }
+    return Visibility(
+      visible: _emergencyType != null && _emergencyType!.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (_emergencyType == 'Car') CarQuestions(),
+          if (_emergencyType == 'Labour') LabourQuestions(),
+          if (_emergencyType == 'Animal') AnimalQuestions(),
+          SizedBox(height: 20),
+        ],
+      ),
+    );
   }
 
   void _showIncompleteFormDialog(BuildContext context) {
@@ -103,7 +105,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
           body: jsonEncode(<String, String>{
             'location': _location,
             'contactInfo': _contactInfo,
-            'emergency_type': _emergencyType,
+            'emergency_type': _emergencyType ?? '', // Provide default value if _emergencyType is null
             'address': _address,
             'number': _number,
             'patient_condition': _patientCondition,
@@ -292,7 +294,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                   },
                 ),
                 SizedBox(height: 20),
-                DropdownButtonFormField(
+                DropdownButtonFormField<String>(
                   value: _emergencyType,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -300,15 +302,18 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     ),
                     labelText: 'Emergency type',
                   ),
-                  items: ['Car', 'Labour', 'Animal']
-                      .map((level) => DropdownMenuItem(
-                    value: level,
+                  items: [
+                    'Select Emergency Type', // Add a "Select Emergency Type" item
+                    'Car',
+                    'Labour',
+                    'Animal'
+                  ].map((level) => DropdownMenuItem(
+                    value: level == 'Select Emergency Type' ? null : level, // Set value to null for "Select Emergency Type"
                     child: Text(level),
-                  ))
-                      .toList(),
+                  )).toList(),
                   onChanged: (value) {
                     setState(() {
-                      _emergencyType = value as String;
+                      _emergencyType = value; // No need for a cast as the type is already String?
                     });
                   },
                 ),
