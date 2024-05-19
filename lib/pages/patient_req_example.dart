@@ -804,6 +804,57 @@ class _AnimalQuestionsState extends State<AnimalQuestions>
     });
   }
 
+  Widget _buildAnimalTypeQuestion(
+      String question, String? value, Function(String?) onChanged) {
+    return Column(
+      children: [
+        Text(question),
+        SizedBox(height: 10,),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: RadioListTile(
+                  title: Text('Dog'),
+                  value: 'dog',
+                  groupValue: value,
+                  onChanged: (newValue) {
+                    onChanged(newValue);
+                    _determinePriority();
+                  },
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  title: Text('Cat'),
+                  value: 'cat',
+                  groupValue: value,
+                  onChanged: (newValue) {
+                    onChanged(newValue);
+                    _determinePriority();
+                  },
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  title: Text('Other'),
+                  value: 'other',
+                  groupValue: value,
+                  onChanged: (newValue) {
+                    onChanged(newValue);
+                    _determinePriority();
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 20),
+      ],
+    );
+  }
+
   Widget _buildRadioQuestion(
       String question, String? value, Function(String?) onChanged) {
     return Column(
@@ -844,11 +895,17 @@ class _AnimalQuestionsState extends State<AnimalQuestions>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildRadioQuestion(
+        // _buildRadioQuestion(
+        //   'What type of animal caused the injury?',
+        //   _q1,
+        //   (value) => setState(() => _q1 = value),
+        // ),
+        _buildAnimalTypeQuestion(
           'What type of animal caused the injury?',
           _q1,
           (value) => setState(() => _q1 = value),
         ),
+
         _buildRadioQuestion(
           'Are there any deep wounds or severe bleeding?',
           _q2,
