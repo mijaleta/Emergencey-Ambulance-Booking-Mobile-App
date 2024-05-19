@@ -1,11 +1,12 @@
 import 'package:ambu_app/pages/account_page.dart';
-import 'package:ambu_app/pages/feedback_page%20copy%202.dart';
+// import 'package:ambu_app/pages/feedback_page%20copy%202.dart';
 import 'package:ambu_app/pages/home_page.dart';
 import 'package:ambu_app/services/home_services_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../feedback_page.dart';
 import '../patient_req_example.dart';
 
 class MainPage extends StatefulWidget {

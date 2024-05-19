@@ -20,6 +20,7 @@ class OurServices extends StatelessWidget {
         //     Navigator.pop(context);
         //   },
         // ),
+        centerTitle: true,
         title: const Text(
           'Services',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
