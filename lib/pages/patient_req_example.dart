@@ -122,8 +122,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       try {
         var response = await http.post(
           Uri.parse(
-              // 'https://ambulance-website.samiintegratedfarm.com/patientRequest'),
-              'http://192.168.222.95:3000/patientRequest'),
+              'https://ambulance-website.samiintegratedfarm.com/patientRequest'),
+          // 'http://192.168.175.117:3000/patientRequest'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -359,6 +359,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     },
                   ),
                 SizedBox(height: 20),
+                // Padding(
+                // padding: const EdgeInsets.only(bottom: 30.0),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -372,6 +374,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     ),
                   ),
                 ),
+                SizedBox(height: 30),
+                // ),
               ],
             ),
           ),
@@ -614,7 +618,7 @@ class _LabourQuestionsState extends State<LabourQuestions>
   String? _unusualSymptoms;
   String? _otherSymptoms;
   String? _vaginalBleeding;
-  String? _painIntensity;
+  // String? _painIntensity;
   // String _level = '';
   String _level = 'low';
 
@@ -624,8 +628,7 @@ class _LabourQuestionsState extends State<LabourQuestions>
         _medicalConditions == null ||
         _unusualSymptoms == null ||
         _otherSymptoms == null ||
-        _vaginalBleeding == null ||
-        _painIntensity == null) {
+        _vaginalBleeding == null) {
       // Show incomplete dialog if any question is unanswered
       _showIncompleteDialog(context);
       return;
@@ -635,14 +638,14 @@ class _LabourQuestionsState extends State<LabourQuestions>
 
     if ((_complications == 'yes' && _unusualSymptoms == 'yes') ||
         (_complications == 'yes' && _vaginalBleeding == 'yes') ||
-        (_vaginalBleeding == 'yes' && _painIntensity == '9') ||
+        // (_vaginalBleeding == 'yes') ||
         (_vaginalBleeding == 'yes' && _otherSymptoms == 'yes')) {
       level = 'High';
     } else if ((_complications == 'yes' && _vaginalBleeding == 'no') ||
         (_medicalConditions == 'yes' && _vaginalBleeding == 'no') ||
         (_unusualSymptoms == 'yes' && _vaginalBleeding == 'no') ||
         (_otherSymptoms == 'yes' && _vaginalBleeding == 'no') ||
-        (_vaginalBleeding == 'yes' && _painIntensity != '9')) {
+        (_vaginalBleeding == 'yes')) {
       level = 'Medium';
     } else {
       level = 'Low';
@@ -740,11 +743,11 @@ class _LabourQuestionsState extends State<LabourQuestions>
           _vaginalBleeding,
           (value) => setState(() => _vaginalBleeding = value),
         ),
-        _buildSliderQuestion(
-          'How intense is your pain on a scale from 1 to 10?',
-          _painIntensity,
-          (value) => setState(() => _painIntensity = value.toString()),
-        ),
+        // _buildSliderQuestion(
+        //   'How intense is your pain on a scale from 1 to 10?',
+        //   _painIntensity,
+        //   (value) => setState(() => _painIntensity = value.toString()),
+        // ),
         SizedBox(height: 20),
         TextFormField(
           readOnly: true,
