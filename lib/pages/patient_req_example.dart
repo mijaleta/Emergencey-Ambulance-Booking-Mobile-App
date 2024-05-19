@@ -809,10 +809,10 @@ class _AnimalQuestionsState extends State<AnimalQuestions>
     return Column(
       children: [
         Text(question),
-        SizedBox(height: 10,),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        // SizedBox(height: 10,),
+        // Expanded(
+          Row(
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: RadioListTile(
@@ -849,7 +849,7 @@ class _AnimalQuestionsState extends State<AnimalQuestions>
               ),
             ],
           ),
-        ),
+        // ),
         SizedBox(height: 20),
       ],
     );
