@@ -8,6 +8,8 @@ import 'animal_page.dart';
 import 'car_page.dart';
 import 'labour_page.dart'; // Import the geolocator package
 
+String _level = 'low';
+
 class RequestAmbulancePage extends StatefulWidget {
   @override
   _RequestAmbulancePageState createState() => _RequestAmbulancePageState();
@@ -20,10 +22,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
   String _address = '';
   String _number = '';
   String? _emergencyType;
-  String _patientCondition = '';
   String _patientName = '';
   late Position _currentPosition;
-
 
   @override
   void initState() {
@@ -38,7 +38,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       );
       setState(() {
         _currentPosition = newPosition;
-        _location = '${_currentPosition.latitude},${_currentPosition.longitude}';
+        _location =
+            '${_currentPosition.latitude},${_currentPosition.longitude}';
       });
     } catch (e) {
       print('Error getting location: $e');
@@ -51,9 +52,30 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (_emergencyType == 'Car') CarQuestions(),
-          if (_emergencyType == 'Labour') LabourQuestions(),
-          if (_emergencyType == 'Animal') AnimalQuestions(),
+          if (_emergencyType == 'Car')
+            CarQuestions(
+              updateGlobalLevel: (String level) {
+                setState(() {
+                  _level = level;
+                });
+              },
+            ),
+          if (_emergencyType == 'Labour')
+            LabourQuestions(
+              updateGlobalLevel: (String level) {
+                setState(() {
+                  _level = level;
+                });
+              },
+            ),
+          if (_emergencyType == 'Animal')
+            AnimalQuestions(
+              updateGlobalLevel: (String level) {
+                setState(() {
+                  _level = level;
+                });
+              },
+            ),
           SizedBox(height: 20),
         ],
       ),
@@ -66,7 +88,8 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Incomplete Form'),
-          content: Text('Please answer all the questions to submit the request.'),
+          content:
+              Text('Please answer all the questions to submit the request.'),
           actions: <Widget>[
             TextButton(
               child: Text('OK'),
@@ -80,7 +103,6 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
     );
   }
 
-
   void _submitRequest() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -92,30 +114,34 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
         _showIncompleteFormDialog(context);
         return;
       }
-      if (_emergencyType == 'Animal' && (_address.isEmpty || _patientCondition.isEmpty)) {
+      if (_emergencyType == 'Animal' && (_address.isEmpty)) {
         _showIncompleteFormDialog(context);
         return;
       }
 
-
       try {
         var response = await http.post(
-          Uri.parse('https://ambulance-website.samiintegratedfarm.com/patientRequest'),
+          Uri.parse(
+              // 'https://ambulance-website.samiintegratedfarm.com/patientRequest'),
+              'http://192.168.222.95:3000/patientRequest'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: jsonEncode(<String, String>{
             'location': _location,
+            'patient_name': _patientName,
             'contactInfo': _contactInfo,
-            'emergency_type': _emergencyType ?? '', // Provide default value if _emergencyType is null
+            'emergency_type': _emergencyType ??
+                '', // Provide default value if _emergencyType is null
             'address': _address,
             'number': _number,
-            'patient_condition': _patientCondition,
+            'level': _level
           }),
         );
         if (response.statusCode == 200) {
           final responseData = jsonDecode(response.body);
-          if (responseData['message'] == 'Booking request submitted successfully') {
+          if (responseData['message'] ==
+              'Booking request submitted successfully') {
             showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -149,17 +175,19 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
     }
   }
 
-
   void _navigateToEmergencyPage(BuildContext context) {
     switch (_emergencyType) {
       case 'Car':
-        Navigator.push(context, MaterialPageRoute(builder: (context) => CarPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => CarPage()));
         break;
       case 'Labour':
-        Navigator.push(context, MaterialPageRoute(builder: (context) => LabourPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LabourPage()));
         break;
       case 'Animal':
-        Navigator.push(context, MaterialPageRoute(builder: (context) => AnimalPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AnimalPage()));
         break;
       default:
         break;
@@ -177,7 +205,6 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
     }
     return null;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -266,24 +293,6 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    labelText: 'Patient condition',
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter patient condition';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _patientCondition = value!;
-                  },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
                     labelText: 'Contact Information',
                   ),
                   keyboardType: TextInputType.phone,
@@ -309,13 +318,18 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
                     'Car',
                     'Labour',
                     'Animal'
-                  ].map((level) => DropdownMenuItem(
-                    value: level == 'Select Emergency Type' ? null : level, // Set value to null for "Select Emergency Type"
-                    child: Text(level),
-                  )).toList(),
+                  ]
+                      .map((level) => DropdownMenuItem(
+                            value: level == 'Select Emergency Type'
+                                ? null
+                                : level, // Set value to null for "Select Emergency Type"
+                            child: Text(level),
+                          ))
+                      .toList(),
                   onChanged: (value) {
                     setState(() {
-                      _emergencyType = value; // No need for a cast as the type is already String?
+                      _emergencyType =
+                          value; // No need for a cast as the type is already String?
                     });
                   },
                 ),
@@ -397,17 +411,23 @@ mixin IncompleteDialogMixin<T extends StatefulWidget> on State<T> {
 }
 
 class CarQuestions extends StatefulWidget {
+  // added now miretu
+  final Function(String) updateGlobalLevel;
+
+  CarQuestions({required this.updateGlobalLevel});
+  // added now miretu
   @override
   _CarQuestionsState createState() => _CarQuestionsState();
 }
 
-class _CarQuestionsState extends State<CarQuestions> with IncompleteDialogMixin<CarQuestions> {
+class _CarQuestionsState extends State<CarQuestions>
+    with IncompleteDialogMixin<CarQuestions> {
   String? _conscious;
   String? _breathing;
   String? _injuries;
   String? _bleeding;
   String? _pulse;
-  String _priority = '';
+  // String _level = '';
 
   void _determinePriority() {
     // Check if all questions are answered
@@ -417,36 +437,62 @@ class _CarQuestionsState extends State<CarQuestions> with IncompleteDialogMixin<
         _bleeding == null ||
         _pulse == null) {
       // Store incomplete questions
-      incompleteQuestions = ['conscious', 'breathing', 'injuries', 'bleeding', 'pulse'];
+      incompleteQuestions = [
+        'conscious',
+        'breathing',
+        'injuries',
+        'bleeding',
+        'pulse'
+      ];
       return; // Do not update priority if any question is unanswered
     }
 
-    String priority = 'Low';
+    String level = 'low';
     // Is the patient conscious?
     // Is the patient breathing?
     // Are there any severe injuries?
     // Is there any visible bleeding?
     // What is the patient’s pulse rate?
 
-    if ((_conscious == 'no' && _breathing == 'no' && _pulse == 'none' && _bleeding == 'severe' && _injuries == 'yes') ||
-        (_conscious == 'no' && _breathing == 'no' && _pulse == 'none' && _bleeding == 'moderate' && _injuries == 'no') ||
-        (_conscious == 'yes' && _breathing == 'no' && _pulse == 'none' && _bleeding == 'moderate' && _injuries == 'yes')) {
-      priority = 'High';
-    } else if ((_bleeding == 'severe' && _conscious == 'yes' && _injuries == 'yes') || (_bleeding == 'moderate' && _conscious == 'yes' && _injuries == 'no') ||
-        (_bleeding == 'moderate' && _conscious == 'yes' && _pulse == 'none' && _injuries == 'yes')) {
-      priority = 'Medium';
+    if ((_conscious == 'no' &&
+            _breathing == 'no' &&
+            _pulse == 'none' &&
+            _bleeding == 'severe' &&
+            _injuries == 'yes') ||
+        (_conscious == 'no' &&
+            _breathing == 'no' &&
+            _pulse == 'none' &&
+            _bleeding == 'moderate' &&
+            _injuries == 'no') ||
+        (_conscious == 'yes' &&
+            _breathing == 'no' &&
+            _pulse == 'none' &&
+            _bleeding == 'moderate' &&
+            _injuries == 'yes')) {
+      level = 'High';
+    } else if ((_bleeding == 'severe' &&
+            _conscious == 'yes' &&
+            _injuries == 'yes') ||
+        (_bleeding == 'moderate' && _conscious == 'yes' && _injuries == 'no') ||
+        (_bleeding == 'moderate' &&
+            _conscious == 'yes' &&
+            _pulse == 'none' &&
+            _injuries == 'yes')) {
+      level = 'Medium';
     } else {
-      priority = 'Low';
+      level = 'Low';
     }
     // // Clear incomplete questions list
     //     incompleteQuestions.clear();
 
     setState(() {
-      _priority = priority; // Update _priority
+      _level = level;
+      widget.updateGlobalLevel(_level); // Update the global _level
     });
   }
 
-  Widget _buildRadioQuestion(String question, String? value, Function(String?) onChanged) {
+  Widget _buildRadioQuestion(
+      String question, String? value, Function(String?) onChanged) {
     return Column(
       children: [
         Text(question),
@@ -481,7 +527,8 @@ class _CarQuestionsState extends State<CarQuestions> with IncompleteDialogMixin<
     );
   }
 
-  Widget _buildRadioQuestionMultipleOptions(String question, String? value, List<String> options, Function(String?) onChanged) {
+  Widget _buildRadioQuestionMultipleOptions(String question, String? value,
+      List<String> options, Function(String?) onChanged) {
     return Column(
       children: [
         Text(question),
@@ -510,12 +557,12 @@ class _CarQuestionsState extends State<CarQuestions> with IncompleteDialogMixin<
         _buildRadioQuestion(
           'Is the patient conscious?',
           _conscious,
-              (value) => setState(() => _conscious = value),
+          (value) => setState(() => _conscious = value),
         ),
         _buildRadioQuestion(
           'Is the patient breathing?',
           _breathing,
-              (value) => setState(() => _breathing = value),
+          (value) => setState(() => _breathing = value),
         ),
         _buildRadioQuestion(
           // Are there any severe injuries?
@@ -523,26 +570,27 @@ class _CarQuestionsState extends State<CarQuestions> with IncompleteDialogMixin<
           // What is the patient’s pulse rate?
           'Are there any severe injuries?',
           _injuries,
-              (value) => setState(() => _injuries = value),
+          (value) => setState(() => _injuries = value),
         ),
         _buildRadioQuestionMultipleOptions(
           'Is there any visible bleeding?',
           _bleeding,
           ['Severe', 'Moderate', 'None'],
-              (value) => setState(() => _bleeding = value),
+          (value) => setState(() => _bleeding = value),
         ),
         _buildRadioQuestionMultipleOptions(
           'What is the patient’s pulse rate?',
           _pulse,
           ['Normal', 'Fast', 'Slow', 'None'],
-              (value) => setState(() => _pulse = value),
+          (value) => setState(() => _pulse = value),
         ),
         SizedBox(height: 20),
         TextFormField(
           readOnly: true, // Make it read-only
-          controller: TextEditingController(text: _priority), // Use controller to set the text
+          controller: TextEditingController(
+              text: _level), // Use controller to set the text
           decoration: InputDecoration(
-            labelText: 'Priority', // Label for the text field
+            labelText: 'level', // Label for the text field
             border: OutlineInputBorder(), // Border decoration
           ),
         ),
@@ -551,21 +599,24 @@ class _CarQuestionsState extends State<CarQuestions> with IncompleteDialogMixin<
   }
 }
 
-
-
 class LabourQuestions extends StatefulWidget {
+  final Function(String) updateGlobalLevel;
+
+  LabourQuestions({required this.updateGlobalLevel});
   @override
   _LabourQuestionsState createState() => _LabourQuestionsState();
 }
 
-class _LabourQuestionsState extends State<LabourQuestions> with IncompleteDialogMixin<LabourQuestions> {
+class _LabourQuestionsState extends State<LabourQuestions>
+    with IncompleteDialogMixin<LabourQuestions> {
   String? _complications;
   String? _medicalConditions;
   String? _unusualSymptoms;
   String? _otherSymptoms;
   String? _vaginalBleeding;
   String? _painIntensity;
-  String _priority = '';
+  // String _level = '';
+  String _level = 'low';
 
   void _determinePriority() {
     // Check if all questions are answered
@@ -580,25 +631,26 @@ class _LabourQuestionsState extends State<LabourQuestions> with IncompleteDialog
       return;
     }
 
-    String priority = 'Low';
+    String level = 'Low';
 
     if ((_complications == 'yes' && _unusualSymptoms == 'yes') ||
         (_complications == 'yes' && _vaginalBleeding == 'yes') ||
         (_vaginalBleeding == 'yes' && _painIntensity == '9') ||
         (_vaginalBleeding == 'yes' && _otherSymptoms == 'yes')) {
-      priority = 'High';
+      level = 'High';
     } else if ((_complications == 'yes' && _vaginalBleeding == 'no') ||
         (_medicalConditions == 'yes' && _vaginalBleeding == 'no') ||
         (_unusualSymptoms == 'yes' && _vaginalBleeding == 'no') ||
         (_otherSymptoms == 'yes' && _vaginalBleeding == 'no') ||
         (_vaginalBleeding == 'yes' && _painIntensity != '9')) {
-      priority = 'Medium';
+      level = 'Medium';
     } else {
-      priority = 'Low';
+      level = 'Low';
     }
 
     setState(() {
-      _priority = priority;
+      _level = level; // determine the new level
+      widget.updateGlobalLevel(_level); // Update the global _level
     });
   }
 
@@ -666,39 +718,39 @@ class _LabourQuestionsState extends State<LabourQuestions> with IncompleteDialog
         _buildRadioQuestion(
           'Have you experienced any complications during this pregnancy?',
           _complications,
-              (value) => setState(() => _complications = value),
+          (value) => setState(() => _complications = value),
         ),
         _buildRadioQuestion(
           'Do you have any medical conditions or allergies?',
           _medicalConditions,
-              (value) => setState(() => _medicalConditions = value),
+          (value) => setState(() => _medicalConditions = value),
         ),
         _buildRadioQuestion(
           'Have you experienced any unusual symptoms during this pregnancy?',
           _unusualSymptoms,
-              (value) => setState(() => _unusualSymptoms = value),
+          (value) => setState(() => _unusualSymptoms = value),
         ),
         _buildRadioQuestion(
           'Are you experiencing any other symptoms such as dizziness, nausea, or headache?',
           _otherSymptoms,
-              (value) => setState(() => _otherSymptoms = value),
+          (value) => setState(() => _otherSymptoms = value),
         ),
         _buildRadioQuestion(
           'Are you experiencing any vaginal bleeding?',
           _vaginalBleeding,
-              (value) => setState(() => _vaginalBleeding = value),
+          (value) => setState(() => _vaginalBleeding = value),
         ),
         _buildSliderQuestion(
           'How intense is your pain on a scale from 1 to 10?',
           _painIntensity,
-              (value) => setState(() => _painIntensity = value.toString()),
+          (value) => setState(() => _painIntensity = value.toString()),
         ),
         SizedBox(height: 20),
         TextFormField(
           readOnly: true,
-          controller: TextEditingController(text: _priority),
+          controller: TextEditingController(text: _level),
           decoration: InputDecoration(
-            labelText: 'Priority',
+            labelText: 'level',
             border: OutlineInputBorder(),
           ),
         ),
@@ -707,48 +759,50 @@ class _LabourQuestionsState extends State<LabourQuestions> with IncompleteDialog
   }
 }
 
-
-
-
 class AnimalQuestions extends StatefulWidget {
+  // added now miretu
+  final Function(String) updateGlobalLevel;
+
+  AnimalQuestions({required this.updateGlobalLevel});
+  // added now miretu
   @override
   _AnimalQuestionsState createState() => _AnimalQuestionsState();
 }
 
-class _AnimalQuestionsState extends State<AnimalQuestions> with IncompleteDialogMixin<AnimalQuestions> {
+class _AnimalQuestionsState extends State<AnimalQuestions>
+    with IncompleteDialogMixin<AnimalQuestions> {
   String? _q1;
   String? _q2;
   String? _q3;
   String? _q4;
-  String _priority = '';
-
+  // String _level = '';
+  String _level = 'low';
   void _determinePriority() {
     // Check if all questions are answered
-    if (_q1 == null ||
-        _q2 == null ||
-        _q3 == null ||
-        _q4 == null) {
+    if (_q1 == null || _q2 == null || _q3 == null || _q4 == null) {
       // Show incomplete dialog if any question is unanswered
       _showIncompleteDialog(context);
       return; // Do not update priority if any question is unanswered
     }
 
-    String priority = 'Low';
+    String level = 'Low';
 
     if (_q2 == 'yes' && _q3 == 'yes' && (_q1 != 'dog' || _q1 != 'cat')) {
-      priority = 'High';
+      level = 'High';
     } else if (_q4 == 'no') {
-      priority = 'Medium';
+      level = 'Medium';
     } else {
-      priority = 'Low';
+      level = 'Low';
     }
 
     setState(() {
-      _priority = priority; // Update _priority
+      _level = level; // determine the new level
+      widget.updateGlobalLevel(_level); // Update the global _level
     });
   }
 
-  Widget _buildRadioQuestion(String question, String? value, Function(String?) onChanged) {
+  Widget _buildRadioQuestion(
+      String question, String? value, Function(String?) onChanged) {
     return Column(
       children: [
         Text(question),
@@ -790,29 +844,31 @@ class _AnimalQuestionsState extends State<AnimalQuestions> with IncompleteDialog
         _buildRadioQuestion(
           'What type of animal caused the injury?',
           _q1,
-              (value) => setState(() => _q1 = value),
+          (value) => setState(() => _q1 = value),
         ),
         _buildRadioQuestion(
           'Are there any deep wounds or severe bleeding?',
           _q2,
-              (value) => setState(() => _q2 = value),
+          (value) => setState(() => _q2 = value),
         ),
         _buildRadioQuestion(
           'Are there any signs of infection at the injury site (e.g., swelling, redness)?',
           _q3,
-              (value) => setState(() => _q3 = value),
+          (value) => setState(() => _q3 = value),
         ),
         _buildRadioQuestion(
           'Do you know if the animal was vaccinated against rabies?',
           _q4,
-              (value) => setState(() => _q4 = value),
+          (value) => setState(() => _q4 = value),
         ),
         SizedBox(height: 20),
         TextFormField(
           readOnly: true, // Make it read-only
-          controller: TextEditingController(text: _priority), // Use controller to set the text
+          controller: TextEditingController(
+              text: _level), // Use controller to set the text
           decoration: InputDecoration(
-            labelText: 'Priority', // Label for the text field
+            labelText: 'level', // Label for the text field
+
             border: OutlineInputBorder(), // Border decoration
           ),
         ),
