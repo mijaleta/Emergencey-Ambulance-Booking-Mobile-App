@@ -693,26 +693,26 @@ class _LabourQuestionsState extends State<LabourQuestions>
     );
   }
 
-  Widget _buildSliderQuestion(
-      String question, String? value, Function(double) onChanged) {
-    return Column(
-      children: [
-        Text(question),
-        Slider(
-          value: double.tryParse(value ?? '0') ?? 0,
-          min: 0,
-          max: 10,
-          divisions: 10,
-          label: value,
-          onChanged: (newValue) {
-            onChanged(newValue);
-            _determinePriority();
-          },
-        ),
-        SizedBox(height: 20),
-      ],
-    );
-  }
+  // Widget _buildSliderQuestion(
+  //     String question, String? value, Function(double) onChanged) {
+  //   return Column(
+  //     children: [
+  //       Text(question),
+  //       Slider(
+  //         value: double.tryParse(value ?? '0') ?? 0,
+  //         min: 0,
+  //         max: 10,
+  //         divisions: 10,
+  //         label: value,
+  //         onChanged: (newValue) {
+  //           onChanged(newValue);
+  //           _determinePriority();
+  //         },
+  //       ),
+  //       SizedBox(height: 20),
+  //     ],
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
