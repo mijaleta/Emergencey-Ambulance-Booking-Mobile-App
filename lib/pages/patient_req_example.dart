@@ -166,7 +166,7 @@ class _RequestAmbulancePageState extends State<RequestAmbulancePage> {
             );
           }
         } else {
-          print('Failed to send request. Status code: ${response.statusCode}');
+          print('Failed to send request. Status c ode: ${response.statusCode}');
           print('Response body: ${response.body}');
         }
       } catch (e) {

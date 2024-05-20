@@ -29,17 +29,16 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
   // Timer for continuous location updates
   Timer? locationUpdateTimer;
 
+
   @override
-  void initState() {
+  void initState () {
     super.initState();
     requestLocationPermission();
     initializeCurrentLocation();
     // getCurrentLocation();
     //startLocationUpdates();
   }
-
-  LatLng?
-      currentLocation; // Nullable type to indicate that it might be null initially
+  LatLng? currentLocation; // Nullable type to indicate that it might be null initially
 
   // Future<void> _initializeCurrentLocation() async {
   //   currentLocation = await _getCurrentLocation(); // Get current location from device
@@ -70,8 +69,7 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
   Future<void> getCurrentLocation() async {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    String address = await getAddressFromLatLng(
-        LatLng(position.latitude, position.longitude));
+    String address = await getAddressFromLatLng(LatLng(position.latitude, position.longitude));
 
     // List<Location> locations = await locationFromAddress(address);
     // Print the result of locationFromAddress
@@ -83,9 +81,10 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
     });
   }
 
+
   Future<String> getAddressFromLatLng(LatLng latLng) async {
     List<Placemark> placemarks =
-        await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
+    await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
     return placemarks[0].name ?? ""; // Return address or empty string
   }
 
@@ -109,54 +108,41 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   MyInput(controller: start, hint: 'Enter Starting PosCode'),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15,),
                   MyInput(controller: end, hint: 'Enter Ending PosCode'),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15,),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green,),
                     // Inside onPressed method of ElevatedButton
                     onPressed: () async {
                       // Existing code to retrieve start and end locations
-                      List<Location> start_l =
-                          await locationFromAddress(start.text);
-                      List<Location> end_l =
-                          await locationFromAddress(end.text);
+                      List<Location> start_l = await locationFromAddress(start.text);
+                      List<Location> end_l = await locationFromAddress(end.text);
 
                       // Check if the auto-populated start location is a known location
                       if (start_l.isEmpty) {
                         // If the auto-populated start location is not a known location, use the current location
                         if (currentLocation != null) {
                           // Get nearby known locations using Overpass API
-                          List<KnownLocation> nearbyLocations =
-                              await getNearbyKnownLocations(currentLocation!);
+                          List<KnownLocation> nearbyLocations = await getNearbyKnownLocations(currentLocation!);
                           if (nearbyLocations.isNotEmpty) {
                             // Calculate distances between current location and nearby known locations
                             Map<KnownLocation, double> distances = {};
                             for (var location in nearbyLocations) {
-                              double distance = calculateDistance(
-                                  currentLocation!, location.coordinates);
+                              double distance = calculateDistance(currentLocation!, location.coordinates);
                               distances[location] = distance;
                             }
                             // Choose the closest known location
-                            var closestLocation = distances.entries
-                                .reduce((a, b) => a.value < b.value ? a : b)
-                                .key;
+                            var closestLocation = distances.entries.reduce((a, b) => a.value < b.value ? a : b).key;
                             // Use the closest known location as the starting point for the route
-                            start.text = closestLocation
-                                .name; // Update start location input with closest known location name
+                            start.text = closestLocation.name; // Update start location input with closest known location name
                             // Calculate route from the closest known location to the end location
                             if (currentLocation != null) {
-                              await calculateRouteAndDraw(currentLocation!,
-                                  closestLocation.coordinates);
+                              await calculateRouteAndDraw(currentLocation!, closestLocation.coordinates);
                             } else {
                               // Handle the case where currentLocation is null
                             }
+
                           } else {
                             // Handle scenario where no known locations are found nearby
                             print('No known locations found nearby');
@@ -173,25 +159,22 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
                         double v3 = end_l[0].latitude;
                         double v4 = end_l[0].longitude;
                         // Calculate route from the auto-populated start location to the end location
-                        var url = Uri.parse(
-                            'http://router.project-osrm.org/route/v1/driving/$v2,$v1;$v4,$v3?steps=true&annotations=true&geometries=geojson&overview=full');
+                        var url = Uri.parse('http://router.project-osrm.org/route/v1/driving/$v2,$v1;$v4,$v3?steps=true&annotations=true&geometries=geojson&overview=full');
                         var response = await http.get(url);
 
                         setState(() {
                           routpoints = [];
 
-                          var ruter = jsonDecode(response.body)['routes'][0]
-                              ['geometry']['coordinates'];
-                          for (int i = 0; i < ruter.length; i++) {
+                          var ruter = jsonDecode(response.body)['routes'][0]['geometry']['coordinates'];
+                          for(int i= 0; i< ruter.length; i++){
                             var reep = ruter[i].toString();
-                            reep = reep.replaceAll("[", "");
-                            reep = reep.replaceAll("]", "");
+                            reep = reep.replaceAll("[","");
+                            reep = reep.replaceAll("]","");
 
                             var lat1 = reep.split(',');
                             var long1 = reep.split(",");
 
-                            routpoints.add(LatLng(
-                                double.parse(lat1[1]), double.parse(long1[0])));
+                            routpoints.add(LatLng(double.parse(lat1[1]), double.parse(long1[0])));
                           }
                           print(routpoints);
                           isVisible = !isVisible;
@@ -200,15 +183,9 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
                       }
                     },
 
-                    child: const Text(
-                      'Press to Track...',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
+                    child: const Text('Press to Track...', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10,),
                   SizedBox(
                     height: 600,
                     width: 400,
@@ -219,7 +196,7 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
                           center: routpoints[0],
                           zoom: 13,
                         ),
-                        nonRotatedChildren: const [
+                        nonRotatedChildren:const [
                           RichAttributionWidget(
                             attributions: [
                               TextSourceAttribution(
@@ -231,17 +208,13 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
                         ],
                         children: [
                           TileLayer(
-                            urlTemplate:
-                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                             userAgentPackageName: 'com.example.app',
                           ),
                           PolylineLayer(
                             polylineCulling: false,
                             polylines: [
-                              Polyline(
-                                  points: routpoints,
-                                  color: Colors.red,
-                                  strokeWidth: 9)
+                              Polyline(points: routpoints, color: Colors.red, strokeWidth: 9)
                             ],
                           )
                         ],
@@ -260,30 +233,26 @@ class _PatientTrackingPageState extends State<PatientTrackingPage> {
   // Define a method to calculate the distance between two sets of coordinates
   double calculateDistance(LatLng start, LatLng end) {
     // Calculate distance using the Haversine formula
-    double distance =
-        (Geodesy().distanceBetweenTwoGeoPoints(start, end)).toDouble();
+    double distance = (Geodesy().distanceBetweenTwoGeoPoints(start, end)).toDouble();
     return distance;
   }
 
+
   // Define a method to fetch nearby known locations using the Overpass API
-  Future<List<KnownLocation>> getNearbyKnownLocations(
-      LatLng currentLocation) async {
+  Future<List<KnownLocation>> getNearbyKnownLocations(LatLng currentLocation) async {
     // Define the radius within which to search for nearby locations (in meters)
     final double searchRadius = 1000; // Adjust as needed
 
     // Placeholder list of known locations (replace with your actual logic to fetch locations from Overpass API)
     List<KnownLocation> knownLocations = [
       KnownLocation('Location 1', LatLng(9.352951154649515, 42.80603840681846)),
-      KnownLocation(
-          'Location 2', LatLng(9.350000, 42.800000)), // Example known locations
+      KnownLocation('Location 2', LatLng(9.350000, 42.800000)), // Example known locations
       KnownLocation('Location 3', LatLng(9.355000, 42.810000)),
     ];
 
     // Filter locations within the search radius
     List<KnownLocation> nearbyLocations = knownLocations.where((location) {
-      return Geodesy().distanceBetweenTwoGeoPoints(
-              currentLocation, location.coordinates) <=
-          searchRadius;
+      return Geodesy().distanceBetweenTwoGeoPoints(currentLocation, location.coordinates) <= searchRadius;
     }).toList();
 
     return nearbyLocations;
