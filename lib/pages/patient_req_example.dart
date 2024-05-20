@@ -472,7 +472,9 @@ class _CarQuestionsState extends State<CarQuestions>
             _breathing == 'no' &&
             _pulse == 'none' &&
             _bleeding == 'moderate' &&
-            _injuries == 'yes')) {
+            _injuries == 'yes') ||
+        (_breathing == 'no') ||
+        (_conscious == 'no')) {
       level = 'High';
     } else if ((_bleeding == 'severe' &&
             _conscious == 'yes' &&
