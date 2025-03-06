@@ -1,16 +1,66 @@
-# ambu_app
+Emergency Ambulance Booking Mobile App
 
-A new Flutter project.
+Overview
 
-## Getting Started
+The Emergency Ambulance Booking Mobile App is designed to provide quick and easy access to emergency medical services. Users can request an ambulance with just a few taps, ensuring timely medical assistance in critical situations.
 
-This project is a starting point for a Flutter application.
+Features
 
-A few resources to get you started if this is your first Flutter project:
+Instant Ambulance Booking – Request an ambulance quickly during emergencies.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Real-Time Tracking – Track the ambulance location in real-time.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+User Profile – Store personal details for quicker access during emergencies.
+
+Emergency Contacts – Add emergency contacts for instant notifications.
+
+Service History – View past ambulance booking details.
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/mijaleta/Emergencey-Ambulance-Booking-Mobile-App.git
+
+Navigate to the project directory:
+
+cd Emergencey-Ambulance-Booking-Mobile-App
+
+Install dependencies:
+
+npm install
+
+Run the application:
+
+npm start
+
+Technologies Used
+
+Frontend: Flutter
+
+Backend: Node.js with Express, firebase, firebase cloud messaging
+
+Database: MongoDB
+
+Maps & Navigation: Google Maps API
+
+Contribution
+
+Contributions are welcome! If you’d like to contribute:
+
+Fork the repository.
+
+Create a new branch.
+
+Make your changes and commit them.
+
+Push to your fork and submit a pull request.
+
+License
+
+This project is licensed under the MIT License.
+
+Contact
+
+For any issues or inquiries, please contact miratuujaallataa@gmail.com.
+
