@@ -1,66 +1,134 @@
-Emergency Ambulance Booking Mobile App
+# Emergency Ambulance Booking Mobile App
 
-Overview
+[![Flutter](https://img.shields.io/badge/Flutter-%3E%3D2.0.0-blue)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-%3E%3D2.12.0-blue)](https://dart.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The Emergency Ambulance Booking Mobile App is designed to provide quick and easy access to emergency medical services. Users can request an ambulance with just a few taps, ensuring timely medical assistance in critical situations.
+## Overview
 
-Features
+The Emergency Ambulance Booking Mobile App is a Flutter-based mobile application designed to provide quick and reliable access to emergency medical services. Users can request an ambulance with just a few taps, track its arrival in real-time, and manage their emergency contacts and medical information.
 
-Instant Ambulance Booking – Request an ambulance quickly during emergencies.
+## Features
 
-Real-Time Tracking – Track the ambulance location in real-time.
+- **Instant Ambulance Booking**: Request an ambulance quickly during emergencies with minimal steps.
+- **Real-Time Tracking**: Monitor the ambulance's location and estimated arrival time on a map.
+- **User Profile Management**: Store personal details, medical history, and insurance information for faster service.
+- **Emergency Contacts**: Add and notify emergency contacts automatically when an ambulance is booked.
+- **Service History**: View past ambulance bookings, including timestamps and details.
+- **Multi-language Support**: Available in multiple languages for broader accessibility.
+- **Offline Mode**: Basic functionality available even with limited connectivity.
+- **Secure Authentication**: Protect user data with secure login and data encryption.
 
-User Profile – Store personal details for quicker access during emergencies.
+## Screenshots
 
-Emergency Contacts – Add emergency contacts for instant notifications.
+![Home Screen](screenshots/home.png)
+*Home screen showing quick booking option*
 
-Service History – View past ambulance booking details.
+![Booking Screen](screenshots/booking.png)
+*Ambulance booking interface with location selection*
 
-Installation
+![Tracking Screen](screenshots/tracking.png)
+*Real-time ambulance tracking on map*
 
-Clone the repository:
+![Profile Screen](screenshots/profile.png)
+*User profile and medical information management*
 
-git clone https://github.com/mijaleta/Emergencey-Ambulance-Booking-Mobile-App.git
+*Note: Replace placeholder screenshots with actual app screenshots.*
 
-Navigate to the project directory:
+## Architecture
 
-cd Emergencey-Ambulance-Booking-Mobile-App
+The app follows a modular architecture with separation of concerns:
 
-Install dependencies:
+- **Presentation Layer**: Flutter widgets and state management (using Provider/Riverpod/Bloc)
+- **Domain Layer**: Business logic and use cases
+- **Data Layer**: Repositories handling data from local storage and remote APIs
+- **Services**: Firebase authentication, cloud messaging, Google Maps API, and RESTful backend services
 
-npm install
+## Installation
 
-Run the application:
+### Prerequisites
+- Flutter SDK >= 2.0.0
+- Dart SDK >= 2.12.0
+- Android Studio / Xcode (for mobile emulators/simulators)
+- Firebase account (for backend services)
 
-npm start
+### Setup
 
-Technologies Used
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mijaleta/Emergency-Ambulance-Booking-Mobile-App.git
+   ```
 
-Frontend: Flutter
+2. Navigate to the project directory:
+   ```bash
+   cd Emergency-Ambulance-Booking-Mobile-App
+   ```
 
-Backend: Node.js with Express, firebase, firebase cloud messaging
+3. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
 
-Database: MongoDB
+4. Configure Firebase:
+   - Follow the [Firebase setup guide](https://firebase.flutter.dev/docs/overview) for Android and iOS
+   - Download `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) and place them in the respective app directories
 
-Maps & Navigation: Google Maps API
+5. Run the app:
+   ```bash
+   flutter run
+   ```
 
-Contribution
+## Usage
 
-Contributions are welcome! If you’d like to contribute:
+1. Launch the app on your device or emulator.
+2. Sign up or log in to create a user profile.
+3. Add emergency contacts and medical information in the profile section.
+4. In an emergency, tap the "Book Ambulance" button on the home screen.
+5. Confirm your location and any additional details.
+6. Track the ambulance in real-time until arrival.
+7. View booking history in the app's history section.
 
-Fork the repository.
+## Technologies Used
 
-Create a new branch.
+- **Frontend**: Flutter 2.0+, Dart 2.12+
+- **State Management**: Provider/Riverpod (specify which one used)
+- **Backend**: Node.js with Express, Firebase Authentication, Firebase Cloud Messaging
+- **Database**: MongoDB (via backend APIs) and Firebase Firestore (for real-time data)
+- **Maps & Navigation**: Google Maps API
+- **Local Storage**: SharedPreferences/Hive (specify)
+- **Version Control**: Git
+- **CI/CD**: GitHub Actions (if applicable)
 
-Make your changes and commit them.
+## Backend Repository
 
-Push to your fork and submit a pull request.
+The backend for this application is located at: [Backend Repository Link]
+*(Add link to backend repository if separate)*
 
-License
+## Contribution
 
-This project is licensed under the MIT License.
+Contributions are welcome! If you'd like to contribute to this project:
 
-Contact
+1. Fork the repository.
+2. Create a new branch for your feature (`git checkout -b feature/AmazingFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a pull request.
 
-For any issues or inquiries, please contact miratuujaallataa@gmail.com.
+Please ensure your code follows the project's coding standards and includes appropriate tests.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Miratu Ujaallata - miratuujaallataa@gmail.com
+
+Project Link: [https://github.com/mijaleta/Emergency-Ambulance-Booking-Mobile-App](https://github.com/mijaleta/Emergency-Ambulance-Booking-Mobile-App)
+
+## Acknowledgments
+
+- Flutter team for the excellent cross-platform framework
+- Firebase team for backend services
+- Google Maps Platform for mapping services
+- Open-source contributors whose packages were used in this project
